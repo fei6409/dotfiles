@@ -1,0 +1,6 @@
+alias ll='ls -lAhF'
+alias rm='rm -i'
+alias tad='tmux attach -d'
+alias zshrc='vim ~/.zshrc'
+alias vimrc='vim ~/.vimrc'
+
