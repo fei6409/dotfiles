@@ -73,6 +73,7 @@ filetype plugin indent on
 syntax on " Enable syntax highlighting
 colorscheme torte " set color scheme
 
+
 " indentations
 set autoindent " Enable auto indent
 set expandtab " insert whitespace whenever the tab key is pressed
@@ -80,6 +81,7 @@ set shiftwidth=2 " determine the number of whitespace inserted for indentation
 set softtabstop=2 " generally same as shiftwidth
 set tabstop=2 " specify the width of a tab
 let g:python_recommended_style=0 " disable python indentation from ftplugin/python.vim 
+
 
 " autocmd
 autocmd FileType Makefile setlocal noexpandtab " for Makefile indentation
