@@ -3,4 +3,23 @@ alias rm='rm -i'
 alias tad='tmux attach -d'
 alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
+alias vimfzf='vim $(fzf)'
+alias rsync='rsync -azvhP'
 
+# for chromeOS
+
+function search() {
+  local p=$2
+  : ${p:=~/chromiumos/src/}
+  ag -g $1 $p
+}
+alias fac='cd ~/chromiumos/src/platform/factory'
+alias ker='cd ~/chromiumos/src/third_party/kernel/v4.19'
+alias aut='cd ~/chromiumos/src/third_party/autotest'
+alias ec='cd ~/chromiumos/src/platform/ec'
+alias dut-console='~/chromiumos/src/platform/dev/contrib/dut-console'
+
+# google3 stuff
+
+alias g3doc='g4d test && cd experimental/users/fshao/g3doc && vim ./sheet.md'
+alias x20='cd /google/data/rw/users/fs/fshao'

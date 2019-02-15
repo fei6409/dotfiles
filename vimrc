@@ -11,22 +11,31 @@ Plug 'junegunn/fzf.vim'
 Plug 'Yggdroot/indentLine'
 call plug#end()
 
+source /usr/share/vim/google/google.vim
 
-" for fzf.vim
+" fzf.vim
 " " shortcut to find files
 nnoremap <C-f> :Files<CR>
 " " ag search result
 cnoremap ag Ag
 cnoremap files Files
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+" let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+let $FZF_DEFAULT_COMMAND = 'rg --files --no-messages'
 command! -bang -nargs=* Ag
   \ call fzf#vim#ag(<q-args>,
   \                 <bang>0 ? fzf#vim#with_preview('up:60%')
   \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
   \                 <bang>0)
+cnoremap rg Rg
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
 
 
-" for NERDTree
+" NERDTree
 " " toggle for NERDtree
 nnoremap <C-g> :NERDTreeToggle<CR>
 " " open a NERDTree automatically when vim starts up if no files were specified
@@ -38,8 +47,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " autocmd vimenter * NERDTree
 
 
-" for YCM
-let g:ycm_confirm_extra_conf = 1
+" YCM
+let g:ycm_confirm_extra_conf = 0
 let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 " let g:ycm_show_diagnostics_ui = 0
 let g:ycm_min_num_of_chars_for_completion = 3
@@ -50,7 +59,7 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_key_list_stop_completion = ['<C-y>', '<UP>', '<DOWN>']
 
 
-" for vim-airline
+" vim-airline
 " " enable powerline-fonts, but need 'guifont' to be supported
 " " or try to change terminal non-ascii font to Meslo
 let g:airline_powerline_fonts = 1
@@ -66,6 +75,10 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_theme = 'wombat'
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
+
+
+" indentLine
+autocmd Filetype json let g:indentLine_setConceal = 0
 
 
 " =======================

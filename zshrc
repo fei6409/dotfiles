@@ -10,7 +10,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time time)
 
 # Enable double-lined prompt
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
@@ -110,3 +110,4 @@ export LANG=zh_TW.UTF-8
 [ -f /etc/bash_completion.d/g4d ] && source /etc/bash_completion.d/g4d
 [ -f ~/.alias ] && source ~/.alias
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f $HOME/.cargo/env ] && source $HOME/.cargo/env

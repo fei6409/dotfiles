@@ -1,3 +1,4 @@
 # dotfiles
 
-Just some of dotfiles for myself.
+Just dotfiles for myself.  May contains Google workstaion settings, be careful
+when sharing.
