@@ -37,10 +37,15 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 echo "Installing zsh-autosuggestions"
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-echo " Installing unversal-ctags"
+echo "Installing unversal-ctags"
 git clone https://github.com/universal-ctags/ctags.git
 sudo apt-get install autoconf automake pkg-config
 cd ctags
 ./autogen.sh && ./configure && make && make install
 cd $current_dir
 
+echo "Installing silver searcher (ag)"
+sudo apt-get install silversearcher-ag
+
+echo "Visit this link to install ripgrep if needed"
+echo "https://github.com/BurntSushi/ripgrep"
