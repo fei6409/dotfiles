@@ -134,6 +134,9 @@ highlight CursorLine cterm=NONE ctermbg=236 ctermfg=NONE
 "" set menu color
 highlight Pmenu ctermbg=darkgray
 highlight PmenuSel ctermfg=lightgray ctermbg=darkblue
+""
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
 
 
 " key mapping
