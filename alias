@@ -6,6 +6,7 @@ alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
 alias vimfzf='vim $(fzf)'
 alias rsync='rsync -azvhP'
+which colordiff > /dev/null && alias diff='colordiff'
 
 # for chromeOS
 
