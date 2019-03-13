@@ -1,12 +1,14 @@
+function check_exist() { which $1 > /dev/null }
+
 alias ll='ls -lAhF'
 alias rm='rm -i'
 alias grep='grep --color=auto'
 alias tad='tmux attach -d'
 alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
-alias vimfzf='vim $(fzf)'
 alias rsync='rsync -azvhP'
-which colordiff > /dev/null && alias diff='colordiff'
+check_exist xclip && alias copy='xclip -sel clip'
+check_exist colordiff && alias diff='colordiff'
 
 # for chromeOS
 
@@ -15,11 +17,14 @@ function search() {
   : ${p:=~/chromiumos/src/}
   ag -g $1 $p
 }
+alias cros_sdk='cd ~/chromiumos/src/; cros_sdk'
 alias fac='cd ~/chromiumos/src/platform/factory'
 alias ker='cd ~/chromiumos/src/third_party/kernel/v4.19'
 alias aut='cd ~/chromiumos/src/third_party/autotest'
 alias ec='cd ~/chromiumos/src/platform/ec'
 alias dut-console='~/chromiumos/src/platform/dev/contrib/dut-console'
+alias faclist='cd ~/chromiumos/src/platform/factory/py/test/test_lists'
+alias prilist='cd ~/chromiumos/src/private-overlays/overlay-kukui-private/chromeos-base/factory-board/files/py/test/test_lists'
 
 # google3 stuff
 

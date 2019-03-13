@@ -47,5 +47,6 @@ cd $current_dir
 echo "Installing silver searcher (ag)"
 sudo apt-get install silversearcher-ag
 
-echo "Visit this link to install ripgrep if needed"
-echo "https://github.com/BurntSushi/ripgrep"
+echo "Install the following option packages by your own: "
+echo "ripgrep:  https://github.com/BurntSushi/ripgrep"
+echo "diff-so-fancy:  https://github.com/so-fancy/diff-so-fancy"
