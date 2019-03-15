@@ -95,8 +95,8 @@ let g:python_recommended_style=0 " disable python indentation from ftplugin/pyth
 
 
 " autocmd
-autocmd BufNewFile,BufRead * if &syntax == '' | set syntax=html | endif " for file with no syntax set
-autocmd FileType Makefile setlocal noexpandtab " for Makefile indentation
+autocmd BufNewFile,BufRead * if &syntax == '' | set syntax=sh | endif " for file with no syntax set
+autocmd FileType Makefile setlocal noexpandtab " for Makefile indentation, shell recipe should start with tab
 autocmd FileType c,cpp setlocal sts=4 ts=4 sw=4 " set tab size to 4 for cpp files
 autocmd FileType c,cpp,python,json autocmd BufWritePre * %s/\s\+$//e " remove trailing space on save
 
@@ -128,6 +128,13 @@ set undofile " save undo's after file closes
 set visualbell " use visual bell instead of beeping
 set wildmenu " set command-line completion operate in enhanced mode
 set wrap " enable text wrapping
+
+
+" save those hidden files away
+set backupdir=.backup/,~/.backup/,/tmp//
+set directory=.swp/,~/.swp/,/tmp//
+set undodir=.undo/,~/.undo/,/tmp//
+
 
 "" set current line color
 highlight CursorLine cterm=NONE ctermbg=236 ctermfg=NONE
