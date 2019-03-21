@@ -16,6 +16,7 @@
   dh = diff HEAD
   dhh = diff HEAD^
   au = add -u
+  grep = "grep -Iin"
 [color "diff-highlight"]
 	oldNormal = red bold
 	oldHighlight = red bold 52
