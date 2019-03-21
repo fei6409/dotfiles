@@ -1,3 +1,6 @@
+" vim: fmr={{{,}}} foldlevel=0 fdm=marker
+
+" vim-plug {{{
 call plug#begin('~/.vim/plugged')
 Plug 'Valloric/YouCompleteMe'
 Plug 'Yggdroot/indentLine'
@@ -11,7 +14,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
-" fzf.vim
+" fzf.vim {{{
 " " shortcut to find files
 nnoremap <C-f> :Files<CR>
 " " ag search result
@@ -31,9 +34,9 @@ command! -bang -nargs=* Rg
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
+" }}}
 
-
-" NERDTree
+" NERDTree {{{
 " " toggle for NERDtree
 nnoremap <C-g> :NERDTreeToggle<CR>
 " " open a NERDTree automatically when vim starts up if no files were specified
@@ -43,9 +46,9 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " " automatically open NERDTree on start
 " autocmd vimenter * NERDTree
+" }}}
 
-
-" YCM
+" YCM {{{
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 " let g:ycm_show_diagnostics_ui = 0
@@ -55,9 +58,9 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 " " allow up and down key close the completion window
 let g:ycm_key_list_stop_completion = ['<C-y>', '<UP>', '<DOWN>']
+" }}}
 
-
-" vim-airline
+" vim-airline {{{
 " " enable powerline-fonts, but need 'guifont' to be supported
 " " or try to change terminal non-ascii font to Meslo
 let g:airline_powerline_fonts = 1
@@ -73,37 +76,39 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_theme = 'wombat'
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
+" }}}
 
-
-" indentLine
+" indentLine {{{
 autocmd Filetype json let g:indentLine_setConceal = 0
 autocmd Filetype json setlocal foldmethod=syntax
+" }}}
 
-" =======================
+" }}}
+
+" header {{{
 filetype plugin indent on
 syntax on " Enable syntax highlighting
 colorscheme torte " set color scheme
+" }}}
 
-
-" indentations
+" indentations {{{
 set autoindent " Enable auto indent
 set expandtab " insert whitespace whenever the tab key is pressed
 set shiftwidth=2 " determine the number of whitespace inserted for indentation
 set softtabstop=2 " generally same as shiftwidth
 set tabstop=2 " specify the width of a tab
 let g:python_recommended_style=0 " disable python indentation from ftplugin/python.vim
+" }}}
 
-
-" autocmd
+" autocmd {{{
 autocmd BufNewFile,BufRead * if &syntax == '' | set syntax=sh | endif " for file with no syntax set
 autocmd FileType Makefile setlocal noexpandtab " for Makefile indentation, shell recipe should start with tab
 autocmd FileType c,cpp setlocal sts=4 ts=4 sw=4 " set tab size to 4 for cpp files
 autocmd FileType c,cpp,python,json autocmd BufWritePre * %s/\s\+$//e " remove trailing space on save
+" }}}
 
-
-" general setting
+" general setting {{{
 let mapleader=',' " set <Leader> key to ','
-
 set background=dark " tell vim the background color looks like
 set backspace=2 " make backspace can delete over line breaks
 set confirm " confirm before quiting without saving
@@ -129,24 +134,26 @@ set visualbell " use visual bell instead of beeping
 set wildmenu " set command-line completion operate in enhanced mode
 set wrap " enable text wrapping
 
-
-" save those hidden files away
+" save those hidden files away {{{
 set backupdir=.backup/,~/.backup/,/tmp//
 set directory=.swp/,~/.swp/,/tmp//
 set undodir=.undo/,~/.undo/,/tmp//
+" }}}
 
-
-"" set current line color
+" color related {{{
+" " current line
 highlight CursorLine cterm=NONE ctermbg=236 ctermfg=NONE
-"" set menu color
+" " menu
 highlight Pmenu ctermbg=darkgray
 highlight PmenuSel ctermfg=lightgray ctermbg=darkblue
-""
+" " tailing space
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
+" " folding
+highlight Folded ctermbg=DarkGray ctermfg=White
+" }}}
 
-
-" key mapping
+" key mapping {{{
 nnoremap ; :
 nnoremap <leader>/ :nohlsearch<CR>
 nnoremap <leader>d :bp <BAR> bd #<CR>
@@ -159,3 +166,6 @@ nnoremap / /\v
 vnoremap / /\v
 " %s stands for global substitution
 cnoremap %s/ %s/\v
+" }}}
+" }}}
+
