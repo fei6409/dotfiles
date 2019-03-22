@@ -109,7 +109,6 @@ autocmd FileType c,cpp,python,json autocmd BufWritePre * %s/\s\+$//e " remove tr
 
 " general setting {{{
 let mapleader=',' " set <Leader> key to ','
-set background=dark " tell vim the background color looks like
 set backspace=2 " make backspace can delete over line breaks
 set confirm " confirm before quiting without saving
 set cursorline " highlight the current line
@@ -133,6 +132,7 @@ set undofile " save undo's after file closes
 set visualbell " use visual bell instead of beeping
 set wildmenu " set command-line completion operate in enhanced mode
 set wrap " enable text wrapping
+" }}}
 
 " save those hidden files away {{{
 set backupdir=.backup/,~/.backup/,/tmp//
@@ -141,8 +141,9 @@ set undodir=.undo/,~/.undo/,/tmp//
 " }}}
 
 " color related {{{
+highlight Normal cterm=NONE ctermbg=234
 " " current line
-highlight CursorLine cterm=NONE ctermbg=236 ctermfg=NONE
+highlight CursorLine cterm=NONE ctermbg=238 ctermfg=NONE
 " " menu
 highlight Pmenu ctermbg=darkgray
 highlight PmenuSel ctermfg=lightgray ctermbg=darkblue
@@ -166,6 +167,5 @@ nnoremap / /\v
 vnoremap / /\v
 " %s stands for global substitution
 cnoremap %s/ %s/\v
-" }}}
 " }}}
 
