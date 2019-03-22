@@ -2,12 +2,12 @@
 
 test_installed() {
   name=$1
-  which $name > /dev/null || { echo "$name not properly installed" && exit 0; }
+  command -v $name > /dev/null 2>&1 || { echo "$name not properly installed" && exit 0; }
 }
 
-current_dir=$(pwd)
+pushd $(dirname "$0")
 
-sudo apt-get install git curl
+sudo apt-get -y install git curl
 
 test_installed git
 test_installed curl
@@ -39,14 +39,19 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 
 echo "Installing unversal-ctags"
 git clone https://github.com/universal-ctags/ctags.git
-sudo apt-get install autoconf automake pkg-config
-cd ctags
+sudo apt-get -y install autoconf automake pkg-config
+pushd ctags
 ./autogen.sh && ./configure && make && make install
-cd $current_dir
+popd
 
 echo "Installing silver searcher (ag)"
-sudo apt-get install silversearcher-ag
+sudo apt-get -y install silversearcher-ag
+
+echo "Installing colordiff"
+sudo apt-get -y install colordiff
 
 echo "Install the following option packages by your own: "
 echo "ripgrep:  https://github.com/BurntSushi/ripgrep"
 echo "diff-so-fancy:  https://github.com/so-fancy/diff-so-fancy"
+
+popd
