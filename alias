@@ -7,8 +7,8 @@ alias tad='tmux attach -d'
 alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
 alias rsync='rsync -azvhP'
-check_exist xclip || alias copy='xclip -sel clip'
-check_exist colordiff || alias diff='colordiff'
+check_exist xclip && alias copy='xclip -sel clip'
+check_exist colordiff && alias diff='colordiff'
 
 # for chromeOS
 
