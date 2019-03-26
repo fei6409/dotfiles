@@ -11,7 +11,6 @@ let mapleader=',' " set <Leader> key to ','
 call plug#begin('~/.vim/plugged')
 Plug 'Valloric/YouCompleteMe'
 Plug 'Yggdroot/indentLine'
-Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/fzf', {'dir':'~/.fzf', 'do':'./install --all'} " './install --bin' to use fzf inside vim only
 Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags' " recommanded to work with universal-ctags
@@ -23,6 +22,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 " Some interesting plugins? {{{
+" Plug 'easymotion/vim-easymotion'
 " Plug 'tpope/vim-sensible'
 " Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'terryma/vim-multiple-cursors'
@@ -105,6 +105,10 @@ let g:NERDDefaultAlign='left'
 nmap \ <leader>c<space>
 vmap \ <leader>c<space>
 " }}}
+" vim-surround {{{
+" surround current word with double qoutes
+nmap <leader>" csw"
+" }}}
 " }}}
 
 " indentations {{{
@@ -178,7 +182,7 @@ nnoremap <leader>d :bp <BAR> bd #<CR>
 nnoremap <leader>t :enew<CR>
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
-nnoremap <C-R> :so $MYVIMRC<CR>
+nnoremap <C-r> :so $MYVIMRC<CR>
 " /v stands for reg exp very magic mode, every char except a-zA-Z0-9 and _
 " will have special meaning
 nnoremap / /\v
@@ -186,4 +190,3 @@ vnoremap / /\v
 " %s stands for global substitution
 cnoremap %s/ %s/\v
 " }}}
-
