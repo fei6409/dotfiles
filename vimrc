@@ -1,5 +1,12 @@
 " vim: fmr={{{,}}} foldlevel=0 fdm=marker
 
+" header {{{
+filetype plugin indent on
+syntax on " Enable syntax highlighting
+colorscheme torte " set color scheme
+let mapleader=',' " set <Leader> key to ','
+" }}}
+
 " vim-plug {{{
 call plug#begin('~/.vim/plugged')
 Plug 'Valloric/YouCompleteMe'
@@ -9,9 +16,17 @@ Plug 'junegunn/fzf', {'dir':'~/.fzf', 'do':'./install --all'} " './install --bin
 Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags' " recommanded to work with universal-ctags
 Plug 'powerline/fonts'
+Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+" Some interesting plugins? {{{
+" Plug 'tpope/vim-sensible'
+" Plug 'AndrewRadev/splitjoin.vim'
+" Plug 'terryma/vim-multiple-cursors'
+" }}}
 call plug#end()
 
 " fzf.vim {{{
@@ -35,7 +50,6 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
 " }}}
-
 " NERDTree {{{
 " " toggle for NERDtree
 nnoremap <C-g> :NERDTreeToggle<CR>
@@ -47,7 +61,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " " automatically open NERDTree on start
 " autocmd vimenter * NERDTree
 " }}}
-
 " YCM {{{
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
@@ -59,7 +72,6 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 " " allow up and down key close the completion window
 let g:ycm_key_list_stop_completion = ['<C-y>', '<UP>', '<DOWN>']
 " }}}
-
 " vim-airline {{{
 " " enable powerline-fonts, but need 'guifont' to be supported
 " " or try to change terminal non-ascii font to Meslo
@@ -77,18 +89,22 @@ let g:airline_theme = 'wombat'
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 " }}}
-
 " indentLine {{{
 autocmd Filetype json let g:indentLine_setConceal = 0
 autocmd Filetype json setlocal foldmethod=syntax
 " }}}
-
+" nerdcommenter {{{
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompacSexyComs = 1
+" Enable NERDCommenterToggle to check all selected lines is commented or not
+let g:NERDToggleCheckAllLines = 1
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign='left'
+nmap \ <leader>c<space>
+vmap \ <leader>c<space>
 " }}}
-
-" header {{{
-filetype plugin indent on
-syntax on " Enable syntax highlighting
-colorscheme torte " set color scheme
 " }}}
 
 " indentations {{{
@@ -104,15 +120,15 @@ let g:python_recommended_style=0 " disable python indentation from ftplugin/pyth
 autocmd BufNewFile,BufRead * if &syntax == '' | set syntax=sh | endif " for file with no syntax set
 autocmd FileType Makefile setlocal noexpandtab " for Makefile indentation, shell recipe should start with tab
 autocmd FileType c,cpp setlocal sts=4 ts=4 sw=4 " set tab size to 4 for cpp files
+autocmd FileType json setlocal foldlevel=1 " default keep the top level open
 autocmd FileType c,cpp,python,json autocmd BufWritePre * %s/\s\+$//e " remove trailing space on save
 " }}}
 
 " general setting {{{
-let mapleader=',' " set <Leader> key to ','
 set backspace=2 " make backspace can delete over line breaks
 set confirm " confirm before quiting without saving
 set cursorline " highlight the current line
-set foldlevel=1 " default keep the top level open
+set foldlevel=0 " fold everything be default
 set foldmethod=marker " set folding
 set hidden " set hidden buffer
 set history=1000 " set the number of stored commands
@@ -156,11 +172,13 @@ highlight Folded ctermbg=DarkGray ctermfg=White
 
 " key mapping {{{
 nnoremap ; :
+vnoremap ; :
 nnoremap <leader>/ :nohlsearch<CR>
 nnoremap <leader>d :bp <BAR> bd #<CR>
 nnoremap <leader>t :enew<CR>
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
+nnoremap <C-R> :so $MYVIMRC<CR>
 " /v stands for reg exp very magic mode, every char except a-zA-Z0-9 and _
 " will have special meaning
 nnoremap / /\v
