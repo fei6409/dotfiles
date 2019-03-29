@@ -11,39 +11,41 @@ let mapleader=',' " set <Leader> key to ','
 call plug#begin('~/.vim/plugged')
 Plug 'Valloric/YouCompleteMe'
 Plug 'Yggdroot/indentLine'
+Plug 'gentoo/gentoo-syntax'
+Plug 'godlygeek/tabular' " for vim-markdown, must come before it
 Plug 'junegunn/fzf', {'dir':'~/.fzf', 'do':'./install --all'} " './install --bin' to use fzf inside vim only
 Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags' " recommanded to work with universal-ctags
+Plug 'plasticboy/vim-markdown'
 Plug 'powerline/fonts'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
 " Some interesting plugins? {{{
 " Plug 'easymotion/vim-easymotion'
 " Plug 'tpope/vim-sensible'
 " Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'terryma/vim-multiple-cursors'
+" Plug 'sheerun/vim-polyglot' " language syntax pack
 " }}}
 call plug#end()
 
 " fzf.vim {{{
-" " shortcut to find files
+" shortcut to find files
 nnoremap <C-f> :Files<CR>
-" " ag search result
-cnoremap AG Ag
+" ag search result
 cnoremap files Files
 " let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 let $FZF_DEFAULT_COMMAND = 'rg --files --no-messages'
-command! -bang -nargs=* Ag
+command! -bang -nargs=* AG
   \ call fzf#vim#ag(<q-args>,
   \                 <bang>0 ? fzf#vim#with_preview('up:60%')
   \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
   \                 <bang>0)
-cnoremap RG Rg
-command! -bang -nargs=* Rg
+command! -bang -nargs=* RG
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
@@ -51,14 +53,14 @@ command! -bang -nargs=* Rg
   \   <bang>0)
 " }}}
 " NERDTree {{{
-" " toggle for NERDtree
+" toggle for NERDtree
 nnoremap <C-g> :NERDTreeToggle<CR>
-" " open a NERDTree automatically when vim starts up if no files were specified
+" open a NERDTree automatically when vim starts up if no files were specified
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" " close vim if the only window left open is a NERDTree
+" close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" " automatically open NERDTree on start
+" automatically open NERDTree on start
 " autocmd vimenter * NERDTree
 " }}}
 " YCM {{{
@@ -66,25 +68,25 @@ let g:ycm_confirm_extra_conf = 0
 let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 " let g:ycm_show_diagnostics_ui = 0
 let g:ycm_min_num_of_chars_for_completion = 3
-" " auto close preview window (often used while coding Python)
+" auto close preview window (often used while coding Python)
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
-" " allow up and down key close the completion window
+" allow up and down key close the completion window
 let g:ycm_key_list_stop_completion = ['<C-y>', '<UP>', '<DOWN>']
 " }}}
 " vim-airline {{{
-" " enable powerline-fonts, but need 'guifont' to be supported
-" " or try to change terminal non-ascii font to Meslo
+" enable powerline-fonts, but need 'guifont' to be supported
+" or try to change terminal non-ascii font to Meslo
 let g:airline_powerline_fonts = 1
-" " enable tabline
+" enable tabline
 let g:airline#extensions#tabline#enabled = 1
-" " set left separator
+" set left separator
 let g:airline#extensions#tabline#left_sep = ' '
-" " set left separator which are not editting
+" set left separator which are not editting
 let g:airline#extensions#tabline#left_alt_sep = '|'
-" " show buffer number
-"let g:airline#extensions#tabline#buffer_nr_show = 1
-" " set airline theme
+" show buffer number
+" let g:airline#extensions#tabline#buffer_nr_show = 1
+" set airline theme
 let g:airline_theme = 'wombat'
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
@@ -162,15 +164,15 @@ set undodir=.undo/,~/.undo/,/tmp//
 
 " color related {{{
 highlight Normal cterm=NONE ctermbg=234
-" " current line
+" current line
 highlight CursorLine cterm=NONE ctermbg=238 ctermfg=NONE
-" " menu
+" menu
 highlight Pmenu ctermbg=darkgray
 highlight PmenuSel ctermfg=lightgray ctermbg=darkblue
-" " tailing space
+" tailing space
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
-" " folding
+" folding
 highlight Folded ctermbg=DarkGray ctermfg=White
 " }}}
 
