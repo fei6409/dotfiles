@@ -93,7 +93,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " }}}
 " indentLine {{{
 autocmd Filetype json let g:indentLine_setConceal = 0
-autocmd Filetype json setlocal foldmethod=syntax
+autocmd Filetype json setlocal foldmethod=indent
 " }}}
 " nerdcommenter {{{
 " Add spaces after comment delimiters by default
@@ -182,9 +182,10 @@ vnoremap ; :
 nnoremap <leader>/ :nohlsearch<CR>
 nnoremap <leader>d :bp <BAR> bd #<CR>
 nnoremap <leader>t :enew<CR>
+nnoremap <leader>r :so $MYVIMRC<CR>
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
-nnoremap <C-r> :so $MYVIMRC<CR>
+set pastetoggle=<F8>
 " /v stands for reg exp very magic mode, every char except a-zA-Z0-9 and _
 " will have special meaning
 nnoremap / /\v
