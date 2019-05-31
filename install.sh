@@ -53,5 +53,6 @@ sudo apt-get -y install colordiff
 echo "Install the following option packages by your own: "
 echo "ripgrep:  https://github.com/BurntSushi/ripgrep"
 echo "diff-so-fancy:  https://github.com/so-fancy/diff-so-fancy"
+echo "autojump:  https://github.com/wting/autojump"
 
 popd
