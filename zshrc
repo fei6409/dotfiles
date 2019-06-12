@@ -110,4 +110,8 @@ export LANG=zh_TW.UTF-8
 [ -f /etc/bash_completion.d/g4d ] && source /etc/bash_completion.d/g4d
 [ -f ~/.alias ] && source ~/.alias
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='rg --files --no-messages'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 [ -f $HOME/.cargo/env ] && source $HOME/.cargo/env
+[[ -s /usr/local/google/home/fshao/.autojump/etc/profile.d/autojump.sh ]] && source /usr/local/google/home/fshao/.autojump/etc/profile.d/autojump.sh
+autoload -U compinit && compinit -u
