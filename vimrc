@@ -11,12 +11,13 @@ let mapleader=',' " set <Leader> key to ','
 call plug#begin('~/.vim/plugged')
 Plug 'Valloric/YouCompleteMe'
 Plug 'Yggdroot/indentLine'
+Plug 'w0rp/ale'
 Plug 'gentoo/gentoo-syntax'
 Plug 'godlygeek/tabular' " for vim-markdown, must come before it
 Plug 'junegunn/fzf', {'dir':'~/.fzf', 'do':'./install --all'} " './install --bin' to use fzf inside vim only
 Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags' " recommanded to work with universal-ctags
-Plug 'plasticboy/vim-markdown'
+" Plug 'plasticboy/vim-markdown'
 Plug 'powerline/fonts'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
@@ -30,26 +31,22 @@ Plug 'vim-airline/vim-airline-themes'
 " Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'terryma/vim-multiple-cursors'
 " Plug 'sheerun/vim-polyglot' " language syntax pack
+" Plug 'Konfekt/FastFold'
 " }}}
 call plug#end()
 
 " fzf.vim {{{
 " shortcut to find files
 nnoremap <C-f> :Files<CR>
-" ag search result
-cnoremap files Files
-" let $FZF_DEFAULT_COMMAND = 'ag -g ""'
-let $FZF_DEFAULT_COMMAND = 'rg --files --no-messages'
-cnoremap AG Ag
-command! -bang -nargs=* Ag
+command! -bang -nargs=* AG
   \ call fzf#vim#ag(<q-args>,
   \                 <bang>0 ? fzf#vim#with_preview('up:60%')
   \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
   \                 <bang>0)
-cnoremap RG Rg
-command! -bang -nargs=* Rg
+command! -bang -nargs=* RG
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   'rg --no-heading --line-number --color=always --smart-case '.
+  \   '--colors line:fg:yellow --colors path:fg:green '.shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
@@ -178,13 +175,15 @@ match ExtraWhitespace /\s\+$/
 highlight Folded ctermbg=DarkGray ctermfg=White
 " }}}
 
-" key mapping {{{
+" general key mapping {{{
 nnoremap ; :
 vnoremap ; :
 nnoremap <leader>/ :nohlsearch<CR>
 nnoremap <leader>d :bp <BAR> bd #<CR>
 nnoremap <leader>t :enew<CR>
 nnoremap <leader>r :so $MYVIMRC<CR>
+" yank the selected part to clipboard
+nnoremap <leader>y "+y
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
 set pastetoggle=<F8>
