@@ -110,6 +110,12 @@ vmap \ <leader>c<space>
 " surround current word with double qoutes
 nmap <leader>" csw"
 " }}}
+" ale {{{
+let g:ale_fixers = {
+  \   '*': ['trim_whitespace', 'remove_trailing_lines']
+  \ }
+autocmd BufWritePre * ALEFix
+" }}}
 " }}}
 
 " indentations {{{
@@ -126,7 +132,7 @@ autocmd BufNewFile,BufRead * if &syntax == '' | set syntax=sh | endif " for file
 autocmd FileType Makefile setlocal noexpandtab " for Makefile indentation, shell recipe should start with tab
 autocmd FileType c,cpp setlocal sts=4 ts=4 sw=4 " set tab size to 4 for cpp files
 autocmd FileType json setlocal foldlevel=1 " default keep the top level open
-autocmd FileType c,cpp,python,json autocmd BufWritePre * %s/\s\+$//e " remove trailing space on save
+" autocmd FileType c,cpp,python,json autocmd BufWritePre * %s/\s\+$//e " remove trailing space on save, replaced by ALEFix
 " }}}
 
 " general setting {{{
