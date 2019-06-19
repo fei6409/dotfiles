@@ -38,12 +38,12 @@ call plug#end()
 " fzf.vim {{{
 " shortcut to find files
 nnoremap <C-f> :Files<CR>
-command! -bang -nargs=* AG
+command! -bang -nargs=* Ag
   \ call fzf#vim#ag(<q-args>,
   \                 <bang>0 ? fzf#vim#with_preview('up:60%')
   \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
   \                 <bang>0)
-command! -bang -nargs=* RG
+command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --no-heading --line-number --color=always --smart-case '.
   \   '--colors line:fg:yellow --colors path:fg:green '.shellescape(<q-args>), 1,
