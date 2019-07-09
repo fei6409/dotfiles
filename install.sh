@@ -19,8 +19,10 @@ cp ./zshrc $HOME/.zshrc
 cp ./vimrc $HOME/.vimrc
 cp ./tmux.conf $HOME/.tmux.conf
 
-echo "Installing powerlevel9k"
-git clone https://github.com/bhilburn/powerlevel9k.git $HOME/.oh-my-zsh/custom/themes/powerlevel9k
+source $HOME/.zhsrc
+
+echo "Installing powerlevel10k"
+git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 
 echo "Installing Powerline font"
 wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
