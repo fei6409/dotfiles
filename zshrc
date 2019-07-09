@@ -9,15 +9,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time time)
-
-# Enable double-lined prompt
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-# Add newline after prompt
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-# Let right prompt to appear on the newline as well
-# POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
+source ~/.purepower
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
