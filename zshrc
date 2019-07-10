@@ -99,6 +99,10 @@ export LANG=zh_TW.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# To disable scp delay on glinux
+zstyle ':completion:*' users fshao root
+
 [ -f /etc/bash_completion.d/g4d ] && source /etc/bash_completion.d/g4d
 [ -f ~/.alias ] && source ~/.alias
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
