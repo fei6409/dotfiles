@@ -5,18 +5,19 @@
 [color]
   ui = true
 [alias]
-  co = checkout
+  au = add -u
+  bl = blame
+  br = branch
   ci = commit
   cia = commit --amend
-  br = branch
-  st = status
-  lg = log
-  bl = blame
+  co = checkout
   cp = cherry-pick
   dh = diff HEAD
   dhh = diff HEAD^
-  au = add -u
   grep = "grep -Iin"
+  lg = log
+  re = rebase
+  st = status
 [color "diff-highlight"]
   oldNormal = red bold
   oldHighlight = red bold 52
