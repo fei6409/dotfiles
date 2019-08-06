@@ -1,30 +1,31 @@
-function check_exist() { command -v $1 > /dev/null 2>&1 }
+check_exist() { command -v $1 > /dev/null 2>&1; }
+see_port() { netstat -lnpt | awk "\$4 ~ /:$1$/ {sub(/\/.*/, \"\", \$7); print \$7}"; }
 
 alias ll='ls -lAhF'
 alias rm='rm -i'
 alias grep='grep --color=auto'
-alias tad='tmux attach -d'
+alias ta='tmux attach -t'
 alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
 alias rsync='rsync -azvhP'
+alias rgf='rg --files | rg'
 check_exist xclip && alias copy='xclip -sel clip'
 check_exist colordiff && alias diff='colordiff'
 
+
 # for chromeOS
 
-function search() {
-  local p=$2
-  : ${p:=~/chromiumos/src/}
-  ag -g $1 $p
-}
 alias cros_sdk='cd ~/chromiumos/src/; cros_sdk'
+alias dut-console='~/chromiumos/src/platform/dev/contrib/dut-console'
 alias fac='cd ~/chromiumos/src/platform/factory'
 alias ker='cd ~/chromiumos/src/third_party/kernel/v4.19'
 alias aut='cd ~/chromiumos/src/third_party/autotest'
 alias ec='cd ~/chromiumos/src/platform/ec'
-alias dut-console='~/chromiumos/src/platform/dev/contrib/dut-console'
 alias faclist='cd ~/chromiumos/src/platform/factory/py/test/test_lists'
 alias prilist='cd ~/chromiumos/src/private-overlays/overlay-kukui-private/chromeos-base/factory-board/files/py/test/test_lists'
+alias gnb="g co m/master; g co -b tmp_$(date +%s); g br -u m/master; g br -m "
+export IP_PRE="100.102.196"
+export GOMA_DIR="$HOME/goma"
 
 # google3 stuff
 

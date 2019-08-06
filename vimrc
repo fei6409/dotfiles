@@ -147,6 +147,7 @@ set hlsearch " highlight the search matches
 set incsearch " increased mode for search
 set laststatus=2 " always enable status line
 set mouse-=a " disable mouse in all modes
+set textwidth=80 " wrap text to 80 characters
 set nocompatible
 set noerrorbells " set error bells off
 set number " set line number
