@@ -1,0 +1,37 @@
+# read -p 'Enter default board, which will be stored in ${BOARD}: ' BOARD
+
+export BOARD=kukui
+echo "Now variable \$BOARD is: ${BOARD}"
+export IP_PRE="100.102.196"
+echo "Now variable \$IP_PRE is: ${IP_PRE}"
+
+export PROTO=${IP_PRE}.243
+export EVT=${IP_PRE}.124
+
+function see_port() { netstat -lnpt | awk "\$4 ~ /:$1$/ {sub(/\/.*/, \"\", \$7); print \$7}"; }
+
+alias ll="ls -lahF"
+alias rm="rm -i"
+alias grep='grep --color=auto'
+alias USB="cros flash usb:// ~/trunk/src/build/images/${BOARD}/latest/"
+alias fac="cd ~/trunk/src/platform/factory"
+alias ker="cd ~/trunk/src/third_party/kernel/v4.19"
+alias scr="cd ~/trunk/src/scripts"
+alias aut="cd ~/trunk/src/third_party/autotest"
+alias ec="cd ~/trunk/src/platform/ec"
+alias pri='cd ~/trunk/src/private-overlays/overlay-kukui-private'
+alias prilist='cd ~/trunk/src/private-overlays/overlay-kukui-private/chromeos-base/factory-board/files/py/test/test_lists'
+alias gnb="g co m/master; g co -b tmp_$(date +%s); g br -u m/master; g br -m "
+alias cw="cros_workon"
+alias rsync="rsync -azvhP"
+alias g='git'
+
+# helper variables for power measurement
+
+# export mv=$(dut-control bus_voltage_rails | cut -f 2 -d: | tr -d ',')
+# export ma=$(dut-control current_rails | cut -f 2 -d: | tr -d ',')
+# export mw=$(dut-control power_rails | cut -f 2 -d: | tr -d ',')
+# export cfg_reg=$(echo $mv | sed 's/_mv/_cfg_reg/g')
+
+alias plt_command="echo \"test_that 100.102.196.88 power_ServodWrapper --autotest_dir=./files --args 'test=power_LoadTest.fast servo_host=localhost servo_port=9999 ina_rate=20 vbat_rate=60'\""
+
