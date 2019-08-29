@@ -153,6 +153,7 @@ set noerrorbells " set error bells off
 set number " set line number
 set ruler " enable status line
 set showcmd " show current command info in status line  e.g. selecting things in visual mode
+set spell spelllang=en_us " spell checking
 set t_Co=256 " enable 256 color in vim
 set t_vb= " set visual bell empty
 set ttimeoutlen=5 " speed up the time from insert mode to normal using <esc> key
