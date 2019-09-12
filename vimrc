@@ -17,6 +17,7 @@ Plug 'godlygeek/tabular' " for vim-markdown, must come before it
 Plug 'junegunn/fzf', {'dir':'~/.fzf', 'do':'./install --all'} " './install --bin' to use fzf inside vim only
 Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags' " recommanded to work with universal-ctags
+Plug 'mtdl9/vim-log-highlighting'
 " Plug 'plasticboy/vim-markdown'
 Plug 'powerline/fonts'
 Plug 'scrooloose/nerdcommenter'
@@ -116,6 +117,9 @@ let g:ale_fixers = {
   \ }
 autocmd BufWritePre * ALEFix
 " }}}
+" vim-log-highlighting {{{
+au BufNewFile,BufRead *messages*,*kcrash* set filetype=log
+" }}}
 " }}}
 
 " indentations {{{
@@ -147,13 +151,13 @@ set hlsearch " highlight the search matches
 set incsearch " increased mode for search
 set laststatus=2 " always enable status line
 set mouse-=a " disable mouse in all modes
-set textwidth=80 " wrap text to 80 characters
+" set textwidth=80 " wrap text to 80 characters, use `gq` instead
 set nocompatible
 set noerrorbells " set error bells off
 set number " set line number
 set ruler " enable status line
 set showcmd " show current command info in status line  e.g. selecting things in visual mode
-set spell spelllang=en_us " spell checking
+" set spell spelllang=en_us " spell checking
 set t_Co=256 " enable 256 color in vim
 set t_vb= " set visual bell empty
 set ttimeoutlen=5 " speed up the time from insert mode to normal using <esc> key
