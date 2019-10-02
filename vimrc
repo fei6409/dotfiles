@@ -118,7 +118,7 @@ let g:ale_fixers = {
 autocmd BufWritePre * ALEFix
 " }}}
 " vim-log-highlighting {{{
-au BufNewFile,BufRead *messages,*kcrash set filetype=log
+au BufNewFile,BufRead *messages,*kcrash,*previous,*dmesg,*ramoops* set filetype=log
 " }}}
 " }}}
 
@@ -137,6 +137,15 @@ autocmd FileType Makefile setlocal noexpandtab " for Makefile indentation, shell
 autocmd FileType c,cpp setlocal sts=4 ts=4 sw=4 " set tab size to 4 for cpp files
 autocmd FileType json setlocal foldlevel=1 " default keep the top level open
 " autocmd FileType c,cpp,python,json autocmd BufWritePre * %s/\s\+$//e " remove trailing space on save, replaced by ALEFix
+
+" set hibrid numbering with auto toggle
+set number relativenumber
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
 " }}}
 
 " general setting {{{
@@ -184,7 +193,9 @@ highlight PmenuSel ctermfg=lightgray ctermbg=darkblue
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 " folding
-highlight Folded ctermbg=DarkGray ctermfg=White
+highlight Folded ctermbg=darkgray ctermfg=white
+" line number
+highlight LineNr ctermfg=grey
 " }}}
 
 " general key mapping {{{
