@@ -209,6 +209,7 @@ nnoremap <leader>r :so $MYVIMRC<CR>
 nnoremap <leader>y "+y
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
+noremap <F9> :set invnumber invrelativenumber<CR>
 set pastetoggle=<F8>
 " /v stands for reg exp very magic mode, every char except a-zA-Z0-9 and _
 " will have special meaning
