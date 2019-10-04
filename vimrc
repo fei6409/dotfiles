@@ -118,7 +118,7 @@ let g:ale_fixers = {
 autocmd BufWritePre * ALEFix
 " }}}
 " vim-log-highlighting {{{
-au BufNewFile,BufRead *messages,*kcrash,*previous,*dmesg,*ramoops* set filetype=log
+au BufNewFile,BufRead *messages,*kcrash,*previous,*dmesg,*ramoops*,log-ec*,log-cpu* set filetype=log
 " }}}
 " }}}
 
