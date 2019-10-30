@@ -1,5 +1,6 @@
 check_exist() { command -v $1 > /dev/null 2>&1; }
 see_port() { netstat -lnpt | awk "\$4 ~ /:$1$/ {sub(/\/.*/, \"\", \$7); print \$7}"; }
+summary() { awk '/_mw/ && !/ppdut5|ppchg5/ {print $4}' "$1/"* | copy } # usage: summary autotest/results/summary_$DATE/
 
 alias ll='ls -lAhF'
 alias rm='rm -i'
@@ -9,9 +10,11 @@ alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
 alias rsync='rsync -azvhP'
 alias rgf='rg --files | rg'
-check_exist xclip && alias copy='xclip -sel clip'
+alias trim='sed -e '"'"'s/[[:space:]]*$//'"'"''  # trimming tailing spaces
+alias reboot='echo You shall not reboot :P'  # no reboot via commands!
+check_exist xclip && copy() { xclip -sel clip }
 check_exist colordiff && alias diff='colordiff'
-
+check_exist tmx2 && alias tmux='tmx2'
 
 # for chromeOS
 
@@ -26,6 +29,7 @@ alias prilist='cd ~/chromiumos/src/private-overlays/overlay-kukui-private/chrome
 alias gnb="g co m/master; g co -b tmp_$(date +%s); g br -u m/master; g br -m "
 export IP_PRE="100.102.196"
 export GOMA_DIR="$HOME/goma"
+export PATH=$PATH:~/chromiumos/src/platform/dev/contrib
 
 # google3 stuff
 
