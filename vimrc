@@ -113,6 +113,9 @@ vmap \ <leader>c<space>
 nmap <leader>" csw"
 " }}}
 " ale {{{
+" Only run linters named in ale_linters settings.
+let g:ale_linters_explicit = 1
+let b:ale_linters = ['eslint', 'pylint', 'jsonlint']
 let g:ale_fixers = {
   \   '*': ['trim_whitespace', 'remove_trailing_lines']
   \ }
@@ -206,6 +209,8 @@ nnoremap <leader>/ :nohlsearch<CR>
 nnoremap <leader>d :bp <BAR> bd #<CR>
 nnoremap <leader>t :enew<CR>
 nnoremap <leader>r :so $MYVIMRC<CR>
+" Prettify json
+nnoremap <leader>j :%!python -m json.tool<CR>
 " yank the selected part to clipboard
 nnoremap <leader>y "+y
 nnoremap <Tab> :bnext<CR>
