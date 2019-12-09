@@ -181,9 +181,9 @@ set wrap " enable text wrapping
 " }}}
 
 " save those hidden files away {{{
-set backupdir=.backup/,~/.backup/,/tmp//
-set directory=.swp/,~/.swp/,/tmp//
-set undodir=.undo/,~/.undo/,/tmp//
+set backupdir=.backup/,~/.vim/.backup//,/tmp//
+set directory=.swp/,~/.vim/.swp//,/tmp//
+set undodir=.undo/,~/.vim/.undo//,/tmp//
 " }}}
 
 " color related {{{
