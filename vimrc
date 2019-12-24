@@ -40,18 +40,6 @@ call plug#end()
 " fzf.vim {{{
 " shortcut to find files
 nnoremap <C-f> :Files<CR>
-command! -bang -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>,
-  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \                 <bang>0)
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --no-heading --line-number --color=always --smart-case '.
-  \   '--colors line:fg:yellow --colors path:fg:green '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
 " }}}
 " NERDTree {{{
 " toggle for NERDtree
@@ -209,6 +197,8 @@ nnoremap <leader>/ :nohlsearch<CR>
 nnoremap <leader>d :bp <BAR> bd #<CR>
 nnoremap <leader>t :enew<CR>
 nnoremap <leader>r :so $MYVIMRC<CR>
+" Search for the word that cursor points to
+nnoremap <leader>s :Rg <C-R><C-W><CR>
 " Prettify json
 nnoremap <leader>j :%!python -m json.tool<CR>
 " yank the selected part to clipboard
