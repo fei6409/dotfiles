@@ -18,6 +18,7 @@ Plug 'junegunn/fzf', {'dir':'~/.fzf', 'do':'./install --all'} " './install --bin
 Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags' " recommanded to work with universal-ctags
 Plug 'mtdl9/vim-log-highlighting'
+" Plug 'nathanaelkane/vim-indent-guides'
 " Plug 'plasticboy/vim-markdown'
 Plug 'powerline/fonts'
 Plug 'scrooloose/nerdcommenter'
@@ -84,6 +85,12 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 autocmd Filetype json let g:indentLine_setConceal = 0
 autocmd Filetype json setlocal foldmethod=indent
 " }}}
+" vim-indent-guides {{{
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgray
+" }}}
 " nerdcommenter {{{
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
@@ -103,7 +110,7 @@ nmap <leader>" csw"
 " ale {{{
 " Only run linters named in ale_linters settings.
 let g:ale_linters_explicit = 1
-let b:ale_linters = ['eslint', 'pylint', 'jsonlint']
+let b:ale_linters = ['eslint', 'flake8', 'pylint', 'jsonlint']
 let g:ale_fixers = {
   \   '*': ['trim_whitespace', 'remove_trailing_lines']
   \ }
@@ -166,6 +173,7 @@ set undofile " save undo's after file closes
 set visualbell " use visual bell instead of beeping
 set wildmenu " set command-line completion operate in enhanced mode
 set wrap " enable text wrapping
+set list lcs=tab:»\ " use listchars to show tab
 " }}}
 
 " save those hidden files away {{{
