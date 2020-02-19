@@ -19,6 +19,7 @@ cp ./zshrc $HOME/.zshrc
 cp ./vimrc $HOME/.vimrc
 cp ./tmux.conf $HOME/.tmux.conf
 cp ./p10k.sh $HOME/.p10k.sh
+cp ./pylintrc $HOME/.pylintrc
 
 source $HOME/.zhsrc
 
