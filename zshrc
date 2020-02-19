@@ -116,12 +116,12 @@ export FZF_DEFAULT_COMMAND='rg --files --no-messages'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 [[ -f /etc/bash_completion.d/g4d ]] && source /etc/bash_completion.d/g4d
-[[ -f ~/.alias ]] && source ~/.alias
-[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+[[ -f $HOME/.alias ]] && source $HOME/.alias
+[[ -f $HOME/.fzf.zsh ]] && source $HOME/.fzf.zsh
 [[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
-[[ -f /usr/local/google/home/fshao/.autojump/etc/profile.d/autojump.sh ]] && source /usr/local/google/home/fshao/.autojump/etc/profile.d/autojump.sh
+[[ -f $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 
 autoload -U compinit && compinit -u
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+[[ -f $HOME/.p10k.zsh ]] && source $HOME/.p10k.zsh
