@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 export PATH=/usr/local/bin:$PATH:$HOME/depot_tools
 
@@ -9,7 +16,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
-source ~/.purepower
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -64,7 +70,10 @@ source ~/.purepower
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  # autojump
+  # fzf
   git
+  jsontools
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
@@ -76,7 +85,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-export LANG=zh_TW.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -103,11 +112,16 @@ export LANG=zh_TW.UTF-8
 # To disable scp delay on glinux
 zstyle ':completion:*' users fshao root
 
-[ -f /etc/bash_completion.d/g4d ] && source /etc/bash_completion.d/g4d
-[ -f ~/.alias ] && source ~/.alias
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-messages'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-[ -f $HOME/.cargo/env ] && source $HOME/.cargo/env
-[[ -s /usr/local/google/home/fshao/.autojump/etc/profile.d/autojump.sh ]] && source /usr/local/google/home/fshao/.autojump/etc/profile.d/autojump.sh
+
 autoload -U compinit && compinit -u
+
+[[ -f /etc/bash_completion.d/g4d ]] && source /etc/bash_completion.d/g4d
+[[ -f ~/.alias ]] && source ~/.alias
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+[[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
+[[ -f /usr/local/google/home/fshao/.autojump/etc/profile.d/autojump.sh ]] && source /usr/local/google/home/fshao/.autojump/etc/profile.d/autojump.sh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh

@@ -18,7 +18,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 cp ./zshrc $HOME/.zshrc
 cp ./vimrc $HOME/.vimrc
 cp ./tmux.conf $HOME/.tmux.conf
-cp ./purepower $HOME/.purepower
+cp ./p10k.sh $HOME/.p10k.sh
 
 source $HOME/.zhsrc
 
