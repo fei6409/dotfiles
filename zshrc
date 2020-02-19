@@ -115,13 +115,13 @@ zstyle ':completion:*' users fshao root
 export FZF_DEFAULT_COMMAND='rg --files --no-messages'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-autoload -U compinit && compinit -u
-
 [[ -f /etc/bash_completion.d/g4d ]] && source /etc/bash_completion.d/g4d
 [[ -f ~/.alias ]] && source ~/.alias
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 [[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
 [[ -f /usr/local/google/home/fshao/.autojump/etc/profile.d/autojump.sh ]] && source /usr/local/google/home/fshao/.autojump/etc/profile.d/autojump.sh
+
+autoload -U compinit && compinit -u
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
