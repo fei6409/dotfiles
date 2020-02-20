@@ -13,7 +13,7 @@ alias rsync='rsync -azvhP'
 alias rgf='rg --files | rg'
 alias trim='sed -e '"'"'s/[[:space:]]*$//'"'"''  # trimming tailing spaces
 alias reboot='echo You shall not reboot :P'  # no reboot via commands!
-check_exist xclip && copy() { xclip -sel clip }
+check_exist xclip && copy() { DISPLAY=:0 xclip -sel clip }
 check_exist colordiff && alias diff='colordiff'
 check_exist tmx2 && alias tmux='tmx2'
 
