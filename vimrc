@@ -135,7 +135,7 @@ let g:python_recommended_style=0 " disable python indentation from ftplugin/pyth
 " autocmd {{{
 autocmd BufNewFile,BufRead * if &syntax == '' | set syntax=sh | endif " for file with no syntax set
 autocmd FileType Makefile setlocal noexpandtab " for Makefile indentation, shell recipe should start with tab
-autocmd FileType c,cpp setlocal sts=4 ts=4 sw=4 " set tab size to 4 for cpp files
+" autocmd FileType c,cpp setlocal sts=4 ts=4 sw=4 " set tab size to 4 for cpp files
 autocmd FileType json setlocal foldlevel=1 " default keep the top level open
 " autocmd FileType c,cpp,python,json autocmd BufWritePre * %s/\s\+$//e " remove trailing space on save, replaced by ALEFix
 
