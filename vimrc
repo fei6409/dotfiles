@@ -110,10 +110,12 @@ nmap <leader>" csw"
 " ale {{{
 " Only run linters named in ale_linters settings.
 let g:ale_linters_explicit = 1
-let b:ale_linters = ['eslint', 'flake8', 'pylint', 'jsonlint']
+let b:ale_linters = ['eslint', 'flake8', 'pylint', 'jsonlint',
+  \                  'shellcheck', 'cpplint', 'cppcheck', 'gcc', 'clang']
 let g:ale_fixers = {
   \   '*': ['trim_whitespace', 'remove_trailing_lines']
   \ }
+let g:ale_sh_shellcheck_exclusions = 'SC2039'
 autocmd BufWritePre * ALEFix
 " }}}
 " vim-log-highlighting {{{
