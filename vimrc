@@ -9,7 +9,8 @@ let mapleader=',' " set <Leader> key to ','
 
 " vim-plug {{{
 call plug#begin('~/.vim/plugged')
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Yggdroot/indentLine'
 Plug 'w0rp/ale'
 Plug 'gentoo/gentoo-syntax'
@@ -91,6 +92,18 @@ let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgray
 " }}}
+" Coc.nvim {{{
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+    let col = col('.') - 1
+      return !col || getline('.')[col - 1]  =~# '\s'
+    endfunction
+" }}}
 " nerdcommenter {{{
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
@@ -110,16 +123,23 @@ nmap <leader>" csw"
 " ale {{{
 " Only run linters named in ale_linters settings.
 let g:ale_linters_explicit = 1
+let g:ale_c_parse_compile_commands = 1
 let b:ale_linters = ['eslint', 'flake8', 'pylint', 'jsonlint',
   \                  'shellcheck', 'cpplint', 'cppcheck', 'gcc', 'clang']
 let g:ale_fixers = {
   \   '*': ['trim_whitespace', 'remove_trailing_lines']
   \ }
-let g:ale_sh_shellcheck_exclusions = 'SC2039'
+let g:ale_sh_shellcheck_exclusions = 'SC2039,SC1090'
 autocmd BufWritePre * ALEFix
 " }}}
 " vim-log-highlighting {{{
 au BufNewFile,BufRead *messages,*kcrash,*previous,*dmesg,*ramoops*,log-ec*,log-cpu* set filetype=log
+" }}}
+" vim-fugitive {{{
+" Jump to next/previous quickfix entry
+let g:fugitive_no_maps = 1  " Disable C-n functionality on viewing a commit
+map <C-n> :cnext<CR>
+map <C-p> :cprevious<CR>
 " }}}
 " }}}
 
@@ -130,12 +150,12 @@ set shiftwidth=2 " determine the number of whitespace inserted for indentation
 set softtabstop=2 " generally same as shiftwidth
 set tabstop=2 " specify the width of a tab
 let g:python_recommended_style=0 " disable python indentation from ftplugin/python.vim
+autocmd FileType Makefile setlocal noexpandtab " for Makefile indentation, shell recipe should start with tab
+" autocmd FileType c,cpp setlocal sts=4 ts=4 sw=4 " set tab size to 4 for cpp files
 " }}}
 
 " autocmd {{{
 autocmd BufNewFile,BufRead * if &syntax == '' | set syntax=sh | endif " for file with no syntax set
-autocmd FileType Makefile setlocal noexpandtab " for Makefile indentation, shell recipe should start with tab
-" autocmd FileType c,cpp setlocal sts=4 ts=4 sw=4 " set tab size to 4 for cpp files
 autocmd FileType json setlocal foldlevel=1 " default keep the top level open
 " autocmd FileType c,cpp,python,json autocmd BufWritePre * %s/\s\+$//e " remove trailing space on save, replaced by ALEFix
 
@@ -206,7 +226,7 @@ vnoremap ; :
 nnoremap <leader>/ :nohlsearch<CR>
 nnoremap <leader>d :bp <BAR> bd #<CR>
 nnoremap <leader>t :enew<CR>
-nnoremap <leader>r :so $MYVIMRC<CR>
+nnoremap <leader>r zR<CR>
 " Search for the word that cursor points to
 nnoremap <leader>s :Rg <C-R><C-W><CR>
 " Prettify json
