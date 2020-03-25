@@ -2,6 +2,7 @@
   autocrlf = false
   filemode = false
   pager = diff-so-fancy | less --tabs=4 -RFX
+  excludesfile = /usr/local/google/home/fshao/.gitignore.global
 [color]
   ui = true
 [alias]
@@ -18,6 +19,7 @@
   lg = log
   re = rebase
   st = status
+  ancestor = !zsh -c 'diff --old-line-format= --new-line-format= <(git rev-list --first-parent \"${1:-master}\") <(git rev-list --first-parent \"${2:-HEAD}\") | head -1' -
 [color "diff-highlight"]
   oldNormal = red bold
   oldHighlight = red bold 52
