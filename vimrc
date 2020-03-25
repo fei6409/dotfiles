@@ -43,6 +43,7 @@ call plug#end()
 " shortcut to find files
 nnoremap <C-f> :Files<CR>
 " }}}
+
 " NERDTree {{{
 " toggle for NERDtree
 nnoremap <C-g> :NERDTreeToggle<CR>
@@ -54,6 +55,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " automatically open NERDTree on start
 " autocmd vimenter * NERDTree
 " }}}
+
 " YCM {{{
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
@@ -65,6 +67,7 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 " allow up and down key close the completion window
 let g:ycm_key_list_stop_completion = ['<C-y>', '<UP>', '<DOWN>']
 " }}}
+
 " vim-airline {{{
 " enable powerline-fonts, but need 'guifont' to be supported
 " or try to change terminal non-ascii font to Meslo
@@ -82,17 +85,28 @@ let g:airline_theme = 'wombat'
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 " }}}
+
 " indentLine {{{
 autocmd Filetype json let g:indentLine_setConceal = 0
 autocmd Filetype json setlocal foldmethod=indent
 " }}}
+
 " vim-indent-guides {{{
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgray
 " }}}
+
 " Coc.nvim {{{
+" Some servers have issues with backup files, see #649.
+set nobackup
+set nowritebackup
+" Give more space for displaying messages.
+set cmdheight=2
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -104,6 +118,7 @@ function! s:check_back_space() abort
       return !col || getline('.')[col - 1]  =~# '\s'
     endfunction
 " }}}
+
 " nerdcommenter {{{
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
@@ -116,31 +131,37 @@ let g:NERDDefaultAlign='left'
 nmap \ <leader>c<space>
 vmap \ <leader>c<space>
 " }}}
+
 " vim-surround {{{
 " surround current word with double qoutes
 nmap <leader>" csw"
+nmap <leader>' csw'
 " }}}
+
 " ale {{{
 " Only run linters named in ale_linters settings.
 let g:ale_linters_explicit = 1
 let g:ale_c_parse_compile_commands = 1
-let b:ale_linters = ['eslint', 'flake8', 'pylint', 'jsonlint',
-  \                  'shellcheck', 'cpplint', 'cppcheck', 'gcc', 'clang']
+let b:ale_linters = ['eslint', 'flake8', 'pylint', 'jsonlint', 'shellcheck',
+                   \ 'gcc', 'clang', 'clang-format']
 let g:ale_fixers = {
   \   '*': ['trim_whitespace', 'remove_trailing_lines']
   \ }
 let g:ale_sh_shellcheck_exclusions = 'SC2039,SC1090'
 autocmd BufWritePre * ALEFix
 " }}}
+
 " vim-log-highlighting {{{
 au BufNewFile,BufRead *messages,*kcrash,*previous,*dmesg,*ramoops*,log-ec*,log-cpu* set filetype=log
 " }}}
+
 " vim-fugitive {{{
 " Jump to next/previous quickfix entry
 let g:fugitive_no_maps = 1  " Disable C-n functionality on viewing a commit
 map <C-n> :cnext<CR>
 map <C-p> :cprevious<CR>
 " }}}
+
 " }}}
 
 " indentations {{{
