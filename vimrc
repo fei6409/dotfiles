@@ -247,17 +247,24 @@ vnoremap ; :
 nnoremap <leader>/ :nohlsearch<CR>
 nnoremap <leader>d :bp <BAR> bd #<CR>
 nnoremap <leader>t :enew<CR>
+" Unfold all the foldings
 nnoremap <leader>r zR<CR>
 " Search for the word that cursor points to
 nnoremap <leader>s :Rg <C-R><C-W><CR>
 " Prettify json
 nnoremap <leader>j :%!python -m json.tool<CR>
-" yank the selected part to clipboard
+" Yank the selected part to clipboard
 nnoremap <leader>y "+y
+" Paste without overwritting register, see
+" https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text
+xnoremap <leader>p "_dP
+" Buffer navigation
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
-nnoremap <F9> :set invnumber invrelativenumber<CR>
+" Toggle paste mode
 set pastetoggle=<F8>
+" Toggle linenumber
+nnoremap <F9> :set invnumber invrelativenumber<CR>
 " /v stands for reg exp very magic mode, every char except a-zA-Z0-9 and _
 " will have special meaning
 nnoremap / /\v
