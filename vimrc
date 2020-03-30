@@ -152,7 +152,7 @@ autocmd BufWritePre * ALEFix
 " }}}
 
 " vim-log-highlighting {{{
-au BufNewFile,BufRead *messages,*kcrash,*previous,*dmesg,*ramoops*,log-ec*,log-cpu* set filetype=log
+au BufNewFile,BufRead *log,*messages,*kcrash,*previous,*dmesg,*ramoops*,log-ec*,log-cpu* set filetype=log
 " }}}
 
 " vim-fugitive {{{
