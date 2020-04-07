@@ -254,7 +254,7 @@ nnoremap <leader>s :Rg <C-R><C-W><CR>
 " Prettify json
 nnoremap <leader>j :%!python -m json.tool<CR>
 " Yank the selected part to clipboard
-nnoremap <leader>y "+y
+vnoremap <leader>y "+y
 " Paste without overwritting register, see
 " https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text
 xnoremap <leader>p "_dP
