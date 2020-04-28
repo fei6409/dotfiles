@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# default board name
+# shellcheck disable=SC2034
+BOARD=kukui
+# defuult ChromeOS repository base path
+BASE_PATH=''
+
 check_exist() { command -v "$1" > /dev/null 2>&1; }
 # print the PID that occupies a port.
 # usage: see_port <port number>
@@ -28,23 +34,46 @@ check_exist xclip && copy() { DISPLAY=:0 xclip -sel clip; }
 check_exist colordiff && alias diff='colordiff'
 check_exist tmx2 && alias tmux='tmx2'
 
-# for chromeOS
+# ChromeOS path alias & random stuff
 
-alias cros_sdk='cd ~/chromiumos/src/; cros_sdk'
-alias cr='cros_sdk --no-ns-pid'
-alias dut-console='~/chromiumos/src/platform/dev/contrib/dut-console'
-alias fac='cd ~/chromiumos/src/platform/factory'
-alias ker='cd ~/chromiumos/src/third_party/kernel/v4.19'
-alias aut='cd ~/chromiumos/src/third_party/autotest'
-alias ec='cd ~/chromiumos/src/platform/ec'
-alias faclist='cd ~/chromiumos/src/platform/factory/py/test/test_lists'
-alias prilist='cd ~/chromiumos/src/private-overlays/overlay-kukui-private/chromeos-base/factory-board/files/py/test/test_lists'
-alias chrome_sdk="cros chrome-sdk --board=kukui --log-level=info --internal --gn-extra-args='enable_nacl=false symbol_level=1 blink_symbol_level=0 is_official_build=false use_goma=true'"
-alias rs="repo sync ."
-export GOMA_DIR="$HOME/goma"
-export PATH=$PATH:~/chromiumos/src/platform/dev/contrib
+if [[ -d $HOME/chromiumos ]]; then
+  BASE_PATH="$HOME/chromiumos"
+elif [[ -d $HOME/trunk ]]; then
+  BASE_PATH="$HOME/trunk"
+fi
 
-[[ -f $HOME/.ip_alias ]] && source "$HOME/.ip_alias"
+if [[ -n "$BASE_PATH" ]]; then
+  # we're either inside or outside of chroot
+  alias cros_sdk='cd ${BASE_PATH}/src/; cros_sdk'
+  alias fac='cd ${BASE_PATH}/src/platform/factory'
+  alias ker='cd ${BASE_PATH}/src/third_party/kernel/v4.19'
+  alias aut='cd ${BASE_PATH}/src/third_party/autotest'
+  alias ec='cd ${BASE_PATH}/src/platform/ec'
+  alias faclist='cd ${BASE_PATH}/src/platform/factory/py/test/test_lists'
+  alias prilist='cd ${BASE_PATH}/src/private-overlays/overlay-${BOARD}-private/chromeos-base/factory-board/files/py/test/test_lists'
+
+  alias rs='repo sync .'
+  export PATH=$PATH:${BASE_PATH}/src/platform/dev/contrib
+
+  if [[ -f $HOME/.ip_alias ]]; then
+    source "$HOME/.ip_alias"
+  elif [[ -f /outside/.ip_alias ]]; then
+    # shellcheck disable=SC1091
+    source "/outside/.ip_alias"
+  fi
+
+  if [[ -d $HOME/chromiumos ]]; then
+    # outside of chroot
+    alias cr='cros_sdk --no-ns-pid'
+    alias chrome_sdk="cros chrome-sdk --board=kukui --log-level=info --internal --gn-extra-args='enable_nacl=false symbol_level=1 blink_symbol_level=0 is_official_build=false use_goma=true'"
+    export GOMA_DIR="$HOME/goma"
+  elif [[ -d $HOME/trunk ]]; then
+    # inside of chroot
+    alias g='git'
+  fi
+else
+  echo 'No ChromeOS environment detected.'
+fi
 
 # google3 stuff
 
