@@ -1,8 +1,17 @@
-check_exist() { command -v $1 > /dev/null 2>&1; }
+#!/bin/bash
+
+check_exist() { command -v "$1" > /dev/null 2>&1; }
+# print the PID that occupies a port.
+# usage: see_port <port number>
 see_port() { netstat -lnpt | awk "\$4 ~ /:$1$/ {sub(/\/.*/, \"\", \$7); print \$7}"; }
-summary() { awk '/_mw/ && !/ppdut5|ppchg5/ {print $4}' "$@" | copy } # usage: summary autotest/results/summary_$DATE/
-gnb() { git checkout -b ${1:-temp-branch} ${2:-m/master} }
-get_br() { echo $(git branch -a | grep -E "${1:-factory-kukui}.*B$" | head -n1) }
+# usage: summary autotest/results/summary_$DATE/*
+summary() { awk '/_mw/ && !/ppdut5|ppchg5/ {print $4}' "$@" | copy; }
+# git new branch.
+# usage: gnb <new branch name> <upstream branch>
+gnb() { git checkout -b "${1:-temp-branch}" "${2:-m/master}"; }
+# get ChromeOS branch names.
+# usage: get_br <name or prefix of factory/firmware branch> <name or prefix of board>
+get_br() { git branch -a | grep -E "${1:-factory}.*-${2:-kukui}.*-.*B$" | head -n1 | xargs; } # xargs to trim whitespace
 
 alias ll='ls -lAhF'
 alias rm='rm -i'
@@ -15,7 +24,7 @@ alias rgf='rg --files | rg'
 alias trim='sed -e '"'"'s/[[:space:]]*$//'"'"''  # trimming tailing spaces
 alias reboot='echo You shall not reboot :P'  # no reboot via commands!
 alias shutdown='echo You shall not shutdown :P'  # no shutdown via commands!
-check_exist xclip && copy() { DISPLAY=:0 xclip -sel clip }
+check_exist xclip && copy() { DISPLAY=:0 xclip -sel clip; }
 check_exist colordiff && alias diff='colordiff'
 check_exist tmx2 && alias tmux='tmx2'
 
@@ -35,7 +44,7 @@ alias rs="repo sync ."
 export GOMA_DIR="$HOME/goma"
 export PATH=$PATH:~/chromiumos/src/platform/dev/contrib
 
-[[ -f $HOME/.ip_alias ]] && source $HOME/.ip_alias
+[[ -f $HOME/.ip_alias ]] && source "$HOME/.ip_alias"
 
 # google3 stuff
 
