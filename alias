@@ -49,6 +49,7 @@ if [[ -n "$BASE_PATH" ]]; then
   alias ker='cd ${BASE_PATH}/src/third_party/kernel/v4.19'
   alias aut='cd ${BASE_PATH}/src/third_party/autotest'
   alias ec='cd ${BASE_PATH}/src/platform/ec'
+  alias scr='cd ${BASE_PATH}/src/scripts'
   alias faclist='cd ${BASE_PATH}/src/platform/factory/py/test/test_lists'
   alias prilist='cd ${BASE_PATH}/src/private-overlays/overlay-${BOARD}-private/chromeos-base/factory-board/files/py/test/test_lists'
 
