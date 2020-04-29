@@ -10,6 +10,7 @@ let mapleader=',' " set <Leader> key to ','
 " vim-plug {{{
 call plug#begin('~/.vim/plugged')
 Plug 'Yggdroot/indentLine'
+Plug 'embear/vim-localvimrc'
 Plug 'gentoo/gentoo-syntax'
 Plug 'junegunn/fzf', {'dir':'~/.fzf', 'do':'./install --all'} " './install --bin' to use fzf inside vim only
 Plug 'junegunn/fzf.vim'
@@ -160,6 +161,12 @@ au BufNewFile,BufRead *log,*messages,*kcrash,*previous,*dmesg,*ramoops*,log-ec*,
 let g:fugitive_no_maps = 1  " Disable C-n functionality on viewing a commit
 map <C-n> :cnext<CR>
 map <C-p> :cprevious<CR>
+" }}}
+
+" vim-localvimrc {{{
+" Store and restore decisions only if the answer was given in upper case
+" (Y/N/A).
+let g:localvimrc_persistent = 1
 " }}}
 
 " }}}
