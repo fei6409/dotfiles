@@ -11,13 +11,11 @@ let mapleader=',' " set <Leader> key to ','
 call plug#begin('~/.vim/plugged')
 Plug 'Yggdroot/indentLine'
 Plug 'gentoo/gentoo-syntax'
-Plug 'godlygeek/tabular' " for vim-markdown, must come before it
 Plug 'junegunn/fzf', {'dir':'~/.fzf', 'do':'./install --all'} " './install --bin' to use fzf inside vim only
 Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags' " recommanded to work with universal-ctags
 Plug 'mtdl9/vim-log-highlighting'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'plasticboy/vim-markdown'
 Plug 'powerline/fonts'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
@@ -31,7 +29,9 @@ Plug 'w0rp/ale'
 " Plug 'Konfekt/FastFold'
 " Plug 'Valloric/YouCompleteMe'
 " Plug 'easymotion/vim-easymotion'
+" Plug 'godlygeek/tabular' " for vim-markdown, must come before it
 " Plug 'nathanaelkane/vim-indent-guides'
+" Plug 'plasticboy/vim-markdown'
 " Plug 'sheerun/vim-polyglot' " language syntax pack
 " Plug 'terryma/vim-multiple-cursors'
 " Plug 'tpope/vim-repeat'
