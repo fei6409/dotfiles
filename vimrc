@@ -180,13 +180,14 @@ autocmd BufNewFile,BufRead * if &syntax == '' | set syntax=sh | endif " for file
 autocmd FileType json setlocal foldlevel=1 " default keep the top level open
 " autocmd FileType c,cpp,python,json autocmd BufWritePre * %s/\s\+$//e " remove trailing space on save, replaced by ALEFix
 
-" set hibrid numbering with auto toggle
-set number relativenumber
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
+" set hibrid line numbering with auto toggle
+set number
+" set number relativenumber
+" augroup numbertoggle
+"   autocmd!
+"   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+"   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+" augroup END
 
 " }}}
 
@@ -205,7 +206,6 @@ set mouse-=a " disable mouse in all modes
 " set textwidth=80 " wrap text to 80 characters, use `gq` instead
 set nocompatible
 set noerrorbells " set error bells off
-set number " set line number
 set ruler " enable status line
 set showcmd " show current command info in status line  e.g. selecting things in visual mode
 " set spell spelllang=en_us " spell checking
@@ -264,7 +264,8 @@ nnoremap <S-Tab> :bprevious<CR>
 " Toggle paste mode
 set pastetoggle=<F8>
 " Toggle linenumber
-nnoremap <F9> :set invnumber invrelativenumber<CR>
+nnoremap <F9> :set invnumber<CR>
+" nnoremap <F9> :set invnumber invrelativenumber<CR>
 " /v stands for reg exp very magic mode, every char except a-zA-Z0-9 and _
 " will have special meaning
 nnoremap / /\v
