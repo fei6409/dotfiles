@@ -71,3 +71,6 @@ target/
 
 # clangd cache dir
 .clangd
+
+# Local vimrc
+.lvimrc
