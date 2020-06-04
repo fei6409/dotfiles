@@ -143,10 +143,10 @@ nmap <leader>' csw'
 " Only run linters named in ale_linters settings.
 let g:ale_linters_explicit = 1
 let g:ale_c_parse_compile_commands = 1
-let b:ale_linters = ['eslint', 'flake8', 'pylint', 'jsonlint', 'shellcheck',
-                   \ 'gcc', 'clang', 'clang-format']
+let b:ale_linters = ['eslint', 'flake8', 'pylint', 'jsonlint', 'shellcheck']
 let g:ale_fixers = {
-  \   '*': ['trim_whitespace', 'remove_trailing_lines']
+  \   '*': ['trim_whitespace', 'remove_trailing_lines'],
+  \   'markdown': ['remove_trailing_lines']
   \ }
 let g:ale_sh_shellcheck_exclusions = 'SC2039,SC1090'
 autocmd BufWritePre * ALEFix
