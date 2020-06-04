@@ -18,6 +18,8 @@ gnb() { git checkout -b "${1:-temp-branch}" "${2:-m/master}"; }
 # get ChromeOS branch names.
 # usage: get_br <name or prefix of factory/firmware branch> <name or prefix of board>
 get_br() { git branch -a | grep -E "${1:-factory}.*-${2:-kukui}.*-.*B$" | head -n1 | xargs; } # xargs to trim whitespace
+# get open display for $DISPLAY
+get_display() { w -oush | grep -Eo ' :[0-9]+' | uniq | xargs; }
 
 alias ll='ls -lAhF'
 alias rm='rm -i'
@@ -27,10 +29,11 @@ alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
 alias rsync='rsync -azvhP'
 alias rgf='rg --files | rg'
+alias open='xdg-open'
 alias trim='sed -e '"'"'s/[[:space:]]*$//'"'"''  # trimming tailing spaces
 alias reboot='echo You shall not reboot :P'  # no reboot via commands!
 alias shutdown='echo You shall not shutdown :P'  # no shutdown via commands!
-check_exist xclip && copy() { DISPLAY=:0 xclip -sel clip; }
+check_exist xclip && copy() { DISPLAY=$(get_display) xclip -sel clip; }
 check_exist colordiff && alias diff='colordiff'
 check_exist tmx2 && alias tmux='tmx2'
 
@@ -46,7 +49,9 @@ if [[ -n "$BASE_PATH" ]]; then
   # we're either inside or outside of chroot
   alias cros_sdk='cd ${BASE_PATH}/src/; cros_sdk'
   alias fac='cd ${BASE_PATH}/src/platform/factory'
-  alias ker='cd ${BASE_PATH}/src/third_party/kernel/v4.19'
+  alias ker419='cd ${BASE_PATH}/src/third_party/kernel/v4.19'
+  alias ker54='cd ${BASE_PATH}/src/third_party/kernel/v5.4'
+  alias ker='ker54'
   alias aut='cd ${BASE_PATH}/src/third_party/autotest'
   alias ec='cd ${BASE_PATH}/src/platform/ec'
   alias scr='cd ${BASE_PATH}/src/scripts'
