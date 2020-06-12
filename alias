@@ -30,6 +30,7 @@ alias vimrc='vim ~/.vimrc'
 alias rsync='rsync -azvhP'
 alias rgf='rg --files | rg'
 alias open='xdg-open'
+alias ipython='python3 -m IPython'
 alias trim='sed -e '"'"'s/[[:space:]]*$//'"'"''  # trimming tailing spaces
 alias reboot='echo You shall not reboot :P'  # no reboot via commands!
 alias shutdown='echo You shall not shutdown :P'  # no shutdown via commands!
