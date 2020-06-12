@@ -1,5 +1,6 @@
 " vim: fmr={{{,}}} foldlevel=0 fdm=marker
 
+
 " header {{{
 filetype plugin indent on
 syntax on " Enable syntax highlighting
@@ -20,6 +21,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'powerline/fonts'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
+Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
@@ -143,6 +145,7 @@ nmap <leader>' csw'
 " Only run linters named in ale_linters settings.
 let g:ale_linters_explicit = 1
 let g:ale_c_parse_compile_commands = 1
+let g:ale_python_pylint_executable = 'python3'
 let b:ale_linters = ['eslint', 'flake8', 'pylint', 'jsonlint', 'shellcheck']
 let g:ale_fixers = {
   \   '*': ['trim_whitespace', 'remove_trailing_lines'],
