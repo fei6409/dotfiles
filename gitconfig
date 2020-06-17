@@ -16,7 +16,7 @@
   dh = diff HEAD
   dhh = diff HEAD^
   grep = "grep -Iin"
-  lg = log
+  lg = log --stat
   re = rebase
   st = status
   ancestor = !zsh -c 'diff --old-line-format= --new-line-format= <(git rev-list --first-parent \"${1:-master}\") <(git rev-list --first-parent \"${2:-HEAD}\") | head -1' -
@@ -32,3 +32,5 @@
   old = red bold
   new = green bold
   whitespace = red reverse
+[pull]
+  rebase = false
