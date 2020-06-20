@@ -90,7 +90,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " }}}
 
 " indentLine {{{
-autocmd Filetype json let g:indentLine_setConceal = 0
+autocmd Filetype json,markdown let g:indentLine_setConceal = 0
 autocmd Filetype json setlocal foldmethod=indent
 " }}}
 
@@ -141,12 +141,16 @@ nmap <leader>" csw"
 nmap <leader>' csw'
 " }}}
 
-" ale {{{
+" ale/ALE {{{
 " Only run linters named in ale_linters settings.
 let g:ale_linters_explicit = 1
 let g:ale_c_parse_compile_commands = 1
-let g:ale_python_pylint_executable = 'python3'
-let b:ale_linters = ['eslint', 'flake8', 'pylint', 'jsonlint', 'shellcheck']
+let b:ale_linters = {
+  \   'javascript': ['eslint'],
+  \   'python': ['flake8', 'pylint'],
+  \   'json': ['jsonlint'],
+  \   'sh': ['shellcheck']
+  \ }
 let g:ale_fixers = {
   \   '*': ['trim_whitespace', 'remove_trailing_lines'],
   \   'markdown': ['remove_trailing_lines']
