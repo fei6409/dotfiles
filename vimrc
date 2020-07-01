@@ -111,10 +111,11 @@ set cmdheight=2
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+      \ pumvisible() ? "\<C-n>" : "\<TAB>"
+      " \ pumvisible() ? "\<C-n>" :
+      " \ <SID>check_back_space() ? "\<TAB>" :
+      " \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : coc#refresh()
 
 function! s:check_back_space() abort
     let col = col('.') - 1
@@ -210,7 +211,8 @@ set backspace=2 " make backspace can delete over line breaks
 set confirm " confirm before quiting without saving
 set cursorline " highlight the current line
 set foldlevel=0 " fold everything be default
-set foldmethod=marker " set folding
+" disabled because of https://github.com/vim/vim/issues/5454
+" set foldmethod=marker " set folding
 set hidden " set hidden buffer
 set history=1000 " set the number of stored commands
 set hlsearch " highlight the search matches
