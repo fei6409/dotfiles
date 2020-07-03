@@ -90,8 +90,8 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " }}}
 
 " indentLine {{{
-autocmd Filetype json,markdown let g:indentLine_setConceal = 0
-autocmd Filetype json setlocal foldmethod=indent
+autocmd FileType json,markdown let g:indentLine_setConceal = 0
+autocmd FileType json setlocal foldmethod=indent
 " }}}
 
 " vim-indent-guides {{{
