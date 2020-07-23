@@ -4,7 +4,6 @@
 " header {{{
 filetype plugin indent on
 syntax on " Enable syntax highlighting
-colorscheme torte " set color scheme
 let mapleader=',' " set <Leader> key to ','
 " }}}
 
@@ -16,9 +15,11 @@ Plug 'gentoo/gentoo-syntax'
 Plug 'junegunn/fzf', {'dir':'~/.fzf', 'do':'./install --all'} " './install --bin' to use fzf inside vim only
 Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags' " recommanded to work with universal-ctags
+Plug 'morhetz/gruvbox'
 Plug 'mtdl9/vim-log-highlighting'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'powerline/fonts'
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
@@ -94,13 +95,6 @@ autocmd FileType json,markdown let g:indentLine_setConceal = 0
 autocmd FileType json setlocal foldmethod=indent
 let g:indentLine_color_gui = '#585858'
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-" }}}
-
-" vim-indent-guides {{{
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgray
 " }}}
 
 " Coc.nvim {{{
@@ -179,13 +173,18 @@ map <C-p> :cprevious<CR>
 let g:localvimrc_persistent = 1
 " }}}
 
+" vim-hexokinase {{{
+let g:Hexokinase_ftEnabled = ['css', 'html', 'javascript', 'vim']
+let g:Hexokinase_highlighters = [ 'foreground' ]
+" }}}
+
 " }}}
 
 " indentations {{{
 set autoindent " Enable auto indent
 set expandtab " insert whitespace whenever the tab key is pressed
-set shiftwidth=2 " determine the number of whitespace inserted for indentation
-set softtabstop=2 " generally same as shiftwidth
+set shiftwidth=2 " determine the number of whitespace inserted for indentation (e.g. using gg=G to fix indentation)
+set softtabstop=2 " the width cursor moves when typing a tab
 set tabstop=2 " specify the width of a tab
 let g:python_recommended_style=0 " disable python indentation from ftplugin/python.vim
 autocmd FileType Makefile setlocal noexpandtab " for Makefile indentation, shell recipe should start with tab
@@ -244,19 +243,29 @@ set undodir=.undo/,~/.vim/.undo//,/tmp//
 " }}}
 
 " color related {{{
-highlight Normal cterm=NONE ctermbg=234
-" current line
-highlight CursorLine cterm=NONE ctermbg=238 ctermfg=NONE
+colorscheme gruvbox " set color scheme, was using torte
+" dark mode
+set background=dark
+" enable true color in tmux
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+" normal
+highlight Normal guibg=#1c1c1c
+" cursor line
+highlight CursorLine cterm=NONE guibg=#444444
 " menu
-highlight Pmenu ctermbg=darkgray
-highlight PmenuSel ctermfg=lightgray ctermbg=darkblue
+highlight Pmenu guibg=#949494 guifg=#121212
+highlight PmenuSel guibg=darkgreen guifg=lightgray
 " tailing space
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
+highlight TailingWhitespace guibg=#d70000
+match TailingWhitespace /\s\+$/
 " folding
-highlight Folded ctermbg=darkgray ctermfg=white
+highlight Folded guibg=#585858 guifg=white
 " line number
-highlight LineNr ctermfg=grey
+highlight LineNr cterm=NONE guifg=grey
 " }}}
 
 " general key mapping {{{
@@ -279,6 +288,10 @@ xnoremap <leader>p "_dP
 " Buffer navigation
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
+" Identify the syntax highlighting group used at the cursor
+nnoremap <F7> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 " Toggle paste mode
 set pastetoggle=<F8>
 " Toggle linenumber
