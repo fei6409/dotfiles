@@ -59,6 +59,7 @@ if [[ -n "$BASE_PATH" ]]; then
   alias faclist='cd ${BASE_PATH}/src/platform/factory/py/test/test_lists'
   alias pri='cd ${BASE_PATH}/src/private-overlays/overlay-${BOARD}-private'
   alias prilist='cd ${BASE_PATH}/src/private-overlays/overlay-${BOARD}-private/chromeos-base/factory-board/files/py/test/test_lists'
+  alias cheets='cd ${BASE_PATH}/src/private-overlays/project-cheets-private/scripts'
 
   alias rs='repo sync .'
   export PATH=$PATH:${BASE_PATH}/src/platform/dev/contrib
