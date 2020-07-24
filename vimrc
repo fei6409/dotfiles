@@ -92,6 +92,8 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " indentLine {{{
 autocmd FileType json,markdown let g:indentLine_setConceal = 0
 autocmd FileType json setlocal foldmethod=indent
+let g:indentLine_color_gui = '#585858'
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 " }}}
 
 " vim-indent-guides {{{
