@@ -62,6 +62,7 @@ if [[ -n "$BASE_PATH" ]]; then
   alias cheets='cd ${BASE_PATH}/src/private-overlays/project-cheets-private/scripts'
 
   alias rs='repo sync .'
+  alias rsa='repo sync -j50 -q'
   export PATH=$PATH:${BASE_PATH}/src/platform/dev/contrib
 
   if [[ -f $HOME/.ip_alias ]]; then
@@ -80,6 +81,7 @@ if [[ -n "$BASE_PATH" ]]; then
     # inside of chroot
     alias cw='cros_workon'
     alias cwh='cros_workon --host'
+    alias cwk='cros-workon-kukui'
     alias g='git'
   fi
 else
