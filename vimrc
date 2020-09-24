@@ -14,7 +14,7 @@ Plug 'embear/vim-localvimrc'
 Plug 'gentoo/gentoo-syntax'
 Plug 'junegunn/fzf', {'dir':'~/.fzf', 'do':'./install --all'} " './install --bin' to use fzf inside vim only
 Plug 'junegunn/fzf.vim'
-Plug 'ludovicchabant/vim-gutentags' " recommanded to work with universal-ctags
+" Plug 'ludovicchabant/vim-gutentags' " recommanded to work with universal-ctags
 Plug 'morhetz/gruvbox'
 Plug 'mtdl9/vim-log-highlighting'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -117,6 +117,12 @@ function! s:check_back_space() abort
     let col = col('.') - 1
       return !col || getline('.')[col - 1]  =~# '\s'
     endfunction
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 " }}}
 
 " nerdcommenter {{{
