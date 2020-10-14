@@ -63,7 +63,7 @@ if [[ -n "$BASE_PATH" ]]; then
   alias cheets='cd ${BASE_PATH}/src/private-overlays/project-cheets-private/scripts'
 
   alias rs='repo sync .'
-  alias rsa='repo sync -j50 -q'
+  alias rsa='repo sync -q -j "$(nproc)" -n && repo sync -q -j "$(nproc)" -l --fail-fast'
   export PATH=$PATH:${BASE_PATH}/src/platform/dev/contrib
 
   if [[ -f $HOME/.ip_alias ]]; then
