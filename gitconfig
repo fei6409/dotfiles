@@ -1,8 +1,22 @@
 [core]
   autocrlf = false
   filemode = false
-  pager = diff-so-fancy | less --tabs=4 -RFX
+  pager = delta
   excludesfile = /usr/local/google/home/fshao/.gitignore.global
+[delta]
+  plus-color = "#012800"
+  minus-color = "#340001"
+  syntax-theme = Monokai Extended
+  line-numbers = true
+  file-style = yellow
+  file-decoration-style = yellow ol ul
+  hunk-header-decoration-style = 243 box ul
+  line-numbers-minus-style = 167
+  line-numbers-plus-style = 114
+  line-numbers-left-style = 243
+  line-numbers-right-style = 243
+[interactive]
+  diffFilter = delta --color-only
 [color]
   ui = true
 [alias]
