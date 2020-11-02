@@ -180,8 +180,8 @@ let g:localvimrc_persistent = 1
 " }}}
 
 " vim-hexokinase {{{
-let g:Hexokinase_ftEnabled = ['css', 'html', 'javascript', 'vim']
-let g:Hexokinase_highlighters = [ 'foreground' ]
+let g:Hexokinase_ftEnabled = ['css', 'html', 'javascript', 'vim', 'gitconfig']
+let g:Hexokinase_highlighters = ['foreground']
 " }}}
 
 " }}}
