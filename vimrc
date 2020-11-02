@@ -259,7 +259,7 @@ if exists('+termguicolors')
   set termguicolors
 endif
 " normal
-highlight Normal guibg=#1c1c1c
+highlight Normal guibg=#101010
 " cursor line
 highlight CursorLine cterm=NONE guibg=#444444
 " menu
