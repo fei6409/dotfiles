@@ -128,6 +128,9 @@ ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
 # To improve completing speed of scp
 zstyle ':completion:*' users fshao root
 
+# Use truecolor
+export COLORTERM=truecolor
+
 export FZF_DEFAULT_COMMAND='rg --files --no-messages'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 

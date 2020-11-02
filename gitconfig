@@ -4,8 +4,6 @@
   pager = delta
   excludesfile = /usr/local/google/home/fshao/.gitignore.global
 [delta]
-  plus-color = "#012800"
-  minus-color = "#340001"
   syntax-theme = Monokai Extended
   line-numbers = true
   file-style = yellow
@@ -15,6 +13,8 @@
   line-numbers-plus-style = 114
   line-numbers-left-style = 243
   line-numbers-right-style = 243
+  plus-style = syntax "#002800"
+  minus-style = syntax "#300000"
 [interactive]
   diffFilter = delta --color-only
 [color]
