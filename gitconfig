@@ -3,6 +3,27 @@
   filemode = false
   pager = delta
   excludesfile = /usr/local/google/home/fshao/.gitignore.global
+[alias]
+  au = add -u
+  bl = blame
+  br = branch
+  ci = commit
+  cia = commit --amend
+  co = checkout
+  cp = cherry-pick
+  dh = diff HEAD
+  dhh = diff HEAD^
+  grep = "grep -Iin"
+  lg = log
+  re = rebase
+  st = status
+  ancestor = !zsh -c 'diff --old-line-format= --new-line-format= <(git rev-list --first-parent \"${1:-master}\") <(git rev-list --first-parent \"${2:-HEAD}\") | head -1' -
+[include]
+  path = ~/.gitconfig.local
+[pull]
+  rebase = false
+[rerere]
+  enabled = true
 [delta]
   syntax-theme = Monokai Extended
   line-numbers = true
@@ -19,21 +40,6 @@
   diffFilter = delta --color-only
 [color]
   ui = true
-[alias]
-  au = add -u
-  bl = blame
-  br = branch
-  ci = commit
-  cia = commit --amend
-  co = checkout
-  cp = cherry-pick
-  dh = diff HEAD
-  dhh = diff HEAD^
-  grep = "grep -Iin"
-  lg = log
-  re = rebase
-  st = status
-  ancestor = !zsh -c 'diff --old-line-format= --new-line-format= <(git rev-list --first-parent \"${1:-master}\") <(git rev-list --first-parent \"${2:-HEAD}\") | head -1' -
 [color "diff-highlight"]
   oldNormal = red bold
   oldHighlight = red bold 52
@@ -46,9 +52,3 @@
   old = red bold
   new = green bold
   whitespace = red reverse
-[pull]
-  rebase = false
-[include]
-  path = ~/.gitconfig.local
-[rerere]
-	enabled = true
