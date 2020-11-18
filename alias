@@ -64,7 +64,7 @@ if [[ -n "$BASE_PATH" ]]; then
 
   alias rs='repo sync .'
   alias rsa='repo sync -q -j "$(nproc)" -n && repo rebase && repo sync -q -j "$(nproc)" -l --fail-fast'
-  export PATH=$PATH:${BASE_PATH}/src/platform/dev/contrib
+  export PATH=$PATH:${BASE_PATH}/src/platform/dev/contrib:${BASE_PATH}/chromite/contrib
 
   if [[ -f $HOME/.ip_alias ]]; then
     source "$HOME/.ip_alias"
