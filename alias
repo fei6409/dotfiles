@@ -84,6 +84,7 @@ if [[ -n "$BASE_PATH" ]]; then
     alias cwh='cros_workon --host'
     alias cwk='cros-workon-kukui'
     alias g='git'
+    alias dut-power='dut-power --vbat-rate=10'
   fi
 else
   echo 'No ChromeOS environment detected.'
