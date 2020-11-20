@@ -305,8 +305,8 @@ nnoremap <F9> :set invnumber<CR>:IndentLinesToggle<CR>
 " nnoremap <F9> :set invnumber invrelativenumber<CR>
 " /v stands for reg exp very magic mode, every char except a-zA-Z0-9 and _
 " will have special meaning
-nnoremap / /\v
-vnoremap / /\v
+" nnoremap / /\v
+" vnoremap / /\v
 " %s stands for global substitution
-cnoremap %s/ %s/\v
+" cnoremap %s/ %s/\v
 " }}}
