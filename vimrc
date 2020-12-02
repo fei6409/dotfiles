@@ -93,6 +93,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " indentLine {{{
 autocmd FileType json,markdown let g:indentLine_setConceal = 0
 autocmd FileType json setlocal foldmethod=indent
+autocmd FileType gitcommit set spell
 let g:indentLine_color_gui = '#585858'
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 " }}}
