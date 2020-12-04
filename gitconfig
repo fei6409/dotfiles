@@ -3,6 +3,7 @@
   filemode = false
   pager = delta
   excludesfile = /usr/local/google/home/fshao/.gitignore.global
+  abbrev = 12
 [alias]
   au = add -u
   bl = blame
