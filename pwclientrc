@@ -1,7 +1,7 @@
 [options]
-default=kernel
+default=patchwork
 
-[kernel]
+[patchwork]
 url=https://patchwork.kernel.org/
 
 [lore]
