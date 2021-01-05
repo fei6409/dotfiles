@@ -21,6 +21,13 @@ get_br() { git branch -a | grep -E "${1:-factory}.*-${2:-kukui}.*-.*B$" | head -
 # get open display for $DISPLAY
 get_display() { w -oush | grep -Eo ' :[0-9]+' | uniq | xargs; }
 
+double_confirm() {
+  trap return SIGINT
+  local i
+  echo -n "\nCtrl-C again to exit: "
+  for i in {5..1}; do sleep 1; echo -n "$i "; done
+}
+
 alias l='ls'
 alias ll='ls -lAhF'
 alias rm='rm -i'
@@ -64,7 +71,7 @@ if [[ -n "$BASE_PATH" ]]; then
 
   alias rs='repo sync .'
   alias rsa='repo sync -q -j "$(nproc)" -n && repo rebase && repo sync -q -j "$(nproc)" -l --fail-fast'
-  export PATH=$PATH:${BASE_PATH}/src/platform/dev/contrib:${BASE_PATH}/chromite/contrib
+  export PATH=$PATH:${BASE_PATH}/src/platform/dev/contrib:${BASE_PATH}/chromite/contrib:${BASE_PATH}/src/private-overlays/project-cheets-private/scripts
 
   if [[ -f $HOME/.ip_alias ]]; then
     source "$HOME/.ip_alias"
