@@ -2,8 +2,8 @@
 
 # default board name
 # shellcheck disable=SC2034
-BOARD=kukui
-# defuult ChromeOS repository base path
+BOARD=asurada
+# default ChromeOS repository base path
 BASE_PATH=''
 
 check_exist() { command -v "$1" > /dev/null 2>&1; }
@@ -92,6 +92,7 @@ if [[ -n "$BASE_PATH" ]]; then
     alias cwk='cros-workon-kukui'
     alias g='git'
     alias dut-power='dut-power --vbat-rate=10'
+    alias dut-power-s3='dut-power --vbat-rate=0'
   fi
 else
   echo 'No ChromeOS environment detected.'
