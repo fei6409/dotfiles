@@ -5,6 +5,7 @@
 BOARD=asurada
 # default ChromeOS repository base path
 BASE_PATH=''
+IN_CHROOT=
 
 check_exist() { command -v "$1" > /dev/null 2>&1; }
 # print the PID that occupies a port.
@@ -48,10 +49,11 @@ check_exist tmx2 && alias tmux='tmx2'
 
 # ChromeOS path alias & random stuff
 
-if [[ -d $HOME/chromiumos ]]; then
-  BASE_PATH="$HOME/chromiumos"
-elif [[ -d $HOME/trunk ]]; then
+if [[ -n $CROS_WORKON_SRCROOT ]]; then
+  IN_CHROOT=1
   BASE_PATH="$HOME/trunk"
+elif [[ -d $HOME/chromiumos ]]; then
+  BASE_PATH="$HOME/chromiumos"
 fi
 
 if [[ -n "$BASE_PATH" ]]; then
@@ -73,26 +75,25 @@ if [[ -n "$BASE_PATH" ]]; then
   alias rsa='repo sync -q -j "$(nproc)" -n && repo rebase && repo sync -q -j "$(nproc)" -l --fail-fast'
   export PATH=$PATH:${BASE_PATH}/src/platform/dev/contrib:${BASE_PATH}/chromite/contrib:${BASE_PATH}/src/private-overlays/project-cheets-private/scripts
 
-  if [[ -f $HOME/.ip_alias ]]; then
-    source "$HOME/.ip_alias"
-  elif [[ -f /outside/.ip_alias ]]; then
-    # shellcheck disable=SC1091
-    source "/outside/.ip_alias"
-  fi
-
-  if [[ -d $HOME/chromiumos ]]; then
+  if [[ -z $IN_CHROOT ]]; then
     # outside of chroot
     alias cr='cros_sdk --no-ns-pid'
     alias chrome_sdk="cros chrome-sdk --board=kukui --log-level=info --internal --gn-extra-args='enable_nacl=false symbol_level=1 blink_symbol_level=0 is_official_build=false use_goma=true'"
     export GOMA_DIR="$HOME/goma"
-  elif [[ -d $HOME/trunk ]]; then
-    # inside of chroot
+
+    # shellcheck disable=SC1091
+    [[ -f $HOME/.ip_alias ]] && source "$HOME/.ip_alias"
+  else
+    # in chroot
     alias cw='cros_workon'
     alias cwh='cros_workon --host'
     alias cwk='cros-workon-kukui'
     alias g='git'
     alias dut-power='dut-power --vbat-rate=10'
     alias dut-power-s3='dut-power --vbat-rate=0'
+
+    # shellcheck disable=SC1091
+    [[ -f /outside/.ip_alias ]] && source "/outside/.ip_alias"
   fi
 else
   echo 'No ChromeOS environment detected.'
