@@ -1,0 +1,114 @@
+AllCops:
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  TargetRubyVersion: 2.5
+
+Layout/EndOfLine:
+  EnforcedStyle: lf
+
+Layout/HeredocIndentation:
+  Enabled: false
+
+Layout/LineLength:
+  Enabled: true
+  Max: 120
+
+Lint/ConstantDefinitionInBlock:
+  Enabled: true
+  Exclude:
+    - 'tasks/**/*.rake'
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/ModuleLength:
+  Enabled: false
+
+Metrics/ParameterLists:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Naming/HeredocDelimiterNaming:
+  Enabled: false
+
+Naming/MethodParameterName:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/AutoResourceCleanup:
+  Enabled: true
+
+Style/CollectionMethods:
+  Enabled: true
+
+Style/Documentation:
+  Enabled: true
+  Exclude:
+    - 'lib/pwnlib/shellcraft/generators/**/*.rb'
+    - 'test/**/*.rb'
+
+Style/Encoding:
+  Enabled: false
+
+Style/FormatStringToken:
+  Enabled: false
+
+# TODO(david942j):
+#   `yield` cannot be ignored (didn't track why).
+#   Enable this cop whenever its related bugs are fixed.
+# Style/MethodCallWithArgsParentheses:
+#   Enabled: true
+#   IgnoredMethods:
+#     - require
+#     - yield
+#     - skip
+#     - raise
+
+Style/MethodCalledOnDoEndBlock:
+  Enabled: true
+
+Style/MixinUsage:
+  Enabled: true
+  Exclude:
+    - test/**/*.rb
+    - lib/pwn.rb
+
+Style/OptionHash:
+  Enabled: true
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+Style/Send:
+  Enabled: true
+
+Style/StringMethods:
+  Enabled: true
+
+Style/SymbolArray:
+  Enabled: true
+
+Style/SingleLineBlockParams:
+  Enabled: true
+
+Style/YodaCondition:
+  Enabled: false
