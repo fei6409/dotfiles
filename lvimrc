@@ -3,3 +3,4 @@
 
 " use tab for indentation
 set noexpandtab
+set ts=8 sts=8 sw=8
