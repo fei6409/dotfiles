@@ -6,6 +6,8 @@ BOARD=asurada
 # default ChromeOS repository base path
 BASE_PATH=''
 IN_CHROOT=
+RED='\033[1;31m'
+NC='\033[0m'
 
 check_exist() { command -v "$1" > /dev/null 2>&1; }
 # print the PID that occupies a port.
@@ -26,7 +28,8 @@ double_confirm() {
   trap return SIGINT
   local i
   echo -n "\nCtrl-C again to exit: "
-  for i in {5..1}; do sleep 1; echo -n "$i "; done
+  for i in {5..1}; do sleep 1; echo -n "${RED}${i}${NC} "; done
+  echo
 }
 
 alias l='ls'
