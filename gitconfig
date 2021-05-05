@@ -3,7 +3,7 @@
   autocrlf = false
   excludesfile = /usr/local/google/home/fshao/.gitignore.global
   ; filemode = false
-  pager = delta
+  pager = delta --tabs 8
 [alias]
   ancestor = !zsh -c 'diff --old-line-format= --new-line-format= <(git rev-list --first-parent \"${1:-master}\") <(git rev-list --first-parent \"${2:-HEAD}\") | head -1' -
   au = add -u
@@ -57,3 +57,5 @@
   old = red bold
   new = green bold
   whitespace = red reverse
+[http]
+	cookiefile = /usr/local/google/home/fshao/.gitcookies
