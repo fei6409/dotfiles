@@ -97,7 +97,7 @@ if [[ -n "$BASE_PATH" ]]; then
     alias dut-power='dut-power --vbat-rate=10'
     alias dut-power-s3='dut-power --vbat-rate=0'
 
-    # `kbpress col row (0|1)` in EC consoleto simulate keystroke
+    # `kbpress col row (0|1)` in EC console to simulate keystroke
     # CrOS keyboard scancode table:
     # https://docs.google.com/spreadsheets/d/1VB8QMArhzKOqWyukp_OJ6F4aKYZ_bhusRY5ivuFmQj8/edit
     # usage: dut-ctrl-u <servo port>
