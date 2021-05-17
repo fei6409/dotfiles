@@ -5,6 +5,8 @@
 filetype plugin indent on
 syntax on " Enable syntax highlighting
 let mapleader=',' " set <Leader> key to ','
+" Map space to leader key as well
+map <Space> <leader>
 " }}}
 
 " vim-plug {{{
