@@ -57,5 +57,3 @@
   old = red bold
   new = green bold
   whitespace = red reverse
-[http]
-	cookiefile = /usr/local/google/home/fshao/.gitcookies
