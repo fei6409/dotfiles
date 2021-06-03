@@ -12,6 +12,7 @@ export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/depot_tools"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/Android/Sdk/build-tools/30.0.3"
+export PATH="$PATH:/usr/lib/google-golang/bin"
 export PATH="$PATH:$(go env GOPATH)/bin"
 
 # Path to your oh-my-zsh installation.
