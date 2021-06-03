@@ -41,7 +41,7 @@ alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
 # rsync params: archive, compress, verbose, readable, progress
 alias rsync='rsync -azvhP'
-alias rgf='rg --files | rg'
+alias fd='rg --files | rg'
 alias open='xdg-open'
 alias ipython='python3 -m IPython'
 alias trim='sed -e '"'"'s/[[:space:]]*$//'"'"''  # trimming tailing spaces
