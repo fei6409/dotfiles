@@ -97,6 +97,15 @@ if [[ -n "$BASE_PATH" ]]; then
     alias dut-power='dut-power --vbat-rate=10'
     alias dut-power-s3='dut-power --vbat-rate=0'
 
+    # Use dut-control to get power numbers, for some cases that people want to
+    # avoid using dut-power.
+    # usage: <function_name> <servo_port> <measure_time>
+    check_exist dut-control && get-power-via-dut-control() {
+      local PORT=${1:-9999}
+      local T=${2:-60}
+      dut-control -p ${PORT} -i | cut -d ' ' -f 1 | grep _mw | xargs dut-control -p ${PORT} -t ${T} | grep @
+    }
+
     # `kbpress col row (0|1)` in EC console to simulate keystroke
     # CrOS keyboard scancode table:
     # https://docs.google.com/spreadsheets/d/1VB8QMArhzKOqWyukp_OJ6F4aKYZ_bhusRY5ivuFmQj8/edit
