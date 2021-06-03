@@ -121,7 +121,7 @@ if [[ -n "$BASE_PATH" ]]; then
     }
 
     # shellcheck disable=SC1091
-    [[ -f /outside/.ip_alias ]] && source "/outside/.ip_alias"
+    # [[ -f /outside/.ip_alias ]] && source "/outside/.ip_alias"
   fi
 else
   echo 'No ChromeOS environment detected.'
