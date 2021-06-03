@@ -6,7 +6,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-export PATH="$HOME/.rbenv/bin:/usr/local/bin:$HOME/.linuxbrew/bin:$HOME/.cargo/bin:$PATH:$HOME/depot_tools"
+export PATH="$PATH:$HOME/.rbenv/bin:/usr/local/bin"
+export PATH="$PATH:$HOME/.linuxbrew/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$PATH:$HOME/depot_tools"
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/Android/Sdk/build-tools/30.0.3"
+export PATH="$PATH:$(go env GOPATH)/bin"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -73,6 +79,7 @@ plugins=(
   # autojump
   # fzf
   git
+  golang
   jsontools
   zsh-autosuggestions
   zsh-syntax-highlighting
