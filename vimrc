@@ -14,7 +14,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'Yggdroot/indentLine'
 Plug 'embear/vim-localvimrc'
 Plug 'gentoo/gentoo-syntax'
-Plug 'junegunn/fzf', {'dir':'~/.fzf', 'do':'./install --all'} " './install --bin' to use fzf inside vim only
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " Plug 'ludovicchabant/vim-gutentags' " recommanded to work with universal-ctags
 Plug 'morhetz/gruvbox'
