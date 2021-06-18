@@ -139,7 +139,7 @@ zstyle ':completion:*' users fshao root
 # Use truecolor
 export COLORTERM=truecolor
 
-export FZF_DEFAULT_COMMAND='rg --files --no-messages'
+export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 [[ -f /etc/bash_completion.d/g4d ]] && source /etc/bash_completion.d/g4d
