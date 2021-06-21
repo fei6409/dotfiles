@@ -21,9 +21,9 @@ Plug 'morhetz/gruvbox'
 Plug 'mtdl9/vim-log-highlighting'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'powerline/fonts'
+Plug 'preservim/nerdcommenter'
+Plug 'preservim/nerdtree'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -57,9 +57,7 @@ nnoremap <C-g> :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" automatically open NERDTree on start
-" autocmd vimenter * NERDTree
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 " }}}
 
 " YCM {{{
