@@ -188,6 +188,10 @@ let g:Hexokinase_highlighters = ['foreground']
 
 " }}}
 
+" global let variables {{{
+let g:markdown_fenced_languages = ['python', 'ruby', 'go', 'vim', 'c', 'bash=sh']
+" }}}
+
 " indentations {{{
 set autoindent " Enable auto indent
 set expandtab " insert whitespace whenever the tab key is pressed
