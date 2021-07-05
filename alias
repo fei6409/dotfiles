@@ -87,7 +87,7 @@ if [[ -n "$BASE_PATH" ]]; then
           --gn-extra-args='enable_nacl=false symbol_level=1 blink_symbol_level=0 is_official_build=false use_goma=true'"
 
     # shellcheck disable=SC1091
-    [[ -f $HOME/.ip_alias ]] && source "$HOME/.ip_alias"
+    # [[ -f $HOME/.ip_alias ]] && source "$HOME/.ip_alias"
   else
     # in chroot
     alias cw='cros_workon'
