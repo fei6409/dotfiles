@@ -23,6 +23,8 @@ gnb() { git checkout -b "${1:-temp-branch}" "${2:-m/main}"; }
 get_br() { git branch -a | grep -E "${1:-factory}.*-${2:-kukui}.*-.*B$" | head -n1 | xargs; } # xargs to trim whitespace
 # get open display for $DISPLAY
 get_display() { w -oush | grep -Eo ' :[0-9]+' | uniq | xargs; }
+# set display if unset
+DISPLAY=${DISPLAY:-$(get_display)}
 
 double_confirm() {
   trap return SIGINT
@@ -47,7 +49,7 @@ alias ipython='python3 -m IPython'
 alias trim='sed -e '"'"'s/[[:space:]]*$//'"'"''  # trimming tailing spaces
 alias reboot='echo You shall not reboot :P'  # no reboot via commands!
 alias shutdown='echo You shall not shutdown :P'  # no shutdown via commands!
-check_exist xclip && copy() { DISPLAY=$(get_display) xclip -sel clip; }
+check_exist xclip && copy() { xclip -sel clip; }
 check_exist colordiff && alias diff='colordiff'
 check_exist tmx2 && alias tmux='tmx2'
 
