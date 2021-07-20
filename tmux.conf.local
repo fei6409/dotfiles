@@ -327,6 +327,9 @@ tmux_conf_copy_to_os_clipboard=true
 # -- user customizations -------------------------------------------------------
 # this is the place to override or undo settings
 
+# force enable true color
+set-option -ga terminal-overrides ",*256col*:Tc"
+
 # faster command sequences (e.g. vim insert mode to normal mode)
 set -sg escape-time 0
 
