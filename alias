@@ -92,9 +92,11 @@ if [[ -n "$BASE_PATH" ]]; then
     # [[ -f $HOME/.ip_alias ]] && source "$HOME/.ip_alias"
   else
     # in chroot
-    alias cw='cros_workon'
     alias cwh='cros_workon --host'
     alias cwk='cros-workon-kukui'
+    alias cwa='cros-workon-asurada'
+    alias cwc='cros-workon-cherry'
+    alias cw='cwc'
     alias g='git'
     alias dut-power='dut-power --vbat-rate=10'
     alias dut-power-s3='dut-power --vbat-rate=0'
