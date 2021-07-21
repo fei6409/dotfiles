@@ -139,6 +139,10 @@ zstyle ':completion:*' users fshao root
 # Use truecolor
 export COLORTERM=truecolor
 
+# Set EDITOR and VISUAL to vim
+export EDITOR=vim
+export VISUAL="$EDITOR"
+
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
