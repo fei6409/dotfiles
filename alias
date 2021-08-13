@@ -14,7 +14,7 @@ check_exist() { command -v "$1" > /dev/null 2>&1; }
 # usage: see_port <port number>
 see_port() { netstat -lnpt | awk "\$4 ~ /:$1$/ {sub(/\/.*/, \"\", \$7); print \$7}"; }
 # usage: summary autotest/results/summary_$DATE/*
-summary() { awk '/_mw/ && !/ppdut5|ppchg5/ {print $4}' "$@" | copy; }
+summary() { awk '/pp/ && !/ppdut5|ppchg5/ {print $4}' "$@" | copy; }
 # git new branch.
 # usage: gnb <new branch name> <upstream branch>
 gnb() { git checkout -b "${1:-temp-branch}" "${2:-m/main}"; }
