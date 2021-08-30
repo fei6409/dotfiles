@@ -173,6 +173,7 @@ au BufNewFile,BufRead *log,*messages,*kcrash,*previous,*dmesg,*ramoops*,log-ec*,
 let g:fugitive_no_maps = 1  " Disable C-n functionality on viewing a commit
 map <C-n> :cnext<CR>
 map <C-p> :cprevious<CR>
+map <leader>b :Git blame<CR>
 " }}}
 
 " vim-localvimrc {{{
