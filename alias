@@ -24,7 +24,7 @@ get_br() { git branch -a | grep -E "${1:-factory}.*-${2:-kukui}.*-.*B$" | head -
 # get open display for $DISPLAY
 get_display() { w -oush | grep -Eo ' :[0-9]+' | uniq | xargs; }
 # set display if unset
-DISPLAY=${DISPLAY:-$(get_display)}
+export DISPLAY=${DISPLAY:-$(get_display)}
 
 double_confirm() {
   trap return SIGINT
