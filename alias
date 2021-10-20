@@ -79,7 +79,7 @@ if [[ -n "$BASE_PATH" ]]; then
   alias cheets='cd ${BASE_PATH}/src/private-overlays/project-cheets-private/scripts'
 
   alias rs='repo sync .'
-  alias rsa='repo sync -q -j 16 -n && repo rebase && repo sync -q -j 16 -l --fail-fast'
+  alias rsa='repo sync -j 16 -n && repo rebase && repo sync -j 16 -l --fail-fast'
   export PATH=$PATH:${BASE_PATH}/src/platform/dev/contrib:${BASE_PATH}/chromite/contrib:${BASE_PATH}/src/private-overlays/project-cheets-private/scripts
 
   if [[ -z $IN_CHROOT ]]; then
