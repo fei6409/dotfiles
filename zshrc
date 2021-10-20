@@ -151,6 +151,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 [[ -f $HOME/.fzf.zsh ]] && source $HOME/.fzf.zsh
 [[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
 [[ -f $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
+[[ -f $HOME/dotfiles/my_git_prompt.zsh ]] && source $HOME/dotfiles/my_git_prompt.zsh
 
 autoload -U compinit && compinit -u
 
