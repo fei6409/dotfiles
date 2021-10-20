@@ -156,7 +156,7 @@ let b:ale_linters = {
   \   'sh': ['shellcheck']
   \ }
 let g:ale_fixers = {
-  \   '*': ['trim_whitespace', 'remove_trailing_lines'],
+  \   '*': ['trim_whitespace'],
   \   'markdown': ['remove_trailing_lines'],
   \   'diff': []
   \ }
