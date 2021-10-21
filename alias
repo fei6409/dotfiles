@@ -64,7 +64,6 @@ fi
 
 if [[ -n "$BASE_PATH" ]]; then
   # we're either inside or outside of chroot
-  alias cros_sdk='cd ${BASE_PATH}/src/; cros_sdk'
   alias fac='cd ${BASE_PATH}/src/platform/factory'
   alias ker419='cd ${BASE_PATH}/src/third_party/kernel/v4.19'
   alias ker54='cd ${BASE_PATH}/src/third_party/kernel/v5.4'
@@ -84,7 +83,7 @@ if [[ -n "$BASE_PATH" ]]; then
 
   if [[ -z $IN_CHROOT ]]; then
     # outside of chroot
-    alias cr='cros_sdk --no-ns-pid'
+    alias cr='cd ${BASE_PATH}/src/; cros_sdk --no-ns-pid'
     alias chrome_sdk="cros chrome-sdk --board=${BOARD} --log-level=info --internal \
           --gn-extra-args='enable_nacl=false symbol_level=1 blink_symbol_level=0 is_official_build=false use_goma=true'"
 
