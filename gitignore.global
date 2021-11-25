@@ -48,8 +48,8 @@ tags
 tags_sorted_by_file
 
 # Patch files.
-*.diff
-*.patch
+# *.diff
+# *.patch
 *.orig
 *.rej
 
