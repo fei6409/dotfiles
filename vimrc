@@ -308,7 +308,7 @@ nnoremap <F7> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> t
 " Toggle paste mode
 set pastetoggle=<F8>
 " Toggle linenumber
-nnoremap <F9> :set invnumber<CR>:IndentLinesToggle<CR>
+nnoremap <F9> :set invnumber<CR>:set invlist<CR>:IndentLinesToggle<CR>
 " nnoremap <F9> :set invnumber invrelativenumber<CR>
 " /v stands for reg exp very magic mode, every char except a-zA-Z0-9 and _
 " will have special meaning
