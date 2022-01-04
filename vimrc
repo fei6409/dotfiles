@@ -238,6 +238,7 @@ set nocompatible
 set noerrorbells " set error bells off
 set ruler " enable status line
 set showcmd " show current command info in status line  e.g. selecting things in visual mode
+set scrolloff=5 " always show lines above and below cursor
 " set spell spelllang=en_us " spell checking
 set t_Co=256 " enable 256 color in vim
 set t_vb= " set visual bell empty
