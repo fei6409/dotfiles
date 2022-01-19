@@ -41,8 +41,7 @@ alias grep='grep --color=auto'
 alias ta='tmux attach -t'
 alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
-# rsync params: archive, compress, verbose, readable, progress
-alias rsync='rsync -azvhP'
+alias rsync='rsync -azvhP' # rsync params: archive, compress, verbose, readable, progress
 alias rgf='rg --files | rg'
 alias open='xdg-open'
 alias ipython='python3 -m IPython'
@@ -101,6 +100,7 @@ if [[ -n "$BASE_PATH" ]]; then
     alias g='git'
     alias dut-power='dut-power --vbat-rate=10'
     alias dut-power-s3='dut-power --vbat-rate=0'
+    alias test_that="test_that --fast --autotest_dir=${BASE_PATH}/src/third_party/autotest/files"
 
     # Use dut-control to get power numbers, for some cases that people want to
     # avoid using dut-power.
