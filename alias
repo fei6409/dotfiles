@@ -54,11 +54,9 @@ check_exist tmx2 && alias tmux='tmx2'
 
 # ChromeOS path alias & random stuff
 
+BASE_PATH="$HOME/chromiumos"
 if [[ -n $CROS_WORKON_SRCROOT ]]; then
   IN_CHROOT=1
-  BASE_PATH="$HOME/trunk"
-elif [[ -d $HOME/chromiumos ]]; then
-  BASE_PATH="$HOME/chromiumos"
 fi
 
 if [[ -n "$BASE_PATH" ]]; then
