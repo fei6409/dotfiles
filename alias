@@ -2,7 +2,7 @@
 
 # default board name
 # shellcheck disable=SC2034
-BOARD=asurada
+BOARD=corsola
 # default ChromeOS repository base path
 BASE_PATH=''
 IN_CHROOT=
@@ -42,7 +42,7 @@ alias ta='tmux attach -t'
 alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
 alias rsync='rsync -azvhP' # rsync params: archive, compress, verbose, readable, progress
-alias rgf='rg --files | rg'
+alias rgf='echo "${RED}Use fd!${NC}" && rg --files | rg'
 alias open='xdg-open'
 alias ipython='python3 -m IPython'
 alias trim='sed -e '"'"'s/[[:space:]]*$//'"'"''  # trimming tailing spaces
