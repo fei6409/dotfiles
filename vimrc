@@ -158,7 +158,8 @@ let b:ale_linters = {
 let g:ale_fixers = {
   \   '*': ['trim_whitespace'],
   \   'markdown': ['remove_trailing_lines'],
-  \   'diff': []
+  \   'diff': [],
+  \   'gitsendemail': []
   \ }
 let g:ale_sh_shellcheck_exclusions = 'SC2039,SC1090'
 autocmd BufWritePre * ALEFix
