@@ -39,9 +39,11 @@ alias ll='ls -lAhF'
 alias rm='rm -i'
 alias grep='grep --color=auto'
 alias ta='tmux attach -t'
+alias vim='vim -X' # To workaround slow "xsmp init" on start
 alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
 alias rsync='rsync -azvhP' # rsync params: archive, compress, verbose, readable, progress
+alias rg='rg -S'
 alias rgf='echo "${RED}Use fd!${NC}" && rg --files | rg'
 alias open='xdg-open'
 alias ipython='python3 -m IPython'
@@ -77,11 +79,11 @@ if [[ -n "$BASE_PATH" ]]; then
 
   alias rs='repo sync .'
   alias rsa='repo sync -j 16 -n && repo rebase && repo sync -j 16 -l --fail-fast'
-  export PATH=$PATH:${BASE_PATH}/src/platform/dev/contrib:${BASE_PATH}/chromite/contrib:${BASE_PATH}/src/private-overlays/project-cheets-private/scripts
+  export PATH=$PATH:${BASE_PATH}/src/platform/dev/contrib:${BASE_PATH}/chromite/contrib:${BASE_PATH}/src/private-overlays/project-cheets-private/scripts:${BASE_PATH}/src/config/bin
 
   if [[ -z $IN_CHROOT ]]; then
     # outside of chroot
-    alias cr='cd ${BASE_PATH}/src/; cros_sdk --no-ns-pid'
+    alias cr='cd ${BASE_PATH}/src/scripts; cros_sdk --no-ns-pid'
     alias chrome_sdk="cros chrome-sdk --board=${BOARD} --log-level=info --internal \
           --gn-extra-args='enable_nacl=false symbol_level=1 blink_symbol_level=0 is_official_build=false use_goma=true'"
 
