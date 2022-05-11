@@ -330,6 +330,15 @@ tmux_conf_copy_to_os_clipboard=true
 # force enable true color
 set-option -ga terminal-overrides ",*256col*:Tc"
 
+# Quick hack for Konsole zombie screen bug
+# https://github.com/tmux/tmux/issues/933
+# https://github.com/tmux/tmux/issues/931
+# Konsole (part of KDE applications) is known to behave poorly with tmux.
+# Especially when you page up/down in vim, part of the screen will remain stale.
+# Solution 1: Use this workaround.
+# Solution 2: Stop using Konsole. Use gnome-terminal or whatever.
+set -as terminal-overrides ',*:indn@'
+
 # faster command sequences (e.g. vim insert mode to normal mode)
 set -sg escape-time 0
 
