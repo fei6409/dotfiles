@@ -143,8 +143,10 @@ export COLORTERM=truecolor
 export EDITOR=vim
 export VISUAL="$EDITOR"
 
-export FZF_DEFAULT_COMMAND='fd --type f'
+# Use fdfind as FZF backend
+export FZF_DEFAULT_COMMAND="fd --type f --follow --hidden --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type d"
 
 [[ -f /etc/bash_completion.d/g4d ]] && source /etc/bash_completion.d/g4d
 [[ -f $HOME/.alias ]] && source $HOME/.alias
