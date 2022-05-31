@@ -165,10 +165,6 @@ let g:ale_sh_shellcheck_exclusions = 'SC2039,SC1090'
 autocmd BufWritePre * ALEFix
 " }}}
 
-" vim-log-highlighting {{{
-au BufNewFile,BufRead *log,*messages,*kcrash,*previous,*dmesg,*ramoops*,log-ec*,log-cpu* set filetype=log
-" }}}
-
 " vim-fugitive {{{
 " Jump to next/previous quickfix entry
 let g:fugitive_no_maps = 1  " Disable C-n functionality on viewing a commit
@@ -201,14 +197,23 @@ set shiftwidth=2 " determine the number of whitespace inserted for indentation (
 set softtabstop=2 " the width cursor moves when typing a tab
 set tabstop=2 " specify the width of a tab
 let g:python_recommended_style=0 " disable python indentation from ftplugin/python.vim
-autocmd FileType Makefile setlocal noexpandtab " for Makefile indentation, shell recipe should start with tab
-" autocmd FileType c,cpp setlocal sts=4 ts=4 sw=4 " set tab size to 4 for cpp files
 " }}}
 
-" autocmd {{{
-autocmd BufNewFile,BufRead * if &syntax == '' | set syntax=sh | endif " for file with no syntax set
-autocmd FileType json setlocal foldlevel=1 " default keep the top level open
-" autocmd FileType c,cpp,python,json autocmd BufWritePre * %s/\s\+$//e " remove trailing space on save, replaced by ALEFix
+" file detection {{{
+" for known file types
+autocmd FileType Makefile setlocal noexpandtab " for Makefile indentation, shell recipe should start with tab
+autocmd FileType json setlocal foldlevel=2 " default keep the top and second level open
+" autocmd FileType c,cpp setlocal sts=4 ts=4 sw=4 " set tab size to 4 for cpp files
+
+" for unknown file types, or special cases depending on the name or paths
+augroup filetypedetect
+  " kernel code use tab indentation
+  autocmd BufNewFile,BufRead */kernel/* set noexpandtab tabstop=8 shiftwidth=8 softtabstop=8
+  " set file type to 'log' for vim-log-highlighting
+  autocmd BufNewFile,BufRead *.{log,kcrash}{,.*},{messages,dmesg,ramoops}{,.*} set filetype=log
+  " for file with no syntax set
+  " autocmd BufNewFile,BufRead * if &syntax == '' | set syntax=sh | endif
+augroup END
 
 " set hibrid line numbering with auto toggle
 " augroup numbertoggle
