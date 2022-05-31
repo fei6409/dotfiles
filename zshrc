@@ -152,12 +152,14 @@ export FZF_ALT_C_COMMAND="fd --type d"
 [[ -f $HOME/.alias ]] && source $HOME/.alias
 [[ -f $HOME/.fzf.zsh ]] && source $HOME/.fzf.zsh
 [[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
-[[ -f $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
+# use gsamokovarov/jump instead
+# [[ -f $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 [[ -f $HOME/dotfiles/my_git_prompt.zsh ]] && source $HOME/dotfiles/my_git_prompt.zsh
 
 autoload -U compinit && compinit -u
 
 eval "$(rbenv init -)"
+eval "$(jump shell zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f $HOME/.p10k.zsh ]] && source $HOME/.p10k.zsh
