@@ -211,8 +211,6 @@ autocmd FileType json setlocal foldlevel=1 " default keep the top level open
 " autocmd FileType c,cpp,python,json autocmd BufWritePre * %s/\s\+$//e " remove trailing space on save, replaced by ALEFix
 
 " set hibrid line numbering with auto toggle
-set number
-" set number relativenumber
 " augroup numbertoggle
 "   autocmd!
 "   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
@@ -235,6 +233,8 @@ set incsearch " increased mode for search
 set laststatus=2 " always enable status line
 set mouse-=a " disable mouse in all modes
 " set textwidth=80 " wrap text to 80 characters, use `gq` instead
+set number " line number
+" set relativenumber " relative line number
 set nocompatible
 set noerrorbells " set error bells off
 set ruler " enable status line
