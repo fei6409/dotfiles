@@ -227,8 +227,8 @@ tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see
 #     - #{username}
 #     - #{username_ssh}
 # tmux_conf_theme_status_left=" #S | ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} "
-tmux_conf_theme_status_left=" #S | C #{cpu_percentage} | R #{ram_percentage} "
-tmux_conf_theme_status_right=" #{prefix}#{mouse}#{pairing}#{synchronized}#{?battery_status,#{battery_status},}#{?battery_percentage, #{battery_percentage},} | %m/%d %T | #{hostname} "
+tmux_conf_theme_status_left=" #{hostname} | C #{cpu_percentage} | R #{ram_percentage} "
+tmux_conf_theme_status_right=" #S | #{prefix}#{mouse}#{pairing}#{synchronized}#{?battery_status,#{battery_status},}#{?battery_percentage, #{battery_percentage},} | %m/%d %T "
 
 # status left style
 tmux_conf_theme_status_left_fg="$tmux_conf_theme_colour_6,$tmux_conf_theme_colour_7,$tmux_conf_theme_colour_8"
@@ -238,7 +238,7 @@ tmux_conf_theme_status_left_attr="bold,none,none"
 # status right style
 tmux_conf_theme_status_right_fg="$tmux_conf_theme_colour_12,$tmux_conf_theme_colour_13,$tmux_conf_theme_colour_14"
 tmux_conf_theme_status_right_bg="$tmux_conf_theme_colour_15,$tmux_conf_theme_colour_16,$tmux_conf_theme_colour_17"
-tmux_conf_theme_status_right_attr="none,none,bold"
+tmux_conf_theme_status_right_attr="bold,none,none"
 
 # pairing indicator
 tmux_conf_theme_pairing="⚇"                 # U+2687
@@ -342,8 +342,8 @@ set -as terminal-overrides ',*:indn@'
 # faster command sequences (e.g. vim insert mode to normal mode)
 set -sg escape-time 0
 
-# redraw status line every 1 seconds
-set -g status-interval 1
+# redraw status line every 3 seconds
+set -g status-interval 3
 
 # increase history size
 set -g history-limit 50000
