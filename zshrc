@@ -9,9 +9,10 @@ fi
 export PATH="$PATH:$HOME/.rbenv/bin:/usr/local/bin"
 export PATH="$PATH:$HOME/.linuxbrew/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
-export PATH="$PATH:$HOME/depot_tools"
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/depot_tools"
 export PATH="$PATH:$HOME/Android/Sdk/build-tools/30.0.3"
+export PATH="$PATH:/sbin:/usr/sbin"
 export PATH="$PATH:/usr/lib/google-golang/bin"
 export PATH="$PATH:$(go env GOPATH)/bin"
 
