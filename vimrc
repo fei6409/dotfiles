@@ -208,7 +208,7 @@ autocmd FileType json setlocal foldlevel=2 " default keep the top and second lev
 " for unknown file types, or special cases depending on the name or paths
 augroup filetypedetect
   " kernel code use tab indentation
-  autocmd BufNewFile,BufRead */kernel/* set noexpandtab tabstop=8 shiftwidth=8 softtabstop=8
+  autocmd BufNewFile,BufRead */{kernel,syzkaller}/* set noexpandtab tabstop=8 shiftwidth=8 softtabstop=8
   " set file type to 'log' for vim-log-highlighting
   autocmd BufNewFile,BufRead *.{log,kcrash}{,.*},{messages,dmesg,ramoops}{,.*} set filetype=log
   " for file with no syntax set
