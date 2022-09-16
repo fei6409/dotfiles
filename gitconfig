@@ -20,6 +20,8 @@
   lgo = log --oneline
   re = rebase
   st = status
+[http]
+  cookiefile = ~/.gitcookies
 [include]
   path = ~/.gitconfig.local
 [pull]
