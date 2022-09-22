@@ -102,22 +102,36 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
-" Give more space for displaying messages.
-set cmdheight=2
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+" set signcolumn=yes
+
 " Use tab for trigger completion with characters ahead and navigate.
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" : "\<TAB>"
-      " \ pumvisible() ? "\<C-n>" :
-      " \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#pum#visible() ? coc#pum#next(1) : "\<TAB>"
+      " \ coc#pum#visible() ? coc#pum#next(1) :
+      " \ CheckBackspace() ? "\<TAB>" :
       " \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-function! s:check_back_space() abort
-    let col = col('.') - 1
-      return !col || getline('.')[col - 1]  =~# '\s'
-    endfunction
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                             \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -210,7 +224,7 @@ augroup filetypedetect
   " kernel code use tab indentation
   autocmd BufNewFile,BufRead */{kernel,syzkaller}/* set noexpandtab tabstop=8 shiftwidth=8 softtabstop=8
   " set file type to 'log' for vim-log-highlighting
-  autocmd BufNewFile,BufRead *.{log,kcrash}{,.*},{messages,dmesg,ramoops}{,.*} set filetype=log
+  autocmd BufNewFile,BufRead *.{log,kcrash}{,.*},{messages,dmesg,console-ramoops-0}{,.*} set filetype=log
   " for file with no syntax set
   " autocmd BufNewFile,BufRead * if &syntax == '' | set syntax=sh | endif
 augroup END
@@ -227,6 +241,7 @@ augroup END
 " general setting {{{
 set backspace=2 " make backspace can delete over line breaks
 set confirm " confirm before quiting without saving
+set cmdheight=2 " Give more space for displaying messages.
 set cursorline " highlight the current line
 set foldlevel=0 " fold everything be default
 " disabled because of https://github.com/vim/vim/issues/5454
