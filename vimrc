@@ -92,8 +92,6 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 
 " indentLine {{{
 autocmd FileType json,markdown let g:indentLine_setConceal = 0
-autocmd FileType json setlocal foldmethod=indent
-autocmd FileType gitcommit set spell
 let g:indentLine_color_gui = '#585858'
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 " }}}
@@ -216,7 +214,8 @@ let g:python_recommended_style=0 " disable python indentation from ftplugin/pyth
 " file detection {{{
 " for known file types
 autocmd FileType Makefile setlocal noexpandtab " for Makefile indentation, shell recipe should start with tab
-autocmd FileType json setlocal foldlevel=2 " default keep the top and second level open
+autocmd FileType json setlocal foldlevel=2 foldmethod=indent " default keep the top and second level open
+autocmd FileType gitcommit set spell expandtab
 " autocmd FileType c,cpp setlocal sts=4 ts=4 sw=4 " set tab size to 4 for cpp files
 
 " for unknown file types, or special cases depending on the name or paths
