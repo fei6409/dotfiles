@@ -91,6 +91,8 @@ if [[ -n "$BASE_PATH" ]]; then
     # [[ -f $HOME/.ip_alias ]] && source "$HOME/.ip_alias"
   else
     # in chroot
+    export EDITOR='vim'
+
     alias cwh='cros_workon --host'
     alias cwk='cros-workon-kukui'
     alias cwa='cros-workon-asurada'
