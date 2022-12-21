@@ -34,6 +34,16 @@ double_confirm() {
   echo
 }
 
+grep_words() {
+  f="$(grep -rl "$1" .)"
+  shift
+  while (($#)); do
+    f="$(echo $f | xargs -d '\n' grep -rl $1)"
+    shift
+  done
+  echo $f | tr ' ' '\n' | sort -n
+}
+
 alias l='ls'
 alias ll='ls -lAhF'
 alias rm='rm -i'
