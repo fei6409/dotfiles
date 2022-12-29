@@ -17,6 +17,7 @@
   dhh = diff HEAD^
   grep = "grep -Iin"
   lg = log
+  lgo = log --oneline
   re = rebase
   st = status
 [include]
