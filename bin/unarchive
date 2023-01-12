@@ -66,6 +66,10 @@ unarchive_zip() {
   unzip -d "$2" -- "$1"
 }
 
+unarchive_tar() {
+  tar -xvf "$1" -C "$2"
+}
+
 unarchive_tgz() {
   if type pigz >/dev/null 2>&1; then
     tar --use-compress-program pigz -xvf "$1" -C "$2"
@@ -90,8 +94,12 @@ unarchive_7z() {
   7za x -o"$2" -- "$1"
 }
 
-unarchive_tar() {
-  tar -xvf "$1" -C "$2"
+unarchive_gzip() {
+  local bn
+  local fn
+  bn="$(basename "$1")"
+  fn="${bn%.gz}"
+  gzip -dkc "$1" > "$2/${fn}"
 }
 
 unarchive() {
@@ -136,6 +144,9 @@ unarchive() {
       ;;
     *.7z)
       archive_type=7z
+      ;;
+    *.gz)
+      archive_type=gzip
       ;;
     *)
       die "Unknown archive: ${archive_orig_path}"
