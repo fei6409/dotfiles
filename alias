@@ -35,10 +35,10 @@ double_confirm() {
 }
 
 grep_words() {
-  f="$(grep -rl "$1" .)"
+  f="$(grep -rial "$1" . 2>/dev/null)"
   shift
   while (($#)); do
-    f="$(echo $f | xargs -d '\n' grep -rl $1)"
+    f="$(echo $f | xargs -d '\n' grep -rial $1 2>/dev/null)"
     shift
   done
   echo $f | tr ' ' '\n' | sort -n
