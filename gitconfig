@@ -1,11 +1,11 @@
 [core]
+  editor = vim
   abbrev = 12
   autocrlf = false
-  excludesfile = /usr/local/google/home/fshao/.gitignore.global
-  ; filemode = false
+  commitgraph = true
+  excludesfile = ~/.gitignore.global
   pager = delta --tabs 8
 [alias]
-  ancestor = !zsh -c 'diff --old-line-format= --new-line-format= <(git rev-list --first-parent \"${1:-master}\") <(git rev-list --first-parent \"${2:-HEAD}\") | head -1' -
   au = add -u
   bl = blame
   br = branch
@@ -32,6 +32,8 @@
   fixes = Fixes: %h (\"%s\")
 [am]
   threeWay = true
+[merge]
+  conflictstyle = diff3
 [delta]
   syntax-theme = Monokai Extended
   line-numbers = true
@@ -44,6 +46,7 @@
   line-numbers-right-style = 243
   plus-style = syntax "#002800"
   minus-style = syntax "#300000"
+  navigate = true
 [interactive]
   diffFilter = delta --color-only
 [color]
