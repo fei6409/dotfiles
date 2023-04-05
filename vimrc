@@ -46,28 +46,6 @@ call plug#end()
 nnoremap <C-f> :Files<CR>
 " }}}
 
-" NERDTree {{{
-" toggle for NERDtree
-nnoremap <C-g> :NERDTreeToggle<CR>
-" open a NERDTree automatically when vim starts up if no files were specified
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" close vim if the only window left open is a NERDTree
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-" }}}
-
-" YCM {{{
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
-" let g:ycm_show_diagnostics_ui = 0
-let g:ycm_min_num_of_chars_for_completion = 3
-" auto close preview window (often used while coding Python)
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
-" allow up and down key close the completion window
-let g:ycm_key_list_stop_completion = ['<C-y>', '<UP>', '<DOWN>']
-" }}}
-
 " vim-airline {{{
 " enable powerline-fonts, but need 'guifont' to be supported
 " or try to change terminal non-ascii font to Meslo
@@ -187,15 +165,6 @@ map <leader>b :Git blame<CR>
 let g:localvimrc_persistent = 1
 " }}}
 
-" vim-hexokinase {{{
-let g:Hexokinase_ftEnabled = ['css', 'html', 'javascript', 'vim', 'gitconfig']
-let g:Hexokinase_highlighters = ['foreground']
-" }}}
-
-" }}}
-
-" global let variables {{{
-let g:markdown_fenced_languages = ['python', 'ruby', 'go', 'vim', 'c', 'bash=sh']
 " }}}
 
 " indentations {{{
@@ -233,6 +202,10 @@ augroup END
 
 " }}}
 
+" general let variables {{{
+let g:markdown_fenced_languages = ['python', 'ruby', 'go', 'vim', 'c', 'bash=sh']
+" }}}
+
 " general setting {{{
 set backspace=2 " make backspace can delete over line breaks
 set confirm " confirm before quiting without saving
@@ -252,9 +225,8 @@ set number " line number
 " set relativenumber " relative line number
 set nocompatible
 set noerrorbells " set error bells off
-set ruler " enable status line
 set showcmd " show current command info in status line  e.g. selecting things in visual mode
-set scrolloff=5 " always show lines above and below cursor
+set scrolloff=5 " always show the lines above and below cursor
 " set spell spelllang=en_us " spell checking
 set t_Co=256 " enable 256 color in vim
 set t_vb= " set visual bell empty
@@ -327,11 +299,4 @@ set pastetoggle=<F8>
 " Toggle linenumber
 nnoremap <F9> :set invnumber<CR>:set invlist<CR>:IndentLinesToggle<CR>
 nnoremap <F10> :execute "set colorcolumn=" . (&colorcolumn == "" ? "80" : "")<CR>
-" nnoremap <F9> :set invnumber invrelativenumber<CR>
-" /v stands for reg exp very magic mode, every char except a-zA-Z0-9 and _
-" will have special meaning
-" nnoremap / /\v
-" vnoremap / /\v
-" %s stands for global substitution
-" cnoremap %s/ %s/\v
 " }}}
