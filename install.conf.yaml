@@ -35,7 +35,7 @@
     ~/.fzf: modules/fzf
 # alias
     ~/.alias: alias
-#binaries
+# binaries
     /usr/local/bin/delta:
         if: '[[ `uname` == Linux ]]'
         path: bin/delta
@@ -48,6 +48,7 @@
     - ~/.vim/.swp
     - ~/.vim/.undo
 
+# brew for macOS
 - shell:
     - [brew update, Updating brew for macOS]
     - [brew install git-delta, Installing git-delta]
@@ -55,6 +56,7 @@
     - [brew install fzf, Installing Fzf]
     - [brew install node, Installing Node.js]
 
+# apt for Debian
 - shell:
     - [sudo apt update, Updating apt for Debian]
     - [sudo apt install -y ripgrep, Installing ripgrep]
