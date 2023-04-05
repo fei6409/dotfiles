@@ -13,19 +13,16 @@ map <Space> <leader>
 call plug#begin('~/.vim/plugged')
 Plug 'Yggdroot/indentLine'
 Plug 'embear/vim-localvimrc'
-Plug 'gentoo/gentoo-syntax'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-" Plug 'ludovicchabant/vim-gutentags' " recommanded to work with universal-ctags
 Plug 'morhetz/gruvbox'
 Plug 'mtdl9/vim-log-highlighting'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'powerline/fonts'
 Plug 'preservim/nerdcommenter'
-Plug 'preservim/nerdtree'
-Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
-Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot' " language syntax pack
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -35,13 +32,12 @@ Plug 'w0rp/ale'
 " Plug 'Konfekt/FastFold'
 " Plug 'Valloric/YouCompleteMe'
 " Plug 'easymotion/vim-easymotion'
-" Plug 'godlygeek/tabular' " for vim-markdown, must come before it
+" Plug 'gentoo/gentoo-syntax'
 " Plug 'nathanaelkane/vim-indent-guides'
-" Plug 'plasticboy/vim-markdown'
-" Plug 'sheerun/vim-polyglot' " language syntax pack
+" Plug 'preservim/nerdtree'
+" Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 " Plug 'terryma/vim-multiple-cursors'
 " Plug 'tpope/vim-repeat'
-" Plug 'tpope/vim-sensible'
 " }}}
 call plug#end()
 
