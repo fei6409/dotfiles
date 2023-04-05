@@ -340,13 +340,16 @@ set-option -ga terminal-overrides ",*256col*:Tc"
 set -as terminal-overrides ',*:indn@'
 
 # faster command sequences (e.g. vim insert mode to normal mode)
-set -sg escape-time 0
+# Configured in tmux-sensible
+# set -sg escape-time 0
 
 # redraw status line every 3 seconds
-set -g status-interval 3
+# Configured in tmux-sensible
+# set -g status-interval 3
 
 # increase history size
-set -g history-limit 50000
+# Configured in tmux-sensible
+# set -g history-limit 50000
 
 # start with mouse mode enabled
 # set -g mouse on
@@ -401,8 +404,9 @@ tmux_conf_update_plugins_on_reload=false
 
 # to enable a plugin, use the 'set -g @plugin' syntax:
 # visit https://github.com/tmux-plugins for available plugins
-set -g @plugin 'tmux-plugins/tmux-copycat'
+set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'tmux-plugins/tmux-cpu'
+set -g @plugin 'tmux-plugins/tmux-yank'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @continuum-restore 'on'
