@@ -19,8 +19,8 @@
     ~/.gitconfig: gitconfig
     ~/.gitignore.global: gitignore.global
 # oh-my-tmux
-    ~/.tmux: modules/.tmux
-    ~/.tmux.conf: modules/.tmux/.tmux.conf
+    ~/.tmux: modules/tmux
+    ~/.tmux.conf: modules/tmux/.tmux.conf
     ~/.tmux.conf.local: tmux.conf.local
 # vim
     ~/.vim/autoload/plug.vim: modules/vim-plug/plug.vim
