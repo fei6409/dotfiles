@@ -57,6 +57,6 @@
 
 - shell:
     - [sudo apt update, Updating apt for Debian]
-    - [sudo apt install ripgrep, Installing ripgrep]
-    - [sudo apt install fzf, Installing fzf]
-    - [sudo apt install nodejs, Installing Node.js]
+    - [sudo apt install -y ripgrep, Installing ripgrep]
+    - [sudo apt install -y fzf, Installing fzf]
+    - [sudo apt install -y nodejs, Installing Node.js]
