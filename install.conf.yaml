@@ -10,9 +10,6 @@
         command: git submodule update --init --recursive
         description: Installing submodules
         stdout: true
-    - [brew install ripgrep, Install ripgrep for MacOS]
-    - [sudo apt install ripgrep, Install ripgrep for Debian]
-    - [brew install git-delta, Install git-delta for MacOS]
 
 - link:
 # git
@@ -48,3 +45,10 @@
     - ~/.vim/.backup
     - ~/.vim/.swp
     - ~/.vim/.undo
+
+- shell:
+    - [brew install ripgrep, Install ripgrep for macOS]
+    - [sudo apt install ripgrep, Install ripgrep for Debian]
+    - [brew install git-delta, Install git-delta for macOS]
+    - [brew install fzf, Install fzf for macOS]
+    - [sudo apt install fzf, Install fzf for Debian]
