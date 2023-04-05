@@ -1,30 +1,50 @@
 - defaults:
     link:
-      relink: true
+        create: true
+        relink: true
 
 # - clean: ['~']
 
+- shell:
+    -
+        command: git submodule update --init --recursive
+        description: Installing submodules
+        stdout: true
+    - [brew install ripgrep, Install ripgrep for MacOS]
+    - [sudo apt install ripgrep, Install ripgrep for Debian]
+    - [brew install git-delta, Install git-delta for MacOS]
+
 - link:
-    # git
+# git
     ~/.gitconfig: gitconfig
     ~/.gitignore.global: gitignore.global
-    # tmux
-    ~/.tmux.conf: tmux.conf
+# oh-my-tmux
+    ~/.tmux: modules/.tmux
+    ~/.tmux.conf: modules/.tmux/.tmux.conf
     ~/.tmux.conf.local: tmux.conf.local
-    # vimrc
+# vim
+    ~/.vim/autoload/plug.vim: modules/vim-plug/plug.vim
     ~/.vimrc: vimrc
-    # zshrc
-    ~/.zshrc: zshrc
-    # alias
+# zsh / prezto
+    ~/.zprezto: modules/prezto
+    ~/.zlogin: modules/prezto/runcoms/zlogin
+    ~/.zpreztorc: modules/prezto/runcoms/zpreztorc
+    ~/.zprofile: modules/prezto/runcoms/zprofile
+    ~/.zshenv: modules/prezto/runcoms/zshenv
+    ~/.zshrc: modules/prezto/runcoms/zshrc
+# fzf
+    ~/.fzf: modules/fzf
+# alias
     ~/.alias: alias
+#binaries
+    /usr/local/bin/delta:
+        if: '[[ `uname` == Linux ]]'
+        path: bin/delta
+    /usr/local/bin/unarchive:
+        if: '[[ `uname` == Linux ]]'
+        path: bin/unarchive
 
 - create:
     - ~/.vim/.backup
     - ~/.vim/.swp
     - ~/.vim/.undo
-
-- shell:
-  -
-    command: git submodule update --init --recursive
-    description: Installing submodules
-    stdout: true
