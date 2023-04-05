@@ -28,7 +28,9 @@
     ~/.zpreztorc: modules/prezto/runcoms/zpreztorc
     ~/.zprofile: modules/prezto/runcoms/zprofile
     ~/.zshenv: modules/prezto/runcoms/zshenv
-    ~/.zshrc: modules/prezto/runcoms/zshrc
+    ~/.zshrc:
+        path: zshrc
+        relink: false
 # fzf
     ~/.fzf: modules/fzf
 # alias
@@ -47,8 +49,14 @@
     - ~/.vim/.undo
 
 - shell:
-    - [brew install ripgrep, Install ripgrep for macOS]
-    - [sudo apt install ripgrep, Install ripgrep for Debian]
-    - [brew install git-delta, Install git-delta for macOS]
-    - [brew install fzf, Install fzf for macOS]
-    - [sudo apt install fzf, Install fzf for Debian]
+    - [brew update, Updating brew for macOS]
+    - [brew install git-delta, Installing git-delta]
+    - [brew install ripgrep, Installing ripgrep]
+    - [brew install fzf, Installing Fzf]
+    - [brew install node, Installing Node.js]
+
+- shell:
+    - [sudo apt update, Updating apt for Debian]
+    - [sudo apt install ripgrep, Installing ripgrep]
+    - [sudo apt install fzf, Installing fzf]
+    - [sudo apt install nodejs, Installing Node.js]
