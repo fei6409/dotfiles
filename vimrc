@@ -15,11 +15,12 @@ Plug 'Yggdroot/indentLine'
 Plug 'embear/vim-localvimrc'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox' " color scheme
 Plug 'mtdl9/vim-log-highlighting'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'powerline/fonts'
 Plug 'preservim/nerdcommenter'
+Plug 'rose-pine/vim' " color scheme
 Plug 'sheerun/vim-polyglot' " language syntax pack
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
