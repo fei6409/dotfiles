@@ -50,11 +50,14 @@ alias rm='rm -i'
 alias grep='grep --color=auto'
 alias ta='tmux attach -t'
 alias vim='vim -X' # To workaround slow "xsmp init" on start
+# alias vim='nvim' # Switch to nvim
 alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
 alias rsync='rsync -azvhP' # rsync params: archive, compress, verbose, readable, progress
 alias rg='rg -S'
 alias rgf='echo "${RED}Use fd!${NC}" && rg --files | rg'
+# https://linuxhandbook.com/run-alias-as-sudo/
+alias sudo='sudo '
 alias open='xdg-open'
 alias ipython='python3 -m IPython'
 alias trim='sed -e '"'"'s/[[:space:]]*$//'"'"''  # trimming tailing spaces
@@ -116,6 +119,8 @@ if [[ -n "$BASE_PATH" ]]; then
     alias dut-power='dut-power --vbat-rate=10'
     alias dut-power-s3='dut-power --vbat-rate=0'
     alias test_that="test_that --fast --autotest_dir=${BASE_PATH}/src/third_party/autotest/files"
+    alias servod='servod --device-discovery=none'
+    alias build_image='build_image test --no-enable-rootfs-verification'
 
     # Use dut-control to get power numbers, for some cases that people want to
     # avoid using dut-power.
