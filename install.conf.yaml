@@ -31,6 +31,8 @@
     ~/.zshrc:
         path: zshrc
         relink: false
+# powerlevel10k
+    ~/.p10k.zsh: p10k.zsh.new
 # fzf
     ~/.fzf: modules/fzf
 # alias
