@@ -25,9 +25,10 @@
 # zsh / prezto
     ~/.zprezto: modules/prezto
     ~/.zlogin: modules/prezto/runcoms/zlogin
-    ~/.zpreztorc: zpreztorc
-    ~/.zprofile: modules/prezto/runcoms/zprofile
+    ~/.zlogout: modules/prezto/runcoms/zlogout
     ~/.zshenv: modules/prezto/runcoms/zshenv
+    ~/.zprofile: zprofile
+    ~/.zpreztorc: zpreztorc
     ~/.zshrc:
         path: zshrc
         relink: false
