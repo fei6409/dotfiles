@@ -32,7 +32,7 @@
         path: zshrc
         relink: false
 # powerlevel10k
-    ~/.p10k.zsh: p10k.zsh.new
+    ~/.p10k.zsh: p10k.zsh
 # fzf
     ~/.fzf: modules/fzf
 # alias
