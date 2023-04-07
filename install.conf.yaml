@@ -25,7 +25,7 @@
 # zsh / prezto
     ~/.zprezto: modules/prezto
     ~/.zlogin: modules/prezto/runcoms/zlogin
-    ~/.zpreztorc: modules/prezto/runcoms/zpreztorc
+    ~/.zpreztorc: zpreztorc
     ~/.zprofile: modules/prezto/runcoms/zprofile
     ~/.zshenv: modules/prezto/runcoms/zshenv
     ~/.zshrc:
