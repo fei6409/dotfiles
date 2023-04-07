@@ -56,6 +56,7 @@
     - [brew install git-delta, Installing git-delta]
     - [brew install ripgrep, Installing ripgrep]
     - [brew install fzf, Installing Fzf]
+    - [brew install fd, Installing fd]
     - [brew install node, Installing Node.js]
 
 # apt for Debian
@@ -63,4 +64,5 @@
     - [sudo apt update, Updating apt for Debian]
     - [sudo apt install -y ripgrep, Installing ripgrep]
     - [sudo apt install -y fzf, Installing fzf]
+    - [sudo apt install -y fd-find, Installing fd]
     - [sudo apt install -y nodejs npm, Installing Node.js and npm]
