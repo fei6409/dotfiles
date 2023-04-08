@@ -1,4 +1,8 @@
 # dotfiles
 
-Just dotfiles for myself.  May contains Google workstaion settings, be careful
-when sharing.
+Just my dotfiles. Installation is backed by [dotbot](https://github.com/anishathalye/dotbot):
+
+```
+git clone https://github.com/fei6409/dotfiles.git
+cd dotfiles && ./install
+```
