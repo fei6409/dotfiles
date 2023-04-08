@@ -28,6 +28,9 @@
 # vim
     ~/.vim/autoload/plug.vim: modules/vim-plug/plug.vim
     ~/.vimrc: vimrc
+    ~/.vim/coc-settings.json:
+        create: false
+        path: coc-settings.json
 # zsh / prezto
     ~/.zprezto: modules/prezto
     ~/.zlogin: modules/prezto/runcoms/zlogin
