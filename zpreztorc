@@ -29,12 +29,13 @@ zstyle ':prezto:*:*' color 'yes'
 # - environment must be loaded first
 # - utility => completion => fasd
 # - syntax-highlighting => history-Substring-search => autosuggestions
+#
+# I removed ssh module as it takes lots of time during pmodload.
 zstyle ':prezto:load' pmodule \
   'environment' \
   'command-not-found' \
   'git' \
   'rsync' \
-  'ssh' \
   'terminal' \
   'editor' \
   'history' \
