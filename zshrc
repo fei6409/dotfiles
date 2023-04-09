@@ -77,7 +77,7 @@ stty -ixon
 # Sources
 [[ -f $HOME/.fzf.zsh ]] && source $HOME/.fzf.zsh
 [[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
-[[ -f $HOME/.alias ]] && source $HOME/.alias
+[[ -f $HOME/.alias.zsh ]] && source $HOME/.alias.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f $HOME/.p10k.zsh ]] && source $HOME/.p10k.zsh

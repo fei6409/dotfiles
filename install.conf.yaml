@@ -47,7 +47,7 @@
 # fzf
     ~/.fzf: modules/fzf
 # alias
-    ~/.alias: alias
+    ~/.alias.zsh: alias.zsh
 # binaries
     ~/.local/bin/delta:
         if: '[[ `uname` == Linux ]]'
