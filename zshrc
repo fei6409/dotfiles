@@ -29,17 +29,17 @@ export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/.rbenv/bin"
 cmd_exist go && export PATH="$PATH:$(go env GOPATH)/bin"
 
-# For macOS
+# macOS
 if [[ "$OSTYPE" =~ ^darwin ]]; then
 	;
 fi
 
-# For Linux
+# Linux
 if [[ "$OSTYPE" =~ ^linux ]]; then
 	;
 fi
 
-# For Goobuntu
+# Goobuntu
 if [[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/dev/null; then
 	export PATH="$PATH:$HOME/depot_tools"
 	export PATH="$PATH:$HOME/Android/Sdk/build-tools/30.0.3"
