@@ -22,12 +22,12 @@ fi
 # Customize to your needs...
 #
 
-command_exist() { command -v "$1" &> /dev/null; }
+cmd_exist() { command -v "$1" &> /dev/null; }
 
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/.rbenv/bin"
-command_exist go && export PATH="$PATH:$(go env GOPATH)/bin"
+cmd_exist go && export PATH="$PATH:$(go env GOPATH)/bin"
 
 # For macOS
 if [[ "$OSTYPE" =~ ^darwin ]]; then
