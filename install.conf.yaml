@@ -16,6 +16,7 @@
     - ~/.vim/.swp
     - ~/.vim/.undo
     - ~/.local/bin
+    - ~/.config/nvim
 
 - link:
 # git
@@ -63,9 +64,10 @@
     - [brew update, Updating brew for macOS]
     - [brew install git-delta, Installing git-delta]
     - [brew install ripgrep, Installing ripgrep]
-    - [brew install fzf, Installing Fzf]
+    - [brew install fzf, Installing fzf]
     - [brew install fd, Installing fd]
     - [brew install node, Installing Node.js]
+    - [brew install reattach-to-user-namespace, Installing reattach-to-user-namespace]
 
 # apt for Debian
 - shell:
