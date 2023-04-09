@@ -68,6 +68,10 @@ if [[ -f $HOME/.ssh/config ]]; then
 	zstyle ':completion:*:(ssh|scp|sftp):*' hosts $host_list
 fi
 
+# No more type freeze after ctrl-s:
+# https://superuser.com/questions/1390977/pressing-ctrl-s-by-mistake-while-using-vim
+stty -ixon
+
 # Sources
 [[ -f $HOME/.fzf.zsh ]] && source $HOME/.fzf.zsh
 [[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
