@@ -14,11 +14,11 @@
   co = checkout
   cp = cherry-pick
   dh = diff HEAD
-  dhh = diff HEAD^
+  dhh = diff HEAD~
   grep = "grep -Iin"
   lg = log
   lgo = log --oneline
-  re = rebase
+  rb = rebase
   st = status
 [http]
   cookiefile = ~/.gitcookies
