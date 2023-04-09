@@ -67,6 +67,7 @@
     - [brew install fzf, Installing fzf]
     - [brew install fd, Installing fd]
     - [brew install node, Installing Node.js]
+    - [brew install neovim, Installing neovim]
     - [brew install reattach-to-user-namespace, Installing reattach-to-user-namespace]
 
 # apt for Debian
@@ -76,3 +77,4 @@
     - [sudo apt install -y fzf, Installing fzf]
     - [sudo apt install -y fd-find, Installing fd]
     - [sudo apt install -y nodejs npm, Installing Node.js and npm]
+    - [sudo apt install -y neovim, Installing neovim]
