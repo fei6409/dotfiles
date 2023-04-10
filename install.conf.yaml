@@ -40,6 +40,7 @@
     ~/.zshrc:
         path: zshrc
         relink: false
+    ~/.my_git_prompt.zsh: my_git_prompt.zsh
 # powerlevel10k
     ~/.p10k.zsh: p10k.zsh
 # fzf
