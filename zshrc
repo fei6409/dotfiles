@@ -72,7 +72,7 @@ fi
 
 # No more type freeze after ctrl-s:
 # https://superuser.com/questions/1390977/pressing-ctrl-s-by-mistake-while-using-vim
-stty -ixon
+# stty -ixon
 
 #
 # TODO: pyenv
