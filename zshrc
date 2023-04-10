@@ -74,6 +74,12 @@ fi
 # https://superuser.com/questions/1390977/pressing-ctrl-s-by-mistake-while-using-vim
 stty -ixon
 
+#
+# TODO: pyenv
+# TODO: rbenv
+# TODO: nvm
+#
+
 # Sources
 [[ -f $HOME/.fzf.zsh ]] && source $HOME/.fzf.zsh
 [[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
