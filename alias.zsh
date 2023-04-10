@@ -17,7 +17,7 @@ grep_words() {
 }
 
 # General alias
-alias l='ls -l'
+alias l='ls -lh'
 alias ll='ls -lhAF'
 alias rm='rm -i'
 alias rg='rg -S'
