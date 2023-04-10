@@ -62,8 +62,10 @@ if [[ "$OSTYPE" =~ ^linux ]]; then
   see_port() { netstat -lnpt | awk "\$4 ~ /:$1$/ {sub(/\/.*/, \"\", \$7); print \$7}"; }
 fi
 
-# Goobuntu
-if [[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/dev/null; then
+# Goobuntu or CrOS chroot
+if ([[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/dev/null) || \
+    [[ -n $CROS_WORKON_SRCROOT ]]; then
+
   export PATH="$PATH:$HOME/chromiumos/src/platform/dev/contrib"
   export PATH="$PATH:$HOME/chromiumos/src/private-overlays/project-cheets-private/scripts"
   export PATH="$PATH:$HOME/chromiumos/src/config/bin"
@@ -88,7 +90,7 @@ if [[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/dev
   # usage: gnb <new branch name> [<upstream branch>]
   gnb() { git checkout -b "$1" "${2:-m/main}"; }
 
-  # CrOS chroot
+  # CrOS chroot specific
   if [[ -n $CROS_WORKON_SRCROOT ]]; then
     alias cwh='cros_workon --host'
     alias cwk='cros-workon-kukui'
