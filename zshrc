@@ -31,12 +31,12 @@ cmd_exist go && export PATH="$PATH:$(go env GOPATH)/bin"
 
 # macOS
 if [[ "$OSTYPE" =~ ^darwin ]]; then
-	;
+	true
 fi
 
 # Linux
 if [[ "$OSTYPE" =~ ^linux ]]; then
-	;
+	true
 fi
 
 # Goobuntu

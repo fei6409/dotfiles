@@ -5,7 +5,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m'
 
 # General function
-command_exist() { command -v "$1" &> /dev/null; }
+cmd_exist() { command -v "$1" &> /dev/null; }
 grep_words() {
   f="$(grep -rial "$1" . 2>/dev/null)"
   shift
@@ -52,7 +52,7 @@ cmd_exist python3 && py='python3'
 
 # macOS
 if [[ "$OSTYPE" =~ ^darwin ]]; then
-  ;
+  true
 fi
 
 # Linux
@@ -61,7 +61,7 @@ if [[ "$OSTYPE" =~ ^linux ]]; then
   export DISPLAY=${DISPLAY:-$(w -oush | grep -Eo ' :[0-9]+' | uniq | xargs;)}
 
   # Copy to clipboard.
-  command_exist xclip && copy() { xclip -sel clip; }
+  cmd_exist xclip && copy() { xclip -sel clip; }
 
   # Print the PID that occupies a port.
   # Usage: see_port <port number>
