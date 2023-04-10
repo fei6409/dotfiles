@@ -1,9 +1,3 @@
-# Colors
-RED='\033[1;31m'
-GREEN='\033[1;32m'
-YELLOW='\033[1;33m'
-NC='\033[0m'
-
 # General function
 cmd_exist() { command -v "$1" &> /dev/null; }
 grep_words() {
@@ -25,8 +19,8 @@ alias ta='tmux attach -t'
 alias sudo='sudo ' # https://linuxhandbook.com/run-alias-as-sudo/
 alias rsync='rsync -azvhP' # rsync params: archive, compress, verbose, readable, progress
 alias trim='sed -e '"'"'s/[[:space:]]*$//'"'"''  # trimming tailing spaces
-alias reboot='echo You shall not reboot :P'  # no reboot via commands!
-alias shutdown='echo You shall not shutdown :P'  # no shutdown via commands!
+alias reboot='echo $FG[red]You shall not reboot :P$FG[none]'  # no reboot via commands!
+alias shutdown='echo $FG[red]You shall not shutdown :P$FG[none]'  # no shutdown via commands!
 
 # Git alias
 alias g='git'
