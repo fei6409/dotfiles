@@ -44,6 +44,10 @@
     ~/.my_git_prompt.zsh: my_git_prompt.zsh
 # fzf
     ~/.fzf: modules/fzf
+# pyenv (only for Linux)
+    ~/.pyenv:
+        if: '[[ `uname` == Linux ]]'
+        path: modules/pyenv
 # binaries
     ~/.local/bin/delta:
         if: '[[ `uname` == Linux ]]'
@@ -66,6 +70,7 @@
     - [brew install neovim, Installing neovim]
     - [brew install colordiff, Installing colordiff]
     - [brew install rbenv ruby-build, Installing rbenv]
+    - [brew install pyenv, Installing pyenv]
     - [brew install reattach-to-user-namespace, Installing reattach-to-user-namespace]
 
 # apt for Debian

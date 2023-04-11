@@ -8,3 +8,10 @@ if type rbenv &> /dev/null; then
   }
 fi
 
+if type pyenv &> /dev/null; then
+  function pyenv() {
+    unset -f pyenv &> /dev/null
+    eval "$(command pyenv init -)"
+    pyenv "$@"
+  }
+fi
