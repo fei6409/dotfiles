@@ -73,3 +73,7 @@ target/
 
 # Local vimrc
 .lvimrc
+
+# pyenv / rbenv
+.python-version
+.ruby-version
