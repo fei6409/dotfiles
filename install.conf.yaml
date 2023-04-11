@@ -37,9 +37,7 @@
     ~/.zshenv: modules/prezto/runcoms/zshenv
     ~/.zprofile: zprofile
     ~/.zpreztorc: zpreztorc
-    ~/.zshrc:
-        path: zshrc
-        relink: false
+    ~/.zshrc: zshrc
     ~/.alias.zsh: alias.zsh
     ~/.p10k.zsh: p10k.zsh
     ~/.lazy-load.zsh: lazy-load.zsh
