@@ -40,13 +40,12 @@
     ~/.zshrc:
         path: zshrc
         relink: false
-    ~/.my_git_prompt.zsh: my_git_prompt.zsh
-# powerlevel10k
+    ~/.alias.zsh: alias.zsh
     ~/.p10k.zsh: p10k.zsh
+    ~/.lazy-load.zsh: lazy-load.zsh
+    ~/.my_git_prompt.zsh: my_git_prompt.zsh
 # fzf
     ~/.fzf: modules/fzf
-# alias
-    ~/.alias.zsh: alias.zsh
 # binaries
     ~/.local/bin/delta:
         if: '[[ `uname` == Linux ]]'

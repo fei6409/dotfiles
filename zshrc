@@ -26,7 +26,6 @@ cmd_exist() { command -v "$1" &> /dev/null; }
 
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
-export PATH="$PATH:$HOME/.rbenv/bin"
 cmd_exist go && export PATH="$PATH:$(go env GOPATH)/bin"
 
 # macOS
@@ -76,7 +75,6 @@ fi
 
 #
 # TODO: pyenv
-# TODO: rbenv
 # TODO: nvm
 #
 
@@ -84,6 +82,7 @@ fi
 [[ -f $HOME/.fzf.zsh ]] && source $HOME/.fzf.zsh
 [[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
 [[ -f $HOME/.alias.zsh ]] && source $HOME/.alias.zsh
+[[ -f $HOME/.lazy-load.zsh ]] && source $HOME/.lazy-load.zsh
 [[ -f $HOME/.my_git_prompt.zsh ]] && source $HOME/.my_git_prompt.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
