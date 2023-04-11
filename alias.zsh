@@ -66,11 +66,6 @@ fi
 if ([[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/dev/null) || \
     [[ -n $CROS_WORKON_SRCROOT ]]; then
 
-  export PATH="$PATH:$HOME/chromiumos/src/platform/dev/contrib"
-  export PATH="$PATH:$HOME/chromiumos/src/private-overlays/project-cheets-private/scripts"
-  export PATH="$PATH:$HOME/chromiumos/src/config/bin"
-  export PATH="$PATH:$HOME/chromiumos/chromite/contrib"
-
   alias rs='repo sync .'
   alias rsa='repo sync -j 16 -n && repo sync -j 16 -l'
   alias ker419='cd ~/chromiumos/src/third_party/kernel/v4.19'

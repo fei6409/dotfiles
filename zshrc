@@ -43,6 +43,10 @@ if [[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/dev
 	export PATH="$PATH:$HOME/depot_tools"
 	export PATH="$PATH:$HOME/Android/Sdk/build-tools/30.0.3"
 	export PATH="$PATH:/usr/lib/google-golang/bin"
+	export PATH="$PATH:$HOME/chromiumos/src/platform/dev/contrib"
+	export PATH="$PATH:$HOME/chromiumos/src/private-overlays/project-cheets-private/scripts"
+	export PATH="$PATH:$HOME/chromiumos/src/config/bin"
+	export PATH="$PATH:$HOME/chromiumos/chromite/contrib"
 fi
 
 # Ensure path array do not contain duplicates
