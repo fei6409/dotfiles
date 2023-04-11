@@ -50,13 +50,13 @@ function prompt_my_git_prompt() {
   fi
 
   local remote=$(git rev-parse --abbrev-ref @{upstream} 2>/dev/null)
-  local stash=$(git stash list 2>/dev/null | wc -l)
-  local conflict=$(git ls-files --unmerged 2>/dev/null | cut -f2 | sort -u | wc -l)
+  local stash=$(git stash list 2>/dev/null | wc -l | xargs)
+  local conflict=$(git ls-files --unmerged 2>/dev/null | cut -f2 | sort -u | wc -l | xargs)
   # https://git-scm.com/docs/git-status
   local st=$(git status --porcelain 2>/dev/null)
-  local stage=$(grep -E "^(M|T|A|D|R|C|U)" <<< $st | wc -l)
-  local unstage=$(grep -E "^.(M|T|A|D|R|C|U)" <<< $st | wc -l)
-  local untrack=$(grep -E "^\?\?" <<< $st | wc -l)
+  local stage=$(grep -E "^(M|T|A|D|R|C|U)" <<< $st | wc -l | xargs)
+  local unstage=$(grep -E "^.(M|T|A|D|R|C|U)" <<< $st | wc -l | xargs)
+  local untrack=$(grep -E "^\?\?" <<< $st | wc -l | xargs)
 
   # Show tracking branch name if it differs from local branch.
   if [[ -n ${remote} ]]; then
