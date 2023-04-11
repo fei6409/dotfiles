@@ -1,4 +1,4 @@
-if type rbenv &> /dev/null; then
+if cmd_exist rbenv; then
   local RBENV_SHIMS="${RBENV_ROOT:-$HOME/.rbenv}/shims"
   export PATH="$RBENV_SHIMS:$PATH"
   function rbenv() {
@@ -8,7 +8,7 @@ if type rbenv &> /dev/null; then
   }
 fi
 
-if type pyenv &> /dev/null; then
+if cmd_exist pyenv; then
   function pyenv() {
     unset -f pyenv &> /dev/null
     eval "$(command pyenv init -)"

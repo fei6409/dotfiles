@@ -1,5 +1,5 @@
 # General function
-cmd_exist() { command -v "$1" &> /dev/null; }
+cmd_exist() { type "$1" &> /dev/null; }
 grep_words() {
   f="$(grep -rial "$1" . 2>/dev/null)"
   shift

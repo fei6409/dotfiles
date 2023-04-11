@@ -22,14 +22,15 @@ fi
 # Customize to your needs...
 #
 
-cmd_exist() { command -v "$1" &> /dev/null; }
+# Either `command -v` or `type` would work.
+cmd_exist() { type "$1" &> /dev/null; }
 
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
 cmd_exist go && export PATH="$PATH:$(go env GOPATH)/bin"
 
 export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+cmd_exist pyenv || export PATH="$PYENV_ROOT/bin:$PATH"
 
 # macOS
 if [[ "$OSTYPE" =~ ^darwin ]]; then
