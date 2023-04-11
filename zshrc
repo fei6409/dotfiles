@@ -29,9 +29,6 @@ export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
 cmd_exist go && export PATH="$PATH:$(go env GOPATH)/bin"
 
-export PYENV_ROOT="$HOME/.pyenv"
-cmd_exist pyenv || export PATH="$PYENV_ROOT/bin:$PATH"
-
 # macOS
 if [[ "$OSTYPE" =~ ^darwin ]]; then
 	true

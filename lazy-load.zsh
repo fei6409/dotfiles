@@ -8,6 +8,8 @@ if cmd_exist rbenv; then
   }
 fi
 
+export PYENV_ROOT="$HOME/.pyenv"
+cmd_exist pyenv || export PATH="$PYENV_ROOT/bin:$PATH"
 if cmd_exist pyenv; then
   function pyenv() {
     unset -f pyenv &> /dev/null
