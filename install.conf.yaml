@@ -68,6 +68,7 @@
     - [brew install node, Installing Node.js]
     - [brew install neovim, Installing neovim]
     - [brew install colordiff, Installing colordiff]
+    - [brew install rbenv ruby-build, Installing rbenv]
     - [brew install reattach-to-user-namespace, Installing reattach-to-user-namespace]
 
 # apt for Debian
@@ -78,4 +79,5 @@
     - [sudo apt install -y fd-find, Installing fd]
     - [sudo apt install -y nodejs npm, Installing Node.js and npm]
     - [sudo apt install -y neovim, Installing neovim]
+    - [sudo apt install -y rbenv, Installing rbenv]
     - [sudo apt install -y colordiff, Installing colordiff]
