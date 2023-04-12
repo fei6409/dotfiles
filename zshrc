@@ -25,9 +25,9 @@ fi
 # Either `command -v` or `type` would work.
 cmd_exist() { type "$1" &> /dev/null; }
 
-export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:$HOME/.cargo/bin"
-cmd_exist go && export PATH="$PATH:$(go env GOPATH)/bin"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+cmd_exist go && export PATH="$(go env GOPATH)/bin:$PATH"
 
 # macOS
 if [[ "$OSTYPE" =~ ^darwin ]]; then
@@ -49,9 +49,6 @@ if [[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/dev
 	export PATH="$PATH:$HOME/chromiumos/src/config/bin"
 	export PATH="$PATH:$HOME/chromiumos/chromite/contrib"
 fi
-
-# Ensure path array do not contain duplicates
-typeset -U PATH
 
 # Use truecolor
 export COLORTERM=truecolor
@@ -90,6 +87,9 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f $HOME/.p10k.zsh ]] && source $HOME/.p10k.zsh
+
+# Ensure path array do not contain duplicates
+typeset -U PATH
 
 # Zsh profiling
 [[ -n $ZPROF ]] && zprof
