@@ -41,9 +41,9 @@ fi
 
 # Goobuntu
 if [[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/dev/null; then
+	# The initial PATH is defined in /etc/environment
 	export PATH="$PATH:$HOME/depot_tools"
 	export PATH="$PATH:$HOME/Android/Sdk/build-tools/30.0.3"
-	export PATH="$PATH:/usr/lib/google-golang/bin"
 	export PATH="$PATH:$HOME/chromiumos/src/platform/dev/contrib"
 	export PATH="$PATH:$HOME/chromiumos/src/private-overlays/project-cheets-private/scripts"
 	export PATH="$PATH:$HOME/chromiumos/src/config/bin"
@@ -84,7 +84,6 @@ fi
 
 # Sources
 [[ -f $HOME/.fzf.zsh ]] && source $HOME/.fzf.zsh
-[[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
 [[ -f $HOME/.alias.zsh ]] && source $HOME/.alias.zsh
 [[ -f $HOME/.lazy-load.zsh ]] && source $HOME/.lazy-load.zsh
 [[ -f $HOME/.my_git_prompt.zsh ]] && source $HOME/.my_git_prompt.zsh

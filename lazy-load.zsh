@@ -1,6 +1,6 @@
 if cmd_exist rbenv; then
   local RBENV_SHIMS="${RBENV_ROOT:-$HOME/.rbenv}/shims"
-  export PATH="$RBENV_SHIMS:$PATH"
+  export PATH="$PATH:$RBENV_SHIMS"
   function rbenv() {
     unset -f rbenv &> /dev/null
     eval "$(command rbenv init -)"
@@ -9,7 +9,7 @@ if cmd_exist rbenv; then
 fi
 
 export PYENV_ROOT="$HOME/.pyenv"
-cmd_exist pyenv || export PATH="$PYENV_ROOT/bin:$PATH"
+cmd_exist pyenv || export PATH="$PATH:$PYENV_ROOT/bin"
 if cmd_exist pyenv; then
   function pyenv() {
     unset -f pyenv &> /dev/null
