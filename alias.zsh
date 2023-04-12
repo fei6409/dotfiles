@@ -32,6 +32,8 @@ alias gdh='git diff HEAD'
 alias gdhh='git diff HEAD~'
 alias grh='git reset --hard'
 alias grs='git reset --soft'
+alias gcpa='git cherry-pick --abort'
+alias gcpc='git cherry-pick --continue'
 
 # Conditional alias
 cmd_exist nvim && alias vim='nvim' || alias vim='vim -X' # To workaround slow "xsmp init" on start
