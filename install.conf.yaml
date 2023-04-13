@@ -15,7 +15,6 @@
     - ~/.vim/.backup
     - ~/.vim/.swp
     - ~/.vim/.undo
-    - ~/.local/bin
     - ~/.config/nvim
 
 - link:
@@ -48,6 +47,10 @@
     ~/.pyenv:
         if: '[[ `uname` == Linux ]]'
         path: modules/pyenv
+# fcitx5 autostart
+    ~/.config/autostart/org.fcitx.Fcitx5.desktop:
+        if: '[[ `uname` == Linux ]]'
+        path: /usr/share/applications/org.fcitx.Fcitx5.desktop
 # binaries
     ~/.local/bin/delta:
         if: '[[ `uname` == Linux ]]'
@@ -83,3 +86,4 @@
     - [sudo apt install -y neovim, Installing neovim]
     - [sudo apt install -y rbenv, Installing rbenv]
     - [sudo apt install -y colordiff, Installing colordiff]
+    - [sudo apt install -y fcitx5 fcitx5-chewing fcitx5-rime fcitx5-mozc im-config, Installing fcitx and IME]
