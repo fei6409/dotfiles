@@ -40,7 +40,7 @@
     ~/.alias.zsh: alias.zsh
     ~/.p10k.zsh: p10k.zsh
     ~/.lazy-load.zsh: lazy-load.zsh
-    ~/.my_git_prompt.zsh: my_git_prompt.zsh
+    ~/.my-git-prompt.zsh: my-git-prompt.zsh
 # fzf
     ~/.fzf: modules/fzf
 # pyenv (only for Linux)

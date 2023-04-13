@@ -83,7 +83,7 @@ fi
 [[ -f $HOME/.fzf.zsh ]] && source $HOME/.fzf.zsh
 [[ -f $HOME/.alias.zsh ]] && source $HOME/.alias.zsh
 [[ -f $HOME/.lazy-load.zsh ]] && source $HOME/.lazy-load.zsh
-[[ -f $HOME/.my_git_prompt.zsh ]] && source $HOME/.my_git_prompt.zsh
+[[ -f $HOME/.my-git-prompt.zsh ]] && source $HOME/.my-git-prompt.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f $HOME/.p10k.zsh ]] && source $HOME/.p10k.zsh
