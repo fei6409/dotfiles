@@ -84,6 +84,6 @@
     - [sudo apt install -y fd-find, Installing fd]
     - [sudo apt install -y nodejs npm, Installing Node.js and npm]
     - [sudo apt install -y neovim, Installing neovim]
-    - [sudo apt install -y rbenv, Installing rbenv]
     - [sudo apt install -y colordiff, Installing colordiff]
+    - [sudo apt install -y rbenv, Installing rbenv]
     - [sudo apt install -y fcitx5 fcitx5-chewing fcitx5-rime fcitx5-mozc im-config, Installing fcitx and IME]
