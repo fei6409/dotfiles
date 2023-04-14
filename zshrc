@@ -67,7 +67,7 @@ export FZF_DEFAULT_OPTS="
 
 # To boost ssh/scp completion speed, only consider hosts in the SSH config
 if [[ -f $HOME/.ssh/config ]]; then
-	host_list=($(cat $HOME/.ssh/config | grep 'Host '  | awk '{s = s $2 " "} END {print s}'))
+	host_list=($(grep -i '^host ' $HOME/.ssh/config | awk '{s = s $2 " "} END {print s}'))
 	zstyle ':completion:*:(ssh|scp|sftp):*' hosts $host_list
 fi
 
