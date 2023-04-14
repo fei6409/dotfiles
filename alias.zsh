@@ -26,14 +26,19 @@ alias shutdown='echo $FG[red]You shall not shutdown :P$FG[none]'  # no shutdown 
 alias g='git'
 alias gau='git add -u'
 alias gca='git commit --verbose --amend'
-alias grl="git reflog --format='%C(auto)%h %<(9)%gd %C(blue)%ci%C(reset) %s'"
+alias gcpa='git cherry-pick --abort'
+alias gcpc='git cherry-pick --continue'
 alias gd='git diff'
 alias gdh='git diff HEAD'
 alias gdhh='git diff HEAD~'
+alias gl='git log'
+alias glg='git log --graph --pretty=onelinev3'
+alias glo='git log --pretty=onelinev2'
+alias gref='git reflog --pretty=reflog'
 alias grh='git reset --hard'
 alias grs='git reset --soft'
-alias gcpa='git cherry-pick --abort'
-alias gcpc='git cherry-pick --continue'
+alias gsh='git show'
+alias gst='git status'
 
 # Conditional alias
 cmd_exist nvim && alias vim='nvim' || alias vim='vim -X' # To workaround slow "xsmp init" on start
