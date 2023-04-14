@@ -74,6 +74,7 @@
     - [brew install colordiff, Installing colordiff]
     - [brew install rbenv ruby-build, Installing rbenv]
     - [brew install pyenv, Installing pyenv]
+    - [brew install bat, Installing bat (enhanced cat)]
     - [brew install reattach-to-user-namespace, Installing reattach-to-user-namespace]
 
 # apt for Debian
@@ -86,4 +87,5 @@
     - [sudo apt install -y neovim, Installing neovim]
     - [sudo apt install -y colordiff, Installing colordiff]
     - [sudo apt install -y rbenv, Installing rbenv]
+    - [sudo apt install -y bat, Installing bat (enhanced cat)]
     - [sudo apt install -y fcitx5 fcitx5-chewing fcitx5-rime fcitx5-mozc im-config, Installing fcitx and IME]
