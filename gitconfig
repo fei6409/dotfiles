@@ -15,10 +15,11 @@
   cp = cherry-pick
   dh = diff HEAD
   dhh = diff HEAD~
+  fix = log --pretty=fixes
   grep = "grep -Iin"
   lg = log
-  lgo = log --oneline
   rb = rebase
+  ref= reflog --pretty=reflog
   st = status
 [http]
   cookiefile = ~/.gitcookies
@@ -29,7 +30,10 @@
 [rerere]
   enabled = true
 [pretty]
-  fixes = Fixes: %h (\"%s\")
+  fixes = "%C(auto)Fixes: %h (\"%s\")%C(reset)"
+  reflog = "%C(auto)%h %<(9)%gd %C(blue)%ci%C(reset) %s"
+  onelinev2 = "%C(auto)%h %s%+d%C(reset)"
+  onelinev3 = "%C(auto)%h %s%+d%n%C(reset)"
 [am]
   threeWay = true
 [merge]
