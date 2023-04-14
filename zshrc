@@ -55,15 +55,20 @@ export COLORTERM=truecolor
 
 # Use fdfind as FZF backend
 export FZF_DEFAULT_COMMAND="fd --type f --follow --hidden --exclude .git"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd --type d"
-# colorful FZF: https://github.com/rose-pine/fzf
+# Theme from https://github.com/rose-pine/fzf
 export FZF_DEFAULT_OPTS="
 	--color=fg:#908caa,bg:#191724,hl:#ebbcba
 	--color=fg+:#e0def4,bg+:#26233a,hl+:#ebbcba
 	--color=border:#403d52,header:#31748f,gutter:#191724
 	--color=spinner:#f6c177,info:#9ccfd8,separator:#403d52
-	--color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa"
+	--color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa
+"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# Use bat for file preview.
+export FZF_CTRL_T_OPTS="
+	--preview 'bat --color=always --style=numbers --line-range=:100 {}'
+"
+export FZF_ALT_C_COMMAND="fd --type d"
 
 # To boost ssh/scp completion speed, only consider hosts in the SSH config
 if [[ -f $HOME/.ssh/config ]]; then
