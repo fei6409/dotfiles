@@ -65,11 +65,14 @@ export FZF_DEFAULT_OPTS="
 	--color=spinner:#f6c177,info:#9ccfd8,separator:#403d52
 	--color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa"
 
-# To resolve autocomplete slowness when doing ssh/scp
+# To boost ssh/scp completion speed, only consider hosts in the SSH config
 if [[ -f $HOME/.ssh/config ]]; then
 	host_list=($(cat $HOME/.ssh/config | grep 'Host '  | awk '{s = s $2 " "} END {print s}'))
 	zstyle ':completion:*:(ssh|scp|sftp):*' hosts $host_list
 fi
+
+# To boost command completion speed, only consider the following users
+zstyle ':completion:*' users fei6409 fshao root
 
 # No more type freeze after ctrl-s:
 # https://superuser.com/questions/1390977/pressing-ctrl-s-by-mistake-while-using-vim
