@@ -1,6 +1,30 @@
 -- vim: foldmethod=marker
 
+-- leader key should go first before plugins
+vim.g.mapleader = ' '
+
+-- lazy.nvim {{{
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+-- }}}
+
+require("lazy").setup("plugins")
+require('telescope').load_extension('fzf')
+require('lspconfig').clangd.setup {}
+require('lualine').setup {}
+
 -- General options
+vim.cmd.colorscheme('gruvbox-material')
 vim.opt.breakindent = true -- indent the wrapped lines
 vim.opt.cmdheight = 2 -- more lines for command line
 vim.opt.confirm = true -- confirm on quitting without saving
@@ -16,6 +40,7 @@ vim.opt.smartcase = true -- case-sensitive search if uppercase included
 vim.opt.spelllang = 'en_us' -- spellchecking language
 vim.opt.textwidth = 80 -- wrap long lines
 vim.opt.ttimeoutlen = 5 -- shorten the wait time of key code sequence for faster <esc> response
+vim.opt.termguicolors = true -- 24-bit RGB color
 vim.opt.undofile = true -- save undo history
 -- indent related {{{
 vim.opt.expandtab = true -- expand tab
@@ -27,7 +52,6 @@ vim.opt.smartindent = true -- experimental
 --- }}}
 
 -- Key bindings
-vim.g.mapleader = ' '
 vim.keymap.set({'n','v'}, ';', ':')
 vim.keymap.set('n', 'q:', ':q') -- no more command history on typo
 
@@ -54,17 +78,3 @@ vim.keymap.set('n', '<leader>P', '"+P')
 vim.keymap.set('n', '<F9>', ':invnumber<CR>:invlist<CR>') -- toggle line number
 
 
--- lazy.nvim {{{
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
--- }}}
