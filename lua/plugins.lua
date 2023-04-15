@@ -42,11 +42,31 @@ return {
       }
     end,
   },
-  { 'nvim-telescope/telescope.nvim',
+  -- fuzzy finder
+  {
+    'nvim-telescope/telescope.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+      { 'nvim-telescope/telescope-fzf-native.nvim', build='make' },
     },
+    keys = {
+      { '<C-s>', ':Telescope grep_string<CR>', desc='search for string under cursor' },
+      { '<C-g>', ':Telescope live_grep<CR>', desc='live grep with ripgrep' },
+      { '<C-f>', ':lua require("telescope-config").project_files()<CR>',
+          desc='Fuzzy search files - use git_files if in git repo, or fall back to find_files' },
+    },
+    config = function()
+      require('telescope').setup {
+        defaults = {
+          layout_config = { height=0.95, width=0.9 },
+          mappings = {
+            -- Close Telescope directly (instead back to normal mode)
+            i = { ['<esc>']='close' },
+          },
+        },
+      }
+      require('telescope').load_extension('fzf')
+    end,
   },
   { 'neovim/nvim-lspconfig' },
   { 'nvim-treesitter/nvim-treesitter', build = ":TSUpdate" },

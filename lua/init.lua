@@ -16,7 +16,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup('plugins')
-require('telescope').load_extension('fzf')
 require('lspconfig').clangd.setup {}
 
 -- Other settings
