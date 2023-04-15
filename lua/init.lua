@@ -7,7 +7,8 @@ vim.opt.confirm = true -- confirm on quitting without saving
 vim.opt.cursorline = true -- highlight line of the cursor
 vim.opt.foldmethod = 'marker' -- use markers ('{{{' and '}}}') to specify folds
 vim.opt.ignorecase = true -- case-insensitive search
-vim.opt.list = true --- set tab: ">", trailing space: "-", non-breakable space: "+"
+vim.opt.list = true -- list mode for special characters
+vim.opt.listchars = {tab='» ', trail='·', nbsp='%'} -- list mode characters
 vim.opt.mouse = 'n' -- mouse enabled in normal mode
 vim.opt.number = true -- line number
 vim.opt.scrolloff = 5 -- minimal number of lines to keep above and below the cursor
@@ -28,19 +29,27 @@ vim.opt.smartindent = true -- experimental
 -- Key bindings
 vim.g.mapleader = ' '
 vim.keymap.set({'n','v'}, ';', ':')
-vim.keymap.set({'n','v'}, 'x', '"_x') -- delete w/o changing current register
-vim.keymap.set('v', 'p', '"_dP') -- copy to clipboard w/o changing current register
+vim.keymap.set('n', 'q:', ':q') -- no more command history on typo
+
+-- "_ is a blackhole register, use it for operations w/o changing the default register
+vim.keymap.set('v', 'p', '"_dP') -- paste
+vim.keymap.set({'n','v'}, 'x', '"_x') -- delete
+vim.keymap.set({'n','v'}, 's', '"_s') -- replace
 
 vim.keymap.set('n', '<TAB>', ':bnext<CR>') -- next buffer
 vim.keymap.set('n', '<S-TAB>', ':bprevious<CR>') -- previous buffer
 
-vim.keymap.set('n', '<leader>/', ':nohlsearch<CR>') -- close highlight search
-vim.keymap.set('n', '<leader>d', ':bp<BAR>bw #<CR>') -- delete current buffer
+vim.keymap.set('n', '<leader>l', ':nohlsearch<CR>') -- close highlight search
+vim.keymap.set('n', '<leader>q', ':bp<BAR>bw #<CR>') -- delete current buffer
 vim.keymap.set('n', '<leader>r', 'zR<CR>') -- unfold all foldings
 vim.keymap.set('n', '<leader>s', ':Rg <C-R><C-W><CR>') -- unfold all foldings
 vim.keymap.set('n', '<leader>j', ':%!python -m json.tool<CR>') -- prettify json
-vim.keymap.set('n', '<leader>y', '"+yiw') -- copy to clipboard
-vim.keymap.set('v', '<leader>y', '"+y') -- copy to clipboard
+
+-- copy/paste with system clipboard
+vim.keymap.set('n', '<leader>y', '"+yiw')
+vim.keymap.set('v', '<leader>y', '"+y')
+vim.keymap.set('n', '<leader>p', '"+p')
+vim.keymap.set('n', '<leader>P', '"+P')
 
 vim.keymap.set('n', '<F9>', ':invnumber<CR>:invlist<CR>') -- toggle line number
 
