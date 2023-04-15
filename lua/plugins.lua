@@ -14,6 +14,34 @@ return {
       vim.cmd.colorscheme('gruvbox-material')
     end,
   },
+  -- statusline
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons', lazy=true },
+    config = function()
+      require('lualine').setup {
+        options = {
+          theme = 'codedark',
+          always_divide_middle = false,
+        },
+        sections = {
+          lualine_a = { 'mode' },
+          lualine_b = { 'branch', 'diff' },
+          lualine_c = { 'filename' },
+          lualine_x = { 'encoding' },
+          lualine_y = { 'filetype' },
+          lualine_z = { 'progress', 'location' },
+        },
+        winbar = {
+          lualine_a = { {
+            'buffers',
+            icons_enabled = false,
+            symbols = { modified='*', alternate_file='' },
+          }, },
+        },
+      }
+    end,
+  },
   { 'nvim-telescope/telescope.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -22,7 +50,4 @@ return {
   },
   { 'neovim/nvim-lspconfig' },
   { 'nvim-treesitter/nvim-treesitter', build = ":TSUpdate" },
-  { 'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons', lazy = true },
-  },
 }
