@@ -1,7 +1,6 @@
 -- vim: foldmethod=marker
 
 -- General options
-vim.cmd.colorscheme('gruvbox-material')
 vim.opt.breakindent = true -- indent the wrapped lines
 vim.opt.cmdheight = 2 -- more lines for command line
 vim.opt.confirm = true -- confirm on quitting without saving
