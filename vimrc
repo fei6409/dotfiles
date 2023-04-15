@@ -275,7 +275,7 @@ highlight LineNr cterm=NONE guifg=grey
 nnoremap ; :
 vnoremap ; :
 nnoremap <leader>/ :nohlsearch<CR>
-nnoremap <leader>d :bp <BAR> bd #<CR>
+nnoremap <leader>q :bp <BAR> bd #<CR>
 nnoremap <leader>t :enew<CR>
 " Unfold all the foldings
 nnoremap <leader>r zR<CR>
@@ -283,11 +283,19 @@ nnoremap <leader>r zR<CR>
 nnoremap <leader>s :Rg <C-R><C-W><CR>
 " Prettify json
 nnoremap <leader>j :%!python -m json.tool<CR>
-" Yank the selected part to clipboard
+" Delete w/o changing current register
+nnoremap x "_x
+vnoremap x "_x
+" Yank / paste with system clipboard
 vnoremap <leader>y "+y
+nnoremap <leader>y "+yiw
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
 " Paste without overwritting register, see
 " https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text
-xnoremap <leader>p "_dP
+vnoremap p "_dP
+" No more command history on typo
+nnoremap q: :q
 " Buffer navigation
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
