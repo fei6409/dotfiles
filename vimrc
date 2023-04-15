@@ -274,7 +274,7 @@ highlight LineNr cterm=NONE guifg=grey
 " general key mapping {{{
 nnoremap ; :
 vnoremap ; :
-nnoremap <leader>/ :nohlsearch<CR>
+nnoremap <leader>l :nohlsearch<CR>
 nnoremap <leader>q :bp <BAR> bd #<CR>
 nnoremap <leader>t :enew<CR>
 " Unfold all the foldings
@@ -286,6 +286,8 @@ nnoremap <leader>j :%!python -m json.tool<CR>
 " Delete w/o changing current register
 nnoremap x "_x
 vnoremap x "_x
+nnoremap s "_s
+vnoremap s "_s
 " Yank / paste with system clipboard
 vnoremap <leader>y "+y
 nnoremap <leader>y "+yiw
