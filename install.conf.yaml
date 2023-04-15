@@ -31,8 +31,8 @@
     ~/.vimrc: vimrc
     ~/.vim/coc-settings.json: coc-settings.json
 # nvim / lua
+    ~/.config/nvim/lua/: lua/
     ~/.config/nvim/init.lua: lua/init.lua
-    ~/.config/nvim/lua/plugins.lua: lua/plugins.lua
 # zsh / prezto
     ~/.zprezto: modules/prezto
     ~/.zlogin: modules/prezto/runcoms/zlogin
