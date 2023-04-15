@@ -15,7 +15,6 @@
     - ~/.vim/.backup
     - ~/.vim/.swp
     - ~/.vim/.undo
-    - ~/.config/nvim
 
 - link:
 # git
@@ -29,6 +28,8 @@
     ~/.vim/autoload/plug.vim: modules/vim-plug/plug.vim
     ~/.vimrc: vimrc
     ~/.vim/coc-settings.json: coc-settings.json
+# nvim / lua
+    ~/.config/nvim/init.lua: lua/init.lua
 # zsh / prezto
     ~/.zprezto: modules/prezto
     ~/.zlogin: modules/prezto/runcoms/zlogin
