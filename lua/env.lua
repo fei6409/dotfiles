@@ -53,3 +53,45 @@ vim.keymap.set('n', '<leader>p', '"+p')
 vim.keymap.set('n', '<leader>P', '"+P')
 
 vim.keymap.set('n', '<F9>', ':set invnumber invlist<CR>') -- toggle line number and list mode
+
+-- autocmd
+local augroup = vim.api.nvim_create_augroup('UserCmds', { clear=true })
+local autocmd = vim.api.nvim_create_autocmd
+
+autocmd('FileType', {
+  pattern = 'gitcommit',
+  group = augroup,
+  desc = 'Spell check in Git commit',
+  command = [[set spell]],
+})
+autocmd('FileType', {
+  pattern = 'makefile',
+  group = augroup,
+  desc = 'Shell recipe must be preceded by a TAB in Makefile',
+  command = [[setlocal noexpandtab]],
+})
+autocmd('FileType', {
+  pattern = {'help','man'},
+  group = augroup,
+  desc = 'Quick exit on help page',
+  command = [[nnoremap <buffer><silent> q :q<CR>]],
+})
+autocmd({'BufNewFile','BufRead'}, {
+  pattern = '*/{kernel,syzkaller}/*',
+  group = augroup,
+  desc = 'Kenrel code indentation',
+  command = [[set noexpandtab tabstop=8 shiftwidth=8]],
+})
+autocmd('BufWritePre', {
+  pattern = '',
+  group = augroup,
+  desc = 'Trim trailing spaces',
+  callback = function()
+    local skip_types = {'diff','gitsendemail'}
+
+    for _, type in pairs(skip_types) do
+      if vim.bo.filetype == type then return end
+    end
+    vim.cmd[[%s/\s\+$//e]]
+  end,
+})
