@@ -21,7 +21,7 @@ return {
     config = function()
       require('lualine').setup {
         options = {
-          theme = 'codedark',
+          theme = 'material',
           always_divide_middle = false,
         },
         sections = {
