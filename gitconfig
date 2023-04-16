@@ -1,5 +1,4 @@
 [core]
-  editor = vim
   abbrev = 12
   autocrlf = false
   commitgraph = true
