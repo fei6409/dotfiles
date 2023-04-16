@@ -42,7 +42,17 @@ alias gsh='git show'
 alias gst='git status'
 
 # Conditional alias
-cmd_exist nvim && alias vim='nvim' || alias vim='vim -X' # To workaround slow "xsmp init" on start
+if cmd_exist nvim; then
+  # use nvim where possible
+  export EDITOR='nvim'
+  export VISUAL='nvim'
+  alias vim='nvim'
+else
+  # workaround for slow "xsmp init" on start
+  alias vim='vim -X'
+  # nvim fall back to vim
+  alias nvim='vim'
+fi
 cmd_exist colordiff && alias diff='colordiff'
 cmd_exist tmx2 && alias tmux='tmx2'
 cmd_exist python && py='python'
