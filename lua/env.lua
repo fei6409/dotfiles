@@ -52,4 +52,4 @@ vim.keymap.set('v', '<leader>y', '"+y')
 vim.keymap.set('n', '<leader>p', '"+p')
 vim.keymap.set('n', '<leader>P', '"+P')
 
-vim.keymap.set('n', '<F9>', ':invnumber<CR>:invlist<CR>') -- toggle line number
+vim.keymap.set('n', '<F9>', ':set invnumber invlist<CR>') -- toggle line number and list mode
