@@ -68,6 +68,19 @@ return {
       require('telescope').load_extension('fzf')
     end,
   },
+  -- nvim tree-sitter interface and highlighting
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+
+    config = function()
+      require('nvim-treesitter.configs').setup {
+        -- the five listed parsers should always be installed
+        ensure_installed = { 'c', 'lua', 'vim', 'vimdoc', 'query' },
+        auto_install = true,
+        highlight = { enable=true },
+      }
+    end,
+  },
   { 'neovim/nvim-lspconfig' },
-  { 'nvim-treesitter/nvim-treesitter', build = ":TSUpdate" },
 }
