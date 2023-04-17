@@ -83,10 +83,6 @@ zstyle ':completion:*' users fei6409 fshao root
 # https://superuser.com/questions/1390977/pressing-ctrl-s-by-mistake-while-using-vim
 # stty -ixon
 
-#
-# TODO: nvm
-#
-
 # Sources
 [[ -f $HOME/.fzf.zsh ]] && source $HOME/.fzf.zsh
 [[ -f $HOME/.alias.zsh ]] && source $HOME/.alias.zsh
