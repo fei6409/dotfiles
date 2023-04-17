@@ -101,5 +101,6 @@ return {
     config = function()
       require('lspconfig').clangd.setup {}
     end,
+    enabled = false,
   },
 }
