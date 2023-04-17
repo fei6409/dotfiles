@@ -91,6 +91,8 @@ return {
         opleader = { line='\\', block='<leader>\\' },
         mappings = { extra=false },
       }
+      local ft = require('Comment.ft')
+      ft.set('dts', ft.get('c'))
     end,
   },
   { 'neovim/nvim-lspconfig' },
