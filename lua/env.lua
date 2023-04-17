@@ -9,7 +9,7 @@ vim.opt.foldmethod = 'marker' -- use markers ('{{{' and '}}}') to specify folds
 vim.opt.ignorecase = true -- case-insensitive search
 vim.opt.list = true -- list mode for special characters
 vim.opt.listchars = {tab='» ', trail='·', nbsp='%'} -- list mode characters
-vim.opt.mouse = 'a' -- mouse enabled in normal mode
+vim.opt.mouse = '' -- mouse disabled
 vim.opt.number = true -- line number
 vim.opt.scrolloff = 5 -- minimal number of lines to keep above and below the cursor
 vim.opt.smartcase = true -- case-sensitive search if uppercase included
