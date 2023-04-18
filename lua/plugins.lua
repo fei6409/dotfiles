@@ -17,7 +17,7 @@ return {
   -- statusline
   {
     'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons', lazy=true },
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       require('lualine').setup {
         options = {
@@ -100,6 +100,29 @@ return {
     'neovim/nvim-lspconfig',
     config = function()
       require('lspconfig').clangd.setup {}
+    end,
+    enabled = false,
+  },
+  -- buffer line
+  {
+    'akinsho/bufferline.nvim',
+    version = "v3.*",
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require("bufferline").setup {
+        options = {
+          modified_icon = '*',
+          diagnostics = 'coc',
+          show_buffer_icons = false,
+          show_buffer_close_icons = false,
+          show_close_icon = false,
+          max_name_length = 5,
+        },
+        highlights = {
+          buffer_selected = { italic=false },
+          diagnostic_selected = { italic=false },
+        },
+      }
     end,
     enabled = false,
   },
