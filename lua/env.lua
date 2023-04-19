@@ -45,7 +45,6 @@ keyset('n', '<S-TAB>', ':bprevious<CR>') -- previous buffer
 keyset('n', '<leader>l', ':nohlsearch<CR>') -- close highlight search
 keyset('n', '<leader>q', ':bp<BAR>bw #<CR>') -- delete current buffer
 keyset('n', '<leader>r', 'zR<CR>') -- unfold all foldings
-keyset('n', '<leader>s', ':Rg <C-R><C-W><CR>') -- unfold all foldings
 keyset('n', '<leader>j', ':%!python -m json.tool<CR>') -- prettify json
 
 -- copy/paste with system clipboard
