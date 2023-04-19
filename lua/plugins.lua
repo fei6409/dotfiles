@@ -128,6 +128,17 @@ return {
       ft.set('dts', ft.get('c'))
     end,
   },
+  -- mainly for the git blame feature
+  {
+    'tpope/vim-fugitive',
+    keys = {
+      -- o    jump to patch or blob in horizontal split
+      -- -    reblame at commit
+      -- ~    reblame at nth ancestor
+      -- P    reblame at nth parent
+      { '<leader>b', ':Git blame<CR>' },
+    },
+  },
   -- LSP client config
   {
     'neovim/nvim-lspconfig',
