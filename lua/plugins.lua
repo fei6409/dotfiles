@@ -139,6 +139,9 @@ return {
       { '<leader>b', ':Git blame<CR>' },
     },
   },
+  -- log highlighting
+  -- TODO: rewrite in lua?
+  { 'mtdl9/vim-log-highlighting' },
   -- LSP client config
   {
     'neovim/nvim-lspconfig',
