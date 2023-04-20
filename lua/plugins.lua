@@ -69,7 +69,7 @@ return {
     },
     keys = {
       { '<C-s>', ':Telescope grep_string<CR>', desc='search for string under cursor' },
-      { '<C-g>', ':Telescope live_grep<CR>', desc='live grep with ripgrep' },
+      { '<C-d>', ':Telescope live_grep<CR>', desc='live grep with ripgrep' },
       { '<C-f>', ':lua require("telescope-config").project_files()<CR>',
           desc='Fuzzy search files - use git_files if in git repo, or fall back to find_files' },
     },
