@@ -113,7 +113,7 @@ return {
       local keyset = vim.keymap.set
       -- Use Tab for trigger completion with characters ahead and navigate
       -- NOTE: There's always a completion item selected by default, you may
-      -- want to enable no select by setting `"suggest.noselect": true` in your
+      -- want to enable no select by setting `'suggest.noselect': true` in your
       -- configuration file
       -- NOTE: Use command ':verbose imap <tab>' to make sure Tab is not mapped
       -- by other plugins before putting this into your config
@@ -172,7 +172,7 @@ return {
     'kylechui/nvim-surround',
     version = '^v2',
     config = function()
-      require("nvim-surround").setup {
+      require('nvim-surround').setup {
         -- `ys` is too far :p
         keymaps = {
           normal = 'ts',
@@ -230,10 +230,10 @@ return {
   },
   {
     'akinsho/bufferline.nvim',
-    version = "v3.*",
+    version = 'v3.*',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
-      require("bufferline").setup {
+      require('bufferline').setup {
         options = {
           modified_icon = '*',
           diagnostics = 'coc',
