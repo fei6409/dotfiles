@@ -128,6 +128,22 @@ return {
       ft.set('dts', ft.get('c'))
     end,
   },
+  -- surrounder
+  {
+    'kylechui/nvim-surround',
+    version = '^v2',
+    config = function()
+      require("nvim-surround").setup {
+        -- `ys` is too far :p
+        keymaps = {
+          normal = 'ts',
+          normal_cur = 'tss',
+          normal_line = 'tS',
+          normal_cur_line = 'tSS',
+        },
+      }
+    end,
+  },
   -- mainly for the git blame feature
   {
     'tpope/vim-fugitive',
