@@ -63,13 +63,7 @@ autocmd('FileType', {
   pattern = 'gitcommit',
   group = augroup,
   desc = 'Spell check in Git commit',
-  command = [[set spell]],
-})
-autocmd('FileType', {
-  pattern = 'makefile',
-  group = augroup,
-  desc = 'Shell recipe must be preceded by a TAB in Makefile',
-  command = [[setlocal noexpandtab]],
+  command = [[setlocal spell]],
 })
 autocmd('FileType', {
   pattern = {'help','man'},
@@ -77,11 +71,23 @@ autocmd('FileType', {
   desc = 'Quick exit on help page',
   command = [[nnoremap <buffer><silent> q :q<CR>]],
 })
-autocmd({'BufNewFile','BufRead'}, {
-  pattern = '*/{kernel,syzkaller}/*',
+autocmd('FileType', {
+  pattern = {'makefile'},
   group = augroup,
-  desc = 'Kenrel code indentation',
-  command = [[set noexpandtab tabstop=8 shiftwidth=8]],
+  desc = '4-space tab indentation for file types',
+  command = [[setlocal noexpandtab tabstop=4 shiftwidth=4]],
+})
+autocmd({'BufNewFile','BufRead'}, {
+  pattern = {'*.ebuild'},
+  group = augroup,
+  desc = '4-space tab indentation for path patterns',
+  command = [[setlocal noexpandtab tabstop=4 shiftwidth=4]],
+})
+autocmd({'BufNewFile','BufRead'}, {
+  pattern = {'*/kernel/*','*/syzkaller/*'},
+  group = augroup,
+  desc = '8-space tab indentation for path patterns',
+  command = [[setlocal noexpandtab tabstop=8 shiftwidth=8]],
 })
 autocmd('BufWritePre', {
   pattern = '',
