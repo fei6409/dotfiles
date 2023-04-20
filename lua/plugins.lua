@@ -140,6 +140,13 @@ return {
       { '<leader>b', ':Git blame<CR>' },
     },
   },
+  -- which-key.nvim
+  {
+    'folke/which-key.nvim',
+    config = function()
+      require('which-key').setup {}
+    end,
+  },
   -- log highlighting, TODO: rewrite in lua?
   { 'mtdl9/vim-log-highlighting' },
 
