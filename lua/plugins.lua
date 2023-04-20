@@ -1,21 +1,6 @@
 return {
   -- colorscheme
   {
-    'sainnhe/gruvbox-material',
-    -- make sure the colorscheme is loaded first since start plugins can
-    -- possibly change existing highlight groups
-    priority = 1000,
-    init = function()
-      vim.g.gruvbox_material_background = 'hard'
-      vim.g.gruvbox_material_foreground = 'mix'
-      vim.g.gruvbox_material_better_performance = 1
-      -- darker background color
-      vim.g.gruvbox_material_colors_override = { bg0={ '#080808', '232' } }
-      vim.cmd.colorscheme('gruvbox-material')
-    end,
-    enabled = false,
-  },
-  {
     'rebelot/kanagawa.nvim',
     -- make sure the colorscheme is loaded first since start plugins can
     -- possibly change existing highlight groups
@@ -155,10 +140,26 @@ return {
       { '<leader>b', ':Git blame<CR>' },
     },
   },
-  -- log highlighting
-  -- TODO: rewrite in lua?
+  -- log highlighting, TODO: rewrite in lua?
   { 'mtdl9/vim-log-highlighting' },
-  -- LSP client config
+
+  -- Disabled --
+
+  {
+    'sainnhe/gruvbox-material',
+    -- make sure the colorscheme is loaded first since start plugins can
+    -- possibly change existing highlight groups
+    priority = 1000,
+    init = function()
+      vim.g.gruvbox_material_background = 'hard'
+      vim.g.gruvbox_material_foreground = 'mix'
+      vim.g.gruvbox_material_better_performance = 1
+      -- darker background color
+      vim.g.gruvbox_material_colors_override = { bg0={ '#080808', '232' } }
+      vim.cmd.colorscheme('gruvbox-material')
+    end,
+    enabled = false,
+  },
   {
     'neovim/nvim-lspconfig',
     config = function()
@@ -166,7 +167,6 @@ return {
     end,
     enabled = false,
   },
-  -- buffer line
   {
     'akinsho/bufferline.nvim',
     version = "v3.*",
