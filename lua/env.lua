@@ -20,14 +20,14 @@ opt.termguicolors = true -- 24-bit RGB color
 opt.textwidth = 80 -- wrap long lines
 opt.ttimeoutlen = 5 -- shorten the wait time of key code sequence for faster <esc> response
 opt.undofile = true -- save undo history
--- indent related {{{
+-- indent related
 opt.expandtab = true -- expand tab
 opt.shiftwidth = 2 -- shift width
 opt.softtabstop = -1 -- when sts is negative, the value of 'shiftwidth' is used
 opt.tabstop = 2 -- tab width
 opt.cindent = true -- experimental
 opt.smartindent = true -- experimental
---- }}}
+
 
 -- Key bindings
 local keyset = vim.keymap.set
