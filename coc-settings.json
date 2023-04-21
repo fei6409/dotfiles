@@ -1,12 +1,4 @@
 {
-  "languageserver": {
-    "golang": {
-      "command": "gopls",
-      "args": [],
-      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"]
-    }
-  },
   "suggest.minTriggerInputLength": 3,
   "suggest.noselect": true
 }

@@ -93,6 +93,7 @@ return {
     config = function()
       vim.g.coc_global_extensions = {
         'coc-clangd',
+        'coc-go',
         'coc-json',
         'coc-lua',
         'coc-pyright',
@@ -119,7 +120,8 @@ return {
       -- by other plugins before putting this into your config
       local opts = {silent=true, noremap=true, expr=true, replace_keycodes=false}
       keyset('i', '<TAB>',   [[coc#pum#visible() ? coc#pum#next(1) : '<TAB>']], opts)
-      keyset('i', '<S-TAB>', [[coc#pum#visible() ? coc#pum#prev(1) : '' ]], opts)
+      keyset('i', '<S-TAB>', [[coc#pum#visible() ? coc#pum#prev(1) : '<S-TAB>']], opts)
+      keyset('i', '<CR>',    [[coc#pum#visible() ? coc#pum#confirm() : '<CR>']], opts)
 
       -- GoTo code navigation
       keyset('n', 'gd', '<Plug>(coc-definition)')
