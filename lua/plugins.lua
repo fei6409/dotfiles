@@ -67,20 +67,24 @@ return {
       'nvim-lua/plenary.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', build='make' },
     },
-    keys = {
-      { '<C-s>', ':Telescope grep_string<CR>', desc='search for string under cursor' },
-      { '<C-d>', ':Telescope live_grep<CR>', desc='live grep with ripgrep' },
-      { '<C-f>', ':lua require("telescope-config").project_files()<CR>',
-          desc='Fuzzy search files - use git_files if in git repo, or fall back to find_files' },
-    },
     config = function()
+      local keyset = vim.keymap.set
+      keyset('n', '<leader>ss', require('telescope.builtin').grep_string, { desc='[S]earch current [S]tring' } )
+      keyset('n', '<leader>sg', require('telescope.builtin').live_grep, { desc='[S]earch by rip[G]rep' } )
+      keyset('n', '<leader>sh', require('telescope.builtin').help_tags, { desc='[S]earch [H]elp' } )
+      keyset('n', '<leader>sk', require('telescope.builtin').keymaps, { desc='[S]earch [K]eymaps' } )
+      keyset('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc='[S]earch [D]iagnostics' } )
+      keyset('n', '<leader>sf', require("telescope-local").project_files,
+             { desc='Modified [S]earch [F]iles: search from repo root when in a Git repo' } )
+      keyset('n', '<leader>s/', function()
+        local opt = require('telescope.themes').get_dropdown{ previewer=false, }
+        require('telescope.builtin').current_buffer_fuzzy_find(opt)
+      end, { desc='[S]earch in [/]current buffer' } )
       require('telescope').setup {
         defaults = {
           layout_config = { height=0.95, width=0.9 },
-          mappings = {
-            -- Close Telescope directly (instead back to normal mode)
-            i = { ['<esc>']='close' },
-          },
+          -- Close Telescope directly (instead of back to normal mode)
+          mappings = { i = { ['<esc>']='close' }, },
         },
       }
       require('telescope').load_extension('fzf')
