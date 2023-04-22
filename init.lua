@@ -1,5 +1,8 @@
--- leader key should go first before plugins
+-- leader key definition should always go first
 vim.g.mapleader = ' '
+
+-- default environments
+require('env')
 
 -- lazy.nvim
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
@@ -16,10 +19,3 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup('plugins')
--- TODO
--- git blame
--- lsp
--- autocmp
-
--- Other settings
-require('env')

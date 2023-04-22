@@ -1,6 +1,6 @@
 -- vim: foldmethod=marker
 
--- General options
+-- general options --
 local opt = vim.opt
 opt.breakindent = true -- indent the wrapped lines
 opt.cmdheight = 2 -- more lines for command line
@@ -13,12 +13,13 @@ opt.listchars = {tab='» ', trail='·', nbsp='%'} -- list mode characters
 opt.mouse = '' -- mouse disabled
 opt.number = true -- line number
 opt.scrolloff = 5 -- minimal number of lines to keep above and below the cursor
+opt.signcolumn = 'yes' -- show sign column
 opt.smartcase = true -- case-sensitive search if uppercase included
 opt.spelllang = 'en_us' -- spellchecking language
 opt.syntax = 'on' -- syntax highlighting
 opt.termguicolors = true -- 24-bit RGB color
 opt.textwidth = 80 -- wrap long lines
-opt.ttimeoutlen = 5 -- shorten the wait time of key code sequence for faster <esc> response
+opt.ttimeoutlen = 5 -- shorten key code seq wait time for faster <ESC> response
 opt.undofile = true -- save undo history
 -- indent related
 opt.expandtab = true -- expand tab
@@ -29,12 +30,12 @@ opt.cindent = true -- experimental
 opt.smartindent = true -- experimental
 
 
--- Key bindings
+-- key mappings --
 local keyset = vim.keymap.set
 keyset({'n','v'}, ';', ':')
 keyset('n', 'q:', ':q') -- no more command history on typo
 
--- "_ is a blackhole register, use it for operations w/o changing the default register
+-- "_ is a blackhole reg, used for operations w/o changing the default reg
 keyset('v', 'p', '"_dP') -- paste
 keyset({'n','v'}, 'x', '"_x') -- delete
 keyset({'n','v'}, 's', '"_s') -- replace
@@ -53,9 +54,17 @@ keyset('v', '<leader>y', '"+y')
 keyset('n', '<leader>p', '"+p')
 keyset('n', '<leader>P', '"+P')
 
-keyset('n', '<F9>', ':set invnumber invlist<CR>') -- toggle line number and list mode
+-- toggle line number and list mode
+keyset('n', '<F9>', ':set invnumber invlist<CR>')
 
--- autocmd
+-- utilities --
+P = function(v)
+  print(vim.inspect(v))
+  return v
+end
+
+
+-- autocmds --
 local augroup = vim.api.nvim_create_augroup('UserCmds', { clear=true })
 local autocmd = vim.api.nvim_create_autocmd
 

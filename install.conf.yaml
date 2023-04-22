@@ -32,7 +32,7 @@
     ~/.vim/coc-settings.json: coc-settings.json
 # nvim / lua
     ~/.config/nvim/lua: lua
-    ~/.config/nvim/init.lua: lua/init.lua
+    ~/.config/nvim/init.lua: init.lua
     ~/.config/nvim/coc-settings.json: coc-settings.json
 # zsh / prezto
     ~/.zprezto: modules/prezto
