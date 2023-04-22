@@ -36,29 +36,27 @@ return {
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function()
-      require('lualine').setup {
-        options = {
-          theme = 'onedark',
-          always_divide_middle = false,
-        },
-        sections = {
-          lualine_a = { 'mode' },
-          lualine_b = { 'branch', 'diff' },
-          lualine_c = { 'filename' },
-          lualine_x = { 'encoding' },
-          lualine_y = { 'filetype' },
-          lualine_z = { 'progress', 'location' },
-        },
-        winbar = {
-          lualine_a = { {
-            'buffers',
-            icons_enabled = false,
-            symbols = { modified='*', alternate_file='' },
-          }, },
-        },
-      }
-    end,
+    opts = {
+      options = {
+        theme = 'onedark',
+        always_divide_middle = false,
+      },
+      sections = {
+        lualine_a = { 'mode' },
+        lualine_b = { 'branch', 'diff' },
+        lualine_c = { 'filename' },
+        lualine_x = { 'encoding' },
+        lualine_y = { 'filetype' },
+        lualine_z = { 'progress', 'location' },
+      },
+      winbar = {
+        lualine_a = { {
+          'buffers',
+          icons_enabled = false,
+          symbols = { modified='*', alternate_file='' },
+        }, },
+      },
+    }
   },
   -- fuzzy finder
   {
@@ -150,15 +148,12 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-
-    config = function()
-      require('nvim-treesitter.configs').setup {
-        -- the five listed parsers should always be installed
-        ensure_installed = { 'c', 'lua', 'vim', 'vimdoc', 'query' },
-        auto_install = true,
-        highlight = { enable=true },
-      }
-    end,
+    opts = {
+      -- the five listed parsers should always be installed
+      ensure_installed = { 'c', 'lua', 'vim', 'vimdoc', 'query' },
+      auto_install = true,
+      highlight = { enable=true },
+    }
   },
   -- commenter
   {
@@ -177,17 +172,15 @@ return {
   {
     'kylechui/nvim-surround',
     version = '^v2',
-    config = function()
-      require('nvim-surround').setup {
-        -- `ys` is too far :p
-        keymaps = {
-          normal = 'ts',
-          normal_cur = 'tss',
-          normal_line = 'tS',
-          normal_cur_line = 'tSS',
-        },
-      }
-    end,
+    opts = {
+      -- `ys` is too far :p
+      keymaps = {
+        normal = 'ts',
+        normal_cur = 'tss',
+        normal_line = 'tS',
+        normal_cur_line = 'tSS',
+      },
+    }
   },
   -- visual indentation guide
   {
@@ -223,9 +216,7 @@ return {
   -- which-key.nvim
   {
     'folke/which-key.nvim',
-    config = function()
-      require('which-key').setup {}
-    end,
+    opts = {},
   },
   -- log highlighting, TODO: rewrite in lua?
   { 'mtdl9/vim-log-highlighting' },
