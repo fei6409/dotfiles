@@ -70,6 +70,12 @@
         if: '[[ `uname` == Linux ]]'
         path: /usr/bin/batcat
 
+# General post-installation
+- shell:
+    - [npm install -g pyright, Installing pyright]
+    - [npm install -g bash-language-server, Installing bashls]
+    - [go install golang.org/x/tools/gopls@latest, Installing gopls]
+
 # brew for macOS
 - shell:
     - [brew update, Updating brew for macOS]
@@ -83,6 +89,7 @@
     - [brew install rbenv ruby-build, Installing rbenv]
     - [brew install pyenv, Installing pyenv]
     - [brew install bat, Installing bat (enhanced cat)]
+    - [brew install lua-language-server, Installing LuaLS]
     - [brew install reattach-to-user-namespace, Installing reattach-to-user-namespace]
 
 # apt for Debian

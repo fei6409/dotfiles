@@ -53,4 +53,5 @@ return {
     -- Remap keys for apply refactor code actions.
     keyset("n", "<leader>re", "<Plug>(coc-codeaction-refactor)")
   end,
+  enabled = false,
 }
