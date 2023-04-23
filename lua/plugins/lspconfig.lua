@@ -2,12 +2,26 @@
 -- setup reference: https://youtu.be/puWgHa7k3SY
 return {
   'neovim/nvim-lspconfig',
+  dependencies = {
+    'hrsh7th/cmp-nvim-lsp',
+  },
   config = function()
-    require('lspconfig').clangd.setup {}
-    require('lspconfig').gopls.setup {}
-    require('lspconfig').pyright.setup {}
-    require('lspconfig').bashls.setup { filetypes = { 'sh', 'zsh' }, }
+    local capabilities = require('cmp_nvim_lsp').default_capabilities()
+    require('lspconfig').clangd.setup {
+      capabilities = capabilities,
+    }
+    require('lspconfig').gopls.setup {
+      capabilities = capabilities,
+    }
+    require('lspconfig').pyright.setup {
+      capabilities = capabilities,
+    }
+    require('lspconfig').bashls.setup {
+      capabilities = capabilities,
+      filetypes = { 'sh', 'zsh' },
+    }
     require('lspconfig').lua_ls.setup {
+      capabilities = capabilities,
       settings = {
         Lua = {
           -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)

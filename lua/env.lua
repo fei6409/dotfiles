@@ -4,6 +4,7 @@
 local opt = vim.opt
 opt.breakindent = true -- indent the wrapped lines
 opt.cmdheight = 2 -- more lines for command line
+opt.completeopt = { 'menu', 'menuone', 'preview', 'noselect' } -- completion opt
 opt.confirm = true -- confirm on quitting without saving
 opt.cursorline = true -- highlight line of the cursor
 opt.foldmethod = 'marker' -- use markers ('{{{' and '}}}') to specify folds
