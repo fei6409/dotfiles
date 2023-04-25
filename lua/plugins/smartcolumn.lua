@@ -7,4 +7,5 @@ return {
       gitcommit = '75',
     },
   },
+  enabled = false,
 }
