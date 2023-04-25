@@ -24,7 +24,10 @@ alias shutdown='echo $FG[red]You shall not shutdown :P$FG[none]'  # no shutdown 
 
 # Git alias
 alias g='git'
+alias gama='git am --abort'
+alias gamc='git am --continue'
 alias gau='git add -u'
+alias gbu='git branch -u'
 alias gca='git commit --verbose --amend'
 alias gcpa='git cherry-pick --abort'
 alias gcpc='git cherry-pick --continue'
