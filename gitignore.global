@@ -77,3 +77,6 @@ target/
 # pyenv / rbenv
 .python-version
 .ruby-version
+
+# Lua workspace file
+.luarc.json
