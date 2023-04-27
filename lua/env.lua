@@ -10,7 +10,7 @@ opt.cursorline = true -- highlight line of the cursor
 opt.foldmethod = 'marker' -- use markers ('{{{' and '}}}') to specify folds
 opt.ignorecase = true -- case-insensitive search
 opt.list = true -- list mode for special characters
-opt.listchars = {tab='» ', trail='·', nbsp='%'} -- list mode characters
+opt.listchars = { tab='» ', trail='·', nbsp='%' } -- list mode characters
 opt.mouse = '' -- mouse disabled
 opt.number = true -- line number
 opt.scrolloff = 5 -- minimal number of lines to keep above and below the cursor
@@ -33,13 +33,13 @@ opt.smartindent = true -- experimental
 
 -- key mappings --
 local keyset = vim.keymap.set
-keyset({'n','v'}, ';', ':')
+keyset({ 'n', 'v' }, ';', ':')
 keyset('n', 'q:', ':q') -- no more command history on typo
 
 -- "_ is a blackhole reg, used for operations w/o changing the default reg
 keyset('v', 'p', '"_dP') -- paste
-keyset({'n','v'}, 'x', '"_x') -- delete
-keyset({'n','v'}, 's', '"_s') -- replace
+keyset({ 'n', 'v' }, 'x', '"_x') -- delete
+keyset({ 'n', 'v' }, 's', '"_s') -- replace
 
 keyset('n', '<TAB>', ':bnext<CR>') -- next buffer
 keyset('n', '<S-TAB>', ':bprevious<CR>') -- previous buffer
@@ -75,7 +75,7 @@ end
 
 
 -- autocmds --
-local augroup = vim.api.nvim_create_augroup('UserCmds', { clear=true })
+local augroup = vim.api.nvim_create_augroup('UserCmds', { clear = true })
 local autocmd = vim.api.nvim_create_autocmd
 
 autocmd('FileType', {
@@ -85,25 +85,25 @@ autocmd('FileType', {
   command = [[setlocal spell]],
 })
 autocmd('FileType', {
-  pattern = {'help','man'},
+  pattern = { 'help', 'man' },
   group = augroup,
   desc = 'Quick exit on help page',
   command = [[nnoremap <buffer><silent> q :q<CR>]],
 })
 autocmd('FileType', {
-  pattern = {'makefile'},
+  pattern = { 'makefile' },
   group = augroup,
   desc = '4-space tab indentation for file types',
   command = [[setlocal noexpandtab tabstop=4 shiftwidth=4]],
 })
-autocmd({'BufNewFile','BufRead'}, {
-  pattern = {'*.ebuild'},
+autocmd({ 'BufNewFile', 'BufRead' }, {
+  pattern = { '*.ebuild' },
   group = augroup,
   desc = '4-space tab indentation for path patterns',
   command = [[setlocal noexpandtab tabstop=4 shiftwidth=4]],
 })
-autocmd({'BufNewFile','BufRead'}, {
-  pattern = {'*/kernel/*','*/syzkaller/*'},
+autocmd({ 'BufNewFile', 'BufRead' }, {
+  pattern = { '*/kernel/*', '*/syzkaller/*' },
   group = augroup,
   desc = '8-space tab indentation for path patterns',
   command = [[setlocal noexpandtab tabstop=8 shiftwidth=8]],
@@ -113,11 +113,11 @@ autocmd('BufWritePre', {
   group = augroup,
   desc = 'Trim trailing spaces',
   callback = function()
-    local skip_types = {'diff','gitsendemail'}
+    local skip_types = { 'diff', 'gitsendemail' }
 
     for _, type in pairs(skip_types) do
       if vim.bo.filetype == type then return end
     end
-    vim.cmd[[%s/\s\+$//e]]
+    vim.cmd [[%s/\s\+$//e]]
   end,
 })
