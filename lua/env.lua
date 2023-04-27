@@ -112,7 +112,7 @@ autocmd('BufWritePre', {
   group = augroup,
   desc = 'Trim trailing spaces',
   callback = function()
-    local skip_types = {'diff','gitsendemail','gitcommit'}
+    local skip_types = {'diff','gitsendemail'}
 
     for _, type in pairs(skip_types) do
       if vim.bo.filetype == type then return end
