@@ -55,14 +55,15 @@ keyset('v', '<leader>y', '"+y')
 keyset('n', '<leader>p', '"+p')
 keyset('n', '<leader>P', '"+P')
 
+-- toggle colorcolumn
+keyset('n', '<F8>', function()
+  vim.wo.colorcolumn = (vim.wo.colorcolumn == '' and '75,80,100' or '')
+end)
+
 -- toggle line number, list mode and signcolumn
 keyset('n', '<F9>', function()
   vim.cmd [[set invnumber invlist]]
   vim.wo.signcolumn = (vim.wo.signcolumn == 'yes' and 'no' or 'yes')
-end)
-
-keyset('n', '<F10>', function()
-  vim.wo.colorcolumn = (vim.wo.colorcolumn == '' and '75,80,100' or '')
 end)
 
 
