@@ -51,7 +51,11 @@ return {
             -- Get the language server to recognize the `vim` global
             diagnostics = { globals = { 'vim' }, },
             -- Make the server aware of Neovim runtime files
-            workspace = { library = vim.api.nvim_get_runtime_file('', true), },
+            workspace = {
+              library = vim.api.nvim_get_runtime_file('', true),
+              -- No third-party check: https://github.com/neovim/nvim-lspconfig/issues/1700
+              checkThirdParty = false,
+          },
             -- Do not send telemetry data containing a randomized but unique identifier
             telemetry = { enable = false, },
           },
