@@ -37,7 +37,13 @@ return {
       }
       require('lspconfig').bashls.setup {
         capabilities = capabilities,
-        filetypes = { 'sh', 'zsh' },
+        filetypes = { 'sh', 'zsh', 'bash' },
+        settings = {
+          bashIde = {
+            -- SC2034: foo appears unused. Verify it or export it.
+            shellcheckArguments = '-e SC2034,',
+          },
+        },
       }
       require 'lspconfig'.jsonls.setup {
         capabilities = capabilities,
