@@ -92,8 +92,10 @@ return {
           end, opts)
           keyset('n', '<leader>rn', vim.lsp.buf.rename, opts)
           keyset({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
-          keyset('n', '<leader>f', function()
+          keyset({ 'n', 'v' }, '<leader>f', function()
             vim.lsp.buf.format { async = true }
+            -- ensure always go back to normal mode
+            vim.api.nvim_input('<ESC>')
           end, opts)
         end,
       })
