@@ -61,12 +61,26 @@ return {
               library = vim.api.nvim_get_runtime_file('', true),
               -- No third-party check: https://github.com/neovim/nvim-lspconfig/issues/1700
               checkThirdParty = false,
-          },
+            },
             -- Do not send telemetry data containing a randomized but unique identifier
             telemetry = { enable = false, },
           },
         },
       }
+
+      -- show shellcheck error code in diagnostic
+      -- https://github.com/bash-lsp/bash-language-server/issues/752
+      local diag_format = function(d)
+        return string.format("%s [%s]", d.message, d.code)
+      end
+      vim.diagnostic.config({
+        virtual_text = {
+          format = diag_format,
+        },
+        float = {
+          format = diag_format,
+        },
+      })
 
       -- Use LspAttach autocommand to only map the following keys
       -- after the language server attaches to the current buffer
@@ -106,5 +120,5 @@ return {
         end,
       })
     end,
-  }
+  },
 }
