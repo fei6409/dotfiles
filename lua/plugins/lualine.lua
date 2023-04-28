@@ -15,7 +15,7 @@ return {
       lualine_y = { 'filetype' },
       lualine_z = { 'progress', 'location' },
     },
-    winbar = {
+    tabline = {
       lualine_a = {
         {
           'buffers',
