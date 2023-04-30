@@ -79,9 +79,9 @@ local augroup = vim.api.nvim_create_augroup('UserCmds', { clear = true })
 local autocmd = vim.api.nvim_create_autocmd
 
 autocmd('FileType', {
-  pattern = 'gitcommit',
+  pattern = { 'gitcommit', 'markdown' },
   group = augroup,
-  desc = 'Spell check in Git commit',
+  desc = 'Set spell check',
   command = [[setlocal spell]],
 })
 autocmd('FileType', {
@@ -113,7 +113,7 @@ autocmd('BufWritePre', {
   group = augroup,
   desc = 'Trim trailing spaces',
   callback = function()
-    local skip_types = { 'diff', 'gitsendemail' }
+    local skip_types = { 'diff', 'gitsendemail', 'markdown' }
 
     for _, type in pairs(skip_types) do
       if vim.bo.filetype == type then return end
