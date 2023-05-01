@@ -27,18 +27,6 @@ return {
     },
     config = function()
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
-      require('lspconfig').clangd.setup {
-        capabilities = capabilities,
-      }
-      require('lspconfig').gopls.setup {
-        capabilities = capabilities,
-      }
-      require('lspconfig').pyright.setup {
-        capabilities = capabilities,
-      }
-      require 'lspconfig'.marksman.setup {
-        capabilities = capabilities,
-      }
       require('lspconfig').bashls.setup {
         capabilities = capabilities,
         filetypes = { 'sh', 'zsh', 'bash' },
@@ -48,6 +36,12 @@ return {
             shellcheckArguments = '-e SC2034,',
           },
         },
+      }
+      require('lspconfig').clangd.setup {
+        capabilities = capabilities,
+      }
+      require('lspconfig').gopls.setup {
+        capabilities = capabilities,
       }
       require 'lspconfig'.jsonls.setup {
         capabilities = capabilities,
@@ -70,6 +64,12 @@ return {
             telemetry = { enable = false, },
           },
         },
+      }
+      require 'lspconfig'.marksman.setup {
+        capabilities = capabilities,
+      }
+      require('lspconfig').pyright.setup {
+        capabilities = capabilities,
       }
 
       -- show shellcheck error code in diagnostic
