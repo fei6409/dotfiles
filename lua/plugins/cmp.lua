@@ -41,10 +41,10 @@ return {
       sources = cmp.config.sources {
         -- the order matters!
         { name = 'nvim_lua' },
-        { name = 'nvim_lsp' },
+        { name = 'nvim_lsp', max_item_count = 20 },
         { name = 'path' },
         { name = 'luasnip' },
-        { name = 'buffer',  keyword_length = 3 },
+        { name = 'buffer',   keyword_length = 3 },
       },
       snippet = {
         expand = function(args)
