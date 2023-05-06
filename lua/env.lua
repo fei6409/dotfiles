@@ -55,6 +55,19 @@ keyset('v', '<leader>y', '"+y')
 keyset('n', '<leader>p', '"+p')
 keyset('n', '<leader>P', '"+P')
 
+-- print syntax name and mapped highlight group under current cursor
+keyset('n', '<F7>', function()
+  local fn = vim.fn
+  local attr = function(x) return fn.synIDattr(x, 'name') end
+  -- effective syntax ID
+  local eid = fn.synID(fn.line('.'), fn.col('.'), 1)
+  -- transparent syntax ID
+  local tid = fn.synID(fn.line('.'), fn.col('.'), 0)
+
+  print('syn<' .. attr(eid) .. '>, trans<' .. attr(tid) ..
+        '> -> hlgrp<' .. attr(fn.synIDtrans(eid)) .. '>')
+end)
+
 -- toggle colorcolumn
 keyset('n', '<F8>', function()
   vim.wo.colorcolumn = (vim.wo.colorcolumn == '' and '75,80,100' or '')
