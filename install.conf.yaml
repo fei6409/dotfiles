@@ -88,11 +88,12 @@
 # apt for Debian
 - shell:
     - [sudo apt update, Updating apt for Debian]
+    - [sudo apt install -y ninja-build gettext cmake unzip curl, Prerequisites for compiling neovim]
     - [sudo apt install -y ripgrep, Installing ripgrep]
     - [sudo apt install -y fzf, Installing fzf]
     - [sudo apt install -y fd-find, Installing fd]
     - [sudo apt install -y nodejs npm, Installing Node.js and npm]
-    - [sudo apt install -y neovim, Installing neovim]
+    # - [sudo apt install -y neovim, Installing neovim]
     - [sudo apt install -y colordiff, Installing colordiff]
     - [sudo apt install -y rbenv, Installing rbenv]
     - [sudo apt install -y bat, Installing bat (enhanced cat)]
