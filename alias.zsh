@@ -90,13 +90,13 @@ if ([[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/de
 
   alias rs='repo sync .'
   alias rsa='repo sync -j 16 -n && repo sync -j 16 -l'
-  alias ker419='cd ~/chromiumos/src/third_party/kernel/v4.19'
-  alias ker54='cd ~/chromiumos/src/third_party/kernel/v5.4'
-  alias ker510='cd ~/chromiumos/src/third_party/kernel/v5.10'
-  alias ker515='cd ~/chromiumos/src/third_party/kernel/v5.15'
-  alias ker61='cd ~/chromiumos/src/third_party/kernel/v6.1'
+  alias ker419='cd ${HOME}/chromiumos/src/third_party/kernel/v4.19'
+  alias ker54='cd ${HOME}/chromiumos/src/third_party/kernel/v5.4'
+  alias ker510='cd ${HOME}/chromiumos/src/third_party/kernel/v5.10'
+  alias ker515='cd ${HOME}/chromiumos/src/third_party/kernel/v5.15'
+  alias ker61='cd ${HOME}/chromiumos/src/third_party/kernel/v6.1'
   alias ker='ker510'
-  alias scr='cd ~/chromiumos/src/scripts'
+  alias scr='cd ${HOME}/chromiumos/src/scripts'
   alias g3doc='g4d test && cd experimental/users/fshao/g3doc && vim ./sheet.md'
 
   # Parse dut-power summary.
@@ -118,13 +118,13 @@ if ([[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/de
     alias cw='cwg'
     alias dut-power='dut-power --vbat-rate=10'
     alias dut-power-s3='dut-power --vbat-rate=0'
-    alias test_that='test_that --fast --autotest_dir=~/chromiumos/src/third_party/autotest/files'
+    alias test_that='test_that --fast --autotest_dir=${HOME}/chromiumos/src/third_party/autotest/files'
     alias servod='servod --device-discovery=none'
     alias build_image='build_image test --no-enable-rootfs-verification'
 
   else
     # Only allowed outside of CrOS chroot
-    alias cr='cd ~/chromiumos/src; cros_sdk --no-ns-pid'
+    alias cr='cd ${HOME}/chromiumos/src; cros_sdk --no-ns-pid'
     alias chrome_sdk="cros chrome-sdk --board=${BOARD} --log-level=info --internal \
           --gn-extra-args='enable_nacl=false symbol_level=1 blink_symbol_level=0 is_official_build=false use_goma=true'"
   fi
