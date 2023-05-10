@@ -110,7 +110,7 @@ autocmd('FileType', {
   command = [[setlocal noexpandtab tabstop=4 shiftwidth=4]],
 })
 autocmd({ 'BufNewFile', 'BufRead' }, {
-  pattern = { '*.ebuild' },
+  pattern = { '*.ebuild', '*.eclass' },
   group = augroup,
   desc = '4-space tab indentation for path patterns',
   command = [[setlocal noexpandtab tabstop=4 shiftwidth=4]],
