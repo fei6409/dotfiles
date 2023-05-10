@@ -17,7 +17,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox' " color scheme
 Plug 'mtdl9/vim-log-highlighting'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'powerline/fonts'
 Plug 'preservim/nerdcommenter'
 Plug 'rose-pine/vim' " color scheme
@@ -27,7 +27,7 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 " Some interesting plugins? {{{
 " Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'Konfekt/FastFold'
@@ -72,45 +72,45 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 " }}}
 
 " Coc.nvim {{{
-" Some servers have issues with backup files, see #649.
-set nobackup
-set nowritebackup
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-" set signcolumn=yes
-
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: There's always complete item selected by default, you may want to enable
-" no select by `"suggest.noselect": true` in your configuration file.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) : "\<TAB>"
-      " \ coc#pum#visible() ? coc#pum#next(1) :
-      " \ CheckBackspace() ? "\<TAB>" :
-      " \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice.
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                             \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+" " Some servers have issues with backup files, see #649.
+" set nobackup
+" set nowritebackup
+"
+" " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" " delays and poor user experience.
+" set updatetime=300
+"
+" " Always show the signcolumn, otherwise it would shift the text each time
+" " diagnostics appear/become resolved.
+" " set signcolumn=yes
+"
+" " Use tab for trigger completion with characters ahead and navigate.
+" " NOTE: There's always complete item selected by default, you may want to enable
+" " no select by `"suggest.noselect": true` in your configuration file.
+" " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" " other plugin before putting this into your config.
+" inoremap <silent><expr> <TAB>
+"       \ coc#pum#visible() ? coc#pum#next(1) : "\<TAB>"
+"       " \ coc#pum#visible() ? coc#pum#next(1) :
+"       " \ CheckBackspace() ? "\<TAB>" :
+"       " \ coc#refresh()
+" inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+"
+" " Make <CR> to accept selected completion item or notify coc.nvim to format
+" " <C-g>u breaks current undo, please make your own choice.
+" inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+"                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+"
+" function! CheckBackspace() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
+"
+" " GoTo code navigation.
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
 " }}}
 
 " nerdcommenter {{{
@@ -134,22 +134,22 @@ nmap <leader>' csw'
 
 " ale/ALE {{{
 " Only run linters named in ale_linters settings.
-let g:ale_linters_explicit = 1
-let g:ale_c_parse_compile_commands = 1
-let b:ale_linters = {
-  \   'javascript': ['eslint'],
-  \   'python': ['flake8', 'pylint'],
-  \   'json': ['jsonlint'],
-  \   'sh': ['shellcheck']
-  \ }
-let g:ale_fixers = {
-  \   '*': ['trim_whitespace'],
-  \   'markdown': ['remove_trailing_lines'],
-  \   'diff': [],
-  \   'gitsendemail': []
-  \ }
-let g:ale_sh_shellcheck_exclusions = 'SC2039,SC1090'
-autocmd BufWritePre * ALEFix
+" let g:ale_linters_explicit = 1
+" let g:ale_c_parse_compile_commands = 1
+" let b:ale_linters = {
+"   \   'javascript': ['eslint'],
+"   \   'python': ['flake8', 'pylint'],
+"   \   'json': ['jsonlint'],
+"   \   'sh': ['shellcheck']
+"   \ }
+" let g:ale_fixers = {
+"   \   '*': ['trim_whitespace'],
+"   \   'markdown': ['remove_trailing_lines'],
+"   \   'diff': [],
+"   \   'gitsendemail': []
+"   \ }
+" let g:ale_sh_shellcheck_exclusions = 'SC2039,SC1090'
+" autocmd BufWritePre * ALEFix
 " }}}
 
 " vim-fugitive {{{
