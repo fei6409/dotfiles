@@ -29,6 +29,9 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 cmd_exist go && export PATH="$(go env GOPATH)/bin:$PATH"
 
+# Set file mode permission mask
+umask 022
+
 # macOS
 if [[ "$OSTYPE" =~ ^darwin ]]; then
   true
