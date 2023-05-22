@@ -16,11 +16,15 @@ alias ll='ls -lhAF'
 alias rm='rm -i'
 alias rg='rg -S'
 alias ta='tmux attach -t'
-alias sudo='sudo ' # https://linuxhandbook.com/run-alias-as-sudo/
 alias rsync='rsync --verbose --progress --human-readable --compress --archive'
 alias trim='sed -e '"'"'s/[[:space:]]*$//'"'"''  # trimming tailing spaces
 alias reboot='echo $FG[red]You shall not reboot :P$FG[none]'  # no reboot via commands!
 alias shutdown='echo $FG[red]You shall not shutdown :P$FG[none]'  # no shutdown via commands!
+# some commands like mv are aliased to `nocorrect $cmd` and sudo can't handle nocorrect
+# so just don't use that?
+# https://unix.stackexchange.com/questions/260563/sudo-nocorrect-command-not-found
+# https://superuser.com/questions/749314/how-do-you-set-alias-sudo-nocorrect-sudo-correctly
+# alias sudo='sudo ' # https://linuxhandbook.com/run-alias-as-sudo/
 
 # Git alias
 alias g='git'
