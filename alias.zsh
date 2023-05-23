@@ -102,6 +102,7 @@ if ([[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/de
   alias ker61='cd ${HOME}/chromiumos/src/third_party/kernel/v6.1'
   alias ker='ker510'
   alias scr='cd ${HOME}/chromiumos/src/scripts'
+  alias aut='cd ${HOME}/chromiumos/src/third_party/autotest/files'
   alias g3doc='g4d test && cd experimental/users/fshao/g3doc && vim ./sheet.md'
 
   # Parse dut-power summary.
