@@ -123,7 +123,7 @@ if ([[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/de
     alias dut-power='dut-power --vbat-rate=10'
     alias dut-power-s3='dut-power --vbat-rate=0'
     alias test_that='test_that --fast --autotest_dir=${HOME}/chromiumos/src/third_party/autotest/files'
-    alias servod='servod --device-discovery=none'
+    alias sv='sudo servod --device-discovery=none'
     alias build_image='build_image test --no-enable-rootfs-verification'
 
   else
