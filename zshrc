@@ -46,7 +46,6 @@ fi
 if [[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/dev/null; then
   # The initial PATH is defined in /etc/environment
   export PATH="$PATH:$HOME/depot_tools"
-  export PATH="$PATH:$HOME/Android/Sdk/build-tools/30.0.3"
   export PATH="$PATH:$HOME/chromiumos/src/platform/dev/contrib"
   export PATH="$PATH:$HOME/chromiumos/src/private-overlays/project-cheets-private/scripts"
   export PATH="$PATH:$HOME/chromiumos/src/config/bin"
