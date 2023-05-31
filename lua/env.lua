@@ -24,9 +24,9 @@ opt.ttimeoutlen = 5 -- shorten key code seq wait time for faster <ESC> response
 opt.undofile = true -- save undo history
 -- indent related
 opt.expandtab = true -- expand tab
-opt.shiftwidth = 2 -- shift width
+opt.shiftwidth = 4 -- shift width
 opt.softtabstop = -1 -- when sts is negative, the value of 'shiftwidth' is used
-opt.tabstop = 2 -- tab width
+opt.tabstop = 4 -- tab width
 opt.cindent = true -- experimental
 opt.smartindent = true -- experimental
 
@@ -103,18 +103,12 @@ autocmd('FileType', {
   desc = 'Quick exit on help page',
   command = [[nnoremap <buffer><silent> q :q<CR>]],
 })
-autocmd('FileType', {
-  pattern = { 'makefile' },
-  group = augroup,
-  desc = '4-space tab indentation for file types',
-  command = [[setlocal noexpandtab tabstop=4 shiftwidth=4]],
-})
-autocmd({ 'BufNewFile', 'BufRead' }, {
-  pattern = { '*.ebuild', '*.eclass' },
-  group = augroup,
-  desc = '4-space tab indentation for path patterns',
-  command = [[setlocal noexpandtab tabstop=4 shiftwidth=4]],
-})
+-- autocmd('FileType', {
+--   pattern = { 'makefile' },
+--   group = augroup,
+--   desc = '4-space tab indentation for file types',
+--   command = [[setlocal noexpandtab tabstop=4 shiftwidth=4]],
+-- })
 autocmd({ 'BufNewFile', 'BufRead' }, {
   pattern = { '*/kernel/*', '*/syzkaller/*' },
   group = augroup,
