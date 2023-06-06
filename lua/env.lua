@@ -2,52 +2,99 @@
 
 -- general options --
 local opt = vim.opt
-opt.breakindent = true -- indent the wrapped lines
-opt.cmdheight = 2 -- more lines for command line
-opt.completeopt = { 'menu', 'menuone', 'preview', 'noselect' } -- completion opt
-opt.confirm = true -- confirm on quitting without saving
-opt.cursorline = true -- highlight line of the cursor
-opt.foldmethod = 'marker' -- use markers ('{{{' and '}}}') to specify folds
-opt.ignorecase = true -- case-insensitive search
-opt.list = true -- list mode for special characters
-opt.listchars = { tab='» ', trail='·', nbsp='%' } -- list mode characters
-opt.mouse = '' -- mouse disabled
-opt.number = true -- line number
-opt.scrolloff = 5 -- minimal number of lines to keep above and below the cursor
-opt.signcolumn = 'yes' -- show sign column
-opt.smartcase = true -- case-sensitive search if uppercase included
-opt.spelllang = 'en_us' -- spellchecking language
-opt.syntax = 'on' -- syntax highlighting
-opt.termguicolors = true -- 24-bit RGB color
-opt.textwidth = 80 -- wrap long lines
-opt.ttimeoutlen = 5 -- shorten key code seq wait time for faster <ESC> response
-opt.undofile = true -- save undo history
+
+-- indent the wrapped lines
+opt.breakindent = true
+-- more lines for command line
+opt.cmdheight = 2
+-- completion opt
+opt.completeopt = {
+    'menu',
+    'menuone',
+    'preview',
+    'noselect',
+}
+-- confirm on quitting without saving
+opt.confirm = true
+-- highlight line of the cursor
+opt.cursorline = true
+-- use markers ('{{{' and '}}}') to specify folds
+opt.foldmethod = 'marker'
+-- case-insensitive search
+opt.ignorecase = true
+-- list mode for special characters
+opt.list = true
+-- list mode characters
+opt.listchars = {
+    tab = '» ',
+    trail = '·',
+    nbsp = '%',
+}
+-- mouse disabled
+opt.mouse = ''
+-- line number
+opt.number = true
+-- minimal number of lines to keep above and below the cursor
+opt.scrolloff = 5
+-- show sign column
+opt.signcolumn = 'yes'
+-- case-sensitive search if uppercase included
+opt.smartcase = true
+-- spellchecking language
+opt.spelllang = 'en_us'
+-- syntax highlighting
+opt.syntax = 'on'
+-- 24-bit RGB color
+opt.termguicolors = true
+-- wrap long lines
+opt.textwidth = 80
+-- shorten key code seq wait time for faster <ESC> response
+opt.ttimeoutlen = 5
+-- save undo history
+opt.undofile = true
+
 -- indent related
-opt.expandtab = true -- expand tab
-opt.shiftwidth = 4 -- shift width
-opt.softtabstop = -1 -- when sts is negative, the value of 'shiftwidth' is used
-opt.tabstop = 4 -- tab width
-opt.cindent = true -- experimental
-opt.smartindent = true -- experimental
+-- expand tab
+opt.expandtab = true
+-- shift width
+opt.shiftwidth = 4
+-- when sts is negative, the value of 'shiftwidth' is used
+opt.softtabstop = -1
+-- tab width
+opt.tabstop = 4
+-- experimental
+opt.cindent = true
+-- experimental
+opt.smartindent = true
 
 
 -- key mappings --
 local keyset = vim.keymap.set
 keyset({ 'n', 'v' }, ';', ':')
-keyset('n', 'q:', ':q') -- no more command history on typo
+-- no more command history on typo
+keyset('n', 'q:', ':q')
 
 -- "_ is a blackhole reg, used for operations w/o changing the default reg
-keyset('v', 'p', '"_dP') -- paste
-keyset({ 'n', 'v' }, 'x', '"_x') -- delete
-keyset({ 'n', 'v' }, 's', '"_s') -- replace
+-- paste
+keyset('v', 'p', '"_dP')
+-- delete
+keyset({ 'n', 'v' }, 'x', '"_x')
+-- replace
+keyset({ 'n', 'v' }, 's', '"_s')
 
-keyset('n', '<TAB>', ':bnext<CR>') -- next buffer
-keyset('n', '<S-TAB>', ':bprevious<CR>') -- previous buffer
+-- next buffer
+keyset('n', '<TAB>', ':bnext<CR>')
+-- previous buffer
+keyset('n', '<S-TAB>', ':bprevious<CR>')
 
-keyset('n', '<leader>l', ':nohlsearch<CR>') -- close highlight search
-keyset('n', '<leader>q', ':bp<BAR>bw #<CR>') -- delete current buffer
-keyset('n', '<leader>r', 'zR<CR>') -- unfold all foldings
-keyset('n', '<leader>j', ':%!python -m json.tool<CR>') -- prettify json
+-- close highlight search
+keyset('n', '<leader>l', ':nohlsearch<CR>')
+-- delete current buffer
+keyset('n', '<leader>q', ':bp<BAR>bw #<CR>')
+-- unfold all foldings
+keyset('n', '<leader>r', 'zR<CR>')
+-- prettify json, but just make use of nvim-lspconfig
+-- keyset('n', '<leader>j', ':%!python -m json.tool<CR>')
 
 -- copy/paste with system clipboard
 keyset('n', '<leader>y', '"+yiw')
@@ -57,33 +104,33 @@ keyset('n', '<leader>P', '"+P')
 
 -- print syntax name and mapped highlight group under current cursor
 keyset('n', '<F7>', function()
-  local fn = vim.fn
-  local attr = function(x) return fn.synIDattr(x, 'name') end
-  -- effective syntax ID
-  local eid = fn.synID(fn.line('.'), fn.col('.'), 1)
-  -- transparent syntax ID
-  local tid = fn.synID(fn.line('.'), fn.col('.'), 0)
+    local fn = vim.fn
+    local attr = function(x) return fn.synIDattr(x, 'name') end
+    -- effective syntax ID
+    local eid = fn.synID(fn.line('.'), fn.col('.'), 1)
+    -- transparent syntax ID
+    local tid = fn.synID(fn.line('.'), fn.col('.'), 0)
 
-  print('syn<' .. attr(eid) .. '>, trans<' .. attr(tid) ..
+    print('syn<' .. attr(eid) .. '>, trans<' .. attr(tid) ..
         '> -> hlgrp<' .. attr(fn.synIDtrans(eid)) .. '>')
 end)
 
 -- toggle colorcolumn
 keyset('n', '<F8>', function()
-  vim.wo.colorcolumn = (vim.wo.colorcolumn == '' and '75,80,100' or '')
+    vim.wo.colorcolumn = (vim.wo.colorcolumn == '' and '75,80,100' or '')
 end)
 
 -- toggle line number, list mode and signcolumn
 keyset('n', '<F9>', function()
-  vim.cmd [[set invnumber invlist]]
-  vim.wo.signcolumn = (vim.wo.signcolumn == 'yes' and 'no' or 'yes')
+    vim.cmd [[set invnumber invlist]]
+    vim.wo.signcolumn = (vim.wo.signcolumn == 'yes' and 'no' or 'yes')
 end)
 
 
 -- utilities --
 P = function(v)
-  print(vim.inspect(v))
-  return v
+    print(vim.inspect(v))
+    return v
 end
 
 
@@ -92,16 +139,16 @@ local augroup = vim.api.nvim_create_augroup('UserCmds', { clear = true })
 local autocmd = vim.api.nvim_create_autocmd
 
 autocmd('FileType', {
-  pattern = { 'gitcommit', 'markdown' },
-  group = augroup,
-  desc = 'Set spell check',
-  command = [[setlocal spell]],
+    pattern = { 'gitcommit', 'markdown' },
+    group = augroup,
+    desc = 'Set spell check',
+    command = [[setlocal spell]],
 })
 autocmd('FileType', {
-  pattern = { 'help', 'man' },
-  group = augroup,
-  desc = 'Quick exit on help page',
-  command = [[nnoremap <buffer><silent> q :q<CR>]],
+    pattern = { 'help', 'man' },
+    group = augroup,
+    desc = 'Quick exit on help page',
+    command = [[nnoremap <buffer><silent> q :q<CR>]],
 })
 -- autocmd('FileType', {
 --   pattern = { 'makefile' },
@@ -110,21 +157,21 @@ autocmd('FileType', {
 --   command = [[setlocal noexpandtab tabstop=4 shiftwidth=4]],
 -- })
 autocmd({ 'BufNewFile', 'BufRead' }, {
-  pattern = { '*/kernel/*', '*/syzkaller/*' },
-  group = augroup,
-  desc = '8-space tab indentation for path patterns',
-  command = [[setlocal noexpandtab tabstop=8 shiftwidth=8]],
+    pattern = { '*/kernel/*', '*/syzkaller/*' },
+    group = augroup,
+    desc = '8-space tab indentation for path patterns',
+    command = [[setlocal noexpandtab tabstop=8 shiftwidth=8]],
 })
 autocmd('BufWritePre', {
-  pattern = '',
-  group = augroup,
-  desc = 'Trim trailing spaces',
-  callback = function()
-    local skip_types = { 'diff', 'gitsendemail', 'markdown' }
+    pattern = '',
+    group = augroup,
+    desc = 'Trim trailing spaces',
+    callback = function()
+        local skip_types = { 'diff', 'gitsendemail', 'markdown' }
 
-    for _, type in pairs(skip_types) do
-      if vim.bo.filetype == type then return end
-    end
-    vim.cmd [[%s/\s\+$//e]]
-  end,
+        for _, type in pairs(skip_types) do
+            if vim.bo.filetype == type then return end
+        end
+        vim.cmd [[%s/\s\+$//e]]
+    end,
 })
