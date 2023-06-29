@@ -150,16 +150,22 @@ autocmd('FileType', {
     desc = 'Quick exit on help page',
     command = [[nnoremap <buffer><silent> q :q<CR>]],
 })
--- autocmd('FileType', {
---   pattern = { 'makefile' },
---   group = augroup,
---   desc = '4-space tab indentation for file types',
---   command = [[setlocal noexpandtab tabstop=4 shiftwidth=4]],
--- })
+autocmd('FileType', {
+    pattern = { 'makefile' },
+    group = augroup,
+    desc = 'Tab indentation for file types',
+    command = [[setlocal noexpandtab]],
+})
+autocmd({ 'BufNewFile', 'BufRead' }, {
+    pattern = { '*.ebuild', '*.eclass', '*/kernel/*', '*/syzkaller/*' },
+    group = augroup,
+    desc = 'Tab indentation for path patterns',
+    command = [[setlocal noexpandtab]],
+})
 autocmd({ 'BufNewFile', 'BufRead' }, {
     pattern = { '*/kernel/*', '*/syzkaller/*' },
     group = augroup,
-    desc = '8-space tab indentation for path patterns',
+    desc = 'Tab indentation (8-space) for path patterns',
     command = [[setlocal noexpandtab tabstop=8 shiftwidth=8]],
 })
 autocmd('BufWritePre', {
