@@ -55,6 +55,7 @@ if cmd_exist nvim; then
   export EDITOR='nvim'
   export VISUAL='nvim'
   alias vim='nvim'
+  alias vimdiff='nvim -d'
 else
   # workaround for slow "xsmp init" on start
   alias vim='vim -X'
