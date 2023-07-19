@@ -66,15 +66,15 @@ function prompt_my_git_prompt() {
   local stash=$(git stash list 2>/dev/null | wc -l | xargs)
   local conflict=$(git ls-files --unmerged 2>/dev/null | cut -f2 | sort -u | wc -l | xargs)
   # https://git-scm.com/docs/git-status
-  local st=$(git status --porcelain 2>/dev/null)
+  local st=$(timeout 0.5 git status --porcelain 2>/dev/null)
   local stage=$(grep -E "^(M|T|A|D|R|C|U)" <<< ${st} | wc -l | xargs)
   local unstage=$(grep -E "^.(M|T|A|D|R|C|U)" <<< ${st} | wc -l | xargs)
   local untrack=$(grep -E "^\?\?" <<< ${st} | wc -l | xargs)
 
   # Show tracking branch name if it differs from local branch.
   if [[ -n "${remote}" ]]; then
-    local behind=$(git rev-list --right-only --count HEAD...@{upstream})
-    local ahead=$(git rev-list --left-only --count HEAD...@{upstream})
+    local behind=$(timeout 0.5 git rev-list --right-only --count HEAD...@{upstream})
+    local ahead=$(timeout 0.5 git rev-list --left-only --count HEAD...@{upstream})
 
     res+="${meta}:${clean}${remote//\%/%%}"  # escape %
     # ⇣42 if behind the remote.
