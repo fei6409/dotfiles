@@ -5,26 +5,37 @@ modified='%178F'     # yellow foreground
 untracked='%39F'     # blue foreground
 conflicted='%196F'   # red foreground
 
-function prompt_my_git_prompt() {
-  # Measure execution time
-  local start_time="$(date +%s.%N)"
-
-  local res=""
+function _find_commit_alias() {
   local branch=$(git branch --show-current 2>/dev/null)
-  local commit=$(git rev-parse --short HEAD 2>/dev/null)
-  local g=$(git rev-parse --git-dir 2>/dev/null)
-  # local tag=$(git describe --tags 2>/dev/null)
-
   if [[ -n "${branch}" ]]; then
     # If local branch name or tag is at most 32 characters long, show it in full.
     # Otherwise show the first 12 … the last 12.
     (( ${#branch} > 32 )) && branch[13,-13]="…"
-    res+="${clean}${branch//\%/%%}"  # escape %
-  elif [[ -n "${commit}" ]]; then
-    res+="${meta}@${clean}${commit[1,8]}"
-  else
+    echo "${clean}${branch//\%/%%}"  # escape %
     return
   fi
+
+  # Finding tag is expensive, skip this for now
+  # local tag=$(git tag --points-at HEAD 2>/dev/null)
+  # if [[ -n "${tag}" ]]; then
+  #   (( ${#tag} > 32 )) && tag[13,-13]="…"
+  #   echo "${clean}${tag//\%/%%}"  # escape %
+  #   return
+  # fi
+
+  local commit=$(git rev-parse --short HEAD 2>/dev/null)
+  echo "${meta}@${clean}${commit[1,8]}"
+}
+
+function prompt_my_git_prompt() {
+  # Measure execution time
+  local start_time="$(date +%s.%N)"
+
+  local g=$(git rev-parse --git-dir 2>/dev/null)
+  # Not in a Git repo
+  [[ -z "${g}" ]] && return
+
+  local res="$(_find_commit_alias)"
 
   # Check the status of rebase/revert/bisect etc...
   if [[ -d "${g}/rebase-merge" ]]; then
