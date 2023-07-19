@@ -1,54 +1,53 @@
+# Styling for up-to-date Git status.
+meta='%f'            # default foreground
+clean='%76F'         # green foreground
+modified='%178F'     # yellow foreground
+untracked='%39F'     # blue foreground
+conflicted='%196F'   # red foreground
+
 function prompt_my_git_prompt() {
   # Measure execution time
   local start_time="$(date +%s.%N)"
 
-  # Styling for up-to-date Git status.
-  local       meta='%f'     # default foreground
-  local      clean='%76F'   # green foreground
-  local   modified='%178F'  # yellow foreground
-  local  untracked='%39F'   # blue foreground
-  local conflicted='%196F'  # red foreground
-
-  local res
-
+  local res=""
   local branch=$(git branch --show-current 2>/dev/null)
   local commit=$(git rev-parse --short HEAD 2>/dev/null)
   local g=$(git rev-parse --git-dir 2>/dev/null)
   # local tag=$(git describe --tags 2>/dev/null)
 
-  if [[ -n ${branch} ]]; then
+  if [[ -n "${branch}" ]]; then
     # If local branch name or tag is at most 32 characters long, show it in full.
     # Otherwise show the first 12 … the last 12.
-    (( $#branch > 32 )) && branch[13,-13]="…"
+    (( ${#branch} > 32 )) && branch[13,-13]="…"
     res+="${clean}${branch//\%/%%}"  # escape %
-  elif [[ -n ${commit} ]]; then
+  elif [[ -n "${commit}" ]]; then
     res+="${meta}@${clean}${commit[1,8]}"
   else
     return
   fi
 
   # Check the status of rebase/revert/bisect etc...
-  if [[ -d "$g/rebase-merge" ]]; then
-    if [[ -f "$g/rebase-merge/interactive" ]]; then
+  if [[ -d "${g}/rebase-merge" ]]; then
+    if [[ -f "${g}/rebase-merge/interactive" ]]; then
       res+="${conflicted}|rebase-i"
     else
       res+="${conflicted}|rebase-m"
     fi
-  elif [[ -d "$g/rebase-apply" ]]; then
-    if [[ -f "$g/rebase-apply/rebasing" ]]; then
+  elif [[ -d "${g}/rebase-apply" ]]; then
+    if [[ -f "${g}/rebase-apply/rebasing" ]]; then
       res+="${conflicted}|rebase"
-    elif [[ -f "$g/rebase-apply/applying" ]]; then
+    elif [[ -f "${g}/rebase-apply/applying" ]]; then
       res+="${conflicted}|am"
     else
       res+="${conflicted}|am/rebase"
     fi
-  elif [[ -f "$g/MERGE_HEAD" ]]; then
+  elif [[ -f "${g}/MERGE_HEAD" ]]; then
     res+="${conflicted}|merge"
-  elif [[ -f "$g/CHERRY_PICK_HEAD" ]]; then
+  elif [[ -f "${g}/CHERRY_PICK_HEAD" ]]; then
     res+="${conflicted}|cherry-pick"
-  elif [[ -f "$g/REVERT_HEAD" ]]; then
+  elif [[ -f "${g}/REVERT_HEAD" ]]; then
     res+="${conflicted}|revert"
-  elif [[ -f "$g/BISECT_LOG" ]]; then
+  elif [[ -f "${g}/BISECT_LOG" ]]; then
     res+="${conflicted}|bisect"
   fi
 
@@ -57,12 +56,12 @@ function prompt_my_git_prompt() {
   local conflict=$(git ls-files --unmerged 2>/dev/null | cut -f2 | sort -u | wc -l | xargs)
   # https://git-scm.com/docs/git-status
   local st=$(git status --porcelain 2>/dev/null)
-  local stage=$(grep -E "^(M|T|A|D|R|C|U)" <<< $st | wc -l | xargs)
-  local unstage=$(grep -E "^.(M|T|A|D|R|C|U)" <<< $st | wc -l | xargs)
-  local untrack=$(grep -E "^\?\?" <<< $st | wc -l | xargs)
+  local stage=$(grep -E "^(M|T|A|D|R|C|U)" <<< ${st} | wc -l | xargs)
+  local unstage=$(grep -E "^.(M|T|A|D|R|C|U)" <<< ${st} | wc -l | xargs)
+  local untrack=$(grep -E "^\?\?" <<< ${st} | wc -l | xargs)
 
   # Show tracking branch name if it differs from local branch.
-  if [[ -n ${remote} ]]; then
+  if [[ -n "${remote}" ]]; then
     local behind=$(git rev-list --right-only --count HEAD...@{upstream})
     local ahead=$(git rev-list --left-only --count HEAD...@{upstream})
 
@@ -90,7 +89,7 @@ function prompt_my_git_prompt() {
   # Warn on long execution time
   (( $(bc -l <<< "${T} >= 1") )) && res+=" ${conflicted}!${T}s"
 
-  p10k segment -t $res
+  p10k segment -t "${res}"
 }
 
 function instant_prompt_my_git_prompt() {
