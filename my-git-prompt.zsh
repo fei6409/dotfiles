@@ -1,4 +1,7 @@
 function prompt_my_git_prompt() {
+  # Measure execution time
+  local start_time="$(date +%s.%N)"
+
   # Styling for up-to-date Git status.
   local       meta='%f'     # default foreground
   local      clean='%76F'   # green foreground
@@ -81,6 +84,11 @@ function prompt_my_git_prompt() {
   (( unstage )) && res+=" ${modified}!${unstage}"
   # ?42 if have untracked files.
   (( untrack )) && res+=" ${untracked}?${untrack}"
+
+  local end_time="$(date +%s.%N)"
+  local T=$(bc -l <<< "${end_time} - ${start_time}")
+  # Warn on long execution time
+  (( $(bc -l <<< "${T} >= 1") )) && res+=" ${conflicted}!${T}s"
 
   p10k segment -t $res
 }
