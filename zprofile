@@ -47,7 +47,6 @@ path=(
 )
 
 fpath=(
-  $HOME/dotfiles/functions
   $fpath
 )
 
