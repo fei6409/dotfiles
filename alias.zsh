@@ -73,7 +73,9 @@ cmd_exist python3 && py='python3'
 
 # macOS
 if [[ "$OSTYPE" =~ ^darwin ]]; then
-  true
+  # Use commands from coreutils
+  alias timeout='gtimeout'
+  alias date='gdate'
 fi
 
 # Linux
