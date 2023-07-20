@@ -84,6 +84,7 @@
     - [brew install pyenv, Installing pyenv]
     - [brew install bat, Installing bat (enhanced cat)]
     - [brew install reattach-to-user-namespace, Installing reattach-to-user-namespace]
+    - [brew install coreutils, Installing coreutils]
 
 # apt for Debian
 - shell:
