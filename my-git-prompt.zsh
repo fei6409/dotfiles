@@ -60,9 +60,9 @@ function _append_remote_info() {
   # Show tracking branch name if it differs from local branch.
   if [[ -n "${remote}" ]]; then
     # Returns "<ahead><TAB><behind>"
-    local lr=$(timeout 0.5 git rev-list --left-right --count HEAD...@{upstream})
-    local ahead=$(cut -f1 <<< ${lr})
-    local behind=$(cut -f2 <<< ${lr})
+    local lr=( $(timeout 0.5 git rev-list --left-right --count HEAD...@{upstream}) )
+    local ahead="${lr[1]}"
+    local behind="${lr[2]}"
 
     res+="${meta}:${clean}${remote//\%/%%}"  # escape %
     # ⇣42 if behind the remote.
