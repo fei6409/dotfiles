@@ -116,7 +116,3 @@ function prompt_my_git_prompt() {
 
   p10k segment -t "${res}"
 }
-
-function instant_prompt_my_git_prompt() {
-  prompt_my_git_prompt
-}
