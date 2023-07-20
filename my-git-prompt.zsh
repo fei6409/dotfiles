@@ -73,8 +73,10 @@ function prompt_my_git_prompt() {
 
   # Show tracking branch name if it differs from local branch.
   if [[ -n "${remote}" ]]; then
-    local behind=$(timeout 0.5 git rev-list --right-only --count HEAD...@{upstream})
-    local ahead=$(timeout 0.5 git rev-list --left-only --count HEAD...@{upstream})
+    # Returns "<ahead><TAB><behind>"
+    local lr=$(timeout 0.5 git rev-list --left-right --count HEAD...@{upstream})
+    local ahead=$(cut -f1 <<< ${lr})
+    local behind=$(cut -f2 <<< ${lr})
 
     res+="${meta}:${clean}${remote//\%/%%}"  # escape %
     # ⇣42 if behind the remote.
