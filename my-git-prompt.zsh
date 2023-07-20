@@ -87,7 +87,7 @@ function prompt_my_git_prompt() {
   fi
 
   # *42 if have stashes.
-  (( stash )) && res+=" ${clean}*${stash}"
+  (( stash )) && res+=" ${clean}≡${stash}"
   # ~42 if have merge conflicts.
   (( conflict )) && res+=" ${conflicted}~${conflict}"
   # +42 if have staged changes.
