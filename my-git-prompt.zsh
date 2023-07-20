@@ -5,13 +5,13 @@ modified='%178F'     # yellow foreground
 untracked='%39F'     # blue foreground
 conflicted='%196F'   # red foreground
 
-function _find_commit_alias() {
+function _append_commit_ref() {
   local branch=$(git branch --show-current 2>/dev/null)
   if [[ -n "${branch}" ]]; then
     # If local branch name or tag is at most 32 characters long, show it in full.
     # Otherwise show the first 12 … the last 12.
     (( ${#branch} > 32 )) && branch[13,-13]="…"
-    echo "${clean}${branch//\%/%%}"  # escape %
+    res+="${clean}${branch//\%/%%}"  # escape %
     return
   fi
 
@@ -24,19 +24,10 @@ function _find_commit_alias() {
   # fi
 
   local commit=$(git rev-parse --short HEAD 2>/dev/null)
-  echo "${meta}@${clean}${commit[1,8]}"
+  res+="${meta}@${clean}${commit[1,8]}"
 }
 
-function prompt_my_git_prompt() {
-  # Measure execution time
-  local start_time="$(date +%s.%N)"
-
-  local g=$(git rev-parse --git-dir 2>/dev/null)
-  # Not in a Git repo
-  [[ -z "${g}" ]] && return
-
-  local res="$(_find_commit_alias)"
-
+function _append_action() {
   # Check the status of rebase/revert/bisect etc...
   if [[ -d "${g}/rebase-merge" ]]; then
     if [[ -f "${g}/rebase-merge/interactive" ]]; then
@@ -61,15 +52,10 @@ function prompt_my_git_prompt() {
   elif [[ -f "${g}/BISECT_LOG" ]]; then
     res+="${conflicted}|bisect"
   fi
+}
 
+function _append_remote_info() {
   local remote=$(git rev-parse --abbrev-ref @{upstream} 2>/dev/null)
-  local stash=$(git stash list 2>/dev/null | wc -l | xargs)
-  local conflict=$(git ls-files --unmerged 2>/dev/null | cut -f2 | sort -u | wc -l | xargs)
-  # https://git-scm.com/docs/git-status
-  local st=$(timeout 0.5 git status --porcelain 2>/dev/null)
-  local stage=$(grep -E "^(M|T|A|D|R|C|U)" <<< ${st} | wc -l | xargs)
-  local unstage=$(grep -E "^.(M|T|A|D|R|C|U)" <<< ${st} | wc -l | xargs)
-  local untrack=$(grep -E "^\?\?" <<< ${st} | wc -l | xargs)
 
   # Show tracking branch name if it differs from local branch.
   if [[ -n "${remote}" ]]; then
@@ -85,6 +71,16 @@ function prompt_my_git_prompt() {
     (( ahead && !behind )) && res+=" "
     (( ahead )) && res+="${clean}⇡${ahead}"
   fi
+}
+
+function _append_status() {
+  local stash=$(git stash list 2>/dev/null | wc -l | xargs)
+  local conflict=$(git ls-files --unmerged 2>/dev/null | cut -f2 | sort -u | wc -l | xargs)
+  # https://git-scm.com/docs/git-status
+  local st=$(timeout 0.5 git status --porcelain 2>/dev/null)
+  local stage=$(grep -E "^(M|T|A|D|R|C|U)" <<< ${st} | wc -l | xargs)
+  local unstage=$(grep -E "^.(M|T|A|D|R|C|U)" <<< ${st} | wc -l | xargs)
+  local untrack=$(grep -E "^\?\?" <<< ${st} | wc -l | xargs)
 
   # *42 if have stashes.
   (( stash )) && res+=" ${clean}≡${stash}"
@@ -96,6 +92,22 @@ function prompt_my_git_prompt() {
   (( unstage )) && res+=" ${modified}!${unstage}"
   # ?42 if have untracked files.
   (( untrack )) && res+=" ${untracked}?${untrack}"
+}
+
+function prompt_my_git_prompt() {
+  # Measure execution time
+  local start_time="$(date +%s.%N)"
+
+  local g=$(git rev-parse --git-dir 2>/dev/null)
+  # Not in a Git repo
+  [[ -z "${g}" ]] && return
+
+  local res=""
+
+  _append_commit_ref
+  _append_action
+  _append_remote_info
+  _append_status
 
   local end_time="$(date +%s.%N)"
   local T=$(bc -l <<< "${end_time} - ${start_time}")
