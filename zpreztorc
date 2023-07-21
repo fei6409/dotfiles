@@ -14,6 +14,9 @@ zstyle ':prezto:*:*' color 'yes'
 
 # Add additional directories to load prezto modules from
 # zstyle ':prezto:load' pmodule-dirs $HOME/.zprezto-contrib
+#
+# To avoid hard-coded $HOME/dotfiles/
+zstyle ':prezto:load' pmodule-dirs $(dirname $(realpath $0))/modules/prezto/modules/prompt/external/
 
 # Allow module overrides when pmodule-dirs causes module name collisions
 # zstyle ':prezto:load' pmodule-allow-overrides 'yes'
@@ -33,6 +36,7 @@ zstyle ':prezto:*:*' color 'yes'
 # I removed ssh module as it takes lots of time during pmodload.
 zstyle ':prezto:load' pmodule \
   'environment' \
+  'async' \
   'command-not-found' \
   'git' \
   'rsync' \
