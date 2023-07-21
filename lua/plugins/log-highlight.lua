@@ -5,6 +5,7 @@ return {
             extension = 'log',
             filename = {
                 'messages',
+                'logcat',
             },
             pattern = {
                 '/var/log/.*',
