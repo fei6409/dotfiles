@@ -151,7 +151,7 @@ autocmd('FileType', {
     command = [[nnoremap <buffer><silent> q :q<CR>]],
 })
 autocmd('FileType', {
-    pattern = { 'makefile' },
+    pattern = { 'go', 'makefile' },
     group = augroup,
     desc = 'Tab indentation for file types',
     command = [[setlocal noexpandtab]],
