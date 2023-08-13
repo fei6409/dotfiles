@@ -41,6 +41,8 @@
 [delta]
   syntax-theme = Monokai Extended
   line-numbers = true
+  navigate = true
+  side-by-side = true
   file-style = yellow
   file-decoration-style = yellow ol ul
   hunk-header-decoration-style = 243 box ul
@@ -50,7 +52,6 @@
   line-numbers-right-style = 243
   plus-style = syntax "#002800"
   minus-style = syntax "#300000"
-  navigate = true
 [interactive]
   diffFilter = delta --color-only
 [color]
