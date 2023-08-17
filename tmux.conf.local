@@ -360,6 +360,9 @@ set -g history-limit 50000
 # ^A for last window
 bind C-a last-window
 
+# ^H for clear history
+bind C-h clear-history
+
 # pane switching with Alt+arrow
 bind -n M-Left select-pane -L
 bind -n M-Right select-pane -R
