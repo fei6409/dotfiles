@@ -151,10 +151,16 @@ autocmd('FileType', {
     command = [[nnoremap <buffer><silent> q :q<CR>]],
 })
 autocmd('FileType', {
-    pattern = { 'go', 'makefile' },
+    pattern = { 'makefile' },
     group = augroup,
     desc = 'Tab indentation for file types',
     command = [[setlocal noexpandtab]],
+})
+autocmd('FileType', {
+    pattern = { 'go' },
+    group = augroup,
+    desc = 'Tab indentation (size=8) for file types',
+    command = [[setlocal noexpandtab tabstop=8 shiftwidth=8]],
 })
 autocmd({ 'BufNewFile', 'BufRead' }, {
     pattern = { '*.ebuild', '*.eclass', '*/kernel/*', '*/syzkaller/*' },
@@ -165,7 +171,7 @@ autocmd({ 'BufNewFile', 'BufRead' }, {
 autocmd({ 'BufNewFile', 'BufRead' }, {
     pattern = { '*/kernel/*', '*/syzkaller/*' },
     group = augroup,
-    desc = 'Tab indentation (8-space) for path patterns',
+    desc = 'Tab indentation (size=8) for path patterns',
     command = [[setlocal noexpandtab tabstop=8 shiftwidth=8]],
 })
 autocmd('BufWritePre', {
