@@ -20,6 +20,7 @@ alias rsync='rsync --verbose --progress --human-readable --compress --archive'
 alias trim='sed -e '"'"'s/[[:space:]]*$//'"'"''  # trimming tailing spaces
 alias reboot='echo $FG[red]You shall not reboot :P$FG[none]'  # no reboot via commands!
 alias shutdown='echo $FG[red]You shall not shutdown :P$FG[none]'  # no shutdown via commands!
+alias clera='clear'
 # some commands like mv are aliased to `nocorrect $cmd` and sudo can't handle nocorrect
 # so just don't use that?
 # https://unix.stackexchange.com/questions/260563/sudo-nocorrect-command-not-found
