@@ -6,10 +6,14 @@ return {
             filename = {
                 'messages',
                 'logcat',
+                'syslog',
             },
             pattern = {
                 '/var/log/.*',
                 'messages%..*',
+                '.*%.LATEST',
+                '.*%.PREVIOUS',
+                '.*%.previous',
             },
         }
     end,
