@@ -123,6 +123,7 @@ end)
 -- toggle line number, list mode and signcolumn
 keyset('n', '<F9>', function()
     vim.cmd [[set invnumber invlist]]
+    vim.cmd [[IBLToggle]]
     vim.wo.signcolumn = (vim.wo.signcolumn == 'yes' and 'no' or 'yes')
 end)
 
