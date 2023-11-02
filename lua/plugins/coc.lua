@@ -51,7 +51,7 @@ return {
         -- Apply the most preferred quickfix action on the current line
         keyset('n', '<leader>qf', '<Plug>(coc-fix-current)', opts)
         -- Remap keys for apply refactor code actions.
-        keyset("n", "<leader>re", "<Plug>(coc-codeaction-refactor)")
+        keyset('n', '<leader>re', '<Plug>(coc-codeaction-refactor)')
     end,
     enabled = false,
 }

@@ -75,7 +75,7 @@ return {
             -- show shellcheck error code in diagnostic
             -- https://github.com/bash-lsp/bash-language-server/issues/752
             local diag_format = function(d)
-                return string.format("%s [%s]", d.message, d.code)
+                return string.format('%s [%s]', d.message, d.code)
             end
             vim.diagnostic.config({
                 virtual_text = {
