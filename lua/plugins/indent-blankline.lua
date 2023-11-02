@@ -37,7 +37,6 @@ return {
         require('ibl').setup {
             indent = {
                 highlight = rainbow,
-                char = '',
             },
             whitespace = {
                 highlight = monochrome,
