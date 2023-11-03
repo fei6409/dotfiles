@@ -85,6 +85,7 @@ zstyle ':completion:*' users fei6409 fshao root
 # stty -ixon
 
 # Sources
+[[ -f $HOME/.local.zsh ]] && source $HOME/.local.zsh
 [[ -f $HOME/.fzf.zsh ]] && source $HOME/.fzf.zsh
 [[ -f $HOME/.alias.zsh ]] && source $HOME/.alias.zsh
 [[ -f $HOME/.lazy-load.zsh ]] && source $HOME/.lazy-load.zsh
