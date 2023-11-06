@@ -10,8 +10,8 @@ return {
         }
 
         local rainbow = {
-            'RainbowRed',
             'RainbowYellow',
+            'RainbowRed',
             'RainbowCyan',
             'RainbowViolet',
             'RainbowOrange',
