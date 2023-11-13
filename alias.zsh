@@ -89,7 +89,8 @@ fi
 # Linux
 if [[ "$OSTYPE" =~ ^linux ]]; then
   # if DISPLAY is unset, get an open display for it
-  export DISPLAY=${DISPLAY:-$(w -oush | grep -Eo ' :[0-9]+' | uniq | xargs;)}
+  # This is awfully slooooooow
+  # export DISPLAY=${DISPLAY:-$(w -oush | grep -Eo ' :[0-9]+' | uniq | xargs;)}
 
   # Copy to clipboard.
   cmd_exist xclip && copy() { xclip -sel clip; }
