@@ -45,10 +45,10 @@ alias gcps='git cherry-pick --skip'
 alias gd='git diff'
 alias gdh='git diff HEAD'
 alias gdhh='git diff HEAD~'
+alias gfix='git log --pretty=fixes'
 alias gl='git log'
 alias glg='git log'
 alias glf='git log --follow'
-alias glgg='git log --graph --pretty=onelinev3'
 alias glo='git log --pretty=onelinev2'
 alias glp='git log -p'
 alias gref='git reflog --pretty=reflog'
@@ -138,12 +138,11 @@ if ([[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/de
     alias dut-power-s3='dut-power --vbat-rate=0'
     alias test_that='test_that --fast --autotest_dir=${HOME}/chromiumos/src/third_party/autotest/files'
     alias sv='sudo servod --device-discovery=none'
-    alias build_image='build_image test --no-enable-rootfs-verification'
 
   else
     # Only allowed outside of CrOS chroot
     alias cr='cd ${HOME}/chromiumos/src; cros_sdk --no-ns-pid'
-    alias chrome_sdk="cros chrome-sdk --board=${BOARD} --log-level=info --internal \
-          --gn-extra-args='enable_nacl=false symbol_level=1 blink_symbol_level=0 is_official_build=false use_goma=true'"
+    alias enter-chrome-sdk="cros chrome-sdk --board=${BOARD} --log-level=info --internal \
+          --gn-extra-args='enable_nacl=false symbol_level=1 use_goma=true dcheck_always_on=false is_official_build=false'"
   fi
 fi
