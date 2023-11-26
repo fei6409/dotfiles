@@ -17,6 +17,7 @@ return {
                 'lua_ls',
                 'marksman',
                 'pyright',
+                'yamlls',
             },
         },
     },
@@ -58,6 +59,7 @@ return {
             }
             require('lspconfig').marksman.setup {}
             require('lspconfig').pyright.setup {}
+            require('lspconfig').yamlls.setup {}
 
             -- show shellcheck error code in diagnostic
             -- https://github.com/bash-lsp/bash-language-server/issues/752
