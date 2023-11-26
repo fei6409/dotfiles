@@ -26,9 +26,7 @@ return {
             'hrsh7th/nvim-cmp',
         },
         config = function()
-            local capabilities = require('cmp_nvim_lsp').default_capabilities()
             require('lspconfig').bashls.setup {
-                capabilities = capabilities,
                 filetypes = { 'sh', 'zsh', 'bash' },
                 settings = {
                     bashIde = {
@@ -37,17 +35,10 @@ return {
                     },
                 },
             }
-            require('lspconfig').clangd.setup {
-                capabilities = capabilities,
-            }
-            require('lspconfig').gopls.setup {
-                capabilities = capabilities,
-            }
-            require 'lspconfig'.jsonls.setup {
-                capabilities = capabilities,
-            }
+            require('lspconfig').clangd.setup {}
+            require('lspconfig').gopls.setup {}
+            require('lspconfig').jsonls.setup {}
             require('lspconfig').lua_ls.setup {
-                capabilities = capabilities,
                 settings = {
                     Lua = {
                         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
@@ -65,12 +56,8 @@ return {
                     },
                 },
             }
-            require 'lspconfig'.marksman.setup {
-                capabilities = capabilities,
-            }
-            require('lspconfig').pyright.setup {
-                capabilities = capabilities,
-            }
+            require('lspconfig').marksman.setup {}
+            require('lspconfig').pyright.setup {}
 
             -- show shellcheck error code in diagnostic
             -- https://github.com/bash-lsp/bash-language-server/issues/752
