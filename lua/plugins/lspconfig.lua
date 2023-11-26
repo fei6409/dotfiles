@@ -4,7 +4,6 @@ return {
     -- Order matters, mason must come first before nvim-lspconfig
     {
         'williamboman/mason.nvim',
-        build = ':MasonUpdate',
         opts = {},
     },
     {
