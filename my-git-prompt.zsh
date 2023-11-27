@@ -24,7 +24,7 @@ function _append_commit_ref() {
   # fi
 
   local commit=$(git rev-parse --short HEAD 2>/dev/null)
-  res+="${white}@${green}${commit[1,8]}"
+  res+="${green}${commit[1,8]}"
 }
 
 function _append_action() {
