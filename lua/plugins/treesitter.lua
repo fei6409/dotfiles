@@ -2,6 +2,7 @@
 return {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
+    main = 'nvim-treesitter.configs',
     opts = {
         -- the five listed parsers should always be installed
         ensure_installed = { 'c', 'lua', 'vim', 'vimdoc', 'query' },
