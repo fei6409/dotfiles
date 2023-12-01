@@ -16,6 +16,7 @@ return {
                 'lua_ls',
                 'marksman',
                 'pyright',
+                'ruby_ls',
                 'yamlls',
             },
         },
@@ -58,6 +59,7 @@ return {
             }
             require('lspconfig').marksman.setup {}
             require('lspconfig').pyright.setup {}
+            require('lspconfig').ruby_ls.setup {}
             require('lspconfig').yamlls.setup {}
 
             -- show shellcheck error code in diagnostic
