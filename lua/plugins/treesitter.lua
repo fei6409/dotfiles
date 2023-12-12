@@ -8,7 +8,7 @@ return {
         ensure_installed = {
             'c', 'lua', 'vim', 'vimdoc', 'query',
             'bash', 'cpp', 'devicetree', 'git_config', 'git_rebase', 'gitcommit',
-            'go', 'kconfig', 'make', 'markdown', 'python', 'ruby', 'yaml',
+            'go', 'json', 'kconfig', 'make', 'markdown', 'python', 'ruby', 'ssh_config', 'yaml',
         },
         auto_install = true,
         highlight = { enable = true },
