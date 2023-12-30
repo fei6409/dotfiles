@@ -56,16 +56,14 @@ opt.undofile = true
 -- indent related
 -- expand tab
 opt.expandtab = true
+-- smart autoindent
+opt.smartindent = true
 -- shift width
 opt.shiftwidth = 4
 -- when sts is negative, the value of 'shiftwidth' is used
 opt.softtabstop = -1
 -- tab width
 opt.tabstop = 4
--- experimental
-opt.cindent = true
--- experimental
-opt.smartindent = true
 
 
 -- key mappings --
