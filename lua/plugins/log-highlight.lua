@@ -11,6 +11,7 @@ return {
             pattern = {
                 '/var/log/.*',
                 'messages%..*',
+                'messages-.*',
                 '.*%.LATEST',
                 '.*%.PREVIOUS',
                 '.*%.previous',
