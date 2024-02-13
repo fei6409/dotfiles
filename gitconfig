@@ -25,6 +25,8 @@
   cookiefile = ~/.gitcookies
 [include]
   path = ~/.gitconfig.local
+[includeIf "gitdir:~/dotfiles/"]
+  path = ~/dotfiles/.gitconfig
 [pull]
   rebase = false
 [rerere]
