@@ -4,10 +4,10 @@
   commitgraph = true
   excludesfile = ~/.gitignore.global
   pager = delta --tabs 8
-  untrackedCache = true
 [alias]
   au = add -u
   bl = blame
+  bli = blame -w -C -C -C # ignore white space and line moved in teh same commit
   br = branch
   ci = commit
   cia = commit --amend
@@ -15,6 +15,7 @@
   cp = cherry-pick
   dh = diff HEAD
   dhh = diff HEAD~
+  dw = diff --word-diff
   fix = log --pretty=fixes
   grep = "grep -Iin"
   lg = log
@@ -70,3 +71,8 @@
   old = red bold
   new = green bold
   whitespace = red reverse
+[branch]
+  sort = -committerdate
+[maintenance]
+  auto = false
+  strategy = incremental
