@@ -4,6 +4,7 @@
   commitgraph = true
   excludesfile = ~/.gitignore.global
   pager = delta --tabs 8
+  fsmonitor = true
 [alias]
   au = add -u
   bl = blame
