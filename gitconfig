@@ -8,7 +8,7 @@
 [alias]
   au = add -u
   bl = blame
-  bli = blame -w -C -C -C # ignore white space and line moved in teh same commit
+  bli = blame -w -C -C -C # ignore white space and line moved in the same commit
   br = branch
   ci = commit
   cia = commit --amend
@@ -18,7 +18,6 @@
   dhh = diff HEAD~
   dw = diff --word-diff
   fix = log --pretty=fixes
-  grep = "grep -Iin"
   lg = log
   rb = rebase
   ref= reflog --pretty=reflog
