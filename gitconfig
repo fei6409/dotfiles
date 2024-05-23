@@ -31,7 +31,7 @@
 [include]
   path = ~/.gitconfig.local
 [includeIf "gitdir:~/dotfiles/"]
-  path = ~/dotfiles/.gitconfig
+  path = ~/dotfiles/.default_user
 [interactive]
   diffFilter = delta --color-only
 [merge]
