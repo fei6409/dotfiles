@@ -22,12 +22,20 @@
   rb = rebase
   ref= reflog --pretty=reflog
   st = status
+[am]
+  threeWay = true
+[branch]
+  sort = -committerdate
 [http]
   cookiefile = ~/.gitcookies
 [include]
   path = ~/.gitconfig.local
 [includeIf "gitdir:~/dotfiles/"]
   path = ~/dotfiles/.gitconfig
+[interactive]
+  diffFilter = delta --color-only
+[merge]
+  conflictstyle = diff3
 [pull]
   rebase = false
 [rerere]
@@ -37,10 +45,6 @@
   reflog = "%C(auto)%h %<(9)%gd %C(blue)%ci%C(reset) %s"
   onelinev2 = "%C(auto)%h %s%+d%C(reset)"
   onelinev3 = "%C(auto)%h %s%+d%n%C(reset)"
-[am]
-  threeWay = true
-[merge]
-  conflictstyle = diff3
 [delta]
   syntax-theme = Monokai Extended
   line-numbers = true
@@ -55,8 +59,6 @@
   line-numbers-right-style = 243
   plus-style = syntax "#002800"
   minus-style = syntax "#300000"
-[interactive]
-  diffFilter = delta --color-only
 [color]
   ui = true
 [color "diff-highlight"]
@@ -71,8 +73,6 @@
   old = red bold
   new = green bold
   whitespace = red reverse
-[branch]
-  sort = -committerdate
 [maintenance]
   auto = false
   strategy = incremental
