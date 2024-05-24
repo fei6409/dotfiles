@@ -79,5 +79,3 @@
 ; Include local configs in the end to take precedence
 [include]
   path = ~/.gitconfig.local
-[includeIf "gitdir:~/dotfiles/"]
-  path = ~/dotfiles/.default_user
