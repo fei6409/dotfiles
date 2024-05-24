@@ -88,17 +88,17 @@ keyset('n', '<S-TAB>', ':bprevious<CR>')
 -- close highlight search
 keyset('n', '<leader>l', ':nohlsearch<CR>')
 -- delete current buffer
-keyset('n', '<leader>q', ':bp<BAR>bw #<CR>')
+keyset('n', '<leader>q', ':bp<BAR>bw #<CR>', { desc = 'Delete current buffer' })
 -- unfold all foldings
 keyset('n', '<leader>r', 'zR<CR>')
 -- prettify json, but just make use of nvim-lspconfig
 -- keyset('n', '<leader>j', ':%!python -m json.tool<CR>')
 
 -- copy/paste with system clipboard
-keyset('n', '<leader>y', '"+yiw')
-keyset('v', '<leader>y', '"+y')
-keyset('n', '<leader>p', '"+p')
-keyset('n', '<leader>P', '"+P')
+keyset('n', '<leader>y', '"+yiw', { desc = 'Copy to system clipboard' })
+keyset('v', '<leader>y', '"+y', { desc = 'Copy to system clipboard' })
+keyset('n', '<leader>p', '"+p', { desc = 'Paste from system clipboard' })
+keyset('n', '<leader>P', '"+P', { desc = 'Paste from system clipboard' })
 
 -- print syntax name and mapped highlight group under current cursor
 keyset('n', '<F7>', function()
@@ -111,19 +111,19 @@ keyset('n', '<F7>', function()
 
     print('syn<' .. attr(eid) .. '>, trans<' .. attr(tid) ..
         '> -> hlgrp<' .. attr(fn.synIDtrans(eid)) .. '>')
-end)
+end, { desc = 'Print highlight group' })
 
 -- toggle colorcolumn
 keyset('n', '<F8>', function()
     vim.wo.colorcolumn = (vim.wo.colorcolumn == '' and '75,80,100' or '')
-end)
+end, { desc = 'Toggle colorcolumn' })
 
 -- toggle line number, list mode and signcolumn
 keyset('n', '<F9>', function()
     vim.cmd [[set invnumber invlist]]
     vim.cmd [[IBLToggle]]
     vim.wo.signcolumn = (vim.wo.signcolumn == 'yes' and 'no' or 'yes')
-end)
+end, { desc = 'Toggle line number' })
 
 
 -- utilities --
