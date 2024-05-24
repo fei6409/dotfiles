@@ -1,5 +1,16 @@
 -- LSP config
 -- setup reference: https://youtu.be/puWgHa7k3SY
+
+LSP_SERVER = {
+    'bashls',
+    'clangd',
+    'jsonls',
+    'lua_ls',
+    'marksman',
+    'pyright',
+    'yamlls',
+}
+
 return {
     -- Order matters, mason must come first before nvim-lspconfig
     {
@@ -9,15 +20,7 @@ return {
     {
         'williamboman/mason-lspconfig.nvim',
         opts = {
-            ensure_installed = {
-                'bashls',
-                'clangd',
-                'jsonls',
-                'lua_ls',
-                'marksman',
-                'pyright',
-                'yamlls',
-            },
+            ensure_installed = LSP_SERVER,
         },
     },
     {
@@ -26,7 +29,23 @@ return {
             'hrsh7th/nvim-cmp',
         },
         config = function()
-            require('lspconfig').bashls.setup {
+            -- nvim-cmp supports more types of completion candidates,
+            -- so users must override the capabilities sent to the
+            -- server such that it can provide these candidates during
+            -- a completion request.
+            local capabilities = require('cmp_nvim_lsp').default_capabilities()
+            local lspconfig = require('lspconfig')
+
+            -- Bulk-setup LSP servers
+            for _, lsp in ipairs(LSP_SERVER) do
+                lspconfig[lsp].setup {
+                    capabilities = capabilities,
+                }
+            end
+
+            -- LSP servers that need extra configuration
+            lspconfig.bashls.setup {
+                capabilities = capabilities,
                 filetypes = { 'sh', 'zsh', 'bash' },
                 settings = {
                     bashIde = {
@@ -35,10 +54,8 @@ return {
                     },
                 },
             }
-            require('lspconfig').clangd.setup {}
-            require('lspconfig').gopls.setup {}
-            require('lspconfig').jsonls.setup {}
-            require('lspconfig').lua_ls.setup {
+            lspconfig.lua_ls.setup {
+                capabilities = capabilities,
                 settings = {
                     Lua = {
                         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
@@ -56,9 +73,6 @@ return {
                     },
                 },
             }
-            require('lspconfig').marksman.setup {}
-            require('lspconfig').pyright.setup {}
-            require('lspconfig').yamlls.setup {}
 
             -- show shellcheck error code in diagnostic
             -- https://github.com/bash-lsp/bash-language-server/issues/752
@@ -70,7 +84,7 @@ return {
                     format = diag_format,
                 },
                 float = {
-                    format = diag_format,
+                    border = 'rounded',
                 },
             })
 
@@ -85,30 +99,35 @@ return {
                     -- Buffer local mappings.
                     -- See `:help vim.lsp.*` for documentation on any of the below functions
                     local keyset = vim.keymap.set
-                    local opts = { buffer = ev.buf }
-                    keyset('n', 'K', vim.lsp.buf.hover, opts)
-                    keyset('n', 'gD', vim.lsp.buf.declaration, opts)
-                    keyset('n', 'gd', vim.lsp.buf.definition, opts)
-                    keyset('n', 'gt', vim.lsp.buf.type_definition, opts)
-                    keyset('n', 'gi', vim.lsp.buf.implementation, opts)
-                    keyset('n', 'gr', vim.lsp.buf.references, opts)
+                    local opts = function(desc)
+                        return { buffer = ev.buf, silent = true, desc = desc }
+                    end
 
-                    keyset('n', '<leader>dn', vim.diagnostic.goto_next, opts)
-                    keyset('n', '<leader>dp', vim.diagnostic.goto_prev, opts)
+                    keyset('n', '<space>d', vim.diagnostic.open_float, opts('Diagnostic open float window'))
+                    keyset('n', '[d', vim.diagnostic.goto_next, opts('Diagnostic goto next'))
+                    keyset('n', ']d', vim.diagnostic.goto_prev, opts('Diagnostic goto prev'))
 
-                    keyset('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-                    keyset('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
-                    keyset('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
-                    keyset('n', '<leader>wl', function()
-                        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-                    end, opts)
-                    keyset('n', '<leader>rn', vim.lsp.buf.rename, opts)
-                    keyset({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
+                    keyset('n', 'K', vim.lsp.buf.hover, opts('LSP hover'))
+                    keyset('n', 'gD', vim.lsp.buf.declaration, opts('LSP declaration'))
+                    keyset('n', 'gd', vim.lsp.buf.definition, opts('LSP definition'))
+                    keyset('n', 'gi', vim.lsp.buf.implementation, opts('LSP implementation'))
+                    keyset('n', 'gt', vim.lsp.buf.type_definition, opts('LSP type definition'))
+                    keyset('n', 'gr', vim.lsp.buf.references, opts('LSP references'))
+
+                    keyset('n', '<leader>k', vim.lsp.buf.signature_help, opts('LSP signature help'))
+                    keyset('n', '<leader>rn', vim.lsp.buf.rename, opts('LSP rename'))
+                    keyset({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts('LSP code action'))
                     keyset({ 'n', 'v' }, '<leader>f', function()
                         vim.lsp.buf.format { async = true }
                         -- ensure always go back to normal mode
                         vim.api.nvim_input('<ESC>')
-                    end, opts)
+                    end, opts('LSP format'))
+
+                    keyset('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts('LSP add workspace folder'))
+                    keyset('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts('LSP remove workspace folder'))
+                    keyset('n', '<leader>wl', function()
+                        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+                    end, opts('LSP list workspace folder'))
                 end,
             })
         end,
