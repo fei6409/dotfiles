@@ -77,7 +77,7 @@ function _append_status() {
   local stash=$(git stash list 2>/dev/null | wc -l | xargs)
   local conflict=$(git ls-files --unmerged 2>/dev/null | cut -f2 | sort -u | wc -l | xargs)
   # https://git-scm.com/docs/git-status
-  local st=$(timeout 0.5 git status --porcelain --ignore-submodules 2>/dev/null)
+  local st=$(timeout 1 git status --porcelain --ignore-submodules 2>/dev/null)
   local stage=$(grep -E "^(M|T|A|D|R|C|U)" <<< ${st} | wc -l | xargs)
   local unstage=$(grep -E "^.(M|T|A|D|R|C|U)" <<< ${st} | wc -l | xargs)
   local untrack=$(grep -E "^\?\?" <<< ${st} | wc -l | xargs)
