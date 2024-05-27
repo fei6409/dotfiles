@@ -36,16 +36,25 @@ return {
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
             local lspconfig = require('lspconfig')
 
+            -- Override floating window border.
+            -- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
+            local handlers = {
+                ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
+                ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
+            }
+
             -- Bulk-setup LSP servers
             for _, lsp in ipairs(LSP_SERVER) do
                 lspconfig[lsp].setup {
                     capabilities = capabilities,
+                    handlers = handlers,
                 }
             end
 
             -- LSP servers that need extra configuration
             lspconfig.bashls.setup {
                 capabilities = capabilities,
+                handlers = handlers,
                 filetypes = { 'sh', 'zsh', 'bash' },
                 settings = {
                     bashIde = {
@@ -56,6 +65,7 @@ return {
             }
             lspconfig.lua_ls.setup {
                 capabilities = capabilities,
+                handlers = handlers,
                 settings = {
                     Lua = {
                         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
