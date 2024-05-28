@@ -85,10 +85,25 @@ keyset('n', '<TAB>', ':bnext<CR>')
 -- previous buffer
 keyset('n', '<S-TAB>', ':bprevious<CR>')
 
+-- close quickfix window
+keyset('n', '<ESC>', function()
+    if vim.bo.buftype == 'quickfix' then
+        vim.cmd [[cclose]]
+    end
+end, { desc = 'cclose quickfix with ESC key' })
+
+-- close current buffer or quickfix window
+keyset('n', '<leader>q', function()
+    if vim.bo.buftype == 'quickfix' then
+        vim.cmd [[cclose]]
+    else
+        vim.cmd [[bp|bw #]]
+    end
+end, { desc = 'Close current buffer or quickfix window' })
+
 -- close highlight search
 keyset('n', '<leader>l', ':nohlsearch<CR>')
--- delete current buffer
-keyset('n', '<leader>q', ':bp<BAR>bw #<CR>', { desc = 'Delete current buffer' })
+
 -- unfold all foldings
 keyset('n', '<leader>r', 'zR<CR>')
 -- prettify json, but just make use of nvim-lspconfig
@@ -124,7 +139,6 @@ keyset('n', '<F9>', function()
     vim.cmd [[IBLToggle]]
     vim.wo.signcolumn = (vim.wo.signcolumn == 'yes' and 'no' or 'yes')
 end, { desc = 'Toggle line number' })
-
 
 -- utilities --
 P = function(v)
