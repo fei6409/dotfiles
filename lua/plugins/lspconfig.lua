@@ -4,6 +4,7 @@
 LSP_SERVER = {
     'bashls',
     'clangd',
+    'gopls',
     'jsonls',
     'lua_ls',
     'marksman',
