@@ -2,6 +2,7 @@
 return {
     'kylechui/nvim-surround',
     version = '*',
+    event = 'VeryLazy',
     opts = {
         -- `ys` is too far :p
         keymaps = {

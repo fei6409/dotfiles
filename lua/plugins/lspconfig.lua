@@ -16,10 +16,12 @@ return {
     -- Order matters, mason must come first before nvim-lspconfig
     {
         'williamboman/mason.nvim',
+        event = 'VeryLazy',
         opts = {},
     },
     {
         'williamboman/mason-lspconfig.nvim',
+        event = 'VeryLazy',
         opts = {
             ensure_installed = LSP_SERVER,
         },
@@ -29,6 +31,7 @@ return {
         dependencies = {
             'hrsh7th/nvim-cmp',
         },
+        event = 'VeryLazy',
         config = function()
             -- nvim-cmp supports more types of completion candidates,
             -- so users must override the capabilities sent to the

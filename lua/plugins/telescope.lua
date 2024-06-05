@@ -8,6 +8,7 @@ return {
             build = 'make',
         },
     },
+    event = 'VeryLazy',
     config = function()
         local tel_builtin = require('telescope.builtin')
         -- Inspired by https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes
