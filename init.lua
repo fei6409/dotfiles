@@ -1,6 +1,10 @@
 -- leader key definition should always go first
 vim.g.mapleader = ' '
 
+-- Avoid loading netrw, the builtin file explorer
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- default environments
 require('env')
 
