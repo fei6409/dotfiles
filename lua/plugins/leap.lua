@@ -6,4 +6,5 @@ return {
         { '<leader>sL', '<Plug>(leap-backward-to)', mode = { 'n', 'x', 'o' }, desc = 'Leap backward to' },
     },
     opts = {},
+    enabled = false,
 }
