@@ -1,7 +1,7 @@
 -- surrounder
 return {
     'kylechui/nvim-surround',
-    version = '^v2',
+    version = '*',
     opts = {
         -- `ys` is too far :p
         keymaps = {
