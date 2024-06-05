@@ -27,7 +27,10 @@ cmd_exist() { type "$1" &> /dev/null; }
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-cmd_exist go && export PATH="$(go env GOPATH)/bin:$PATH"
+if cmd_exist go; then
+  export PATH="$(go env GOPATH)/bin:$PATH"
+  export GOPATH="$HOME/go"
+fi
 
 # Set file mode permission mask
 umask 022
@@ -51,6 +54,11 @@ if [[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/dev
   export PATH="$PATH:$HOME/chromiumos/src/private-overlays/project-cheets-private/scripts"
   export PATH="$PATH:$HOME/chromiumos/src/third_party/hdctools/scripts"
   export PATH="$PATH:$HOME/chromiumos/chromite/contrib"
+
+  if cmd_exist go; then
+    export GOPATH="$GOPATH:$HOME/chromiumos/src/platform/tast-tests"
+    export GOPATH="$GOPATH:$HOME/chromiumos/src/platform/tast"
+  fi
 fi
 
 # Use truecolor
