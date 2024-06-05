@@ -6,6 +6,6 @@ return {
         -- -    reblame at commit
         -- ~    reblame at nth ancestor
         -- P    reblame at nth parent
-        { '<leader>b', ':Git blame<CR>' },
+        { '<leader>b', '<cmd>Git blame<CR>' },
     },
 }
