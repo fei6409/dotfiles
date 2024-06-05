@@ -93,15 +93,18 @@ zstyle ':completion:*' users fei6409 fshao root
 # https://superuser.com/questions/1390977/pressing-ctrl-s-by-mistake-while-using-vim
 # stty -ixon
 
+# shellcheck disable=SC1090
+chk_src() { [[ -f "$1" ]] && source "$1"; }
+
 # Sources
-[[ -f $HOME/.local.zsh ]] && source $HOME/.local.zsh
-[[ -f $HOME/.fzf.zsh ]] && source $HOME/.fzf.zsh
-[[ -f $HOME/.alias.zsh ]] && source $HOME/.alias.zsh
-[[ -f $HOME/.lazy-load.zsh ]] && source $HOME/.lazy-load.zsh
-[[ -f $HOME/.my-git-prompt.zsh ]] && source $HOME/.my-git-prompt.zsh
+chk_src "$HOME/.local.zsh"
+chk_src "$HOME/.fzf.zsh"
+chk_src "$HOME/.alias.zsh"
+chk_src "$HOME/.lazy-load.zsh"
+chk_src "$HOME/.my-git-prompt.zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ -f $HOME/.p10k.zsh ]] && source $HOME/.p10k.zsh
+chk_src "$HOME/.p10k.zsh"
 
 # Ensure path array do not contain duplicates
 typeset -U PATH
