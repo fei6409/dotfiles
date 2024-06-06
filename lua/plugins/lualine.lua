@@ -20,14 +20,14 @@ return {
             lualine_y = { 'filetype' },
             lualine_z = { 'progress', 'location' },
         },
-        tabline = {
-            lualine_a = {
-                {
-                    'buffers',
-                    icons_enabled = false,
-                    symbols = { modified = '*', alternate_file = '' },
-                },
-            },
-        },
+        -- tabline = {
+        --     lualine_a = {
+        --         {
+        --             'buffers',
+        --             icons_enabled = false,
+        --             symbols = { modified = '*', alternate_file = '' },
+        --         },
+        --     },
+        -- },
     },
 }
