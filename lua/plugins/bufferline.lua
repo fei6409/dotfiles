@@ -1,4 +1,6 @@
 -- Tabline support
+BG_HL = '#2A2A37'
+
 return {
     'akinsho/bufferline.nvim',
     version = '*',
@@ -17,9 +19,20 @@ return {
         options = {
             show_buffer_close_icons = false,
             tab_size = 10,
+            separator_style = 'slant',
         },
         highlights = {
-            buffer_selected = { bold = true, italic = false },
+            buffer_selected = {
+                bold = true,
+                italic = false,
+                bg = BG_HL,
+            },
+            modified_selected = {
+                bg = BG_HL,
+            },
+            separator_selected = {
+                bg = BG_HL,
+            },
         },
     },
     keys = {
