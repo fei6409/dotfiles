@@ -55,6 +55,9 @@ if [[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/dev
   export PATH="$PATH:$HOME/chromiumos/src/third_party/hdctools/scripts"
   export PATH="$PATH:$HOME/chromiumos/chromite/contrib"
 
+  # Append chromite lib to Python import path
+  export PYTHONPATH="$PYTHONPATH:$HOME/chromiumos"
+
   if cmd_exist go; then
     # Append Tast repos to GOPATH
     export GOPATH="$GOPATH:$HOME/chromiumos/src/platform/tast-tests"
