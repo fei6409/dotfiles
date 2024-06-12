@@ -32,6 +32,10 @@ if cmd_exist go; then
   export GOPATH="$HOME/go"
 fi
 
+# Temp workaround for git clone segfault issue
+# TODO: Remove this after b/345346090 gets fixed
+export GIT_TEST_DEFAULT_HASH_ALGO=sha1
+
 # Set file mode permission mask
 umask 022
 
