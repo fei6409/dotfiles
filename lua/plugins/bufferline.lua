@@ -19,6 +19,7 @@ return {
         options = {
             show_buffer_close_icons = false,
             tab_size = 10,
+            max_name_length = 25,
             separator_style = 'slant',
         },
         highlights = {
