@@ -36,6 +36,8 @@
   rebase = false
 [rerere]
   enabled = true
+[status]
+  submodulesummary = 1
 [pretty]
   fixes = "%C(auto)Fixes: %h (\"%s\")%C(reset)"
   reflog = "%C(auto)%h %<(9)%gd %C(brightblue)%ci%C(reset) %s"
