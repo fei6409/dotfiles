@@ -417,6 +417,9 @@ set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @continuum-boot 'on'
 set -g @continuum-restore 'on'
+# tmux-yank configs for X11 clipboard
+# @yank_selection_mouse default is 'primary' i.e. mouse middle click
+set -g @yank_selection_mouse 'clipboard'
 
 
 # -- custom variables ----------------------------------------------------------
