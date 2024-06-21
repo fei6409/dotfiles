@@ -27,13 +27,12 @@
     ~/.tmux.conf: modules/tmux/.tmux.conf
     ~/.tmux.conf.local: tmux.conf.local
 # vim
-    ~/.vim/autoload/plug.vim: modules/vim-plug/plug.vim
-    ~/.vimrc: vimrc
-    ~/.vim/coc-settings.json: coc-settings.json
+#     ~/.vim/autoload/plug.vim: modules/vim-plug/plug.vim
+#     ~/.vimrc: vimrc
+#     ~/.vim/coc-settings.json: coc-settings.json
 # nvim / lua
     ~/.config/nvim/lua: lua
     ~/.config/nvim/init.lua: init.lua
-    ~/.config/nvim/coc-settings.json: coc-settings.json
 # zsh / prezto
     ~/.zprezto: modules/prezto
     ~/.zlogin: modules/prezto/runcoms/zlogin
