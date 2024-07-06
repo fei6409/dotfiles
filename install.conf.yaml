@@ -45,6 +45,7 @@
     ~/.p10k.zsh: p10k.zsh
     ~/.lazy-load.zsh: lazy-load.zsh
     ~/.my-git-prompt.zsh: my-git-prompt.zsh
+    ~/.local/bin/better-git-branch: bin/better-git-branch
 # fzf
     ~/.fzf: modules/fzf
 # pyenv (only for Linux)

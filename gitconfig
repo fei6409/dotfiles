@@ -7,6 +7,7 @@
   fsmonitor = true
 [alias]
   au = add -u
+  bb = !better-git-branch # run external script
   bl = blame
   bli = blame -w -C -C -C # ignore white space and line moved in the same commit
   br = branch
