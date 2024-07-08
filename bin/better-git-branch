@@ -34,19 +34,24 @@ printf "${GREEN}%-${width1}s ${RED}%-${width2}s ${BLUE}%-${width3}s ${YELLOW}%-$
 printf "${GREEN}%-${width1}s ${RED}%-${width2}s ${BLUE}%-${width3}s ${YELLOW}%-${width4}s ${NO_COLOR}%-${width5}s\n" "-----" "------" "------------------------------" "-------------------" " "
 
 
-format_string="%(objectname:short)@%(refname:short)@%(committerdate:relative)"
+format_string="%(objectname:short)@%(refname:short)@%(committerdate:relative)@%(upstream:short)"
 IFS=$'\n'
 
 for branchdata in $(git for-each-ref --sort=-authordate --format="$format_string" refs/heads/ --no-merged); do
     sha=$(echo "$branchdata" | cut -d '@' -f1)
     branch=$(echo "$branchdata" | cut -d '@' -f2)
     time=$(echo "$branchdata" | cut -d '@' -f3)
-    if [ "$branch" != "$main_branch" ]; then
+    upstream_branch=$(echo "$branchdata" | cut -d '@' -f4)
+    if [[ "$branch" != "$main_branch" ]]; then
             # Get branch description
             description=$(git config branch."$branch".description)
 
             # Count commits ahead and behind
-            ahead_behind=$(count_commits "$sha" "$main_branch")
+            if [[ -n "$upstream_branch" ]]; then
+                ahead_behind=$(count_commits "$sha" "$upstream_branch")
+            else
+                ahead_behind=$(count_commits "$sha" "$main_branch")
+            fi
             ahead=$(echo "$ahead_behind" | cut -f2)
             behind=$(echo "$ahead_behind" | cut -f1)
 
