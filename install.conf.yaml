@@ -13,10 +13,10 @@
         description: Installing submodules
         stdout: true
 
-- create:
-    - ~/.vim/.backup
-    - ~/.vim/.swp
-    - ~/.vim/.undo
+# - create:
+#     - ~/.vim/.backup
+#     - ~/.vim/.swp
+#     - ~/.vim/.undo
 
 - link:
 # git
