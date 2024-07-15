@@ -115,6 +115,15 @@ keyset('v', '<leader>y', '"+y', { desc = 'Copy to system clipboard' })
 keyset('n', '<leader>p', '"+p', { desc = 'Paste from system clipboard' })
 keyset('n', '<leader>P', '"+P', { desc = 'Paste from system clipboard' })
 
+-- Switch expandtab status & tab width
+keyset('n', '<F4>', function()
+    if vim.o.expandtab then
+        vim.cmd [[setlocal noexpandtab tabstop=8 shiftwidth=8]]
+    else
+        vim.cmd [[setlocal expandtab tabstop=4 shiftwidth=4]]
+    end
+end, { desc = 'Switch expandtab status' })
+
 -- print syntax name and mapped highlight group under current cursor
 keyset('n', '<F7>', function()
     local fn = vim.fn
