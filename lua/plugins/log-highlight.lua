@@ -1,7 +1,7 @@
 -- log-highlight
 return {
     'fei6409/log-highlight.nvim',
-    event = 'VeryLazy',
+    -- event = 'VeryLazy',
     opts = {
         extension = 'log',
         filename = {
