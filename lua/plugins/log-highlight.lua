@@ -8,6 +8,7 @@ return {
             'messages',
             'logcat',
             'syslog',
+            'chrome',
         },
         pattern = {
             '/var/log/.*',
