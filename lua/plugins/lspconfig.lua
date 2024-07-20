@@ -132,11 +132,12 @@ return {
                     keyset('n', '<leader>k', vim.lsp.buf.signature_help, opts('LSP signature help'))
                     keyset('n', '<leader>rn', vim.lsp.buf.rename, opts('LSP rename'))
                     keyset({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts('LSP code action'))
-                    keyset({ 'n', 'v' }, '<leader>f', function()
-                        vim.lsp.buf.format { async = true }
-                        -- ensure always go back to normal mode
-                        vim.api.nvim_input('<ESC>')
-                    end, opts('LSP format'))
+                    -- Replaced by conform.nvim
+                    -- keyset({ 'n', 'v' }, '<leader>f', function()
+                    --     vim.lsp.buf.format { async = true }
+                    --     -- ensure always go back to normal mode
+                    --     vim.api.nvim_input('<ESC>')
+                    -- end, opts('LSP format'))
 
                     keyset('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts('LSP add workspace folder'))
                     keyset('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts('LSP remove workspace folder'))

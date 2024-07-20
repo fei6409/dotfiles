@@ -1,0 +1,46 @@
+-- LSP Formatter
+return {
+    'stevearc/conform.nvim',
+    -- event = 'VeryLazy',
+    cmd = { 'ConformInfo' },
+    keys = {
+        {
+            '<leader>f',
+            function()
+                require('conform').format({ async = true })
+                -- Ensure always go back to normal mode.
+                vim.api.nvim_input('<ESC>')
+            end,
+            mode = { 'n', 'v' },
+            desc = 'Format buffer with conform.nvim',
+        },
+    },
+    opts = {
+        formatters_by_ft = {
+            c = { 'clang-format' },
+            cpp = { 'clang-format' },
+            go = { 'gofmt' },
+            lua = { 'stylua' },
+            markdown = { 'markdownlint' },
+            python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
+            sh = { 'shfmt' },
+            yaml = { 'yq', 'yamlfmt', stop_after_first = true },
+            zsh = { 'shfmt' },
+        },
+        formatters = {
+            shfmt = {
+                -- Indent 2 spaces.
+                prepend_args = { "-i", "2" },
+            },
+        },
+        default_format_opts = {
+            -- Fall back to LSP formatting if no formatters are available.
+            lsp_format = 'fallback',
+        },
+        notify_no_formatters = true,
+    },
+    init = function()
+        -- Overwrite the default formatexpr for `gq`.
+        vim.opt.formatexpr = "v:lua.require'conform'.formatexpr()"
+    end,
+}
