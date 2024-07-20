@@ -35,6 +35,7 @@
     ~/.config/nvim/init.lua: init.lua
 # zsh / prezto
     ~/.zprezto: modules/prezto
+    ~/.zprezto/contrib/fast-syntax-highlighting: modules/fast-syntax-highlighting
     ~/.zlogin: modules/prezto/runcoms/zlogin
     ~/.zlogout: modules/prezto/runcoms/zlogout
     ~/.zshenv: modules/prezto/runcoms/zshenv
