@@ -8,7 +8,8 @@ LSP_SERVER = {
     'jsonls',
     'lua_ls',
     'marksman',
-    'pyright',
+    -- 'pyright',
+    'ruff',
     'yamlls',
 }
 
