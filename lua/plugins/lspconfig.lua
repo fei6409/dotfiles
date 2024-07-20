@@ -39,13 +39,13 @@ return {
             -- server such that it can provide these candidates during
             -- a completion request.
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
-            local lspconfig = require('lspconfig')
+            local lspconfig = require 'lspconfig'
 
             -- Override floating window border.
             -- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
             local handlers = {
-                ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
-                ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
+                ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' }),
+                ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' }),
             }
 
             -- Bulk-setup LSP servers
@@ -74,9 +74,9 @@ return {
                 settings = {
                     Lua = {
                         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                        runtime = { version = 'LuaJIT', },
+                        runtime = { version = 'LuaJIT' },
                         -- Get the language server to recognize the `vim` global
-                        diagnostics = { globals = { 'vim' }, },
+                        diagnostics = { globals = { 'vim' } },
                         -- Make the server aware of Neovim runtime files
                         workspace = {
                             library = vim.api.nvim_get_runtime_file('', true),
@@ -84,7 +84,7 @@ return {
                             checkThirdParty = false,
                         },
                         -- Do not send telemetry data containing a randomized but unique identifier
-                        telemetry = { enable = false, },
+                        telemetry = { enable = false },
                     },
                 },
             }
@@ -94,14 +94,14 @@ return {
             local diag_format = function(d)
                 return string.format('%s [%s]', d.message, d.code)
             end
-            vim.diagnostic.config({
+            vim.diagnostic.config {
                 virtual_text = {
                     format = diag_format,
                 },
                 float = {
                     border = 'rounded',
                 },
-            })
+            }
 
             -- Use LspAttach autocommand to only map the following keys
             -- after the language server attaches to the current buffer
@@ -118,20 +118,20 @@ return {
                         return { buffer = ev.buf, silent = true, desc = desc }
                     end
 
-                    keyset('n', '<space>d', vim.diagnostic.open_float, opts('Diagnostic open float window'))
-                    keyset('n', '[d', vim.diagnostic.goto_next, opts('Diagnostic goto next'))
-                    keyset('n', ']d', vim.diagnostic.goto_prev, opts('Diagnostic goto prev'))
+                    keyset('n', '<space>d', vim.diagnostic.open_float, opts 'Diagnostic open float window')
+                    keyset('n', '[d', vim.diagnostic.goto_next, opts 'Diagnostic goto next')
+                    keyset('n', ']d', vim.diagnostic.goto_prev, opts 'Diagnostic goto prev')
 
-                    keyset('n', 'K', vim.lsp.buf.hover, opts('LSP hover'))
-                    keyset('n', 'gD', vim.lsp.buf.declaration, opts('LSP declaration'))
-                    keyset('n', 'gd', vim.lsp.buf.definition, opts('LSP definition'))
-                    keyset('n', 'gi', vim.lsp.buf.implementation, opts('LSP implementation'))
-                    keyset('n', 'gt', vim.lsp.buf.type_definition, opts('LSP type definition'))
-                    keyset('n', 'gr', vim.lsp.buf.references, opts('LSP references'))
+                    keyset('n', 'K', vim.lsp.buf.hover, opts 'LSP hover')
+                    keyset('n', 'gD', vim.lsp.buf.declaration, opts 'LSP declaration')
+                    keyset('n', 'gd', vim.lsp.buf.definition, opts 'LSP definition')
+                    keyset('n', 'gi', vim.lsp.buf.implementation, opts 'LSP implementation')
+                    keyset('n', 'gt', vim.lsp.buf.type_definition, opts 'LSP type definition')
+                    keyset('n', 'gr', vim.lsp.buf.references, opts 'LSP references')
 
-                    keyset('n', '<leader>k', vim.lsp.buf.signature_help, opts('LSP signature help'))
-                    keyset('n', '<leader>rn', vim.lsp.buf.rename, opts('LSP rename'))
-                    keyset({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts('LSP code action'))
+                    keyset('n', '<leader>k', vim.lsp.buf.signature_help, opts 'LSP signature help')
+                    keyset('n', '<leader>rn', vim.lsp.buf.rename, opts 'LSP rename')
+                    keyset({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts 'LSP code action')
                     -- Replaced by conform.nvim
                     -- keyset({ 'n', 'v' }, '<leader>f', function()
                     --     vim.lsp.buf.format { async = true }
@@ -139,11 +139,11 @@ return {
                     --     vim.api.nvim_input('<ESC>')
                     -- end, opts('LSP format'))
 
-                    keyset('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts('LSP add workspace folder'))
-                    keyset('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts('LSP remove workspace folder'))
+                    keyset('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts 'LSP add workspace folder')
+                    keyset('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts 'LSP remove workspace folder')
                     keyset('n', '<leader>wl', function()
                         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-                    end, opts('LSP list workspace folder'))
+                    end, opts 'LSP list workspace folder')
                 end,
             })
         end,

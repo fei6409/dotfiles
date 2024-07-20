@@ -10,7 +10,7 @@ return {
         vim.g.gruvbox_material_better_performance = 1
         -- darker background color
         vim.g.gruvbox_material_colors_override = { bg0 = { '#080808', '232' } }
-        vim.cmd.colorscheme('gruvbox-material')
+        vim.cmd.colorscheme 'gruvbox-material'
     end,
     enabled = false,
 }

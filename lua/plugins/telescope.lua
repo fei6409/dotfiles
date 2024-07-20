@@ -10,10 +10,10 @@ return {
     },
     event = 'VeryLazy',
     config = function()
-        local tel_builtin = require('telescope.builtin')
+        local tel_builtin = require 'telescope.builtin'
         -- Inspired by https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes
         local function is_git_repo()
-            vim.fn.system('git rev-parse --is-inside-work-tree')
+            vim.fn.system 'git rev-parse --is-inside-work-tree'
             return vim.v.shell_error == 0
         end
         local function get_git_root()
@@ -23,7 +23,9 @@ return {
         -- If in a git project directory, find_files() will start from the git root.
         local project_files = function()
             local opts = {}
-            if is_git_repo() then opts = { cwd = get_git_root() } end
+            if is_git_repo() then
+                opts = { cwd = get_git_root() }
+            end
             tel_builtin.find_files(opts)
         end
 
@@ -33,13 +35,16 @@ return {
         keyset('n', '<leader>sh', tel_builtin.help_tags, { desc = '[S]earch [H]elp' })
         keyset('n', '<leader>sk', tel_builtin.keymaps, { desc = '[S]earch [K]eymaps' })
         keyset('n', '<leader>sd', tel_builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-        keyset('n', '<leader>sf', project_files,
-            { desc = '[S]earch [F]iles Modified: search from repo root when in a Git repo' })
+        keyset(
+            'n',
+            '<leader>sf',
+            project_files,
+            { desc = '[S]earch [F]iles Modified: search from repo root when in a Git repo' }
+        )
         keyset('n', '<leader>s/', function()
-                local opt = require('telescope.themes').get_dropdown { previewer = false, }
-                tel_builtin.current_buffer_fuzzy_find(opt)
-            end,
-            { desc = '[S]earch in [/]current buffer' })
+            local opt = require('telescope.themes').get_dropdown { previewer = false }
+            tel_builtin.current_buffer_fuzzy_find(opt)
+        end, { desc = '[S]earch in [/]current buffer' })
 
         require('telescope').setup {
             defaults = {
@@ -52,6 +57,6 @@ return {
                 },
             },
         }
-        require('telescope').load_extension('fzf')
+        require('telescope').load_extension 'fzf'
     end,
 }

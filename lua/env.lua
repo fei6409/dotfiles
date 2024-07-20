@@ -65,7 +65,6 @@ opt.softtabstop = -1
 -- tab width
 opt.tabstop = 4
 
-
 -- key mappings --
 local keyset = vim.keymap.set
 keyset({ 'n', 'v' }, ';', ':')
@@ -127,14 +126,15 @@ end, { desc = 'Switch expandtab status' })
 -- print syntax name and mapped highlight group under current cursor
 keyset('n', '<F7>', function()
     local fn = vim.fn
-    local attr = function(x) return fn.synIDattr(x, 'name') end
+    local attr = function(x)
+        return fn.synIDattr(x, 'name')
+    end
     -- effective syntax ID
-    local eid = fn.synID(fn.line('.'), fn.col('.'), 1)
+    local eid = fn.synID(fn.line '.', fn.col '.', 1)
     -- transparent syntax ID
-    local tid = fn.synID(fn.line('.'), fn.col('.'), 0)
+    local tid = fn.synID(fn.line '.', fn.col '.', 0)
 
-    print('syn<' .. attr(eid) .. '>, trans<' .. attr(tid) ..
-        '> -> hlgrp<' .. attr(fn.synIDtrans(eid)) .. '>')
+    print('syn<' .. attr(eid) .. '>, trans<' .. attr(tid) .. '> -> hlgrp<' .. attr(fn.synIDtrans(eid)) .. '>')
 end, { desc = 'Print highlight group' })
 
 -- toggle colorcolumn
@@ -154,7 +154,6 @@ P = function(v)
     print(vim.inspect(v))
     return v
 end
-
 
 -- autocmds --
 local augroup = vim.api.nvim_create_augroup('UserCmds', { clear = true })
@@ -204,7 +203,9 @@ autocmd('BufWritePre', {
         local skip_types = { 'diff', 'gitsendemail', 'markdown' }
 
         for _, type in pairs(skip_types) do
-            if vim.bo.filetype == type then return end
+            if vim.bo.filetype == type then
+                return
+            end
         end
         vim.cmd [[%s/\s\+$//e]]
     end,

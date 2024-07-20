@@ -7,9 +7,9 @@ return {
         {
             '<leader>f',
             function()
-                require('conform').format({ async = true })
+                require('conform').format { async = true }
                 -- Ensure always go back to normal mode.
-                vim.api.nvim_input('<ESC>')
+                vim.api.nvim_input '<ESC>'
             end,
             mode = { 'n', 'v' },
             desc = 'Format buffer with conform.nvim',
@@ -30,7 +30,7 @@ return {
         formatters = {
             shfmt = {
                 -- Indent 2 spaces.
-                prepend_args = { "-i", "2" },
+                prepend_args = { '-i', '2' },
             },
         },
         default_format_opts = {
