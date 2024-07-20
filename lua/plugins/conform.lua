@@ -21,7 +21,7 @@ return {
             cpp = { 'clang-format' },
             go = { 'gofmt' },
             lua = { 'stylua' },
-            markdown = { 'markdownlint' },
+            markdown = { 'deno_fmt' },
             python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
             sh = { 'shfmt' },
             yaml = { 'yq', 'yamlfmt', stop_after_first = true },
@@ -31,6 +31,9 @@ return {
             shfmt = {
                 -- Indent 2 spaces.
                 prepend_args = { '-i', '2' },
+            },
+            deno_fmt = {
+                append_args = { '--indent-width', '4' },
             },
         },
         default_format_opts = {
