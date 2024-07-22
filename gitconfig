@@ -29,6 +29,8 @@
   sort = -committerdate
 [http]
   cookiefile = ~/.gitcookies
+[init]
+  defaultBranch = main
 [interactive]
   diffFilter = delta --color-only
 [merge]
