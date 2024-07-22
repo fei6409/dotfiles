@@ -35,6 +35,8 @@
   conflictstyle = zdiff3
 [pull]
   rebase = false
+[rebase]
+  autoStash = true
 [rerere]
   enabled = true
 [status]
