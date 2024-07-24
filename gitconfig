@@ -64,6 +64,11 @@
   line-numbers-right-style = 243
   plus-style = syntax "#002800"
   minus-style = syntax "#300000"
+  map-styles = \
+    bold purple => orchid, \
+    bold cyan => skyblue, \
+    bold blue => dodgerblue, \
+    bold yellow => khaki
 [color]
   ui = true
 [color "diff-highlight"]
