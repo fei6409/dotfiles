@@ -27,6 +27,8 @@
   threeWay = true
 [branch]
   sort = -committerdate
+[diff]
+  colorMoved = default
 [http]
   cookiefile = ~/.gitcookies
 [init]
