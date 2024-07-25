@@ -101,7 +101,7 @@ keyset('n', '<leader>q', function()
 end, { desc = 'Close current buffer or quickfix window' })
 
 -- close highlight search
-keyset('n', '<leader>l', ':nohlsearch<CR>')
+keyset('n', '<leader>l', '<cmd>nohlsearch<CR>')
 
 -- unfold all foldings
 keyset('n', '<leader>r', 'zR<CR>')
