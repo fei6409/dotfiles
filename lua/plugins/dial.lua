@@ -18,7 +18,7 @@ return {
     end,
     keys = {
         {
-            '<C-s>',
+            '<C-a>',
             function()
                 return require('dial.map').inc_normal()
             end,
