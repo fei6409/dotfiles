@@ -8,4 +8,5 @@ return {
         -- P    reblame at nth parent
         { '<leader>b', '<cmd>Git blame<CR>' },
     },
+    cmd = { 'Git', 'G' },
 }
