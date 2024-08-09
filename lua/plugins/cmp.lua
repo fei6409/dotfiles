@@ -16,6 +16,7 @@ return {
         local luasnip = require 'luasnip'
 
         cmp.setup {
+            preselect = cmp.PreselectMode.None,
             mapping = {
                 ['<Tab>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
@@ -50,13 +51,13 @@ return {
                     c = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true },
                 },
             },
-            sources = cmp.config.sources {
+            sources = cmp.config.sources({
                 -- the order matters!
                 { name = 'nvim_lsp', max_item_count = 20 },
-                { name = 'path' },
                 { name = 'luasnip' },
+            }, {
                 { name = 'buffer', keyword_length = 3 },
-            },
+            }),
             snippet = {
                 expand = function(args)
                     luasnip.lsp_expand(args.body)
@@ -66,5 +67,16 @@ return {
                 native_menu = false,
             },
         }
+
+        -- Use path & cmdline source for ':'
+        cmp.setup.cmdline(':', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = cmp.config.sources({
+                { name = 'path', max_item_count = 20 },
+            }, {
+                { name = 'cmdline' },
+            }),
+            matching = { disallow_symbol_nonprefix_matching = false },
+        })
     end,
 }
