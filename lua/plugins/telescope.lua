@@ -10,6 +10,7 @@ return {
     },
     event = 'VeryLazy',
     config = function()
+        local tel_actions = require 'telescope.actions'
         local tel_builtin = require 'telescope.builtin'
         -- Inspired by https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes
         local function is_git_repo()
@@ -20,14 +21,6 @@ return {
             local dot_git_path = vim.fn.finddir('.git', '.;')
             return vim.fn.fnamemodify(dot_git_path, ':h')
         end
-        -- If in a git project directory, find_files() will start from the git root.
-        local project_files = function()
-            local opts = {}
-            if is_git_repo() then
-                opts = { cwd = get_git_root() }
-            end
-            tel_builtin.find_files(opts)
-        end
 
         local keyset = vim.keymap.set
         keyset('n', '<leader>ss', tel_builtin.grep_string, { desc = '[S]earch current [S]tring' })
@@ -35,24 +28,39 @@ return {
         keyset('n', '<leader>sh', tel_builtin.help_tags, { desc = '[S]earch [H]elp' })
         keyset('n', '<leader>sk', tel_builtin.keymaps, { desc = '[S]earch [K]eymaps' })
         keyset('n', '<leader>sd', tel_builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-        keyset(
-            'n',
-            '<leader>sf',
-            project_files,
-            { desc = '[S]earch [F]iles Modified: search from repo root when in a Git repo' }
-        )
-        keyset('n', '<leader>s/', function()
-            local opt = require('telescope.themes').get_dropdown { previewer = false }
-            tel_builtin.current_buffer_fuzzy_find(opt)
-        end, { desc = '[S]earch in [/]current buffer' })
+        keyset('n', '<leader>sc', tel_builtin.commands, { desc = '[S]earch [C]ommands' })
+        keyset('n', '<leader>sr', tel_builtin.registers, { desc = '[S]earch [R]egisters' })
+        keyset('n', '<leader>st', tel_builtin.treesitter, { desc = '[S]earch [T]reesitter' })
+        keyset('n', '<leader>se', tel_builtin.spell_suggest, { desc = '[S]earch [E]nglish suggests' })
+        keyset('n', '<leader>s/', tel_builtin.current_buffer_fuzzy_find, { desc = '[S]earch in [/]current buffer' })
+        keyset('n', '<leader>sld', tel_builtin.lsp_definitions, { desc = '[S]earch [L]SP [D]efinitions' })
+        keyset('n', '<leader>sli', tel_builtin.lsp_implementations, { desc = '[S]earch [L]SP [I]mplementations' })
+        keyset('n', '<leader>slr', tel_builtin.lsp_references, { desc = '[S]earch [L]SP [R]eferences' })
+        keyset('n', '<leader>sf', function()
+            local opts = {}
+            if is_git_repo() then
+                opts = { cwd = get_git_root() }
+            end
+            tel_builtin.find_files(opts)
+        end, { desc = '[S]earch [F]iles Modified: Find files from Git repo root when possible' })
 
         require('telescope').setup {
             defaults = {
                 layout_config = { height = 0.95, width = 0.9 },
                 -- Close Telescope directly (instead of back to normal mode)
                 mappings = {
-                    i = {
-                        ['<esc>'] = 'close',
+                    i = { ['<esc>'] = 'close' },
+                },
+            },
+            pickers = {
+                current_buffer_fuzzy_find = {
+                    layout_strategy = 'vertical',
+                    previewer = false,
+                },
+                live_grep = {
+                    -- Anchor current live grep result and turn to fuzzy search.
+                    mappings = {
+                        i = { ['<c-f>'] = tel_actions.to_fuzzy_refine },
                     },
                 },
             },
