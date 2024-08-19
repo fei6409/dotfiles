@@ -1,8 +1,8 @@
 -- `fugitive.vim` style Git blame visualizer
 return {
-    -- 'FabijanZulj/blame.nvim',
-    'fei6409/blame.nvim',
-    branch = 'focus_blame',
+    'FabijanZulj/blame.nvim',
+    -- 'fei6409/blame.nvim',
+    -- branch = 'focus_blame',
     keys = {
         {
             '<leader>b',
