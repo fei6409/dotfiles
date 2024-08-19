@@ -48,8 +48,8 @@
 [pretty]
   fixes = "%C(auto)Fixes: %h (\"%s\")%C(reset)"
   reflog = "%C(auto)%h %<(9)%gd %C(brightblue)%ci%C(reset) %s"
-  onelinev2 = "%C(auto)%h %s%+d%C(reset)"
-  onelinev3 = "%C(auto)%h %<(100)%s %C(green)%ae %C(brightblue)%ci%+d%C(reset)"
+  onelinev2 = "%C(auto)%h %<(80)%s %d%C(reset)"
+  onelinev3 = "%C(auto)%h %<(100)%s %C(green)%ae %C(brightblue)%ci %C(auto)%d%C(reset)"
 [delta]
   syntax-theme = Monokai Extended
   line-numbers = true
