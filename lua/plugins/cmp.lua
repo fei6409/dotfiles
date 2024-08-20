@@ -4,6 +4,7 @@ return {
     'hrsh7th/nvim-cmp',
     dependencies = {
         'hrsh7th/cmp-buffer',
+        'hrsh7th/cmp-cmdline',
         'hrsh7th/cmp-path',
         'hrsh7th/cmp-nvim-lsp',
         -- for LuaSnip
@@ -70,12 +71,19 @@ return {
 
         -- Use path & cmdline source for ':'
         cmp.setup.cmdline(':', {
-            mapping = cmp.mapping.preset.cmdline(),
-            sources = cmp.config.sources({
+            mapping = cmp.mapping.preset.cmdline {
+                ['<CR>'] = cmp.mapping(function(fallback)
+                    if cmp.visible() and cmp.get_active_entry() then
+                        cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
+                    else
+                        fallback()
+                    end
+                end, { 'c' }),
+            },
+            sources = cmp.config.sources {
                 { name = 'path', max_item_count = 20 },
-            }, {
                 { name = 'cmdline' },
-            }),
+            },
             matching = { disallow_symbol_nonprefix_matching = false },
         })
     end,
