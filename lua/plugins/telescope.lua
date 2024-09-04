@@ -53,10 +53,10 @@ return {
                 },
             },
             pickers = {
-                current_buffer_fuzzy_find = {
-                    layout_strategy = 'vertical',
-                    previewer = false,
-                },
+                -- current_buffer_fuzzy_find = {
+                --     layout_strategy = 'vertical',
+                --     previewer = false,
+                -- },
                 live_grep = {
                     -- Anchor current live grep result and turn to fuzzy search.
                     mappings = {
