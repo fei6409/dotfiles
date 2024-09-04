@@ -23,7 +23,10 @@ return {
     },
     {
         'williamboman/mason-lspconfig.nvim',
-        -- event = 'VeryLazy',
+        dependencies = {
+            'williamboman/mason.nvim',
+        },
+        event = 'VeryLazy',
         opts = {
             ensure_installed = LSP_SERVER,
         },
@@ -31,9 +34,10 @@ return {
     {
         'neovim/nvim-lspconfig',
         dependencies = {
+            'williamboman/mason-lspconfig.nvim',
             'hrsh7th/nvim-cmp',
         },
-        -- event = 'VeryLazy',
+        event = 'VeryLazy',
         config = function()
             -- nvim-cmp supports more types of completion candidates,
             -- so users must override the capabilities sent to the
