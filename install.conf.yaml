@@ -75,6 +75,7 @@
 - shell:
     - [brew update, Updating brew for macOS]
     - [brew install git-delta, Installing git-delta]
+    - [brew install git-absorb, Installing git-absorb]
     - [brew install ripgrep, Installing ripgrep]
     - [brew install fzf, Installing fzf]
     - [brew install fd, Installing fd]
@@ -93,6 +94,7 @@
     - [sudo apt update, Updating apt for Debian]
     - [sudo apt install -y ninja-build gettext cmake unzip curl, Prerequisites for compiling neovim]
     - [sudo apt install -y ripgrep, Installing ripgrep]
+    - [sudo apt install -y git-absorb, Installing git-absorb]
     - [sudo apt install -y fzf, Installing fzf]
     - [sudo apt install -y fd-find, Installing fd]
     - [sudo apt install -y shellcheck, Installing shellcheck]
