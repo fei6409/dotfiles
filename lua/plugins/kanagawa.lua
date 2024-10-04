@@ -1,4 +1,5 @@
--- colorscheme
+-- Colorscheme
+-- https://github.com/rebelot/kanagawa.nvim
 return {
     'rebelot/kanagawa.nvim',
     -- make sure the colorscheme is loaded first since start plugins can

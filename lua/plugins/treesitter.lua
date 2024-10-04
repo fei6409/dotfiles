@@ -1,4 +1,5 @@
--- nvim tree-sitter interface and highlighting
+-- Neovim tree-sitter interface and highlighting
+-- https://github.com/nvim-treesitter/nvim-treesitter
 return {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',

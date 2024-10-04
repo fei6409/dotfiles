@@ -1,4 +1,5 @@
--- visual indentation guide
+-- Visual indentation guide
+-- https://github.com/lukas-reineke/indent-blankline.nvim
 return {
     'lukas-reineke/indent-blankline.nvim',
     event = 'VeryLazy',

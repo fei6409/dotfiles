@@ -1,6 +1,6 @@
 -- LSP config
+-- https://github.com/neovim/nvim-lspconfig
 -- setup reference: https://youtu.be/puWgHa7k3SY
-
 LSP_SERVER = {
     'bashls',
     'clangd',

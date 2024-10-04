@@ -1,4 +1,5 @@
 -- LSP Formatter
+-- https://github.com/stevearc/conform.nvim
 return {
     'stevearc/conform.nvim',
     -- event = 'VeryLazy',

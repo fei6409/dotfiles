@@ -1,4 +1,5 @@
 -- Enhanced increment/decrement
+-- https://github.com/monaqa/dial.nvim
 return {
     'monaqa/dial.nvim',
     config = function()

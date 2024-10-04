@@ -1,4 +1,5 @@
--- surrounder
+-- Add surrounding pairs (quotes, braces)
+-- https://github.com/kylechui/nvim-surround
 return {
     'kylechui/nvim-surround',
     version = '*',

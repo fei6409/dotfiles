@@ -1,4 +1,5 @@
--- markdown-preview.nvim
+-- Markdown previewer
+-- https://github.com/iamcco/markdown-preview.nvim
 return {
     'iamcco/markdown-preview.nvim',
     -- Fix Lazy Update error (https://github.com/iamcco/markdown-preview.nvim/issues/616):

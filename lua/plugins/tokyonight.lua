@@ -1,4 +1,5 @@
--- colorscheme
+-- Colorscheme
+-- https://github.com/folke/tokyonight.nvim
 return {
     'folke/tokyonight.nvim',
     -- make sure the colorscheme is loaded first since start plugins can

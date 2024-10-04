@@ -1,4 +1,5 @@
--- completion engine
+-- Completion engine
+-- https://github.com/hrsh7th/nvim-cmp
 -- setup reference: https://youtu.be/_DnmphIwnjo
 return {
     'hrsh7th/nvim-cmp',

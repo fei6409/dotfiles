@@ -1,4 +1,5 @@
--- `fugitive.vim` style Git blame visualizer
+-- Fugitive-style Git blame visualizer
+-- https://github.com/FabijanZulj/blame.nvim/
 return {
     'FabijanZulj/blame.nvim',
     -- 'fei6409/blame.nvim',

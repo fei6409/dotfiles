@@ -1,4 +1,5 @@
 -- Cursor motion
+-- https://github.com/ggandor/leap.nvim
 return {
     'ggandor/leap.nvim',
     opts = {},

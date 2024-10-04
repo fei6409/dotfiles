@@ -1,4 +1,5 @@
 -- coc.nvim
+-- https://github.com/neoclide/coc.nvim
 return {
     'neoclide/coc.nvim',
     branch = 'release',

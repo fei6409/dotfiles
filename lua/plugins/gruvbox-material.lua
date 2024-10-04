@@ -1,4 +1,5 @@
--- colorscheme
+-- Colorscheme
+-- https://github.com/sainnhe/gruvbox-material
 return {
     'sainnhe/gruvbox-material',
     -- make sure the colorscheme is loaded first since start plugins can

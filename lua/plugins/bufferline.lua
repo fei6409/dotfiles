@@ -1,6 +1,7 @@
+-- Tabline support
+-- https://github.com/akinsho/bufferline.nvim
 BG_HL = '#2A2A37'
 
--- Tabline support
 return {
     'akinsho/bufferline.nvim',
     version = '*',

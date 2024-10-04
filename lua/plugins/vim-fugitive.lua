@@ -1,4 +1,5 @@
--- vim-fugitive for its git blame feature
+-- Git integration for Vim
+-- https://github.com/tpope/vim-fugitive
 return {
     'tpope/vim-fugitive',
     keys = {
