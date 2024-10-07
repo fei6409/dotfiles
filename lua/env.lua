@@ -96,7 +96,32 @@ keyset('n', '<leader>q', function()
     if vim.bo.buftype == 'quickfix' then
         vim.cmd [[cclose]]
     else
-        vim.cmd [[bp|bw #]]
+        -- `bw` jumps to the most recent active buffers after closing the
+        -- current one, not the adjacent ones.
+        -- This customizes the keymap behavior to jump to the next listed buffer
+        -- instead, and if the closed buffer is the last listed buffer, jump to
+        -- the previous one instead so it doesn't go to the first listed buffer.
+
+        -- Get the current buffer number.
+        local cur_buf = vim.api.nvim_get_current_buf()
+
+        -- Get the list of all buffer numbers.
+        local bufs = vim.api.nvim_list_bufs()
+        local last_buf
+
+        for _, v in pairs(bufs) do
+            if vim.fn.buflisted(v) == 1 then
+                last_buf = v
+            end
+        end
+
+        if cur_buf == last_buf then
+            -- Jump to the previous buffer.
+            vim.cmd [[bprevious|bwipeout #]]
+        else
+            -- Jump to the next buffer.
+            vim.cmd [[bnext|bwipeout #]]
+        end
     end
 end, { desc = 'Close current buffer or quickfix window' })
 
