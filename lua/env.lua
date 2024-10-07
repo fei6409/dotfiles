@@ -84,17 +84,16 @@ keyset('n', '<TAB>', ':bnext<CR>')
 -- previous buffer
 keyset('n', '<S-TAB>', ':bprevious<CR>')
 
--- close quickfix window
-keyset('n', '<ESC>', function()
-    if vim.bo.buftype == 'quickfix' then
-        vim.cmd [[cclose]]
-    end
-end, { desc = 'cclose quickfix with ESC key' })
-
 -- close current buffer or quickfix window
 keyset('n', '<leader>q', function()
     if vim.bo.buftype == 'quickfix' then
+        -- `cclose` to close quickfix window.
         vim.cmd [[cclose]]
+    elseif vim.bo.buftype == 'help' then
+        -- I use `wincmd L` autocmd to open help window vertically.
+        -- The next help window will be again opened horizontally if I use `q`
+        -- to close current one. `bwipeout` seems to work as expected.
+        vim.cmd [[bwipeout]]
     else
         -- `bw` jumps to the most recent active buffers after closing the
         -- current one, not the adjacent ones.
@@ -123,7 +122,16 @@ keyset('n', '<leader>q', function()
             vim.cmd [[bnext|bwipeout #]]
         end
     end
-end, { desc = 'Close current buffer or quickfix window' })
+end, { desc = 'all-in-one buffer close keymap' })
+
+-- close non-file windows with ESC (quickfix, help etc.)
+keyset('n', '<ESC>', function()
+    if vim.bo.buftype == 'quickfix' then
+        vim.cmd [[cclose]]
+    elseif vim.bo.buftype == 'help' then
+        vim.cmd [[bwipeout]]
+    end
+end, { desc = 'extra buffer close keymap' })
 
 -- close highlight search
 keyset('n', '<leader>l', '<cmd>nohlsearch<CR>')
@@ -193,8 +201,8 @@ autocmd('FileType', {
 autocmd('FileType', {
     pattern = { 'help', 'man' },
     group = augroup,
-    desc = 'Quick exit on help page',
-    command = [[nnoremap <buffer><silent> q :q<CR>]],
+    desc = 'Split help windows vertically',
+    command = [[wincmd L]],
 })
 autocmd('FileType', {
     pattern = { 'makefile' },
