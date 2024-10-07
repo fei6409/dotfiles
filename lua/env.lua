@@ -160,7 +160,7 @@ local augroup = vim.api.nvim_create_augroup('UserCmds', { clear = true })
 local autocmd = vim.api.nvim_create_autocmd
 
 autocmd('FileType', {
-    pattern = { 'gitcommit', 'markdown' },
+    pattern = { 'gitcommit', 'gitsendemail', 'markdown' },
     group = augroup,
     desc = 'Set spell check',
     command = [[setlocal spell]],
