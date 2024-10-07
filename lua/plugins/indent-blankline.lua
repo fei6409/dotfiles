@@ -44,7 +44,10 @@ return {
                 highlight = monochrome,
                 remove_blankline_trail = false,
             },
-            scope = { enabled = false },
+            scope = {
+                highlight = rainbow,
+                enabled = true,
+            },
         }
     end,
 }
