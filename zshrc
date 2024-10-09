@@ -72,17 +72,16 @@ export COLORTERM=truecolor
 
 # Use fdfind as FZF backend
 export FZF_DEFAULT_COMMAND="fd --type f --follow --hidden --exclude .git"
-# https://github.com/catppuccin/fzf
 export FZF_DEFAULT_OPTS="
---color=bg:#1e1e2e,fg:#cdd6f4,hl:#f38ba8
---color=bg+:#313244,fg+:#cdd6f4,hl+:#f38ba8
---color=info:#cba6f7,pointer:#f5e0dc,header:#f38ba8
---color=prompt:#cba6f7,marker:#f5e0dc,spinner:#f5e0dc
+  --color=fg:#cdcdcd,fg+:#e0e0e0,bg:#202030,bg+:#404040
+  --color=hl:#6bb6ff,hl+:#fc8f00,info:#eaeaae,marker:#74e560
+  --color=prompt:#cba6f7,spinner:#af5fff,pointer:#af5fff
+  --color=header:#87afaf,border:#505050,query:#e0e0e0
 "
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # Use bat for file preview.
 export FZF_CTRL_T_OPTS="
---preview 'bat --color=always --style=numbers --line-range=:100 {}'
+--preview 'bat --color=always --style=auto --theme=OneHalfDark --line-range=:100 {}'
 "
 export FZF_ALT_C_COMMAND="fd --type d"
 
