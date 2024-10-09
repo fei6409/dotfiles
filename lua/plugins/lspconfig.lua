@@ -37,7 +37,8 @@ return {
             'williamboman/mason-lspconfig.nvim',
             'hrsh7th/nvim-cmp',
         },
-        event = 'VeryLazy',
+        -- event = 'VeryLazy',
+        event = { "BufReadPre", "BufNewFile" },
         config = function()
             -- nvim-cmp supports more types of completion candidates,
             -- so users must override the capabilities sent to the
