@@ -71,6 +71,13 @@
         if: '[[ `uname` == Linux ]]'
         path: /usr/bin/batcat
 
+# common shell commands
+- shell:
+    -
+        command: curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+        description: Installing Zoxide
+        stdout: true
+
 # brew for macOS
 - shell:
     - [brew update, Updating brew for macOS]

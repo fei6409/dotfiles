@@ -98,6 +98,9 @@ zstyle ':completion:*' users fei6409 fshao root
 # https://superuser.com/questions/1390977/pressing-ctrl-s-by-mistake-while-using-vim
 # stty -ixon
 
+# Setup Zoxide
+cmd_exist zoxide && eval "$(zoxide init zsh)"
+
 # shellcheck disable=SC1090
 chk_src() { [[ -f "$1" ]] && source "$1"; }
 
