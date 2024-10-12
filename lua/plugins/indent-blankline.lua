@@ -4,8 +4,6 @@ return {
     'lukas-reineke/indent-blankline.nvim',
     event = 'VeryLazy',
     config = function()
-        -- vim.cmd [[highlight Gray guibg=#181818 gui=nocombine]]
-        -- vim.cmd [[highlight Black guibg=#0d0c0c gui=nocombine]]
         local monochrome = {
             'MonochromeLight',
             'MonochromeDark',
