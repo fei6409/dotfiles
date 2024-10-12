@@ -30,5 +30,7 @@ return {
         },
         auto_install = true,
         highlight = { enable = true },
+        -- Experimental feature
+        indent = { enable = true },
     },
 }
