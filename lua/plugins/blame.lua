@@ -2,8 +2,6 @@
 -- https://github.com/FabijanZulj/blame.nvim/
 return {
     'FabijanZulj/blame.nvim',
-    -- 'fei6409/blame.nvim',
-    -- branch = 'focus_blame',
     keys = {
         {
             '<leader>b',

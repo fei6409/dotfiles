@@ -6,7 +6,6 @@ return {
     main = 'nvim-treesitter.configs',
     -- event = 'VeryLazy',
     opts = {
-        -- the first five listed parsers should always be installed
         ensure_installed = {
             'bash',
             'c',
