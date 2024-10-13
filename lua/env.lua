@@ -108,9 +108,10 @@ keyset('n', '<leader>q', function()
         local bufs = vim.api.nvim_list_bufs()
         local last_buf
 
-        for _, v in pairs(bufs) do
-            if vim.fn.buflisted(v) == 1 then
-                last_buf = v
+        for i = #bufs, 1, -1 do
+            if vim.fn.buflisted(bufs[i]) == 1 then
+                last_buf = bufs[i]
+                break
             end
         end
 
