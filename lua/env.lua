@@ -80,9 +80,9 @@ keyset({ 'n', 'v' }, 'x', '"_x')
 keyset({ 'n', 'v' }, 's', '"_s')
 
 -- next buffer
-keyset('n', '<TAB>', ':bnext<CR>')
+keyset('n', '<TAB>', '<cmd>bnext<CR>')
 -- previous buffer
-keyset('n', '<S-TAB>', ':bprevious<CR>')
+keyset('n', '<S-TAB>', '<cmd>bprevious<CR>')
 
 -- close current buffer or quickfix window
 keyset('n', '<leader>q', function()
@@ -139,8 +139,6 @@ keyset('n', '<leader>l', '<cmd>nohlsearch<CR>')
 
 -- unfold all foldings
 keyset('n', '<leader>r', 'zR<CR>')
--- prettify json, but just make use of nvim-lspconfig
--- keyset('n', '<leader>j', ':%!python -m json.tool<CR>')
 
 -- copy/paste with system clipboard
 keyset('n', '<leader>y', '"+yiw', { desc = 'Copy to system clipboard' })
