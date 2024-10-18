@@ -5,7 +5,6 @@ LSP_SERVER = {
     'bashls',
     'clangd',
     'denols',
-    'gopls',
     'jsonls',
     'lua_ls',
     'marksman',
@@ -13,6 +12,11 @@ LSP_SERVER = {
     'ruff',
     'yamlls',
 }
+
+-- Golang dependencies
+if vim.fn.executable('go') == 1 then
+    table.insert(LSP_SERVER, 'gopls')
+end
 
 return {
     -- Order matters, mason must come first before nvim-lspconfig
