@@ -18,7 +18,7 @@
   dh = diff HEAD
   dhh = diff HEAD~
   dw = diff --word-diff
-  fix = log --pretty=fixes
+  fix = log --pretty=fixes -1
   lg = log
   rb = rebase
   ref= reflog --pretty=reflog
