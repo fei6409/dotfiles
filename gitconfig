@@ -27,6 +27,8 @@
   threeWay = true
 [branch]
   sort = -committerdate
+[commit]
+  verbose = true
 [diff]
   colorMoved = default
 [http]
