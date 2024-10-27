@@ -5,9 +5,7 @@ return {
     keys = {
         {
             '<leader>b',
-            function()
-                vim.cmd 'BlameToggle'
-            end,
+            '<cmd>BlameToggle<CR>',
             desc = 'Git blame in window vsplit',
         },
     },
