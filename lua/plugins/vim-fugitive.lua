@@ -10,5 +10,5 @@ return {
         { '<leader>b', '<cmd>Git blame<CR>' },
     },
     cmd = { 'Git', 'G' },
-    enabled = false,
+    -- enabled = false,
 }

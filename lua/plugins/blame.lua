@@ -17,4 +17,5 @@ return {
             stack_pop = { '<BS>', '<S-TAB>' },
         },
     },
+    enabled = false,
 }
