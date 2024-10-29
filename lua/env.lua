@@ -94,6 +94,9 @@ keyset('n', '<leader>q', function()
         -- The next help window will be again opened horizontally if I use `q`
         -- to close current one. `bwipeout` seems to work as expected.
         vim.cmd [[bwipeout]]
+    elseif vim.bo.filetype == 'fugitiveblame' then
+        -- Close vim-fugitive blame window.
+        vim.cmd [[close]]
     else
         -- `bw` jumps to the most recent active buffers after closing the
         -- current one, not the adjacent ones.
@@ -131,6 +134,8 @@ keyset('n', '<ESC>', function()
         vim.cmd [[cclose]]
     elseif vim.bo.buftype == 'help' then
         vim.cmd [[bwipeout]]
+    elseif vim.bo.filetype == 'fugitiveblame' then
+        vim.cmd [[close]]
     end
 end, { desc = 'extra buffer close keymap' })
 
