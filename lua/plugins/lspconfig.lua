@@ -14,7 +14,7 @@ LSP_SERVER = {
 }
 
 -- Golang dependencies
-if vim.fn.executable('go') == 1 then
+if vim.fn.executable 'go' == 1 then
     table.insert(LSP_SERVER, 'gopls')
 end
 
@@ -42,7 +42,7 @@ return {
             'hrsh7th/nvim-cmp',
         },
         -- event = 'VeryLazy',
-        event = { "BufReadPre", "BufNewFile" },
+        event = { 'BufReadPre', 'BufNewFile' },
         config = function()
             -- nvim-cmp supports more types of completion candidates,
             -- so users must override the capabilities sent to the
