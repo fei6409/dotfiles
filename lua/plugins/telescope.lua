@@ -37,6 +37,7 @@ return {
         keyset('n', '<leader>sld', tel_builtin.lsp_definitions, { desc = '[S]earch [L]SP [D]efinitions' })
         keyset('n', '<leader>sli', tel_builtin.lsp_implementations, { desc = '[S]earch [L]SP [I]mplementations' })
         keyset('n', '<leader>slr', tel_builtin.lsp_references, { desc = '[S]earch [L]SP [R]eferences' })
+        keyset('n', '<leader>sls', tel_builtin.lsp_document_symbols, { desc = '[S]earch [L]SP [S]ymbols' })
         keyset('n', '<leader>sf', function()
             local opts = {}
             if is_git_repo() then
@@ -58,8 +59,13 @@ return {
                 --     layout_strategy = 'vertical',
                 --     previewer = false,
                 -- },
+                -- Anchor the current search results and re-perform fuzzy search.
                 live_grep = {
-                    -- Anchor current live grep result and turn to fuzzy search.
+                    mappings = {
+                        i = { ['<c-f>'] = tel_actions.to_fuzzy_refine },
+                    },
+                },
+                lsp_document_symbols = {
                     mappings = {
                         i = { ['<c-f>'] = tel_actions.to_fuzzy_refine },
                     },
