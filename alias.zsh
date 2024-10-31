@@ -21,6 +21,7 @@ alias trim='sed -e '"'"'s/[[:space:]]*$//'"'"''  # trimming tailing spaces
 alias reboot='echo $FG[red]You shall not reboot :P$FG[none]'  # no reboot via commands!
 alias shutdown='echo $FG[red]You shall not shutdown :P$FG[none]'  # no shutdown via commands!
 alias clera='clear'
+alias cl='clear'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
