@@ -25,6 +25,9 @@ fi
 # Either `command -v` or `type` would work.
 cmd_exist() { type "$1" &> /dev/null; }
 
+# shellcheck disable=SC1090
+chk_src() { [[ -f "$1" ]] && source "$1"; }
+
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 if cmd_exist go; then
@@ -65,6 +68,11 @@ if [[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/dev
     # Append Tast dependencies
     export GOPATH="$GOPATH:$HOME/chromiumos/chroot/usr/lib/gopath"
   fi
+
+  # g4 / p4 / Fig completion
+  chk_src "/etc/bash_completion.d/p4"
+  chk_src "/etc/bash_completion.d/g4d"
+  chk_src "/etc/bash_completion.d/hgd"
 fi
 
 # Use truecolor
@@ -100,9 +108,6 @@ zstyle ':completion:*' users fei6409 fshao root
 
 # Setup Zoxide
 cmd_exist zoxide && eval "$(zoxide init zsh)"
-
-# shellcheck disable=SC1090
-chk_src() { [[ -f "$1" ]] && source "$1"; }
 
 # Sources
 chk_src "$HOME/.local.zsh"
