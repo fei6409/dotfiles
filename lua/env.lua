@@ -244,6 +244,7 @@ autocmd('BufWritePre', {
                 return
             end
         end
-        vim.cmd [[%s/\s\+$//e]]
+        -- `keeppatterns` prevents altering the search pattern
+        vim.cmd [[keeppatterns %s/\s\+$//e]]
     end,
 })
