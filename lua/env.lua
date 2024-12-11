@@ -255,3 +255,10 @@ autocmd('BufWritePre', {
         vim.cmd [[keeppatterns %s/\s\+$//e]]
     end,
 })
+autocmd('TextYankPost', {
+    group = augroup,
+    desc = 'Highlight when yanking (copying) text',
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+})
