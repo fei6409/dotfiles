@@ -33,6 +33,7 @@
 # nvim / lua
     ~/.config/nvim/lua: lua
     ~/.config/nvim/init.lua: init.lua
+    ~/.config/nvim/after: after
 # zsh / prezto
     ~/.zprezto: modules/prezto
     ~/.zprezto/contrib/fast-syntax-highlighting: modules/fast-syntax-highlighting

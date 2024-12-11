@@ -203,30 +203,30 @@ end
 local augroup = vim.api.nvim_create_augroup('UserCmds', { clear = true })
 local autocmd = vim.api.nvim_create_autocmd
 
-autocmd('FileType', {
-    pattern = { 'gitcommit', 'gitsendemail', 'markdown' },
-    group = augroup,
-    desc = 'Set spell check',
-    command = [[setlocal spell]],
-})
-autocmd('FileType', {
-    pattern = { 'help', 'man' },
-    group = augroup,
-    desc = 'Split help windows vertically',
-    command = [[wincmd L]],
-})
-autocmd('FileType', {
-    pattern = { 'makefile' },
-    group = augroup,
-    desc = 'Tab indentation for file types',
-    command = [[setlocal noexpandtab]],
-})
-autocmd('FileType', {
-    pattern = { 'go' },
-    group = augroup,
-    desc = 'Tab indentation (size=8) for file types',
-    command = [[setlocal noexpandtab tabstop=8 shiftwidth=8]],
-})
+-- autocmd('FileType', {
+--     pattern = { 'gitcommit', 'gitsendemail', 'markdown' },
+--     group = augroup,
+--     desc = 'Set spell check',
+--     command = [[setlocal spell]],
+-- })
+-- autocmd('FileType', {
+--     pattern = { 'help', 'man' },
+--     group = augroup,
+--     desc = 'Split help windows vertically',
+--     command = [[wincmd L]],
+-- })
+-- autocmd('FileType', {
+--     pattern = { 'makefile' },
+--     group = augroup,
+--     desc = 'Tab indentation for file types',
+--     command = [[setlocal noexpandtab]],
+-- })
+-- autocmd('FileType', {
+--     pattern = { 'go' },
+--     group = augroup,
+--     desc = 'Tab indentation (size=8) for file types',
+--     command = [[setlocal noexpandtab tabstop=8 shiftwidth=8]],
+-- })
 autocmd({ 'BufNewFile', 'BufRead' }, {
     pattern = { '*.ebuild', '*.eclass' },
     group = augroup,
