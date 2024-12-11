@@ -71,6 +71,13 @@ keyset({ 'n', 'v' }, ';', ':')
 -- no more command history on typo
 keyset('n', 'q:', ':q')
 
+-- souce current file
+keyset('n', '<leader><leader>x', '<cmd>source %<CR>')
+-- execute current/selected line in Lua
+keyset('n', '<leader>x', '<cmd>.lua<CR>')
+-- <cmd> expects a complete command, which may not work in visual mode
+keyset('v', '<leader>x', ':lua<CR>')
+
 -- "_ is a blackhole reg, used for operations w/o changing the default reg
 -- paste
 keyset('v', 'p', '"_dP')
