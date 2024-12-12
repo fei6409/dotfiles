@@ -69,6 +69,16 @@ return {
                 mappings = {
                     i = { ['<esc>'] = 'close' },
                 },
+                vimgrep_arguments = {
+                    'rg',
+                    '--color=never',
+                    '--no-heading',
+                    '--with-filename',
+                    '--line-number',
+                    '--column',
+                    '--smart-case',
+                    '--trim', -- trim indentation
+                },
             },
             pickers = {
                 -- current_buffer_fuzzy_find = {
