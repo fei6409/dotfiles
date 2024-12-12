@@ -39,12 +39,28 @@ return {
         keyset('n', '<leader>slr', tel_builtin.lsp_references, { desc = '[S]earch [L]SP [R]eferences' })
         keyset('n', '<leader>sls', tel_builtin.lsp_document_symbols, { desc = '[S]earch [L]SP [S]ymbols' })
         keyset('n', '<leader>sf', function()
-            local opts = {}
             if is_git_repo() then
-                opts = { cwd = get_git_root() }
+                tel_builtin.git_files()
+            else
+                tel_builtin.find_files()
             end
-            tel_builtin.find_files(opts)
-        end, { desc = '[S]earch [F]iles Modified: Find files from Git repo root when possible' })
+        end, { desc = '[S]earch [F]iles, prefer git_files() over find_files()' })
+        keyset('n', '<leader>sF', function()
+            if is_git_repo() then
+                tel_builtin.find_files {
+                    cwd = get_git_root(),
+                    prompt_title = 'Find Files from Git root',
+                }
+            end
+        end, { desc = '[S]earch [F]iles globally from Git repo root' })
+        keyset('n', '<leader>sG', function()
+            if is_git_repo() then
+                tel_builtin.live_grep {
+                    cwd = get_git_root(),
+                    prompt_title = 'Live Grep from Git root',
+                }
+            end
+        end, { desc = '[S]earch by rip[G]rep globally from Git repo root' })
 
         require('telescope').setup {
             defaults = {
