@@ -7,4 +7,5 @@ return {
     keys = {
         { '<leader>t', '<cmd>NvimTreeToggle<CR>', desc = 'Toggle Nvim-Tree' },
     },
+    enabled = false,
 }
