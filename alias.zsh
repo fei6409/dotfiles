@@ -1,13 +1,13 @@
 # General function
-cmd_exist() { type "$1" &> /dev/null; }
+cmd_exist() { type "$1" &>/dev/null; }
 grep_words() {
-  f="$(grep -rial "$1" . 2>/dev/null)"
-  shift
-  while (($#)); do
-    f="$(echo $f | xargs -d '\n' grep -rial $1 2>/dev/null)"
+    f="$(grep -rial "$1" . 2>/dev/null)"
     shift
-  done
-  echo $f | tr ' ' '\n' | sort -n
+    while (($#)); do
+        f="$(echo $f | xargs -d '\n' grep -rial $1 2>/dev/null)"
+        shift
+    done
+    echo $f | tr ' ' '\n' | sort -n
 }
 
 # General alias
@@ -17,9 +17,9 @@ alias rm='rm -i'
 alias rg='rg -S'
 alias ta='tmux attach -t'
 alias rsync='rsync --verbose --progress --human-readable --compress --archive'
-alias trim='sed -e '"'"'s/[[:space:]]*$//'"'"''  # trimming tailing spaces
-alias reboot='echo $FG[red]You shall not reboot :P$FG[none]'  # no reboot via commands!
-alias shutdown='echo $FG[red]You shall not shutdown :P$FG[none]'  # no shutdown via commands!
+alias trim='sed -e '"'"'s/[[:space:]]*$//'"'"''                  # trimming tailing spaces
+alias reboot='echo $FG[red]You shall not reboot :P$FG[none]'     # no reboot via commands!
+alias shutdown='echo $FG[red]You shall not shutdown :P$FG[none]' # no shutdown via commands!
 alias clera='clear'
 alias cl='clear'
 alias ..='cd ..'
@@ -70,16 +70,16 @@ alias gst='git status'
 
 # Conditional alias
 if cmd_exist nvim; then
-  # use nvim where possible
-  export EDITOR='nvim'
-  export VISUAL='nvim'
-  alias vim='nvim'
-  alias vimdiff='nvim -d'
+    # use nvim where possible
+    export EDITOR='nvim'
+    export VISUAL='nvim'
+    alias vim='nvim'
+    alias vimdiff='nvim -d'
 else
-  # workaround for slow "xsmp init" on start
-  alias vim='vim -X'
-  # nvim fall back to vim
-  alias nvim='vim'
+    # workaround for slow "xsmp init" on start
+    alias vim='vim -X'
+    # nvim fall back to vim
+    alias nvim='vim'
 fi
 cmd_exist colordiff && alias diff='colordiff'
 cmd_exist tmx2 && alias tmux='tmx2'
@@ -92,73 +92,73 @@ cmd_exist python3 && py='python3'
 
 # macOS
 if [[ "$OSTYPE" =~ ^darwin ]]; then
-  # Use commands from coreutils
-  alias timeout='gtimeout'
-  alias date='gdate'
+    # Use commands from coreutils
+    alias timeout='gtimeout'
+    alias date='gdate'
 fi
 
 # Linux
 if [[ "$OSTYPE" =~ ^linux ]]; then
-  # if DISPLAY is unset, get an open display for it
-  # This is awfully slooooooow
-  # export DISPLAY=${DISPLAY:-$(w -oush | grep -Eo ' :[0-9]+' | uniq | xargs;)}
+    # if DISPLAY is unset, get an open display for it
+    # This is awfully slooooooow
+    # export DISPLAY=${DISPLAY:-$(w -oush | grep -Eo ' :[0-9]+' | uniq | xargs;)}
 
-  # Copy to clipboard.
-  cmd_exist xclip && copy() { xclip -sel clip; }
+    # Copy to clipboard.
+    cmd_exist xclip && copy() { xclip -sel clip; }
 
-  # Print the PID that occupies a port.
-  # Usage: see_port <port number>
-  see_port() { netstat -lnpt | awk "\$4 ~ /:$1$/ {sub(/\/.*/, \"\", \$7); print \$7}"; }
+    # Print the PID that occupies a port.
+    # Usage: see_port <port number>
+    see_port() { netstat -lnpt | awk "\$4 ~ /:$1$/ {sub(/\/.*/, \"\", \$7); print \$7}"; }
 fi
 
 # Goobuntu or CrOS chroot
-if ([[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/dev/null) || \
+if ([[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/dev/null) ||
     [[ -n $CROS_WORKON_SRCROOT ]]; then
 
-  alias rs='repo sync .'
-  alias rsa='repo sync -j 16 -n --optimized-fetch && repo sync -j 16 -l'
+    alias rs='repo sync .'
+    alias rsa='repo sync -j 16 -n --optimized-fetch && repo sync -j 16 -l'
 
-  alias kerup='cd ${HOME}/chromiumos/src/third_party/kernel/upstream'
-  alias ker419='cd ${HOME}/chromiumos/src/third_party/kernel/v4.19'
-  alias ker54='cd ${HOME}/chromiumos/src/third_party/kernel/v5.4'
-  alias ker510='cd ${HOME}/chromiumos/src/third_party/kernel/v5.10'
-  alias ker515='cd ${HOME}/chromiumos/src/third_party/kernel/v5.15'
-  alias ker61='cd ${HOME}/chromiumos/src/third_party/kernel/v6.1'
-  alias ker66='cd ${HOME}/chromiumos/src/third_party/kernel/v6.6'
-  alias ker='ker61'
+    alias kerup='cd ${HOME}/chromiumos/src/third_party/kernel/upstream'
+    alias ker419='cd ${HOME}/chromiumos/src/third_party/kernel/v4.19'
+    alias ker54='cd ${HOME}/chromiumos/src/third_party/kernel/v5.4'
+    alias ker510='cd ${HOME}/chromiumos/src/third_party/kernel/v5.10'
+    alias ker515='cd ${HOME}/chromiumos/src/third_party/kernel/v5.15'
+    alias ker61='cd ${HOME}/chromiumos/src/third_party/kernel/v6.1'
+    alias ker66='cd ${HOME}/chromiumos/src/third_party/kernel/v6.6'
+    alias ker='ker61'
 
-  alias ec='cd ${HOME}/chromiumos/src/platform/ec'
-  alias scr='cd ${HOME}/chromiumos/src/scripts'
-  alias aut='cd ${HOME}/chromiumos/src/third_party/autotest/files'
-  alias g3doc='g4d test && cd experimental/users/fshao/g3doc && vim ./sheet.md'
+    alias ec='cd ${HOME}/chromiumos/src/platform/ec'
+    alias scr='cd ${HOME}/chromiumos/src/scripts'
+    alias aut='cd ${HOME}/chromiumos/src/third_party/autotest/files'
+    alias g3doc='g4d test && cd experimental/users/fshao/g3doc && vim ./sheet.md'
 
-  # Parse dut-power summary.
-  # usage: summary <dut-power summary>
-  summary() { awk '/pp/ && !/ppdut5|ppchg5/ {print $4}' "$@" | copy; }
+    # Parse dut-power summary.
+    # usage: summary <dut-power summary>
+    summary() { awk '/pp/ && !/ppdut5|ppchg5/ {print $4}' "$@" | copy; }
 
-  # git new branch.
-  # usage: gnb <new branch name> [<upstream branch>]
-  gnb() { git checkout -b "$1" "${2:-m/main}"; }
+    # git new branch.
+    # usage: gnb <new branch name> [<upstream branch>]
+    gnb() { git checkout -b "$1" "${2:-m/main}"; }
 
-  # CrOS chroot specific
-  if [[ -n $CROS_WORKON_SRCROOT ]]; then
-    alias cwh='cros_workon --host'
-    alias cwk='cros workon --board kukui'
-    alias cwa='cros workon --board asurada'
-    alias cwch='cros workon --board cherry'
-    alias cwco='cros workon --board corsola'
-    alias cwg='cros workon --board geralt'
-    alias cwr='cros workon --board rauru'
-    alias cw='cwg'
-    alias dut-power='dut-power --vbat-rate=10'
-    alias dut-power-s3='dut-power --vbat-rate=0'
-    alias test_that='test_that --fast --autotest_dir=${HOME}/chromiumos/src/third_party/autotest/files'
-    alias sv='sudo I_NEED_SERVOD=1 servod --device-discovery=none'
+    # CrOS chroot specific
+    if [[ -n $CROS_WORKON_SRCROOT ]]; then
+        alias cwh='cros_workon --host'
+        alias cwk='cros workon --board kukui'
+        alias cwa='cros workon --board asurada'
+        alias cwch='cros workon --board cherry'
+        alias cwco='cros workon --board corsola'
+        alias cwg='cros workon --board geralt'
+        alias cwr='cros workon --board rauru'
+        alias cw='cwg'
+        alias dut-power='dut-power --vbat-rate=10'
+        alias dut-power-s3='dut-power --vbat-rate=0'
+        alias test_that='test_that --fast --autotest_dir=${HOME}/chromiumos/src/third_party/autotest/files'
+        alias sv='sudo I_NEED_SERVOD=1 servod --device-discovery=none'
 
-  else
-    # Only allowed outside of CrOS chroot
-    alias cr='cd ${HOME}/chromiumos/src; cros_sdk --no-ns-pid --no-update'
-    alias enter-chrome-sdk="cros chrome-sdk --board=${BOARD} --log-level=info --internal \
+    else
+        # Only allowed outside of CrOS chroot
+        alias cr='cd ${HOME}/chromiumos/src; cros_sdk --no-ns-pid --no-update'
+        alias enter-chrome-sdk="cros chrome-sdk --board=${BOARD} --log-level=info --internal \
           --gn-extra-args='enable_nacl=false symbol_level=1 use_remoteexec=true dcheck_always_on=false is_official_build=false'"
-  fi
+    fi
 fi
