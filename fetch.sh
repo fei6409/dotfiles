@@ -1,11 +1,11 @@
 if ! sudo -l >/dev/null 2>&1; then
-  echo $'\e[1;31mNo sudo permission.\e[m'
-  exit 1
+    echo $'\e[1;31mNo sudo permission.\e[m'
+    exit 1
 fi
 
 if ! command -v git >/dev/null 2>&1; then
-  echo $'\e[1;33mInstalling Git...\e[m'
-  sudo apt-get -y install git
+    echo $'\e[1;33mInstalling Git...\e[m'
+    sudo apt-get -y install git
 fi
 
 git clone --filter=blob:none https://github.com/fei6409/dotfiles.git ~/dotfiles

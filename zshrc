@@ -6,7 +6,7 @@
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-$(whoami).zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-$(whoami).zsh"
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-$(whoami).zsh"
 fi
 
 #
@@ -15,7 +15,7 @@ fi
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+    source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
 #
@@ -23,7 +23,7 @@ fi
 #
 
 # Either `command -v` or `type` would work.
-cmd_exist() { type "$1" &> /dev/null; }
+cmd_exist() { type "$1" &>/dev/null; }
 
 # shellcheck disable=SC1090
 chk_src() { [[ -f "$1" ]] && source "$1"; }
@@ -31,8 +31,8 @@ chk_src() { [[ -f "$1" ]] && source "$1"; }
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 if cmd_exist go; then
-  export PATH="$(go env GOPATH)/bin:$PATH"
-  export GOPATH="$HOME/go"
+    export PATH="$(go env GOPATH)/bin:$PATH"
+    export GOPATH="$HOME/go"
 fi
 
 # Set file mode permission mask
@@ -40,39 +40,39 @@ umask 022
 
 # macOS
 if [[ "$OSTYPE" =~ ^darwin ]]; then
-  true
+    true
 fi
 
 # Linux
 if [[ "$OSTYPE" =~ ^linux ]]; then
-  true
+    true
 fi
 
 # Goobuntu
 if [[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/dev/null; then
-  # The initial PATH is defined in /etc/environment
-  export PATH="$PATH:$HOME/depot_tools"
-  export PATH="$PATH:$HOME/chromiumos/src/config/bin"
-  export PATH="$PATH:$HOME/chromiumos/src/platform/dev/contrib"
-  export PATH="$PATH:$HOME/chromiumos/src/private-overlays/project-cheets-private/scripts"
-  export PATH="$PATH:$HOME/chromiumos/src/third_party/hdctools/scripts"
-  export PATH="$PATH:$HOME/chromiumos/chromite/contrib"
+    # The initial PATH is defined in /etc/environment
+    export PATH="$PATH:$HOME/depot_tools"
+    export PATH="$PATH:$HOME/chromiumos/src/config/bin"
+    export PATH="$PATH:$HOME/chromiumos/src/platform/dev/contrib"
+    export PATH="$PATH:$HOME/chromiumos/src/private-overlays/project-cheets-private/scripts"
+    export PATH="$PATH:$HOME/chromiumos/src/third_party/hdctools/scripts"
+    export PATH="$PATH:$HOME/chromiumos/chromite/contrib"
 
-  # Append chromite lib to Python import path
-  export PYTHONPATH="$PYTHONPATH:$HOME/chromiumos"
+    # Append chromite lib to Python import path
+    export PYTHONPATH="$PYTHONPATH:$HOME/chromiumos"
 
-  if cmd_exist go; then
-    # Append Tast repos to GOPATH
-    export GOPATH="$GOPATH:$HOME/chromiumos/src/platform/tast-tests"
-    export GOPATH="$GOPATH:$HOME/chromiumos/src/platform/tast"
-    # Append Tast dependencies
-    export GOPATH="$GOPATH:$HOME/chromiumos/chroot/usr/lib/gopath"
-  fi
+    if cmd_exist go; then
+        # Append Tast repos to GOPATH
+        export GOPATH="$GOPATH:$HOME/chromiumos/src/platform/tast-tests"
+        export GOPATH="$GOPATH:$HOME/chromiumos/src/platform/tast"
+        # Append Tast dependencies
+        export GOPATH="$GOPATH:$HOME/chromiumos/chroot/usr/lib/gopath"
+    fi
 
-  # g4 / p4 / Fig completion
-  chk_src "/etc/bash_completion.d/p4"
-  chk_src "/etc/bash_completion.d/g4d"
-  chk_src "/etc/bash_completion.d/hgd"
+    # g4 / p4 / Fig completion
+    chk_src "/etc/bash_completion.d/p4"
+    chk_src "/etc/bash_completion.d/g4d"
+    chk_src "/etc/bash_completion.d/hgd"
 fi
 
 # Use truecolor
@@ -95,8 +95,8 @@ export FZF_ALT_C_COMMAND="fd --type d"
 
 # To boost ssh/scp completion speed, only consider hosts in the SSH config
 if [[ -f $HOME/.ssh/config ]]; then
-  host_list=($(grep -i '^host ' $HOME/.ssh/config | awk '{s = s $2 " "} END {print s}'))
-  zstyle ':completion:*:(ssh|scp|sftp):*' hosts $host_list
+    host_list=($(grep -i '^host ' $HOME/.ssh/config | awk '{s = s $2 " "} END {print s}'))
+    zstyle ':completion:*:(ssh|scp|sftp):*' hosts $host_list
 fi
 
 # To boost command completion speed, only consider the following users
