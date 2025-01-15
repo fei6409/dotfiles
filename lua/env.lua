@@ -7,7 +7,7 @@ local opt = vim.opt
 opt.breakindent = true
 -- allow copy/paste from system clipboard
 -- need clipboard tools e.g. pb{copy,paste}/xclip
-opt.clipboard = 'unnamedplus'
+-- opt.clipboard = 'unnamedplus'
 -- more lines for command line
 opt.cmdheight = 2
 -- completion opt
@@ -156,10 +156,10 @@ keyset('n', '<leader>l', '<cmd>nohlsearch<CR>')
 keyset('n', '<leader>r', 'zR<CR>')
 
 -- copy/paste with system clipboard
--- keyset('n', '<leader>y', '"+yiw', { desc = 'Copy to system clipboard' })
--- keyset('v', '<leader>y', '"+y', { desc = 'Copy to system clipboard' })
--- keyset('n', '<leader>p', '"+p', { desc = 'Paste from system clipboard' })
--- keyset('n', '<leader>P', '"+P', { desc = 'Paste from system clipboard' })
+keyset('n', '<leader>y', '"+yiw', { desc = 'Copy to system clipboard' })
+keyset('v', '<leader>y', '"+y', { desc = 'Copy to system clipboard' })
+keyset('n', '<leader>p', '"+p', { desc = 'Paste from system clipboard' })
+keyset('n', '<leader>P', '"+P', { desc = 'Paste from system clipboard' })
 
 -- Switch expandtab status & tab width
 keyset('n', '<F4>', function()
