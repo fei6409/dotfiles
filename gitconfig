@@ -27,6 +27,8 @@
   threeWay = true
 [branch]
   sort = -committerdate
+[color]
+  ui = auto
 [commit]
   verbose = true
 [diff]
