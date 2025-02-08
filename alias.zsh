@@ -126,12 +126,15 @@ if ([[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/de
     alias ker515='cd ${HOME}/chromiumos/src/third_party/kernel/v5.15'
     alias ker61='cd ${HOME}/chromiumos/src/third_party/kernel/v6.1'
     alias ker66='cd ${HOME}/chromiumos/src/third_party/kernel/v6.6'
-    alias ker='ker61'
+    alias ker='ker66'
 
     alias ec='cd ${HOME}/chromiumos/src/platform/ec'
     alias scr='cd ${HOME}/chromiumos/src/scripts'
     alias aut='cd ${HOME}/chromiumos/src/third_party/autotest/files'
     alias g3doc='g4d test && cd experimental/users/fshao/g3doc && vim ./sheet.md'
+
+    alias gcertchk='gcertstatus --quiet --check_remaining=4h --check_ssh=false || gcert'
+    alias work='gcertchk && [[ ! $(hostname -s) =~ p620 ]] && ssh glinux'
 
     # Parse dut-power summary.
     # usage: summary <dut-power summary>
@@ -150,7 +153,8 @@ if ([[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/de
         alias cwco='cros workon --board corsola'
         alias cwg='cros workon --board geralt'
         alias cwr='cros workon --board rauru'
-        alias cw='cwg'
+        alias cw='cwr'
+
         alias dut-power='dut-power --vbat-rate=10'
         alias dut-power-s3='dut-power --vbat-rate=0'
         alias test_that='test_that --fast --autotest_dir=${HOME}/chromiumos/src/third_party/autotest/files'
