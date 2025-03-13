@@ -134,7 +134,7 @@ if ([[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/de
     alias g3doc='g4d test && cd experimental/users/fshao/g3doc && vim ./sheet.md'
 
     alias gcertchk='gcertstatus --quiet --check_remaining=4h --check_ssh=false || gcert'
-    alias work='gcertchk && [[ ! $(hostname -s) =~ p620 ]] && ssh glinux'
+    alias work='gcertchk; [[ $(hostname -s) =~ v9 ]] && ssh glinux'
 
     # Parse dut-power summary.
     # usage: summary <dut-power summary>
