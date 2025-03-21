@@ -369,6 +369,10 @@ bind -n M-Right select-pane -R
 bind -n M-Up select-pane -U
 bind -n M-Down select-pane -D
 
+# window split alias
+bind | split-window -h
+bind _ split-window -v
+
 set -g status-justify centre
 
 # force Vi mode
