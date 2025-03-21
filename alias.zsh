@@ -126,6 +126,7 @@ if ([[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/de
     alias ker515='cd ${HOME}/chromiumos/src/third_party/kernel/v5.15'
     alias ker61='cd ${HOME}/chromiumos/src/third_party/kernel/v6.1'
     alias ker66='cd ${HOME}/chromiumos/src/third_party/kernel/v6.6'
+    alias ker612='cd ${HOME}/chromiumos/src/third_party/kernel/v6.12'
     alias ker='ker66'
 
     alias ec='cd ${HOME}/chromiumos/src/platform/ec'
