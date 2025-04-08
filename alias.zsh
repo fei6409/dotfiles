@@ -34,6 +34,7 @@ alias ......='cd ../../../../..'
 # alias sudo='sudo ' # https://linuxhandbook.com/run-alias-as-sudo/
 
 # Git alias
+alias git='LANG=en_US.UTF-8 git'
 alias g='git'
 alias gama='git am --abort'
 alias gamc='git am --continue'
