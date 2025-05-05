@@ -96,7 +96,7 @@
     - [brew install bat, Installing bat (enhanced cat)]
     - [brew install reattach-to-user-namespace, Installing reattach-to-user-namespace]
     - [brew install coreutils, Installing coreutils]
-    - [brew install font-hack-nerd-font, Installing Nerd Fonts]
+    - [brew install font-meslo-lg-nerd-font, Installing MesloLG Nerd Fonts]
 
 # apt for Debian
 - shell:
