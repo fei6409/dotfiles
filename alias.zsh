@@ -155,6 +155,7 @@ if ([[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/de
         alias cwco='cros workon --board corsola'
         alias cwg='cros workon --board geralt'
         alias cwr='cros workon --board rauru'
+        alias cws='cros workon --board skywalker'
         alias cw='cwr'
 
         alias dut-power='dut-power --vbat-rate=10'
