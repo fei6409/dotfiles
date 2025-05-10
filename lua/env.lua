@@ -25,6 +25,8 @@ opt.cursorline = true
 opt.foldmethod = 'marker'
 -- case-insensitive search
 opt.ignorecase = true
+-- always show global status line
+opt.laststatus = 3
 -- list mode for special characters
 opt.list = true
 -- list mode characters
