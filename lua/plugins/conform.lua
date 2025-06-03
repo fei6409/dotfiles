@@ -24,6 +24,7 @@ return {
             lua = { 'stylua' },
             markdown = { 'deno_fmt' },
             python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
+            rust = { 'rustfmt' },
             sh = { 'shfmt' },
             yaml = { 'yq', 'yamlfmt', stop_after_first = true },
             zsh = { 'shfmt' },
@@ -42,6 +43,7 @@ return {
             lsp_format = 'fallback',
         },
         notify_no_formatters = true,
+        notify_on_error = true,
     },
     init = function()
         -- Overwrite the default formatexpr for `gq`.
