@@ -5,7 +5,7 @@ return {
     cmd = { 'Copilot' },
     event = 'VeryLazy',
     keys = {
-        { '<leader>cp', '<cmd>Copilot panel<CR>', desc = 'Open Copilot panel' },
+        -- { '<leader>cp', '<cmd>Copilot panel<CR>', desc = 'Open Copilot panel' },
     },
     opts = {
         suggestion = {
