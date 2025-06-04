@@ -128,7 +128,7 @@ return {
                         return { buffer = ev.buf, silent = true, desc = desc }
                     end
 
-                    keyset('n', '<space>d', vim.diagnostic.open_float, opts 'Diagnostic open float window')
+                    keyset('n', '<leader>d', vim.diagnostic.open_float, opts 'Diagnostic open float window')
                     keyset('n', '[d', vim.diagnostic.goto_next, opts 'Diagnostic goto next')
                     keyset('n', ']d', vim.diagnostic.goto_prev, opts 'Diagnostic goto prev')
 
@@ -141,13 +141,13 @@ return {
 
                     keyset('n', '<leader>k', vim.lsp.buf.signature_help, opts 'LSP signature help')
                     keyset('n', '<leader>rn', vim.lsp.buf.rename, opts 'LSP rename')
-                    keyset({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts 'LSP code action')
+                    -- keyset({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts 'LSP code action')
 
-                    keyset('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts 'LSP add workspace folder')
-                    keyset('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts 'LSP remove workspace folder')
-                    keyset('n', '<leader>wl', function()
-                        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-                    end, opts 'LSP list workspace folder')
+                    -- keyset('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts 'LSP add workspace folder')
+                    -- keyset('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts 'LSP remove workspace folder')
+                    -- keyset('n', '<leader>wl', function()
+                    --     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+                    -- end, opts 'LSP list workspace folder')
                 end,
             })
         end,
