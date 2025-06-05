@@ -10,6 +10,7 @@ LSP_SERVER = {
     'marksman',
     -- 'pyright',
     'ruff',
+    'rust_analyzer',
     'yamlls',
 }
 
