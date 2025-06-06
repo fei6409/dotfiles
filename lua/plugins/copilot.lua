@@ -3,19 +3,21 @@
 return {
     'zbirenbaum/copilot.lua',
     cmd = { 'Copilot' },
+    build = ':Copilot auth',
     event = 'VeryLazy',
-    keys = {
-        -- { '<leader>cp', '<cmd>Copilot panel<CR>', desc = 'Open Copilot panel' },
-    },
     opts = {
         suggestion = {
+            auto_trigger = false,
             keymap = {
-                accept = '<C-CR>',
+                accept = '<M-CR>',
+                next = '<M-]>',
+                prev = '<M-[>',
             },
         },
         filetypes = {
             gitcommit = true,
             gitrebase = true,
+            markdown = true,
         },
     },
 }
