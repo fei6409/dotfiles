@@ -19,7 +19,7 @@ return {
     end,
     keys = {
         {
-            '<C-s>',
+            '<M-s>',
             function()
                 return require('dial.map').inc_normal()
             end,
@@ -27,7 +27,7 @@ return {
             desc = 'Increment',
         },
         {
-            '<C-x>',
+            '<M-x>',
             function()
                 return require('dial.map').dec_normal()
             end,
