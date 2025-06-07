@@ -10,7 +10,7 @@ return {
             function()
                 require('flash').jump()
             end,
-            desc = 'Flash Search',
+            desc = 'Flash: Search',
         },
         {
             '<C-f>',
@@ -18,7 +18,7 @@ return {
             function()
                 require('flash').toggle()
             end,
-            desc = 'Toggle Flash Search',
+            desc = 'Flash: Toggle Search',
         },
     },
 }

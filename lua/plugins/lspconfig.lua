@@ -112,7 +112,7 @@ return {
                         return { buffer = args.buf, silent = true, desc = desc }
                     end
 
-                    keyset('n', 'gk', vim.diagnostic.open_float, opts 'Diagnostic open float window')
+                    keyset('n', 'gk', vim.diagnostic.open_float, opts 'vim.diagnostic.open_float()')
                     keyset('n', 'grd', vim.lsp.buf.definition, opts 'vim.lsp.buf.definition()')
                     keyset('n', 'grt', vim.lsp.buf.type_definition, opts 'vim.lsp.buf.type_definition()')
 

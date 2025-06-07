@@ -24,7 +24,7 @@ return {
                 return require('dial.map').inc_normal()
             end,
             expr = true,
-            desc = 'Increment',
+            desc = 'Dial: Increment',
         },
         {
             '<M-x>',
@@ -32,7 +32,7 @@ return {
                 return require('dial.map').dec_normal()
             end,
             expr = true,
-            desc = 'Decrement',
+            desc = 'Dial: Decrement',
         },
     },
 }

@@ -12,7 +12,7 @@ return {
             function()
                 require('oil').toggle_float '.'
             end,
-            desc = 'Toggle Oil to open parent directory',
+            desc = 'Oil: Toggle floating window',
         },
     },
 }

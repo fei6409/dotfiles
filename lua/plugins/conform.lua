@@ -13,7 +13,7 @@ return {
                 vim.api.nvim_input '<ESC>'
             end,
             mode = { 'n', 'v' },
-            desc = 'Format buffer with conform.nvim',
+            desc = 'Conform: Format Buffer',
         },
     },
     opts = {
