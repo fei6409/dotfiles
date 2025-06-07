@@ -15,4 +15,5 @@ return {
             desc = 'Oil: Toggle floating window',
         },
     },
+    enabled = false,
 }
