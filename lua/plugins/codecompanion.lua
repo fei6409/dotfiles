@@ -51,78 +51,85 @@ return {
             desc = 'CodeCompanion: Review selected code',
         },
     },
-    opts = {
-        strategies = {
-            chat = {
-                tools = { opts = { default_tools = { 'files' } } },
-                -- adapter = 'gemini',
-            },
-            -- inline = { adapter = 'gemini' },
-            -- cmd = { adapter = 'gemini' },
-        },
-        adapters = {
-            gemini = function()
-                return require('codecompanion.adapters').extend('gemini', {
-                    env = {
-                        url = '<GEMINI_URL>',
-                        api_key = '<GEMINI_API_KEY>',
-                    },
-                })
-            end,
-        },
-        display = {
-            chat = {
-                window = {
-                    position = 'right',
+    config = function()
+        local adapter = 'copilot'
+
+        if os.getenv('GEMINI_API_KEY') and os.getenv('GEMINI_URL') then adapter = 'gemini' end
+
+        return require('codecompanion').setup {
+            strategies = {
+                chat = {
+                    adapter = adapter,
+                    tools = { opts = { default_tools = { 'files' } } },
                 },
-                auto_scroll = false,
-                show_settings = true,
+                inline = { adapter = adapter },
+                cmd = { adapter = adapter },
             },
-        },
-        prompt_library = {
-            ['Review'] = {
-                strategy = 'chat',
-                description = 'Review selected code',
-                opts = {
-                    is_default = true,
-                    is_slash_cmd = true,
-                    short_name = 'review',
-                    auto_submit = false,
-                    stop_context_insertion = true, -- prevent duplicated selected text
-                },
-                prompts = {
-                    {
-                        role = 'system',
-                        content = review_prompt,
+            adapters = {
+                gemini = function()
+                    return require('codecompanion.adapters').extend('gemini', {
+                        env = {
+                            -- read pd-ai-key from envvar
+                            api_key = 'GEMINI_API_KEY',
+                            url = 'GEMINI_URL',
+                        },
+                    })
+                end,
+            },
+            display = {
+                chat = {
+                    window = {
+                        position = 'right',
                     },
-                    {
-                        role = 'user',
-                        content = function(context)
-                            return string.format(
-                                'Review the code:\n\n```%s\n%s\n```\n\n',
-                                context.filetype,
-                                table.concat(context.lines, '\n')
-                            )
-                        end,
-                        opts = { contains_code = true },
-                    },
+                    auto_scroll = true,
+                    show_settings = true,
                 },
             },
-            ['Apply'] = {
-                strategy = 'chat',
-                description = 'Apply changes to current buffer',
-                opts = {
-                    is_slash_cmd = true,
-                    short_name = 'apply',
-                    auto_submit = false,
+            prompt_library = {
+                ['Review'] = {
+                    strategy = 'chat',
+                    description = 'Review selected code',
+                    opts = {
+                        is_default = true,
+                        is_slash_cmd = true,
+                        short_name = 'review',
+                        auto_submit = false,
+                        stop_context_insertion = true, -- prevent duplicated selected text
+                    },
+                    prompts = {
+                        {
+                            role = 'system',
+                            content = review_prompt,
+                        },
+                        {
+                            role = 'user',
+                            content = function(context)
+                                return string.format(
+                                    'Review the code:\n\n```%s\n%s\n```\n\n',
+                                    context.filetype,
+                                    table.concat(context.lines, '\n')
+                                )
+                            end,
+                            opts = { contains_code = true },
+                        },
+                    },
                 },
-                prompts = {
-                    {
-                        role = 'user',
-                        content = 'apply the change in #{buffer}',
+                ['Apply'] = {
+                    strategy = 'chat',
+                    description = 'Apply changes to current buffer',
+                    opts = {
+                        is_slash_cmd = true,
+                        short_name = 'apply',
+                        auto_submit = false,
+                    },
+                    prompts = {
+                        {
+                            role = 'user',
+                            content = 'apply the change in #{buffer}',
+                        },
                     },
                 },
             },
-        },
-    },
+        }
+    end,
 }
