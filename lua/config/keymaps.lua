@@ -46,48 +46,25 @@ keyset('v', '<leader>y', '"+y', { desc = 'Yank selection to system clipboard' })
 keyset('n', '<leader>p', '"+p', { desc = 'Paste after from system clipboard' })
 keyset('n', '<leader>P', '"+P', { desc = 'Paste before from system clipboard' })
 
--- Close current buffer or auxiliary window
--- Handles quickfix/help/fugitiveblame windows specially:
---   - quickfix: close with :cclose
---   - help: close with :bwipeout (avoids horizontal re-opening)
---   - fugitiveblame: close with :close
--- For normal buffers, jumps to the next listed buffer (or previous if last),
--- then wipes out the closed buffer to avoid jumping to the first buffer.
+-- Close current buffer:
+-- Switching to the next buffer, or previous one if at the end, before closing
+-- the current buffer, ensuring not to circle back to the first buffer.
 keyset('n', '<leader>q', function()
-    if vim.bo.buftype == 'quickfix' then
-        vim.cmd 'cclose'
-    elseif vim.bo.buftype == 'help' then
-        vim.cmd 'bwipeout'
-    elseif vim.bo.filetype == 'fugitiveblame' then
-        vim.cmd 'close'
+    local cur_buf = vim.api.nvim_get_current_buf()
+    local bufs = vim.api.nvim_list_bufs()
+    local last_buf
+    for i = #bufs, 1, -1 do
+        if vim.fn.buflisted(bufs[i]) == 1 then
+            last_buf = bufs[i]
+            break
+        end
+    end
+    if cur_buf == last_buf then
+        vim.cmd 'bprevious|bwipeout #'
     else
-        local cur_buf = vim.api.nvim_get_current_buf()
-        local bufs = vim.api.nvim_list_bufs()
-        local last_buf
-        for i = #bufs, 1, -1 do
-            if vim.fn.buflisted(bufs[i]) == 1 then
-                last_buf = bufs[i]
-                break
-            end
-        end
-        if cur_buf == last_buf then
-            vim.cmd 'bprevious|bwipeout #'
-        else
-            vim.cmd 'bnext|bwipeout #'
-        end
+        vim.cmd 'bnext|bwipeout #'
     end
-end, { desc = 'Extra buffer/window smart close' })
-
--- Close auxiliary window with ESC
-keyset('n', '<ESC>', function()
-    if vim.bo.buftype == 'quickfix' then
-        vim.cmd 'cclose'
-    elseif vim.bo.buftype == 'help' then
-        vim.cmd 'bwipeout'
-    elseif vim.bo.filetype == 'fugitiveblame' then
-        vim.cmd 'close'
-    end
-end, { desc = 'Extra auxiliary window close' })
+end, { desc = 'Close current buffer' })
 
 -- Print syntax info
 keyset('n', '<F4>', function()

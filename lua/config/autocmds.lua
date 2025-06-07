@@ -1,17 +1,23 @@
 local autocmd = vim.api.nvim_create_autocmd
-local augroup = vim.api.nvim_create_augroup('user_cmds', { clear = true })
+local augroup_names = { 'yank', 'resize', 'close', 'spell', 'indent', 'trim' }
+local augroups = {}
+local opts_nowait = { buffer = true, silent = true, nowait = true }
 
--- Highlight on yank
-vim.api.nvim_create_autocmd('TextYankPost', {
-    group = augroup,
+for _, name in pairs(augroup_names) do
+    augroups[name] = vim.api.nvim_create_augroup('fei_' .. name, { clear = true })
+end
+
+autocmd('TextYankPost', {
+    group = augroups['yank'],
+    desc = 'Highlight on yank',
     callback = function()
         (vim.hl or vim.highlight).on_yank()
     end,
 })
 
--- Resize splits if window got resized
-vim.api.nvim_create_autocmd('VimResized', {
-    group = augroup,
+autocmd('VimResized', {
+    group = augroups['resize'],
+    desc = 'Resize splits if window got resized',
     callback = function()
         local current_tab = vim.fn.tabpagenr()
         vim.cmd 'tabdo wincmd ='
@@ -19,9 +25,68 @@ vim.api.nvim_create_autocmd('VimResized', {
     end,
 })
 
+autocmd('FileType', {
+    group = augroups['close'],
+    pattern = { 'help', 'man', 'checkhealth' },
+    desc = 'Additional window-close keymaps',
+    callback = function()
+        -- Do vertical windows and use `bwipeout` to avoid horizontal re-opening
+        vim.cmd [[wincmd L]]
+        vim.keymap.set('n', '<ESC>', '<cmd>bwipeout<CR>', opts_nowait)
+        vim.keymap.set('n', 'q', '<cmd>bwipeout<CR>', opts_nowait)
+    end,
+})
+
+autocmd('FileType', {
+    group = augroups['close'],
+    pattern = { 'qf', 'fugitiveblame' },
+    desc = 'Additional window-close keymaps',
+    callback = function()
+        vim.keymap.set('n', '<ESC>', '<cmd>close<CR>', opts_nowait)
+        vim.keymap.set('n', 'q', '<cmd>close<CR>', opts_nowait)
+    end,
+})
+
+autocmd('FileType', {
+    group = augroups['spell'],
+    pattern = { 'gitcommit', 'gitsendemail', 'markdown' },
+    desc = 'Enable spell checking',
+    callback = function()
+        vim.opt_local.spell = true
+    end,
+})
+
+autocmd('FileType', {
+    group = augroups['indent'],
+    pattern = { 'make', 'go' },
+    desc = 'Tab indent',
+    callback = function()
+        vim.opt_local.expandtab = false
+    end,
+})
+
+autocmd({ 'BufNewFile', 'BufRead' }, {
+    group = augroups['indent'],
+    pattern = { '*.ebuild', '*.eclass' },
+    desc = 'Tab indent with ebuilds',
+    callback = function()
+        vim.opt_local.expandtab = false
+    end,
+})
+
+autocmd({ 'BufNewFile', 'BufRead' }, {
+    group = augroups['indent'],
+    pattern = { '*/kernel/*', '*/syzkaller/*' },
+    desc = 'Tab indent (8 spaces) with kernel code',
+    callback = function()
+        vim.opt_local.expandtab = false
+        vim.opt_local.tabstop = 8
+        vim.opt_local.shiftwidth = 8
+    end,
+})
+
 autocmd('BufWritePre', {
-    pattern = '',
-    group = augroup,
+    group = augroups['trim'],
     desc = 'Trim trailing spaces',
     callback = function()
         local skip_types = { 'diff', 'gitsendemail', 'markdown' }
@@ -33,19 +98,3 @@ autocmd('BufWritePre', {
         vim.cmd [[keeppatterns %s/\s\+$//e]]
     end,
 })
-
-autocmd({ 'BufNewFile', 'BufRead' }, {
-    pattern = { '*.ebuild', '*.eclass' },
-    group = augroup,
-    desc = 'Tab indentation for path patterns',
-    command = [[setlocal noexpandtab]],
-})
-
-autocmd({ 'BufNewFile', 'BufRead' }, {
-    pattern = { '*/kernel/*', '*/syzkaller/*' },
-    group = augroup,
-    desc = 'Tab indent (8 spaces) for path patterns',
-    command = [[setlocal noexpandtab tabstop=8 shiftwidth=8]],
-})
-
--- for per-filetype configs, see 'after/ftplugins/'
