@@ -33,6 +33,16 @@ return {
             -- inline = { adapter = 'gemini' },
             -- cmd = { adapter = 'gemini' },
         },
+        adapters = {
+            gemini = function()
+                return require('codecompanion.adapters').extend('gemini', {
+                    env = {
+                        url = '<GEMINI_URL>',
+                        api_key = '<GEMINI_API_KEY>',
+                    },
+                })
+            end,
+        },
         display = {
             chat = {
                 window = {
