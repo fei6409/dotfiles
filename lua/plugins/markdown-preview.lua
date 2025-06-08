@@ -11,5 +11,6 @@ return {
         vim.g.mkdp_filetypes = { 'markdown' }
         vim.g.mkdp_page_title = '**${name}**'
     end,
+    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
     ft = { 'markdown' },
 }
