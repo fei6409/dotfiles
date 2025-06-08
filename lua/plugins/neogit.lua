@@ -14,4 +14,5 @@ return {
     opts = {
         graph_style = 'unicode',
     },
+    enabled = false,
 }
