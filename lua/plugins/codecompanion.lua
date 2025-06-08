@@ -1,5 +1,24 @@
 -- Generic LLM support
 -- https://github.com/olimorris/codecompanion.nvim
+
+local review_prompt = [[
+Perform a comprehensive code review as a senior developer.
+Maintain a professional, direct, and concise tone throughout the review.
+Structure the response as follows:
+
+1.  **Code Summary:** Provide a concise explanation of what the code does.
+
+2.  **Bugs and Issues:** Identify bugs, security vulnerabilities, or logical
+issues. For each problem, provide a brief explanation and a code example of the
+fix. If no significant issues are found, explicitly state "No major bugs or
+issues found."
+
+3.  **Style and Readability:** Suggest improvements for style, naming,
+readability, consistency, and best practices. If no significant style
+improvements are needed, explicitly state "No major style improvements
+suggested."
+]]
+
 return {
     'olimorris/codecompanion.nvim',
     dependencies = {
@@ -26,10 +45,10 @@ return {
             desc = 'CodeCompanion: Toggle Chat',
         },
         {
-            '<leader>ca',
-            '<cmd>CodeCompanionChat Add<CR>',
-            mode = 'v',
-            desc = 'CodeCompanion: Add Selected Text to Chat',
+            '<leader>cr',
+            '<cmd>CodeCompanion /review<CR>',
+            mode = { 'n', 'v' },
+            desc = 'CodeCompanion: Review selected code',
         },
     },
     opts = {
@@ -59,9 +78,8 @@ return {
         prompt_library = {
             ['Review'] = {
                 strategy = 'chat',
-                description = 'Review the selected code.',
+                description = 'Review selected code',
                 opts = {
-                    mode = { 'v' },
                     is_default = true,
                     is_slash_cmd = true,
                     short_name = 'review',
@@ -71,23 +89,16 @@ return {
                 prompts = {
                     {
                         role = 'system',
-                        content = function(context)
-                            return 'Review the provided code as a senior developer of '
-                                .. context.filetype
-                                .. '. Return concise explanations and codeblock examples if needed.'
-                        end,
+                        content = review_prompt,
                     },
                     {
                         role = 'user',
                         content = function(context)
-                            local text =
-                                require('codecompanion.helpers.actions').get_code(context.start_line, context.end_line)
-
-                            return 'Please review the following code:\n\n```'
-                                .. context.filetype
-                                .. '\n'
-                                .. text
-                                .. '\n```\n\n'
+                            return string.format(
+                                'Review the code:\n\n```%s\n%s\n```\n\n',
+                                context.filetype,
+                                table.concat(context.lines, '\n')
+                            )
                         end,
                         opts = { contains_code = true },
                     },
