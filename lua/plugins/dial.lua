@@ -7,19 +7,23 @@ return {
         require('dial.config').augends:register_group {
             default = {
                 augend.constant.alias.bool,
-                augend.constant.new { elements = { 'let', 'const' } },
                 augend.date.alias['%Y-%m-%d'],
                 augend.date.alias['%Y/%m/%d'],
+                augend.date.alias['%m/%d'],
                 augend.integer.alias.binary,
                 augend.integer.alias.decimal_int,
                 augend.integer.alias.hex,
                 augend.semver.alias.semver,
+
+                augend.constant.new { elements = { '&&', '||' }, word = false },
+                augend.constant.new { elements = { 'and', 'or' } },
+                augend.constant.new { elements = { 'let', 'const' } },
             },
         }
     end,
     keys = {
         {
-            '<M-s>',
+            '<M-k>',
             function()
                 return require('dial.map').inc_normal()
             end,
@@ -27,7 +31,7 @@ return {
             desc = 'Dial: Increment',
         },
         {
-            '<M-x>',
+            '<M-j>',
             function()
                 return require('dial.map').dec_normal()
             end,
