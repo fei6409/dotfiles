@@ -104,6 +104,21 @@ return {
                     },
                 },
             },
+            ['Apply'] = {
+                strategy = 'chat',
+                description = 'Apply changes to current buffer',
+                opts = {
+                    is_slash_cmd = true,
+                    short_name = 'apply',
+                    auto_submit = false,
+                },
+                prompts = {
+                    {
+                        role = 'user',
+                        content = [[#buffer @editor apply the change]]
+                    },
+                },
+            },
         },
     },
 }
