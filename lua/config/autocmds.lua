@@ -32,7 +32,7 @@ autocmd('FileType', {
     callback = function()
         -- Do vertical windows and use `bwipeout` to avoid horizontal re-opening
         vim.cmd [[wincmd L]]
-        vim.keymap.set('n', '<ESC>', '<cmd>bwipeout<CR>', opts_nowait)
+        vim.keymap.set('n', '<C-c>', '<cmd>bwipeout<CR>', opts_nowait)
         vim.keymap.set('n', 'q', '<cmd>bwipeout<CR>', opts_nowait)
     end,
 })
@@ -42,7 +42,7 @@ autocmd('FileType', {
     pattern = { 'qf', 'fugitiveblame' },
     desc = 'Additional window-close keymaps',
     callback = function()
-        vim.keymap.set('n', '<ESC>', '<cmd>close<CR>', opts_nowait)
+        vim.keymap.set('n', '<C-c>', '<cmd>close<CR>', opts_nowait)
         vim.keymap.set('n', 'q', '<cmd>close<CR>', opts_nowait)
     end,
 })
