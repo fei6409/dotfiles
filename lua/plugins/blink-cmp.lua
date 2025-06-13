@@ -19,7 +19,7 @@ return {
             ['<Down>'] = { 'fallback' },
         },
         cmdline = {
-            keymap = { preset = 'default' },
+            keymap = { preset = 'inherit' },
             completion = { menu = { auto_show = true } },
         },
         sources = {
