@@ -115,7 +115,7 @@ return {
                 prompts = {
                     {
                         role = 'user',
-                        content = [[#buffer @editor apply the change]]
+                        content = [[@insert_edit_into_file apply the change in #buffer]]
                     },
                 },
             },
