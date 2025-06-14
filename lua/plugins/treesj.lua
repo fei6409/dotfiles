@@ -7,6 +7,13 @@ return {
     },
     keys = {
         { '<leader>sj', '<cmd>TSJToggle<CR>', desc = 'TreeSJ: Toggle split/join' },
+        {
+            '<leader>sJ',
+            function()
+                require('treesj').toggle { split = { recursive = true } }
+            end,
+            desc = 'TreeSJ: Toggle split/join (recursive)',
+        },
     },
     opts = {
         use_default_keymaps = false,
