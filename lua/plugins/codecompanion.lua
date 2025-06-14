@@ -53,7 +53,10 @@ return {
     },
     opts = {
         strategies = {
-            -- chat = { adapter = 'gemini' },
+            chat = {
+                tools = { opts = { default_tools = { 'files' } } },
+                -- adapter = 'gemini',
+            },
             -- inline = { adapter = 'gemini' },
             -- cmd = { adapter = 'gemini' },
         },
@@ -115,7 +118,7 @@ return {
                 prompts = {
                     {
                         role = 'user',
-                        content = [[@insert_edit_into_file apply the change in #buffer]]
+                        content = [[apply the change in #buffer]],
                     },
                 },
             },
