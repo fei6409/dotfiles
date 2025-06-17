@@ -1,8 +1,0 @@
-[options]
-default=patchwork
-
-[patchwork]
-url=https://patchwork.kernel.org/
-
-[lore]
-url=https://lore.kernel.org/patchwork

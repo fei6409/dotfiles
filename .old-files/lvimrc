@@ -1,6 +1,0 @@
-" This is a local vimrc file which should be put in the root directory of a
-" project, see https://github.com/embear/vim-localvimrc for details.
-
-" use tab for indentation
-set noexpandtab
-set ts=8 sts=8 sw=8
