@@ -410,7 +410,8 @@ set -g status-interval 5
 set -g history-limit 50000
 
 # start with mouse mode enabled
-# set -g mouse on
+# select text with Shift (or Option on Mac) + mouse drag
+set -g mouse on
 
 # ^A for last window
 bind C-a last-window
