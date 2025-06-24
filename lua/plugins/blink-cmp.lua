@@ -20,7 +20,10 @@ return {
         },
         cmdline = {
             keymap = { preset = 'inherit' },
-            completion = { menu = { auto_show = true } },
+            completion = {
+                list = { selection = { preselect = false, auto_insert = true } },
+                menu = { auto_show = true },
+            },
         },
         sources = {
             default = { 'lsp', 'path', 'snippets', 'buffer' },
