@@ -114,13 +114,16 @@ chk_src "$HOME/.local.zsh"
 chk_src "$HOME/.fzf.zsh"
 chk_src "$HOME/.alias.zsh"
 chk_src "$HOME/.lazy-load.zsh"
-chk_src "$HOME/.my-git-prompt.zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-chk_src "$HOME/.p10k.zsh"
+# chk_src "$HOME/.my-git-prompt.zsh"
+# chk_src "$HOME/.p10k.zsh"
 
 # Ensure path array do not contain duplicates
 typeset -U PATH
+
+# Starship for shell prompt - https://starship.rs
+eval "$(starship init zsh)"
 
 # Zsh profiling
 [[ -n $ZPROF ]] && zprof

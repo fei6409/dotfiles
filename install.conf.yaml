@@ -43,9 +43,10 @@
     ~/.zpreztorc: zpreztorc
     ~/.zshrc: zshrc
     ~/.alias.zsh: alias.zsh
-    ~/.p10k.zsh: p10k.zsh
     ~/.lazy-load.zsh: lazy-load.zsh
-    ~/.my-git-prompt.zsh: my-git-prompt.zsh
+    # ~/.p10k.zsh: p10k.zsh
+    # ~/.my-git-prompt.zsh: my-git-prompt.zsh
+    ~/.config/starship.toml: starship.toml
     ~/.local/bin/better-git-branch: bin/better-git-branch
 # fzf
     ~/.fzf: modules/fzf
@@ -92,6 +93,7 @@
     - [brew install colordiff, Installing colordiff]
     - [brew install rbenv ruby-build, Installing rbenv]
     - [brew install pyenv, Installing pyenv]
+    - [brew install starship, Installing Starship]
     - [brew install bat, Installing bat (enhanced cat)]
     - [brew install reattach-to-user-namespace, Installing reattach-to-user-namespace]
     - [brew install coreutils, Installing coreutils]
@@ -109,5 +111,6 @@
     # - [sudo apt install -y neovim, Installing neovim]
     - [sudo apt install -y colordiff, Installing colordiff]
     - [sudo apt install -y rbenv, Installing rbenv]
+    - [sudo apt install -y starship, Installing Starship]
     - [sudo apt install -y bat, Installing bat (enhanced cat)]
     - [sudo apt install -y fcitx5 fcitx5-chewing fcitx5-rime fcitx5-mozc im-config, Installing fcitx and IME]

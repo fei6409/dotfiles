@@ -1,0 +1,56 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+format = '''
+$directory$git_branch$git_commit$git_state$git_status$fill$status$ruby$python$hostname$time
+$character
+'''
+
+[directory]
+style = 'bold blue'
+repo_root_style = 'bold red'
+truncate_to_repo = false
+
+[git_branch]
+format = '[$symbol$branch(:$remote_branch)]($style) '
+always_show_remote = true
+only_attached = true
+
+[git_commit]
+format = '[$hash$tag]($style) '
+only_detached = true
+
+[git_state]
+format = '[\($state( $progress_current/$progress_total)\)]($style) '
+
+[git_status]
+format = '([$all_status]($style)[$ahead_behind](bold green) )'
+ignore_submodules = true
+ahead = '⇡${count}'
+behind = '⇣${count}'
+diverged = '⇡${ahead_count}⇣${behind_count}'
+conflicted = '⚒︎'
+stashed = '≡'
+
+[hostname]
+format = '[$hostname]($style) '
+
+[python]
+format = '[$symbol($version)]($style) '
+version_format = '$raw'
+symbol = 'py '
+
+[ruby]
+format = '[$symbol($version)]($style) '
+version_format = '$raw'
+symbol = 'rb '
+
+[status]
+disabled = false
+
+[time]
+format = '[$time]($style)'
+disabled = false
