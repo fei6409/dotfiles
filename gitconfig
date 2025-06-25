@@ -76,6 +76,8 @@
 [maintenance]
   auto = false
   strategy = incremental
+[maintenance "prefetch"]
+  enabled = false
 [maintenance "gc"]
   enabled = true
   schedule = weekly
