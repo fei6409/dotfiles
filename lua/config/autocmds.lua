@@ -28,7 +28,7 @@ autocmd('VimResized', {
 autocmd('FileType', {
     group = augroups['close'],
     pattern = { 'help', 'man', 'checkhealth' },
-    desc = 'Additional window-close keymaps',
+    desc = 'Additional keymaps to close help buffers',
     callback = function()
         -- Do vertical windows and use `bwipeout` to avoid horizontal re-opening
         vim.cmd [[wincmd L]]
@@ -40,10 +40,20 @@ autocmd('FileType', {
 autocmd('FileType', {
     group = augroups['close'],
     pattern = { 'qf', 'fugitiveblame' },
-    desc = 'Additional window-close keymaps',
+    desc = 'Additional keymaps to close quickfix and figitive windows',
     callback = function()
         vim.keymap.set('n', '<C-c>', '<cmd>close<CR>', opts_nowait)
         vim.keymap.set('n', 'q', '<cmd>close<CR>', opts_nowait)
+    end,
+})
+
+autocmd({ 'BufNewFile', 'BufRead' }, {
+    group = augroups['close'],
+    pattern = 'fugitive://*',
+    desc = 'Additional keymaps to close figitive buffers',
+    callback = function()
+        vim.keymap.set('n', '<C-c>', '<cmd>bwipeout<CR>', opts_nowait)
+        vim.keymap.set('n', 'q', '<cmd>bwipeout<CR>', opts_nowait)
     end,
 })
 
