@@ -10,7 +10,7 @@ return {
     },
     cmds = 'NeoTree',
     keys = {
-        { '<leader>t', '<cmd>Neotree toggle<CR>', desc = 'Toggle Neotree window' },
+        { '<leader>t', '<cmd>Neotree toggle<cr>', desc = 'Toggle Neotree window' },
     },
     opts = {
         close_if_last_window = true,

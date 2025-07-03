@@ -5,7 +5,7 @@ return {
     keys = {
         {
             '<leader>b',
-            '<cmd>BlameToggle<CR>',
+            '<cmd>BlameToggle<cr>',
             desc = 'Git blame in window vsplit',
         },
     },

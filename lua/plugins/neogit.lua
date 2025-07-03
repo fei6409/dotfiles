@@ -9,7 +9,7 @@ return {
     },
     cmd = { 'Neogit' },
     keys = {
-        { '<leader>g', '<cmd>Neogit<CR>', desc = 'Open Neogit' },
+        { '<leader>g', '<cmd>Neogit<cr>', desc = 'Open Neogit' },
     },
     opts = {
         graph_style = 'unicode',

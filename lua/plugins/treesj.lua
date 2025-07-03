@@ -6,7 +6,7 @@ return {
         'nvim-treesitter/nvim-treesitter',
     },
     keys = {
-        { '<leader>sj', '<cmd>TSJToggle<CR>', desc = 'TreeSJ: Toggle split/join' },
+        { '<leader>sj', '<cmd>TSJToggle<cr>', desc = 'TreeSJ: Toggle split/join' },
         {
             '<leader>sJ',
             function()

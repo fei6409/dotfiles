@@ -34,19 +34,19 @@ return {
     keys = {
         {
             '<leader>cp',
-            '<cmd>CodeCompanionActions<CR>',
+            '<cmd>CodeCompanionActions<cr>',
             mode = { 'n', 'v' },
             desc = 'CodeCompanion: Open Action Palette',
         },
         {
             '<leader>cc',
-            '<cmd>CodeCompanionChat Toggle<CR>',
+            '<cmd>CodeCompanionChat Toggle<cr>',
             mode = { 'n', 'v' },
             desc = 'CodeCompanion: Toggle Chat',
         },
         {
             '<leader>cr',
-            '<cmd>CodeCompanion /review<CR>',
+            '<cmd>CodeCompanion /review<cr>',
             mode = { 'n', 'v' },
             desc = 'CodeCompanion: Review selected code',
         },
