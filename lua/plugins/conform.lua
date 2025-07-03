@@ -10,7 +10,7 @@ return {
             function()
                 require('conform').format { async = true }
                 -- Ensure always go back to normal mode.
-                vim.api.nvim_input '<ESC>'
+                vim.api.nvim_input('<ESC>')
             end,
             mode = { 'n', 'v' },
             desc = 'Conform: Format Buffer',

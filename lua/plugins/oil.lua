@@ -9,9 +9,7 @@ return {
     keys = {
         {
             '<leader>t',
-            function()
-                require('oil').toggle_float '.'
-            end,
+            function() require('oil').toggle_float('.') end,
             desc = 'Oil: Toggle floating window',
         },
     },

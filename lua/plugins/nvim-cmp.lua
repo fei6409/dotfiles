@@ -15,8 +15,8 @@ return {
     enabled = false,
     event = 'VeryLazy',
     config = function()
-        local cmp = require 'cmp'
-        local luasnip = require 'luasnip'
+        local cmp = require('cmp')
+        local luasnip = require('luasnip')
 
         cmp.setup {
             preselect = cmp.PreselectMode.None,
@@ -62,9 +62,7 @@ return {
                 { name = 'buffer', keyword_length = 3 },
             }),
             snippet = {
-                expand = function(args)
-                    luasnip.lsp_expand(args.body)
-                end,
+                expand = function(args) luasnip.lsp_expand(args.body) end,
             },
             experimental = {
                 native_menu = false,

@@ -60,20 +60,18 @@ keyset('n', '<leader>q', function()
         end
     end
     if cur_buf == last_buf then
-        vim.cmd 'bprevious|bwipeout #'
+        vim.cmd('bprevious|bwipeout #')
     else
-        vim.cmd 'bnext|bwipeout #'
+        vim.cmd('bnext|bwipeout #')
     end
 end, { desc = 'Close current buffer' })
 
 -- Print syntax info
 keyset('n', '<F4>', function()
     local fn = vim.fn
-    local attr = function(x)
-        return fn.synIDattr(x, 'name')
-    end
-    local eid = fn.synID(fn.line '.', fn.col '.', 1)
-    local tid = fn.synID(fn.line '.', fn.col '.', 0)
+    local attr = function(x) return fn.synIDattr(x, 'name') end
+    local eid = fn.synID(fn.line('.'), fn.col('.'), 1)
+    local tid = fn.synID(fn.line('.'), fn.col('.'), 0)
     local msg = 'syn<' .. attr(eid) .. '>, trans<' .. attr(tid) .. '> -> hlgrp<' .. attr(fn.synIDtrans(eid)) .. '>'
     print(msg)
 end, { desc = 'Print syntax highlight info' })
@@ -87,8 +85,8 @@ end, { desc = 'Toggle colorcolumn' })
 
 -- Toggle line number, list mode, and signcolumn
 keyset('n', '<F9>', function()
-    vim.cmd [[set invnumber invlist]]
-    vim.cmd [[IBLToggle]]
+    vim.cmd([[set invnumber invlist]])
+    vim.cmd([[IBLToggle]])
     vim.wo.signcolumn = (vim.wo.signcolumn == 'yes' and 'no' or 'yes')
     print(
         'Number: '
@@ -103,10 +101,10 @@ end, { desc = 'Toggle line number' })
 -- Toggle expandtab and tab width
 keyset('n', '<F10>', function()
     if vim.o.expandtab then
-        vim.cmd [[setlocal noexpandtab tabstop=8 shiftwidth=8]]
-        print 'Tab indent (8 spaces)'
+        vim.cmd([[setlocal noexpandtab tabstop=8 shiftwidth=8]])
+        print('Tab indent (8 spaces)')
     else
-        vim.cmd [[setlocal expandtab tabstop=4 shiftwidth=4]]
-        print 'Sapce indent (4 spaces)'
+        vim.cmd([[setlocal expandtab tabstop=4 shiftwidth=4]])
+        print('Sapce indent (4 spaces)')
     end
 end, { desc = 'Switch expandtab status' })

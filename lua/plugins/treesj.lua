@@ -9,9 +9,7 @@ return {
         { '<leader>sj', '<cmd>TSJToggle<cr>', desc = 'TreeSJ: Toggle split/join' },
         {
             '<leader>sJ',
-            function()
-                require('treesj').toggle { split = { recursive = true } }
-            end,
+            function() require('treesj').toggle { split = { recursive = true } } end,
             desc = 'TreeSJ: Toggle split/join (recursive)',
         },
     },

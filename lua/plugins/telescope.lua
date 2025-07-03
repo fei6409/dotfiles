@@ -11,11 +11,11 @@ return {
     },
     event = 'VeryLazy',
     config = function()
-        local tel_actions = require 'telescope.actions'
-        local tel_builtin = require 'telescope.builtin'
+        local tel_actions = require('telescope.actions')
+        local tel_builtin = require('telescope.builtin')
         -- Inspired by https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes
         local function is_git_repo()
-            vim.fn.system 'git rev-parse --is-inside-work-tree'
+            vim.fn.system('git rev-parse --is-inside-work-tree')
             return vim.v.shell_error == 0
         end
         local function get_git_root()
@@ -98,6 +98,6 @@ return {
                 },
             },
         }
-        require('telescope').load_extension 'fzf'
+        require('telescope').load_extension('fzf')
     end,
 }

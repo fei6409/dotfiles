@@ -27,7 +27,5 @@ return {
             }
         end,
     },
-    init = function()
-        vim.cmd.colorscheme 'kanagawa'
-    end,
+    init = function() vim.cmd.colorscheme('kanagawa') end,
 }

@@ -3,7 +3,7 @@
 return {
     'monaqa/dial.nvim',
     config = function()
-        local augend = require 'dial.augend'
+        local augend = require('dial.augend')
         require('dial.config').augends:register_group {
             default = {
                 augend.constant.alias.bool,
@@ -24,17 +24,13 @@ return {
     keys = {
         {
             '<M-k>',
-            function()
-                return require('dial.map').inc_normal()
-            end,
+            function() return require('dial.map').inc_normal() end,
             expr = true,
             desc = 'Dial: Increment',
         },
         {
             '<M-j>',
-            function()
-                return require('dial.map').dec_normal()
-            end,
+            function() return require('dial.map').dec_normal() end,
             expr = true,
             desc = 'Dial: Decrement',
         },

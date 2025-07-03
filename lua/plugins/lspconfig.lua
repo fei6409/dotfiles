@@ -15,9 +15,7 @@ local lsp_servers = {
 }
 
 -- Add gopls if Go is installed
-if vim.fn.executable 'go' == 1 then
-    table.insert(lsp_servers, 'gopls')
-end
+if vim.fn.executable('go') == 1 then table.insert(lsp_servers, 'gopls') end
 
 -- LSP servers with additional configs
 local lsp_configs = {
@@ -79,9 +77,7 @@ return {
             -- See: https://github.com/bash-lsp/bash-language-server/issues/752
             vim.diagnostic.config {
                 virtual_text = {
-                    format = function(args)
-                        return string.format('%s [%s]', args.message, args.code)
-                    end,
+                    format = function(args) return string.format('%s [%s]', args.message, args.code) end,
                 },
             }
 
@@ -108,13 +104,11 @@ return {
                     -- "grt"  (Normal)         |vim.lsp.buf.type_definition()|
 
                     local keyset = vim.keymap.set
-                    local opts = function(desc)
-                        return { buffer = args.buf, silent = true, desc = desc }
-                    end
+                    local opts = function(desc) return { buffer = args.buf, silent = true, desc = desc } end
 
-                    keyset('n', 'gk', vim.diagnostic.open_float, opts 'vim.diagnostic.open_float()')
-                    keyset('n', 'grd', vim.lsp.buf.definition, opts 'vim.lsp.buf.definition()')
-                    keyset('n', 'grt', vim.lsp.buf.type_definition, opts 'vim.lsp.buf.type_definition()')
+                    keyset('n', 'gk', vim.diagnostic.open_float, opts('vim.diagnostic.open_float()'))
+                    keyset('n', 'grd', vim.lsp.buf.definition, opts('vim.lsp.buf.definition()'))
+                    keyset('n', 'grt', vim.lsp.buf.type_definition, opts('vim.lsp.buf.type_definition()'))
 
                     -- Opt out of 'formatexpr'
                     vim.bo[args.buf].formatexpr = nil
