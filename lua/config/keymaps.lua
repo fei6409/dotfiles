@@ -85,8 +85,8 @@ end, { desc = 'Toggle colorcolumn' })
 
 -- Toggle line number, list mode, and signcolumn
 keyset('n', '<F9>', function()
-    vim.cmd([[set invnumber invlist]])
-    vim.cmd([[IBLToggle]])
+    vim.cmd('set invnumber invlist')
+    vim.cmd('IBLToggle')
     vim.wo.signcolumn = (vim.wo.signcolumn == 'yes' and 'no' or 'yes')
     print(
         'Number: '
@@ -101,10 +101,10 @@ end, { desc = 'Toggle line number' })
 -- Toggle expandtab and tab width
 keyset('n', '<F10>', function()
     if vim.o.expandtab then
-        vim.cmd([[setlocal noexpandtab tabstop=8 shiftwidth=8]])
+        vim.cmd('setlocal noexpandtab tabstop=8 shiftwidth=8')
         print('Tab indent (8 spaces)')
     else
-        vim.cmd([[setlocal expandtab tabstop=4 shiftwidth=4]])
+        vim.cmd('setlocal expandtab tabstop=4 shiftwidth=4')
         print('Sapce indent (4 spaces)')
     end
 end, { desc = 'Switch expandtab status' })

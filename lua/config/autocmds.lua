@@ -29,7 +29,7 @@ autocmd('FileType', {
     desc = 'Additional keymaps to close help buffers',
     callback = function()
         -- Do vertical windows and use `bwipeout` to avoid horizontal re-opening
-        vim.cmd([[wincmd L]])
+        vim.cmd('wincmd L')
         vim.keymap.set('n', '<C-c>', '<cmd>bwipeout<CR>', opts_nowait)
         vim.keymap.set('n', 'q', '<cmd>bwipeout<CR>', opts_nowait)
     end,
@@ -95,6 +95,6 @@ autocmd('BufWritePre', {
 
         if vim.tbl_contains(skip_types, vim.bo.filetype) then return end
         -- `keeppatterns` prevents altering the search pattern
-        vim.cmd([[keeppatterns %s/\s\+$//e]])
+        vim.cmd('keeppatterns %s/\\s\\+$//e')
     end,
 })
