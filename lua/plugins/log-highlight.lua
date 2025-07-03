@@ -14,8 +14,8 @@ return {
         },
         pattern = {
             '/var/log/.*',
-            'messages%..*',
-            'messages-.*',
+            'console-ramoops.*',
+            'messages.*',
             '.*%.LATEST',
             '.*%.PREVIOUS',
             '.*%.previous',
