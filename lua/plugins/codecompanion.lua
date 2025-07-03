@@ -118,7 +118,7 @@ return {
                 prompts = {
                     {
                         role = 'user',
-                        content = [[apply the change in #buffer]],
+                        content = [[apply the change in #{buffer}]],
                     },
                 },
             },
