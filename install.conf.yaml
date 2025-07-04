@@ -5,7 +5,7 @@
     create:
         mode: 0755
 
-# - clean: ['~']
+- clean: ['~']
 
 - shell:
     -
@@ -13,73 +13,63 @@
         description: Installing submodules
         stdout: true
 
-# - create:
-#     - ~/.vim/.backup
-#     - ~/.vim/.swp
-#     - ~/.vim/.undo
-
+#### common links
 - link:
 # git
-    ~/.gitconfig: gitconfig
-    ~/.gitignore.global: gitignore.global
+    ~/.gitconfig:
+    ~/.gitignore.global:
 # oh-my-tmux
     ~/.tmux: modules/tmux
     ~/.tmux.conf: modules/tmux/.tmux.conf
-    ~/.tmux.conf.local: tmux.conf.local
+    ~/.tmux.conf.local:
 # vim
-#     ~/.vim/autoload/plug.vim: modules/vim-plug/plug.vim
-#     ~/.vimrc: vimrc
-#     ~/.vim/coc-settings.json: coc-settings.json
+    # ~/.vimrc:
+    # ~/.vim/autoload/plug.vim: modules/vim-plug/plug.vim
 # nvim / lua
-    ~/.config/nvim/lua: lua
-    ~/.config/nvim/init.lua: init.lua
+    ~/.config/nvim/lua:
+    ~/.config/nvim/init.lua:
 # zsh / prezto
+    ~/.zshrc:
+    ~/.zpreztorc:
+    ~/.zprofile:
     ~/.zprezto: modules/prezto
-    ~/.zprezto/contrib/fast-syntax-highlighting: modules/fast-syntax-highlighting
     ~/.zlogin: modules/prezto/runcoms/zlogin
     ~/.zlogout: modules/prezto/runcoms/zlogout
     ~/.zshenv: modules/prezto/runcoms/zshenv
-    ~/.zprofile: zprofile
-    ~/.zpreztorc: zpreztorc
-    ~/.zshrc: zshrc
-    ~/.alias.zsh: alias.zsh
-    ~/.lazy-load.zsh: lazy-load.zsh
-    # ~/.p10k.zsh: p10k.zsh
-    # ~/.my-git-prompt.zsh: my-git-prompt.zsh
-    ~/.config/starship.toml: starship.toml
-    ~/.local/bin/better-git-branch: bin/better-git-branch
-# fzf
+    ~/.zprezto/contrib/fast-syntax-highlighting: modules/fast-syntax-highlighting
+# others
+    ~/.alias.zsh:
+    ~/.lazy-load.zsh:
+    ~/.config/starship.toml:
     ~/.fzf: modules/fzf
-# pyenv (only for Linux)
-    ~/.pyenv:
+    ~/.local/bin/better-git-branch: bin/better-git-branch
+    # ~/.p10k.zsh:
+    # ~/.my-git-prompt.zsh:
+
+#### Linux links
+- defaults:
+    link:
         if: '[[ `uname` == Linux ]]'
-        path: modules/pyenv
+- link:
+# pyenv
+    ~/.pyenv: modules/pyenv
+# binaries
+    ~/.local/bin/delta: bin/delta
+    ~/.local/bin/unarchive: bin/unarchive
+    ~/.local/bin/fd: /usr/bin/fdfind
+    ~/.local/bin/bat: /usr/bin/batcat
 # fcitx5 autostart
     ~/.config/autostart/org.fcitx.Fcitx5.desktop:
-        if: '[[ `uname` == Linux ]]'
         path: /usr/share/applications/org.fcitx.Fcitx5.desktop
-# binaries
-    ~/.local/bin/delta:
-        if: '[[ `uname` == Linux ]]'
-        path: bin/delta
-    ~/.local/bin/unarchive:
-        if: '[[ `uname` == Linux ]]'
-        path: bin/unarchive
-    ~/.local/bin/fd:
-        if: '[[ `uname` == Linux ]]'
-        path: /usr/bin/fdfind
-    ~/.local/bin/bat:
-        if: '[[ `uname` == Linux ]]'
-        path: /usr/bin/batcat
 
-# common shell commands
+#### common shell
 - shell:
     -
         command: curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
         description: Installing Zoxide
         stdout: true
 
-# brew for macOS
+#### brew for macOS
 - shell:
     - [brew update, Updating brew for macOS]
     - [brew install git-delta, Installing git-delta]
@@ -99,7 +89,7 @@
     - [brew install coreutils, Installing coreutils]
     - [brew install font-meslo-lg-nerd-font, Installing MesloLG Nerd Fonts]
 
-# apt for Debian
+#### apt for Debian
 - shell:
     - [sudo apt update, Updating apt for Debian]
     - [sudo apt install -y ninja-build gettext cmake unzip curl, Prerequisites for compiling neovim]
