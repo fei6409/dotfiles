@@ -85,8 +85,8 @@ else
 fi
 cmd_exist colordiff && alias diff='colordiff'
 cmd_exist tmx2 && alias tmux='tmx2'
-cmd_exist python && py='python'
-cmd_exist python3 && py='python3'
+cmd_exist python && alias py='python'
+cmd_exist python3 && alias py='python3'
 
 #
 # OS specific
