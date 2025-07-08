@@ -34,7 +34,7 @@ return {
         formatters = {
             shfmt = {
                 -- Indent 2 spaces.
-                prepend_args = { '-i', '2' },
+                append_args = { '-i', '2' },
             },
             deno_fmt = {
                 append_args = { '--indent-width', '4' },
