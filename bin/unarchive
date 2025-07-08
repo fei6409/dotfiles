@@ -32,9 +32,9 @@ replace() {
   # mv -T is not supported on BSD :(
   local temp_dir
   temp_dir=$(mktemp -d tmp.unarchive.XXXXXXXXXX)
-  temp_files+=(${temp_dir})
-  mv -- "$1" "$temp_dir/$2"
-  mv -- "$temp_dir/$2" .
+  temp_files+=("${temp_dir}")
+  mv -- "$1" "${temp_dir}/$2"
+  mv -- "${temp_dir}/$2" .
 }
 
 find_unique_name() {
@@ -154,13 +154,13 @@ unarchive() {
 
   local temp_dir
   temp_dir=$(mktemp -d tmp.unarchive.XXXXXXXXXX)
-  temp_files+=(${temp_dir})
+  temp_files+=("${temp_dir}")
 
   "unarchive_${archive_type}" "${archive_orig_path}" "${temp_dir}"
 
   local sub_files=()
   while IFS= read -r -d '' f; do
-    sub_files+=($f)
+    sub_files+=("${f}")
   done < <(find "${temp_dir}" -maxdepth 1 -mindepth 1 -print0)
 
   if (( "${#sub_files[@]}" == 0 )); then
