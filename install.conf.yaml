@@ -1,34 +1,34 @@
+---
 - defaults:
     link:
-        create: true
-        relink: true
+      create: true
+      relink: true
     create:
-        mode: 0755
+      mode: 0755
 
 - clean: ['~']
 
 - shell:
-    -
-        command: git submodule update --init --recursive
-        description: Installing submodules
-        stdout: true
+    - description: Installing submodules
+      command: git submodule update --init --recursive
+      stdout: true
 
 #### common links
 - link:
-# git
+    # git
     ~/.gitconfig:
     ~/.gitignore.global:
-# oh-my-tmux
+    # oh-my-tmux
     ~/.tmux: modules/tmux
     ~/.tmux.conf: modules/tmux/.tmux.conf
     ~/.tmux.conf.local:
-# vim
+    # vim
     # ~/.vimrc:
     # ~/.vim/autoload/plug.vim: modules/vim-plug/plug.vim
-# nvim / lua
+    # nvim / lua
     ~/.config/nvim/lua:
     ~/.config/nvim/init.lua:
-# zsh / prezto
+    # zsh / prezto
     ~/.zshrc:
     ~/.zpreztorc:
     ~/.zprofile:
@@ -37,7 +37,7 @@
     ~/.zlogout: modules/prezto/runcoms/zlogout
     ~/.zshenv: modules/prezto/runcoms/zshenv
     ~/.zprezto/contrib/fast-syntax-highlighting: modules/fast-syntax-highlighting
-# others
+    # others
     ~/.alias.zsh:
     ~/.lazy-load.zsh:
     ~/.config/starship.toml:
@@ -49,66 +49,77 @@
 #### Linux links
 - defaults:
     link:
-        if: '[[ `uname` == Linux ]]'
+      if: '[[ `uname` == Linux ]]'
 - link:
-# pyenv
+    # pyenv
     ~/.pyenv: modules/pyenv
-# binaries
+    # binaries
     ~/.local/bin/delta: bin/delta
     ~/.local/bin/unarchive: bin/unarchive
     ~/.local/bin/fd: /usr/bin/fdfind
     ~/.local/bin/bat: /usr/bin/batcat
-# fcitx5 autostart
+    # fcitx5 autostart
     ~/.config/autostart/org.fcitx.Fcitx5.desktop:
-        path: /usr/share/applications/org.fcitx.Fcitx5.desktop
+      path: /usr/share/applications/org.fcitx.Fcitx5.desktop
 
 #### common shell
 - shell:
-    -
-        command: curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
-        description: Installing Zoxide
-        stdout: true
+    - description: Installing Zoxide
+      command: curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+      stdout: true
 
 #### brew for macOS
 - shell:
-    - [brew update, Updating brew for macOS]
-    - [brew install git-delta, Installing git-delta]
-    - [brew install git-absorb, Installing git-absorb]
-    - [brew install ripgrep, Installing ripgrep]
-    - [brew install fzf, Installing fzf]
-    - [brew install fd, Installing fd]
-    - [brew install duf, Installing duf]
-    - [brew install dust, Installing dust]
-    - [brew install sd, Installing sd]
-    - [brew install hyperfine, Installing hyperfine]
-    - [brew install shellcheck, Installing shellcheck]
-    - [brew install node, Installing Node.js]
-    - [brew install neovim, Installing neovim]
-    - [brew install colordiff, Installing colordiff]
-    - [brew install rbenv ruby-build, Installing rbenv]
-    - [brew install pyenv, Installing pyenv]
-    - [brew install starship, Installing Starship]
-    - [brew install bat, Installing bat (enhanced cat)]
-    - [brew install reattach-to-user-namespace, Installing reattach-to-user-namespace]
-    - [brew install coreutils, Installing coreutils]
-    - [brew install font-meslo-lg-nerd-font, Installing MesloLG Nerd Fonts]
+    - description: Updating Homebrew
+      command: brew update
+    - description: Installing
+      command: >-
+        brew install
+        bat
+        colordiff
+        coreutils
+        duf
+        dust
+        fd
+        font-meslo-lg-nerd-font
+        fzf
+        git-absorb
+        git-delta
+        hyperfine
+        neovim
+        node
+        pyenv
+        rbenv ruby-build
+        reattach-to-user-namespace
+        ripgrep
+        sd
+        shellcheck
+        starship
 
 #### apt for Debian
 - shell:
-    - [sudo apt update, Updating apt for Debian]
-    - [sudo apt install -y ninja-build gettext cmake unzip curl, Prerequisites for compiling neovim]
-    - [sudo apt install -y ripgrep, Installing ripgrep]
-    - [sudo apt install -y git-absorb, Installing git-absorb]
-    - [sudo apt install -y fd-find, Installing fd]
-    - [sudo apt install -y duf, Installing duf]
-    - [sudo apt install -y du-dust, Installing du-dust]
-    - [sudo apt install -y sd, Installing sd]
-    - [sudo apt install -y hyperfine, Installing hyperfine]
-    - [sudo apt install -y shellcheck, Installing shellcheck]
-    - [sudo apt install -y nodejs npm, Installing Node.js and npm]
-    # - [sudo apt install -y neovim, Installing neovim]
-    - [sudo apt install -y colordiff, Installing colordiff]
-    - [sudo apt install -y rbenv, Installing rbenv]
-    - [sudo apt install -y starship, Installing Starship]
-    - [sudo apt install -y bat, Installing bat (enhanced cat)]
-    - [sudo apt install -y fcitx5 fcitx5-chewing fcitx5-rime fcitx5-mozc im-config, Installing fcitx and IME]
+    - description: Updating Apt
+      command: sudo apt update
+    - description: Installing
+      command: >-
+        sudo apt install -y
+        bat
+        colordiff
+        du-dust
+        duf
+        fcitx5 im-config
+        fcitx5-chewing
+        fcitx5-mozc
+        fcitx5-rime
+        fd-find
+        git-absorb
+        hyperfine
+        ninja-build
+        nodejs
+        npm
+        rbenv
+        ripgrep
+        sd
+        shellcheck
+        starship
+
