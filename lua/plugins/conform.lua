@@ -28,7 +28,7 @@ return {
             rust = { 'rustfmt' },
             sh = { 'shfmt' },
             typescript = { 'deno_fmt' },
-            yaml = { 'yq', 'yamlfmt', stop_after_first = true },
+            yaml = { 'yamlfmt' },
             zsh = { 'shfmt' },
         },
         formatters = {
