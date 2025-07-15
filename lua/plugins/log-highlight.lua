@@ -10,11 +10,10 @@ return {
             'logcat',
             'syslog',
             'chrome',
-            'console-ramoops-0',
         },
         pattern = {
             '/var/log/.*',
-            'console-ramoops.*',
+            'console-.*',
             'messages.*',
             '.*%.LATEST',
             '.*%.PREVIOUS',
