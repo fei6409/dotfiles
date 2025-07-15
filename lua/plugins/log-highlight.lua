@@ -13,7 +13,7 @@ return {
         },
         pattern = {
             '/var/log/.*',
-            'console-.*',
+            'console%-ramoops.*',
             'messages.*',
             '.*%.LATEST',
             '.*%.PREVIOUS',
