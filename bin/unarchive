@@ -95,11 +95,25 @@ unarchive_7z() {
 }
 
 unarchive_gzip() {
-  local bn
-  local fn
-  bn="$(basename "$1")"
-  fn="${bn%.gz}"
-  gzip -dkc "$1" > "$2/${fn}"
+  local base_name
+  local output_name
+
+  base_name="$(basename "$1")"
+  # Remove the .gz extension to get the target filename
+  output_name="${base_name%.gz}"
+
+  gzip -dkc "$1" > "$2/${output_name}"
+}
+
+unarchive_zst() {
+  local base_name
+  local output_name
+
+  base_name=$(basename "$1")
+  # Remove the .zst extension to get the target filename
+  output_name="${base_name%.zst}"
+
+  zstd -d "$1" -o "$2/${output_name}"
 }
 
 unarchive() {
@@ -147,6 +161,9 @@ unarchive() {
       ;;
     *.gz)
       archive_type=gzip
+      ;;
+    *.zst)
+      archive_type=zst
       ;;
     *)
       die "Unknown archive: ${archive_orig_path}"
