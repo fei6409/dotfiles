@@ -33,8 +33,13 @@ return {
         },
         formatters = {
             shfmt = {
-                -- Indent 2 spaces.
-                append_args = { '-i', '2' },
+                -- Indent 2 spaces to follow Google Shell Style Guide:
+                -- https://google.github.io/styleguide/shellguide.html#indentation
+                -- Other arguments:
+                --   -bn: Binary ops like && and | may start a line.
+                --   -ci: Switch cases will be indented.
+                --   -sr: Redirect operators will be followed by a space.
+                append_args = { '-i', '2', '-bn', '-ci', '-sr' },
             },
             deno_fmt = {
                 append_args = { '--indent-width', '4' },
