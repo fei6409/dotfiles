@@ -74,7 +74,8 @@
     bold blue => dodgerblue, \
     bold yellow => khaki
 [maintenance]
-  auto = false
+  ; auto = false
+  autoDetach = true # automatic maintenance shall detach and run in background
   strategy = incremental
 [maintenance "prefetch"]
   enabled = false
