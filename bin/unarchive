@@ -21,11 +21,11 @@ die() {
 }
 
 atomic_file() {
-  { true > "$1" ; } &> /dev/null
+  { true > "$1"; } &> /dev/null
 }
 
 atomic_directory() {
-  mkdir -- "$1" 2>/dev/null
+  mkdir -- "$1" 2> /dev/null
 }
 
 replace() {
@@ -43,8 +43,7 @@ find_unique_name() {
   local name="${orig_name}"
   local ext=""
   if [[ ${file_type} == "file" ]]; then
-    ext=""
-    name="${name%.*}"
+    name="${orig_name%.*}"
     if [[ "${orig_name}" != "${name}" ]]; then
       ext=".${orig_name##*.}"
     fi
@@ -71,7 +70,7 @@ unarchive_tar() {
 }
 
 unarchive_tgz() {
-  if type pigz >/dev/null 2>&1; then
+  if type pigz > /dev/null 2>&1; then
     tar --use-compress-program pigz -xvf "$1" -C "$2"
   else
     tar -xvzf "$1" -C "$2"
@@ -79,7 +78,7 @@ unarchive_tgz() {
 }
 
 unarchive_txz() {
-  if type pixz >/dev/null 2>&1; then
+  if type pixz > /dev/null 2>&1; then
     tar --use-compress-program pixz -xvf "$1" -C "$2"
   else
     tar --xz -xvf "$1" -C "$2"
@@ -153,7 +152,7 @@ unarchive() {
       archive_type=tbz2
       archive_basename="${archive%.tar.bz2}"
       ;;
-    *.tbz|*.tbz2)
+    *.tbz | *.tbz2)
       archive_type=tbz2
       ;;
     *.7z)
@@ -167,6 +166,7 @@ unarchive() {
       ;;
     *)
       die "Unknown archive: ${archive_orig_path}"
+      ;;
   esac
 
   local temp_dir
@@ -180,13 +180,13 @@ unarchive() {
     sub_files+=("${f}")
   done < <(find "${temp_dir}" -maxdepth 1 -mindepth 1 -print0)
 
-  if (( "${#sub_files[@]}" == 0 )); then
+  if (("${#sub_files[@]}" == 0)); then
     info "${archive_orig_path}: No file in archive!"
     return
   fi
 
   local target
-  if (( "${#sub_files[@]}" == 1 )); then
+  if (("${#sub_files[@]}" == 1)); then
     local file="${sub_files[0]}"
     local file_type
     file_type=$([[ -f "${file}" ]] && echo "file" || echo "directory")
@@ -202,11 +202,11 @@ unarchive() {
 
 main() {
   trap cleanup EXIT
-  if (( $# == 0 )); then
+  if (($# == 0)); then
     echo "Usage: $0 [archive files]"
     exit 1
   fi
-  while (( $# > 0 )); do
+  while (($# > 0)); do
     unarchive "$1"
     shift
   done
