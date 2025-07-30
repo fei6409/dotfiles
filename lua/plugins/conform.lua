@@ -8,9 +8,17 @@ return {
         {
             '<leader>f',
             function()
-                require('conform').format { async = true }
-                -- Ensure always go back to normal mode.
-                vim.api.nvim_input('<ESC>')
+                require('conform').format({ async = true }, function(err, did_edit)
+                    if err ~= nil then
+                        print('Format error: ' .. tostring(err))
+                    elseif did_edit == true then
+                        print('Formatted')
+                    else
+                        print('Not formatted')
+                    end
+                    -- Ensure always go back to normal mode.
+                    vim.api.nvim_input('<ESC>')
+                end)
             end,
             mode = { 'n', 'v' },
             desc = 'Conform: Format Buffer',
