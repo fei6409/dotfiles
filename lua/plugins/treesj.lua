@@ -6,7 +6,11 @@ return {
         'nvim-treesitter/nvim-treesitter',
     },
     keys = {
-        { '<leader>sj', '<cmd>TSJToggle<cr>', desc = 'TreeSJ: Toggle split/join' },
+        {
+            '<leader>sj',
+            function() require('treesj').toggle() end,
+            desc = 'TreeSJ: Toggle split/join',
+        },
         {
             '<leader>sJ',
             function() require('treesj').toggle { split = { recursive = true } } end,
