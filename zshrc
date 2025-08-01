@@ -29,6 +29,17 @@ cmd_exist() { type "$1" &>/dev/null; }
 # shellcheck disable=SC1090
 chk_src() { [[ -f "$1" ]] && source "$1"; }
 
+# Find lines with all given words (in any order).
+# `(?=...)` to 'lookahead' a pattern, which doesn't consume characters.
+# Require `-P` flag for PCRE2 matching.
+rg_all() {
+    local pattern=""
+    for arg in "$@"; do
+        pattern+="(?=.*${arg})"
+    done
+    rg -P "${pattern}"
+}
+
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 if cmd_exist go; then

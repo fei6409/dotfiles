@@ -1,15 +1,3 @@
-# General function
-cmd_exist() { type "$1" &>/dev/null; }
-grep_words() {
-    f="$(grep -rial "$1" . 2>/dev/null)"
-    shift
-    while (($#)); do
-        f="$(echo $f | xargs -d '\n' grep -rial $1 2>/dev/null)"
-        shift
-    done
-    echo $f | tr ' ' '\n' | sort -n
-}
-
 # General alias
 alias l='ls -1AF'
 alias ll='ls -lhAF'
