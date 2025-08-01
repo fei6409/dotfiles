@@ -93,6 +93,9 @@ export FZF_CTRL_T_OPTS="
 "
 export FZF_ALT_C_COMMAND="fd --type d"
 
+# Customize debug mode prompt for `set -x`
+export PS4='$0:$LINENO++> '
+
 # To boost ssh/scp completion speed, only consider hosts in the SSH config
 if [[ -f $HOME/.ssh/config ]]; then
     host_list=($(grep -i '^host ' $HOME/.ssh/config | awk '{s = s $2 " "} END {print s}'))
