@@ -5,9 +5,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-$(whoami).zsh" ]]; then
-    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-$(whoami).zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-$(whoami).zsh" ]]; then
+#     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-$(whoami).zsh"
+# fi
 
 #
 # Executes commands at the start of an interactive session.
@@ -15,6 +15,7 @@ fi
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+    # shellcheck disable=SC1091
     source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
@@ -31,6 +32,7 @@ chk_src() { [[ -f "$1" ]] && source "$1"; }
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 if cmd_exist go; then
+    # shellcheck disable=SC2155
     export PATH="$(go env GOPATH)/bin:$PATH"
     export GOPATH="$HOME/go"
 fi
