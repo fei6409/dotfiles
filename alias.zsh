@@ -74,11 +74,14 @@ fi
 cmd_exist colordiff && alias diff='colordiff'
 cmd_exist bat && alias cat='bat -p'
 cmd_exist tmx2 && alias tmux='tmx2'
-cmd_exist python && alias py='python'
-cmd_exist python3 && alias py='python3'
-cmd_exist ipython && alias py='ipython'
 cmd_exist duf && alias df='duf'
 cmd_exist dust && alias du='dust'
+cmd_exist ipython && alias ipy='ipython'
+if cmd_exist python; then
+    alias py='python'
+elif cmd_exist python3; then
+    alias py='python3'
+fi
 
 #
 # OS specific
