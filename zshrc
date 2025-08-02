@@ -40,6 +40,35 @@ rg_all() {
     rg -P "${pattern}"
 }
 
+# Go up N levels of directories.
+up() {
+    local count=${1:-1}
+    local dir=""
+    for i in $(seq 1 "${count}"); do
+        dir+="../"
+    done
+    cd "${dir}" || echo "Failed to 'cd ${dir}'." >&2
+}
+
+# Trim trailing whitespace and copy to clipboard.
+trimcopy() {
+    # Determine the correct copy command for the OS
+    local copy_cmd
+    if [[ "$OSTYPE" =~ ^darwin ]]; then
+        copy_cmd=(pbcopy)
+    elif [[ "$OSTYPE" =~ ^linux ]]; then
+        if ! cmd_exist xclip; then
+            echo "Error: xclip not found." >&2
+            return 1
+        fi
+        copy_cmd=(xclip -sel clip)
+    else
+        echo "Error: Unsupported OS for trimcopy." >&2
+        return 1
+    fi
+    sed -e 's/[[:space:]]*$//' | "${copy_cmd[@]}"
+}
+
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 if cmd_exist go; then
