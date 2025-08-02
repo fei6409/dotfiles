@@ -140,7 +140,12 @@ export PS4='$0:$LINENO++> '
 
 # To boost ssh/scp completion speed, only consider hosts in the SSH config
 if [[ -f $HOME/.ssh/config ]]; then
-    host_list=($(grep -i '^host ' $HOME/.ssh/config | awk '{s = s $2 " "} END {print s}'))
+    host_list=($(awk '
+        tolower($1) == "host" {
+            for (i=2; i<=NF; i++)
+                if ($i !~ /[*?]/) print $i
+        }
+    ' "$HOME/.ssh/config" | sort -u))
     zstyle ':completion:*:(ssh|scp|sftp):*' hosts $host_list
 fi
 
