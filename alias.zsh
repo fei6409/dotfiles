@@ -1,3 +1,6 @@
+# Either `command -v` or `type` would work.
+cmd_exist() { type "$1" &>/dev/null; }
+
 # General alias
 alias l='ls -1AF'
 alias ll='ls -lhAF'
