@@ -20,6 +20,14 @@ die() {
   exit 1
 }
 
+cmd_exist() {
+  if type "$1" > /dev/null 2>&1; then
+    return 0
+  fi
+  info "Command '$1' not found, fall back to alternative tool"
+  return 1
+}
+
 atomic_file() {
   { true > "$1"; } &> /dev/null
 }
@@ -70,7 +78,8 @@ unarchive_tar() {
 }
 
 unarchive_tgz() {
-  if type pigz > /dev/null 2>&1; then
+  #shellcheck disable=SC2310
+  if cmd_exist "pigz"; then
     tar --use-compress-program pigz -xvf "$1" -C "$2"
   else
     tar -xvzf "$1" -C "$2"
@@ -78,7 +87,8 @@ unarchive_tgz() {
 }
 
 unarchive_txz() {
-  if type pixz > /dev/null 2>&1; then
+  #shellcheck disable=SC2310
+  if cmd_exist "pixz"; then
     tar --use-compress-program pixz -xvf "$1" -C "$2"
   else
     tar --xz -xvf "$1" -C "$2"
@@ -101,7 +111,12 @@ unarchive_gzip() {
   # Remove the .gz extension to get the target filename
   output_name="${base_name%.gz}"
 
-  gzip -dkc "$1" > "$2/${output_name}"
+  #shellcheck disable=SC2310
+  if cmd_exist "pigz"; then
+    pigz -dkc "$1" > "$2/${output_name}"
+  else
+    gzip -dkc "$1" > "$2/${output_name}"
+  fi
 }
 
 unarchive_zst() {
