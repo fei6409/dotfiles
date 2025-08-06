@@ -6,15 +6,14 @@ return {
     opts = {
         extension = 'log',
         filename = {
-            'messages',
-            'logcat',
             'syslog',
             'chrome',
         },
         pattern = {
-            '/var/log/.*',
+            '%/var%/log%/.*',
             'console%-ramoops.*',
             'messages.*',
+            'logcat.*',
             '.*%.LATEST',
             '.*%.PREVIOUS',
             '.*%.previous',
