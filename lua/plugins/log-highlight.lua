@@ -14,6 +14,7 @@ return {
             'console%-ramoops.*',
             'messages.*',
             'logcat.*',
+            'log.*%.txt',
             '.*%.LATEST',
             '.*%.PREVIOUS',
             '.*%.previous',
