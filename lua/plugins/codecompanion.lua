@@ -76,6 +76,7 @@ return {
                     position = 'right',
                 },
                 auto_scroll = false,
+                show_settings = true,
             },
         },
         prompt_library = {
