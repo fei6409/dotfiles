@@ -1,6 +1,6 @@
 [core]
   abbrev = 12
-  autocrlf = false
+  autocrlf = input # `input` for Linux or Mac, `true` for Windows
   commitgraph = true
   excludesfile = ~/.gitignore.global
   pager = delta --tabs 8
