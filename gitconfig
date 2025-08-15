@@ -33,6 +33,7 @@
   verbose = true
 [diff]
   colorMoved = default
+  colorMovedWS = allow-indentation-change
 [http]
   cookiefile = ~/.gitcookies
 [init]
