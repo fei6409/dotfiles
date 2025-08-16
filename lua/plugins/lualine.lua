@@ -12,14 +12,14 @@ return {
             lualine_a = { 'mode' },
             lualine_b = { 'branch', 'diff' },
             lualine_c = {
-                {
-                    'filename',
-                    path = 1, -- Relative path
-                },
+                { 'filename', path = 1 }, -- Relative path
             },
             lualine_x = { 'encoding' },
-            lualine_y = { 'filetype' },
-            lualine_z = { 'progress', 'location' },
+            lualine_y = {
+                'filetype',
+                { 'lsp_status', ignore_lsp = { 'copilot' } },
+            },
+            lualine_z = { 'location' },
         },
     },
 }
