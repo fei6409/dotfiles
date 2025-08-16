@@ -44,7 +44,7 @@ opt.softtabstop = -1 -- Use 'shiftwidth' for soft tab stops
 opt.tabstop = 4 -- Number of spaces a tab counts for
 
 -- Debug utility
-P = function(v)
-    print(vim.inspect(v))
-    return v
+P = function(...)
+    vim.print(...)
+    return ...
 end
