@@ -68,12 +68,9 @@ end, { desc = 'Close current buffer' })
 
 -- Print syntax info
 keyset('n', '<F4>', function()
-    local fn = vim.fn
-    local attr = function(x) return fn.synIDattr(x, 'name') end
-    local eid = fn.synID(fn.line('.'), fn.col('.'), 1)
-    local tid = fn.synID(fn.line('.'), fn.col('.'), 0)
-    local msg = 'syn<' .. attr(eid) .. '>, trans<' .. attr(tid) .. '> -> hlgrp<' .. attr(fn.synIDtrans(eid)) .. '>'
-    print(msg)
+    local attr = function(x) return vim.fn.synIDattr(x, 'name') end
+    local synid = vim.fn.synID(vim.fn.line('.'), vim.fn.col('.'), 1)
+    print('Syntax <' .. attr(synid) .. '> maps to <' .. attr(vim.fn.synIDtrans(synid)) .. '>')
 end, { desc = 'Print syntax highlight info' })
 
 -- Toggle colorcolumn, customizable columns
