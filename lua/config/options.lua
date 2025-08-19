@@ -33,7 +33,9 @@ opt.termguicolors = true -- Enable 24-bit RGB color
 opt.textwidth = 80 -- Wrap lines at 80 characters
 opt.ttimeoutlen = 5 -- Shorten key code sequence wait time (<ESC> responsiveness)
 opt.undofile = true -- Enable persistent undo
-opt.winborder = 'rounded' -- Use rouded borders on floating windows
+if vim.fn.has('nvim-0.11') == 1 then
+    opt.winborder = 'rounded' -- Use rouded borders on floating windows
+end
 
 -- Indentation settings
 opt.expandtab = true -- Use spaces instead of tabs
