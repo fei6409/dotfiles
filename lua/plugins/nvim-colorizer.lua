@@ -10,6 +10,7 @@ return {
             'lua',
             'markdown',
             'sh',
+            'text',
             'vim',
             'zsh',
         },
