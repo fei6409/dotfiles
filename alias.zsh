@@ -108,6 +108,7 @@ if ([[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/de
 
     alias rs='repo sync .'
     alias rsa='repo sync -j 16 -n --optimized-fetch && repo sync -j 16 -l'
+    alias rsc='repo sync -j 16 -n --optimized-fetch -c && repo sync -j 16 -l'
 
     alias kerup='cd ${HOME}/chromiumos/src/third_party/kernel/upstream'
     alias ker419='cd ${HOME}/chromiumos/src/third_party/kernel/v4.19'
