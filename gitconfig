@@ -75,14 +75,11 @@
     bold blue => dodgerblue, \
     bold yellow => khaki
 [maintenance]
-  ; auto = false
-  autoDetach = true # automatic maintenance shall detach and run in background
-  strategy = incremental
+  auto = true
+  # automatic maintenance shall detach and run in background
+  autoDetach = true
 [maintenance "prefetch"]
   enabled = false
-[maintenance "gc"]
-  enabled = true
-  schedule = weekly
 
 ; Include local configs in the end to take precedence
 [include]
