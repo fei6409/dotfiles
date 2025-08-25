@@ -55,6 +55,59 @@ alias grs='git reset --soft'
 alias gsh='git show'
 alias gst='git status'
 
+# git new branch
+gnb() {
+    if [[ -z "$1" ]]; then
+        echo "Usage: gnb <new_branch_name> [[<remote>/]<upstream_branch>]"
+        return 1
+    fi
+
+    git checkout -b "$1"
+
+    [[ -z "$2" ]] && return
+
+    local upstream=""
+    local pattern="[a-zA-Z0-9._-]+"
+
+    if [[ "$2" =~ "^${pattern}/${pattern}$" ]]; then
+        upstream="$2"
+    elif [[ "$2" =~ "^${pattern}$" ]]; then
+        local remotes=( $(git remote show) )
+
+        if [[ ${#remotes[@]} == 0 ]]; then
+            echo "Error: No remotes."
+            return 1
+        fi
+
+        if [[ ${#remotes[@]} == 1 ]]; then
+            upstream="${remotes[1]}/$2"
+        else
+            local preferred=("goog" "cros" "origin")
+
+            for p in "${preferred[@]}"; do
+                for r in "${remotes[@]}"; do
+                    if [[ "${r}" == "${p}" ]]; then
+                        upstream="${p}/$2"
+                        break 2 # Break both loops
+                    fi
+                done
+            done
+
+            if [[ -z "${upstream}" ]]; then
+                echo "Error: Preferred remotes (${preferred[@]}) not found."
+                echo "Available remotes:\n${remotes[@]}"
+                return 1
+            fi
+        fi
+    else
+        echo "Error: Unknown upstream branch format: $2"
+        echo "Usage: gnb <new_branch_name> [[<remote>/]<upstream_branch>]"
+        return 1
+    fi
+
+    git branch --set-upstream-to="${upstream}"
+}
+
 # Conditional alias
 if cmd_exist nvim; then
     # use nvim where possible
@@ -131,10 +184,6 @@ if ([[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/de
     # Parse dut-power summary.
     # usage: summary <dut-power summary>
     summary() { awk '/pp/ && !/ppdut5|ppchg5/ {print $4}' "$@" | copy; }
-
-    # git new branch.
-    # usage: gnb <new branch name> [<upstream branch>]
-    gnb() { git checkout -b "$1" "${2:-m/main}"; }
 
     # CrOS chroot specific
     if [[ -n $CROS_WORKON_SRCROOT ]]; then
