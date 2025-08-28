@@ -38,6 +38,7 @@
     ~/.zshenv: modules/prezto/runcoms/zshenv
     ~/.zprezto/contrib/fast-syntax-highlighting: modules/fast-syntax-highlighting
     # others
+    ~/.utils.zsh:
     ~/.alias.zsh:
     ~/.lazy-load.zsh:
     ~/.shellcheckrc:
