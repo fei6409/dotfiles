@@ -144,17 +144,6 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
     alias date='gdate'
 fi
 
-# Linux
-if [[ "$OSTYPE" =~ ^linux ]]; then
-    # if DISPLAY is unset, get an open display for it
-    # This is awfully slooooooow
-    # export DISPLAY=${DISPLAY:-$(w -oush | grep -Eo ' :[0-9]+' | uniq | xargs;)}
-
-    # Print the PID that occupies a port.
-    # Usage: see_port <port number>
-    see_port() { netstat -lnpt | awk "\$4 ~ /:$1$/ {sub(/\/.*/, \"\", \$7); print \$7}"; }
-fi
-
 # Goobuntu or CrOS chroot
 if ([[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/dev/null) ||
     [[ -n $CROS_WORKON_SRCROOT ]]; then
@@ -164,7 +153,6 @@ if ([[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/de
     alias rsc='repo sync -j 16 -n --optimized-fetch -c && repo sync -j 16 -l'
 
     alias kerup='cd ${HOME}/chromiumos/src/third_party/kernel/upstream'
-    alias ker419='cd ${HOME}/chromiumos/src/third_party/kernel/v4.19'
     alias ker54='cd ${HOME}/chromiumos/src/third_party/kernel/v5.4'
     alias ker510='cd ${HOME}/chromiumos/src/third_party/kernel/v5.10'
     alias ker515='cd ${HOME}/chromiumos/src/third_party/kernel/v5.15'
@@ -175,15 +163,9 @@ if ([[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/de
 
     alias ec='cd ${HOME}/chromiumos/src/platform/ec'
     alias scr='cd ${HOME}/chromiumos/src/scripts'
-    alias aut='cd ${HOME}/chromiumos/src/third_party/autotest/files'
-    alias g3doc='g4d test && cd experimental/users/fshao/g3doc && vim ./sheet.md'
 
     alias gcertchk='gcertstatus --quiet --check_remaining=4h --check_ssh=false || gcert'
     alias work='gcertchk; [[ $(hostname -s) =~ v9 ]] && ssh glinux'
-
-    # Parse dut-power summary.
-    # usage: summary <dut-power summary>
-    summary() { awk '/pp/ && !/ppdut5|ppchg5/ {print $4}' "$@" | copy; }
 
     # CrOS chroot specific
     if [[ -n $CROS_WORKON_SRCROOT ]]; then
