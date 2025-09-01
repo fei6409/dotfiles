@@ -12,9 +12,9 @@ return {
         pattern = {
             '%/var%/log%/.*',
             'console%-ramoops.*',
-            'messages.*',
-            'logcat.*',
-            'log.*%.txt',
+            '.*messages.*',
+            '.*logcat.*',
+            '.*log.*%.txt',
             '.*%.LATEST',
             '.*%.PREVIOUS',
             '.*%.previous',
