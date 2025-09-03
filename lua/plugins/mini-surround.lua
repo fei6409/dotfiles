@@ -1,7 +1,7 @@
 -- Surrounding actions (parenthesis, quotes, etc.)
--- https://github.com/echasnovski/mini.surround
+-- https://github.com/nvim-mini/mini.surround
 return {
-    'echasnovski/mini.surround',
+    'nvim-mini/mini.surround',
     keys = function(_, keys)
         -- Populate the keys based on the user's options
         local opts = require('mini.surround').config

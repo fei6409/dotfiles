@@ -1,7 +1,7 @@
 -- Autopairs (parenthesis, quotes, etc.)
--- https://github.com/echasnovski/mini.pairs
+-- https://github.com/nvim-mini/mini.pairs
 return {
-    'echasnovski/mini.pairs',
+    'nvim-mini/mini.pairs',
     event = 'VeryLazy',
     opts = {},
     enabled = false,
