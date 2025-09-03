@@ -24,11 +24,6 @@ return {
     dependencies = {
         'nvim-lua/plenary.nvim',
         'nvim-treesitter/nvim-treesitter',
-        {
-            'echasnovski/mini.diff', -- For inline diff
-            version = '*',
-            opts = { mapping = nil },
-        },
     },
     cmd = { 'CodeCompanion', 'CodeCompanionChat', 'CodeCompanionActions' },
     keys = {
