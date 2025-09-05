@@ -61,15 +61,17 @@ return {
                 cmd = { adapter = adapter },
             },
             adapters = {
-                gemini = function()
-                    return require('codecompanion.adapters').extend('gemini', {
-                        env = {
-                            -- read pd-ai-key from envvar
-                            api_key = 'GEMINI_API_KEY',
-                            url = 'GEMINI_URL',
-                        },
-                    })
-                end,
+                http = {
+                    gemini = function()
+                        return require('codecompanion.adapters').extend('gemini', {
+                            env = {
+                                -- read pd-ai-key from envvar
+                                api_key = 'GEMINI_API_KEY',
+                                url = 'GEMINI_URL',
+                            },
+                        })
+                    end,
+                },
             },
             display = {
                 chat = {
