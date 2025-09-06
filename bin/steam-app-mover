@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Check if app_id is provided
+if [[ -z "$1" ]]; then
+  echo "Usage: $0 <app_id>"
+  exit 1
+fi
+
+APP_ID=$1
+
+# 1. Open Steam console
+echo "Opening steam console..."
+open "steam://open/console"
+
+# 2. Display commands for the user
+echo "Please run the following commands in the Steam console:"
+echo
+echo "@sSteamCmdForcePlatformType windows"
+echo "app_install ${APP_ID}"
+echo
+echo "Press enter to continue after the download is complete..."
+read -r
+
+# 3. Define source and target directories
+SRC="${HOME}/Library/Application Support/Steam/steamapps"
+TARGET="${HOME}/Applications/Sikarugir/*steam*.app/Contents/drive_c/Program Files (x86)/Steam/steamapps"
+
+echo "Source: ${SRC}"
+echo "Target: ${TARGET}"
+
+# 4. Read installdir from appmanifest
+MANIFEST_FILE="${SRC}/appmanifest_${APP_ID}.acf"
+if [[ ! -f "${MANIFEST_FILE}" ]]; then
+  echo "Error: Manifest file not found: ${MANIFEST_FILE}"
+  exit 1
+fi
+INSTALL_DIR=$(awk -F'"' '/"installdir"/ {print $4}' "${MANIFEST_FILE}")
+
+if [[ -z "${INSTALL_DIR}" ]]; then
+  echo "Error: Could not find 'installdir' in ${MANIFEST_FILE}"
+  exit 1
+fi
+
+echo "Found installdir: ${INSTALL_DIR}"
+
+# 5. Sync manifest file
+echo "Syncing manifest file..."
+rsync -avh --update "${MANIFEST_FILE}" "${TARGET}/"
+
+# 6. Sync application directory
+echo "Syncing application directory..."
+rsync -avh --update "${SRC}/common/${INSTALL_DIR}/" "${TARGET}/common/${INSTALL_DIR}/"
+
+echo "Done."
