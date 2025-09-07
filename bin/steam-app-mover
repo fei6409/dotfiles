@@ -13,12 +13,16 @@ echo "Opening steam console..."
 open "steam://open/console"
 
 # 2. Display commands for the user
-echo "Please run the following commands in the Steam console:"
+echo "The command has been copied to clipboard. Paste it in Steam console:"
+echo "@sSteamCmdForcePlatformType windows" | tee >(pbcopy)
 echo
-echo "@sSteamCmdForcePlatformType windows"
-echo "app_install ${APP_ID}"
+echo "Press enter to continue..."
+read -r
+
+echo "The command has been copied to clipboard. Paste it in Steam console:"
+echo "app_install ${APP_ID}" | tee >(pbcopy)
 echo
-echo "Press enter to continue after the download is complete..."
+echo "Press enter to continue..."
 read -r
 
 # 3. Define source and target directories
