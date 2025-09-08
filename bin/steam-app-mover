@@ -27,7 +27,7 @@ read -r
 
 # 3. Define source and target directories
 SRC="${HOME}/Library/Application Support/Steam/steamapps"
-TARGET="${HOME}/Applications/Sikarugir/*steam*.app/Contents/drive_c/Program Files (x86)/Steam/steamapps"
+TARGET="${HOME}/Applications/Sikarugir/sika-steam.app/Contents/drive_c/Program Files (x86)/Steam/steamapps"
 
 echo "Source: ${SRC}"
 echo "Target: ${TARGET}"
