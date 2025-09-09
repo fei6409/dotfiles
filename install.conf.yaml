@@ -45,6 +45,7 @@
     ~/.config/starship.toml:
     ~/.fzf: modules/fzf
     ~/.local/bin/better-git-branch: bin/better-git-branch
+    ~/.local/bin/unarchive: bin/unarchive
     # ~/.p10k.zsh:
     # ~/.my-git-prompt.zsh:
 
@@ -57,7 +58,6 @@
     ~/.pyenv: modules/pyenv
     # binaries
     ~/.local/bin/delta: bin/delta
-    ~/.local/bin/unarchive: bin/unarchive
     ~/.local/bin/fd: /usr/bin/fdfind
     ~/.local/bin/bat: /usr/bin/batcat
     # fcitx5 autostart
