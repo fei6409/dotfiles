@@ -53,6 +53,7 @@ rsync -avh --update "${MANIFEST_FILE}" "${TARGET}/"
 
 # 6. Sync application directory
 echo "Syncing application directory..."
+mkdir -p "${TARGET}/common"
 rsync -avh --update "${SRC}/common/${INSTALL_DIR}/" "${TARGET}/common/${INSTALL_DIR}/"
 
 echo "Done."
