@@ -54,6 +54,9 @@ if [[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/dev
         # Append Tast dependencies
         export GOPATH="$GOPATH:$HOME/chromiumos/chroot/usr/lib/gopath"
     fi
+
+    # Set up hgd for Fig
+    chk_src "/etc/bash_completion.d/hgd"
 fi
 
 # Use truecolor
