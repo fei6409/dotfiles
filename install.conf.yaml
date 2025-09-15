@@ -82,6 +82,7 @@
         coreutils
         duf
         dust
+        eza
         fd
         font-meslo-lg-nerd-font
         fzf
@@ -109,6 +110,7 @@
         colordiff
         du-dust
         duf
+        eza
         fcitx5 im-config
         fcitx5-chewing
         fcitx5-mozc
