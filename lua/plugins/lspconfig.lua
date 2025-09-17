@@ -2,20 +2,30 @@
 -- https://github.com/neovim/nvim-lspconfig
 
 -- Setup references: https://youtu.be/puWgHa7k3SY
-local lsp_servers = {
-    'bashls',
-    'clangd',
-    'denols',
-    'jsonls',
-    'lua_ls',
-    'marksman',
-    'ruff',
-    'rust_analyzer',
-    'yamlls',
+-- Mason LSP name => LSP server executable
+local lsp_maps = {
+    bashls = 'bash-language-server',
+    clangd = 'clangd',
+    denols = 'deno',
+    jsonls = 'vscode-json-language-server',
+    lua_ls = 'lua-language-server',
+    marksman = 'marksman',
+    ruff = 'ruff',
+    rust_analyzer = 'rust-analyzer',
+    yamlls = 'yaml-language-server',
 }
 
--- Add gopls if Go is installed
-if vim.fn.executable('go') == 1 then table.insert(lsp_servers, 'gopls') end
+-- Only consider gopls if Go is installed
+if vim.fn.executable('go') == 1 then lsp_maps.gopls = 'gopls' end
+
+local lsp_servers = {}
+local lsp_to_install = {}
+
+-- Skip if the LSP server is already installed on host
+for lsp, bin in pairs(lsp_maps) do
+    table.insert(lsp_servers, lsp)
+    if vim.fn.executable(bin) == 0 then table.insert(lsp_to_install, lsp) end
+end
 
 -- LSP servers with additional configs
 local lsp_configs = {
@@ -56,7 +66,7 @@ return {
             { 'mason-org/mason.nvim', opts = {} },
             'neovim/nvim-lspconfig',
         },
-        opts = { ensure_installed = lsp_servers },
+        opts = { ensure_installed = lsp_to_install },
     },
     {
         'neovim/nvim-lspconfig',
