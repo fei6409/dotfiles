@@ -30,6 +30,7 @@ return {
             cpp = { 'clang-format' },
             go = { 'gofmt' },
             javascript = { 'deno_fmt' },
+            json = { 'jq' },
             lua = { 'stylua' },
             markdown = { 'deno_fmt' },
             python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
