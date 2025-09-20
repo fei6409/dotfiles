@@ -130,6 +130,10 @@ unarchive_zst() {
   zstd -d "$1" -o "$2/${output_name}"
 }
 
+unarchive_rar() {
+  unrar x "$1" "$2"
+}
+
 unarchive() {
   local archive_orig_path="$1"
   if [[ ! -f "${archive_orig_path}" ]]; then
@@ -178,6 +182,9 @@ unarchive() {
       ;;
     *.zst)
       archive_type=zst
+      ;;
+    *.rar)
+      archive_type=rar
       ;;
     *)
       die "Unknown archive: ${archive_orig_path}"
