@@ -2,7 +2,7 @@
 -- https://github.com/neovim/nvim-lspconfig
 
 -- Setup references: https://youtu.be/puWgHa7k3SY
--- Mason LSP name => LSP server executable
+---@type table<string, string>: Mason LSP name to executable name
 local lsp_maps = {
     bashls = 'bash-language-server',
     clangd = 'clangd',
@@ -13,13 +13,13 @@ local lsp_maps = {
     yamlls = 'yaml-language-server',
 }
 
--- Only consider gopls if Go is installed
+-- Only consider gopls if Go is installed.
 if vim.fn.executable('go') == 1 then lsp_maps.gopls = 'gopls' end
 
 local lsp_servers = {}
 local lsp_to_install = {}
 
--- Skip if the LSP server is already installed on host
+-- Skip if the LSP server is already installed on host.
 for lsp, bin in pairs(lsp_maps) do
     table.insert(lsp_servers, lsp)
     if vim.fn.executable(bin) == 0 then table.insert(lsp_to_install, lsp) end
@@ -69,7 +69,6 @@ return {
     {
         'neovim/nvim-lspconfig',
         dependencies = {
-            -- 'mason-org/mason-lspconfig.nvim',
             'saghen/blink.cmp',
         },
         event = { 'BufReadPre', 'BufNewFile' },
@@ -77,6 +76,7 @@ return {
             --  Enable all LSP servers at once (requires Neovim 0.11+).
             vim.lsp.enable(lsp_servers)
 
+            -- LSP servers with extra configs.
             for name, conf in pairs(lsp_configs) do
                 vim.lsp.config(name, conf)
             end
