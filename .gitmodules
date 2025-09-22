@@ -8,9 +8,6 @@
 [submodule "modules/prezto"]
 	path = modules/prezto
 	url = https://github.com/sorin-ionescu/prezto
-[submodule "modules/vim-plug"]
-	path = modules/vim-plug
-	url = https://github.com/junegunn/vim-plug
 [submodule "modules/fzf"]
 	path = modules/fzf
 	url = https://github.com/junegunn/fzf
