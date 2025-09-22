@@ -8,6 +8,7 @@ opt.cmdheight = 2 -- More space for the command line
 opt.completeopt = 'menu,menuone,preview,noselect' -- Completion menu behavior
 opt.confirm = true -- Prompt to save changes before exiting a modified buffer
 opt.cursorline = true -- Highlight the current line
+opt.display = 'lastline,uhex' -- Show last line; show hex for non-printable chars
 opt.foldlevel = 99 -- No folding by default
 opt.foldmethod = 'expr' -- Leverage vim.treesitter.foldexpr() for folding
 opt.ignorecase = true -- Case-insensitive searching
@@ -21,6 +22,7 @@ opt.listchars = {
 }
 opt.mouse = '' -- Disable mouse support
 opt.number = true -- Show line numbers
+opt.report = 0 -- Always report the number of changed line/substitution
 opt.scrolloff = 4 -- Minimum lines above and below cursor
 opt.showmode = false -- Hide mode indicator (statusline handles it)
 opt.signcolumn = 'yes' -- Always show the sign column
