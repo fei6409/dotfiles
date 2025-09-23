@@ -23,8 +23,7 @@
     ~/.tmux.conf: modules/tmux/.tmux.conf
     ~/.tmux.conf.local:
     # vim
-    # ~/.vimrc:
-    # ~/.vim/autoload/plug.vim: modules/vim-plug/plug.vim
+    ~/.vimrc:
     # nvim / lua
     ~/.config/nvim/lua:
     ~/.config/nvim/init.lua:
