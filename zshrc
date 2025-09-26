@@ -102,7 +102,8 @@ if [[ -f $HOME/.ssh/config ]]; then
                 if ($i !~ /[*?]/) print $i
         }
     ' "$HOME/.ssh/config" | sort -u))
-    zstyle ':completion:*:(ssh|scp|sftp):*' hosts $host_list
+    # shellcheck disable=SC2086,SC2128
+    zstyle ':completion:*:(ssh|scp|sftp|rsync):*' hosts ${host_list}
 fi
 
 # To boost command completion speed, only consider the following users
