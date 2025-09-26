@@ -62,6 +62,9 @@ alias grs='git reset --soft'
 alias gsh='git show'
 alias gst='git status'
 
+# Call git-commit-lost directly
+unalias gcl
+
 # Conditional alias
 if cmd_exist nvim; then
     # use nvim where possible
