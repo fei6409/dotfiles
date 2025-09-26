@@ -80,7 +80,7 @@ cmd_exist bat && alias cat='bat -p'
 cmd_exist tmx2 && alias tmux='tmx2'
 cmd_exist duf && alias df='duf'
 cmd_exist dust && alias du='dust'
-cmd_exist eza && alias ls='eza -F' && alias l='eza -1AF' && alias ll='eza -lAF'
+cmd_exist eza && alias ls='eza -F --icons=never'
 cmd_exist ipython && alias ipy='ipython'
 if cmd_exist python; then
     alias py='python'
