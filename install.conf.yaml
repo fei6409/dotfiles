@@ -41,6 +41,7 @@
     ~/.alias.zsh:
     ~/.lazy-load.zsh:
     ~/.shellcheckrc:
+    ~/.jjconfig.toml:
     ~/.config/starship.toml:
     ~/.fzf: modules/fzf
     ~/.local/bin/better-git-branch: bin/better-git-branch
