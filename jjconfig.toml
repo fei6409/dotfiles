@@ -4,3 +4,6 @@
 default-command = "log"
 diff-formatter = ":git"
 pager = "delta"
+
+[aliases]
+tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
