@@ -57,6 +57,8 @@ if [[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/dev
 
     # Set up hgd for Fig
     chk_src "/etc/bash_completion.d/hgd"
+    # Set up jjd for Jujutsu
+    chk_src "/etc/bash_completion.d/jjd"
 fi
 
 # Use truecolor
