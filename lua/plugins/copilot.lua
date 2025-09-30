@@ -9,7 +9,6 @@ return {
         suggestion = {
             auto_trigger = false,
             keymap = {
-                accept = '<M-CR>',
                 next = '<M-]>',
                 prev = '<M-[>',
             },
