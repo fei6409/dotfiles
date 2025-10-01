@@ -57,7 +57,7 @@ autocmd({ 'BufNewFile', 'BufRead' }, {
 
 autocmd('FileType', {
     group = augroups['spell'],
-    pattern = { 'gitcommit', 'gitsendemail', 'markdown' },
+    pattern = { 'gitcommit', 'gitsendemail', 'jjdescription', 'markdown' },
     desc = 'Enable spell checking',
     callback = function() vim.opt_local.spell = true end,
 })
