@@ -16,6 +16,7 @@ return {
         filetypes = {
             gitcommit = true,
             gitrebase = true,
+            jjdescription = true,
             markdown = true,
         },
     },
