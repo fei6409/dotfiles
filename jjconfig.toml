@@ -8,8 +8,8 @@ pager = "delta"
 
 [aliases]
 des = ["describe"]
-des-rst = ["describe", "--reset-author", "--no-edit"]
 sh = ["show"]
 sp = ["split"]
 sq = ["squash"]
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
+ua = ['metaedit', '--update-author', '--update-author-timestamp']
