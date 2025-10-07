@@ -65,7 +65,24 @@ alias gst='git status'
 # Call git-commit-lost directly
 unalias gcl
 
+#
+# Jujutsu alias
+#
+alias j='jj'
+alias jc='jj commit'
+alias jd='jj diff'
+alias je='jj edit'
+alias jl='jj log'
+alias jlp='jj log -p'
+alias jsh='jj show'
+alias jst='jj status'
+alias jsp='jj split'
+alias jsq='jj squash'
+
+#
 # Conditional alias
+#
+
 if cmd_exist nvim; then
     # use nvim where possible
     export EDITOR='nvim'
