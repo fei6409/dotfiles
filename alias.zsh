@@ -63,7 +63,7 @@ alias gsh='git show'
 alias gst='git status'
 
 # Call git-commit-lost directly
-unalias gcl
+alias gcl &>/dev/null && unalias gcl
 
 #
 # Jujutsu alias
