@@ -1,0 +1,68 @@
+#!/bin/bash
+
+REVERSE=false
+LOCAL_HOST="localhost"
+LOCAL_PORT=""
+REMOTE_HOST=""
+REMOTE_PORT=""
+
+usage() {
+  echo "Usage: $0 -l local_port -p remote_port -h remote_host [-r] [-b local_host]"
+  echo "  -r: Reverse tunnel (remote-to-local)"
+  echo "  -l: Local port"
+  echo "  -p: Remote port"
+  echo "  -h: Remote host"
+  echo "  -b: Local host/bind address (default: localhost)"
+  exit 1
+}
+
+# Parse options
+while getopts ":rb:l:h:p:" opt; do
+  # shellcheck disable=SC2249
+  case ${opt} in
+    r)
+      REVERSE=true
+      ;;
+    b)
+      LOCAL_HOST=$OPTARG
+      ;;
+    l)
+      LOCAL_PORT=$OPTARG
+      ;;
+    h)
+      REMOTE_HOST=$OPTARG
+      ;;
+    p)
+      REMOTE_PORT=$OPTARG
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      usage
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      usage
+      ;;
+  esac
+done
+
+shift $((OPTIND - 1))
+
+# Check for mandatory arguments
+if [[ -z "$REMOTE_PORT" || -z "$REMOTE_HOST" ]]; then
+  usage
+fi
+
+if [[ -z "$LOCAL_PORT" ]]; then
+  echo "Local port not specified, defaulting to remote port: $REMOTE_PORT"
+  LOCAL_PORT=$REMOTE_PORT
+fi
+
+if [[ "$REVERSE" = true ]]; then
+  echo "[remote] $REMOTE_HOST:$REMOTE_PORT -> [local] $LOCAL_HOST:$LOCAL_PORT"
+  ssh -fN -R "$REMOTE_PORT:$LOCAL_HOST:$LOCAL_PORT" "$REMOTE_HOST"
+else
+  echo "[local] $LOCAL_HOST:$LOCAL_PORT -> [remote] $REMOTE_HOST:$REMOTE_PORT"
+  ssh -fN -L "$LOCAL_PORT:$REMOTE_HOST:$REMOTE_PORT" "$REMOTE_HOST"
+fi
+
