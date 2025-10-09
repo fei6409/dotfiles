@@ -125,7 +125,12 @@ typeset -U PATH
 cmd_exist zoxide && eval "$(zoxide init zsh)"
 
 # Starship for shell prompt - https://starship.rs
-cmd_exist starship && eval "$(starship init zsh)"
+# cmd_exist starship && eval "$(starship init zsh)"
+
+# Customized Pure.zsh
+fpath+=("$HOME/dotfiles/modules/pure")
+autoload -U promptinit; promptinit
+prompt pure
 
 # Zsh profiling
 [[ -n $ZPROF ]] && zprof
