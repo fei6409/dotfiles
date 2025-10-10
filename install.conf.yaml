@@ -58,6 +58,7 @@
     ~/.pyenv: modules/pyenv
     # binaries
     ~/.local/bin/delta: bin/delta
+    ~/.local/bin/ssh-forward: bin/ssh-forward
     ~/.local/bin/fd: /usr/bin/fdfind
     ~/.local/bin/bat: /usr/bin/batcat
     # fcitx5 autostart
