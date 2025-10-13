@@ -70,15 +70,18 @@ alias gcl &>/dev/null && unalias gcl
 # Jujutsu alias
 #
 alias j='jj'
+alias jab='jj abandon'
 alias jc='jj commit'
 alias jd='jj diff'
 alias je='jj edit'
 alias jl='jj log'
 alias jlp='jj log -p'
+alias jrb='jj rebase'
 alias jsh='jj show'
 alias jst='jj status'
 alias jsp='jj split'
 alias jsq='jj squash'
+alias jtug='jj tug'
 
 #
 # Conditional alias
