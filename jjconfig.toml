@@ -7,9 +7,28 @@ editor = "nvim"
 pager = "delta"
 
 [aliases]
+ab = ["abandon"]
 des = ["describe"]
+bl = ["blame"]
+bm = ["bookmark", "move"]
+# Imitate Git blame
+blame = ["file", "annotate"]
+# Take content from any change, and move it into @: `jj consume xyz path/to/file`
+consume = ["squash", "--into", "@", "--from"]
+# Eject content from @ into any other change, interactively: `jj eject xyz`
+eject = ["squash", "-i", "--from", "@", "--into"]
+ll = ["log", "-T", "builtin_log_detailed"]
+nt = ["new", "trunk()"]
+ol = ["op", "log"]
+rb = ["rebase"]
+# Retrunk all mutable commits
+rba = ["rebase", "-d", "trunk()", "-s", "roots(trunk()..mutable())"]
+# Retrunk a series on trunk(): `jj rbt -s ...`
+rbt = ["rebase", "-d", "trunk()"]
 sh = ["show"]
 sp = ["split"]
 sq = ["squash"]
+# Move closest bookmark ancestor to a fresh commit
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
-ua = ['metaedit', '--update-author', '--update-author-timestamp']
+ua = ["metaedit", "--update-author", "--update-author-timestamp"]
+up = ["upload"]
