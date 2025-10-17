@@ -33,3 +33,8 @@ sq = ["squash"]
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
 ua = ["metaedit", "--update-author", "--update-author-timestamp"]
 up = ["upload"]
+
+[colors]
+"diff token" = { underline = false }
+"diff removed token" = { fg = "bright red", bg = "#441111"}
+"diff added token" = { fg = "bright green", bg = "#003300"}
