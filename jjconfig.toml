@@ -17,6 +17,7 @@ bm = ["bookmark", "move"]
 blame = ["file", "annotate"]
 # Take content from any change, and move it into @: `jj consume xyz path/to/file`
 consume = ["squash", "--into", "@", "--from"]
+eh = ["edit", "-r", "heads(@::)"]
 # Eject content from @ into any other change, interactively: `jj eject xyz`
 eject = ["squash", "-i", "--from", "@", "--into"]
 ll = ["log", "-T", "builtin_log_detailed"]
