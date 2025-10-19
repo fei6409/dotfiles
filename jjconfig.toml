@@ -2,6 +2,7 @@
 
 [ui]
 default-command = "log"
+diff-editor = ":builtin"
 diff-formatter = ":git"
 editor = "nvim"
 log-word-wrap = true
