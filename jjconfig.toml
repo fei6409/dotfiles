@@ -43,3 +43,8 @@ up = ["upload"]
 [fix.tools.gclfmt]
 command = ["gclfmt", "$path"]
 patterns = ["glob:'**/*.gcl'"]
+
+[jjd-aliases]
+al-config = "/configs/wireless/android/testing/atp/prod/al-eng"
+doc = "/experimental/users/fshao/g3doc"
+teamdoc = "/../company/teams/chromeos-mtk-bringup"
