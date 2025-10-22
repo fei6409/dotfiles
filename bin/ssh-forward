@@ -5,23 +5,37 @@ LOCAL_HOST="localhost"
 LOCAL_PORT=""
 REMOTE_HOST=""
 REMOTE_PORT=""
+JUMP_HOST=""
+KILL_PORT=""
 
 usage() {
-  echo "Usage: $0 -l local_port -p remote_port -h remote_host [-r] [-b local_host]"
-  echo "  -r: Reverse tunnel (remote-to-local)"
-  echo "  -l: Local port"
+  echo "Usage: $0 -h remote_host -p remote_port [-b local_host] [-l local_port] [-j jump_host] [-r]"
+  echo "       $0 -k local_port"
+  echo ""
+  echo "Forwarding options:"
+  echo "  -h: Remote host (the destination)"
   echo "  -p: Remote port"
-  echo "  -h: Remote host"
+  echo ""
   echo "  -b: Local host/bind address (default: localhost)"
+  echo "  -l: Local port (default: remote_port)"
+  echo ""
+  echo "  -j: Jump host (the SSH server to connect to, default: remote_host)"
+  echo "  -r: Reverse tunnel flag (remote to local)"
+  echo ""
+  echo "Management options:"
+  echo "  -k: Kill an existing tunnel on the specified local port"
   exit 1
 }
 
 # Parse options
-while getopts ":rb:l:h:p:" opt; do
+while getopts ":h:p:b:l:j:k:r" opt; do
   # shellcheck disable=SC2249
   case ${opt} in
-    r)
-      REVERSE=true
+    h)
+      REMOTE_HOST=$OPTARG
+      ;;
+    p)
+      REMOTE_PORT=$OPTARG
       ;;
     b)
       LOCAL_HOST=$OPTARG
@@ -29,11 +43,14 @@ while getopts ":rb:l:h:p:" opt; do
     l)
       LOCAL_PORT=$OPTARG
       ;;
-    h)
-      REMOTE_HOST=$OPTARG
+    j)
+      JUMP_HOST=$OPTARG
       ;;
-    p)
-      REMOTE_PORT=$OPTARG
+    k)
+      KILL_PORT=$OPTARG
+      ;;
+    r)
+      REVERSE=true
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
@@ -48,7 +65,27 @@ done
 
 shift $((OPTIND - 1))
 
-# Check for mandatory arguments
+# Kill process if `-k` is specified
+if [[ -n "$KILL_PORT" ]]; then
+  if ! command -v lsof &> /dev/null; then
+    echo "Error: 'lsof' is required to kill a process by port." >&2
+    exit 1
+  fi
+  PID=$(lsof -i TCP:"$KILL_PORT" -s TCP:LISTEN -t)
+  if [[ -n "$PID" ]]; then
+    if kill "$PID"; then
+      echo "Successfully killed process $PID on port $KILL_PORT."
+    else
+      echo "Failed to kill process $PID on port $KILL_PORT." >&2
+      exit 1
+    fi
+  else
+    echo "No process found listening on port $KILL_PORT."
+  fi
+  exit 0
+fi
+
+# Check for mandatory arguments for forwarding
 if [[ -z "$REMOTE_PORT" || -z "$REMOTE_HOST" ]]; then
   usage
 fi
@@ -58,11 +95,19 @@ if [[ -z "$LOCAL_PORT" ]]; then
   LOCAL_PORT=$REMOTE_PORT
 fi
 
-if [[ "$REVERSE" = true ]]; then
-  echo "[remote] $REMOTE_HOST:$REMOTE_PORT -> [local] $LOCAL_HOST:$LOCAL_PORT"
-  ssh -fN -R "$REMOTE_PORT:$LOCAL_HOST:$LOCAL_PORT" "$REMOTE_HOST"
-else
-  echo "[local] $LOCAL_HOST:$LOCAL_PORT -> [remote] $REMOTE_HOST:$REMOTE_PORT"
-  ssh -fN -L "$LOCAL_PORT:$REMOTE_HOST:$REMOTE_PORT" "$REMOTE_HOST"
+# Default jump_host to remote_host if not provided
+if [[ -z "$JUMP_HOST" ]]; then
+  JUMP_HOST=$REMOTE_HOST
 fi
 
+if [[ "$REVERSE" = true ]]; then
+  echo "[remote] $JUMP_HOST:$REMOTE_PORT -> [local] $LOCAL_HOST:$LOCAL_PORT"
+  ssh -fN -R "$REMOTE_PORT:$LOCAL_HOST:$LOCAL_PORT" "$JUMP_HOST"
+else
+  if [[ "$JUMP_HOST" != "$REMOTE_HOST" ]]; then
+    echo "[local] $LOCAL_HOST:$LOCAL_PORT -> [remote] $REMOTE_HOST:$REMOTE_PORT (via $JUMP_HOST)"
+  else
+    echo "[local] $LOCAL_HOST:$LOCAL_PORT -> [remote] $REMOTE_HOST:$REMOTE_PORT"
+  fi
+  ssh -fN -L "$LOCAL_PORT:$REMOTE_HOST:$REMOTE_PORT" "$JUMP_HOST"
+fi
