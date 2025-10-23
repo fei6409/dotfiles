@@ -9,18 +9,18 @@ JUMP_HOST=""
 KILL_PORT=""
 
 usage() {
-  echo "Usage: $0 -h remote_host -p remote_port [-b local_host] [-l local_port] [-j jump_host] [-r]"
+  echo "Usage: $0 -r remote_host -p remote_port [-l local_host] [-q local_port] [-j jump_host] [-R]"
   echo "       $0 -k local_port"
   echo ""
   echo "Forwarding options:"
-  echo "  -h: Remote host (the destination)"
+  echo "  -r: Remote host (the destination)"
   echo "  -p: Remote port"
   echo ""
-  echo "  -b: Local host/bind address (default: localhost)"
-  echo "  -l: Local port (default: remote_port)"
+  echo "  -l: Local host/bind address (default: localhost)"
+  echo "  -q: Local port (default: remote_port)"
   echo ""
   echo "  -j: Jump host (the SSH server to connect to, default: remote_host)"
-  echo "  -r: Reverse tunnel flag (remote to local)"
+  echo "  -R: Reverse tunnel flag (remote to local)"
   echo ""
   echo "Management options:"
   echo "  -k: Kill an existing tunnel on the specified local port"
@@ -28,19 +28,19 @@ usage() {
 }
 
 # Parse options
-while getopts ":h:p:b:l:j:k:r" opt; do
+while getopts ":r:p:l:q:j:k:R" opt; do
   # shellcheck disable=SC2249
   case ${opt} in
-    h)
+    r)
       REMOTE_HOST=$OPTARG
       ;;
     p)
       REMOTE_PORT=$OPTARG
       ;;
-    b)
+    l)
       LOCAL_HOST=$OPTARG
       ;;
-    l)
+    q)
       LOCAL_PORT=$OPTARG
       ;;
     j)
@@ -49,7 +49,7 @@ while getopts ":h:p:b:l:j:k:r" opt; do
     k)
       KILL_PORT=$OPTARG
       ;;
-    r)
+    R)
       REVERSE=true
       ;;
     \?)
