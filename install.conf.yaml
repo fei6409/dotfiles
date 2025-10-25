@@ -65,12 +65,6 @@
     ~/.config/autostart/org.fcitx.Fcitx5.desktop:
       path: /usr/share/applications/org.fcitx.Fcitx5.desktop
 
-#### common shell
-- shell:
-    - description: Installing Zoxide
-      command: curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
-      stdout: true
-
 #### brew for macOS
 - shell:
     - description: Updating Homebrew
@@ -99,6 +93,7 @@
         sd
         shellcheck
         starship
+        zoxide
 
 #### apt for Debian
 - shell:
@@ -127,4 +122,6 @@
         sd
         shellcheck
         starship
-
+    - description: Installing Zoxide
+      command: curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+      stdout: true
