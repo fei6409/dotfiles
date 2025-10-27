@@ -24,7 +24,7 @@ consume = ["squash", "--into", "@", "--from"]
 eh = ["edit", "-r", "heads(@::)"]
 # Eject content from @ into any other change, interactively: `jj eject xyz`
 eject = ["squash", "-i", "--from", "@", "--into"]
-ll = ["log", "-T", "builtin_log_detailed"]
+ll = ["log", "-T", "builtin_log_detailed", "-p"]
 nt = ["new", "trunk()"]
 ol = ["op", "log"]
 rb = ["rebase"]
