@@ -16,7 +16,7 @@ pager = "delta"
 ab = ["abandon"]
 des = ["describe"]
 bl = ["blame"]
-bm = ["bookmark", "move"]
+bm = ["bookmark", "move", "--allow-backwards"]
 # Imitate Git blame
 blame = ["file", "annotate"]
 # Take content from any change, and move it into @: `jj consume xyz path/to/file`
