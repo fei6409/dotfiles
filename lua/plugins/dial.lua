@@ -23,13 +23,13 @@ return {
     end,
     keys = {
         {
-            '<M-k>',
+            '<C-k>',
             function() return require('dial.map').inc_normal() end,
             expr = true,
             desc = 'Dial: Increment',
         },
         {
-            '<M-j>',
+            '<C-j>',
             function() return require('dial.map').dec_normal() end,
             expr = true,
             desc = 'Dial: Decrement',
