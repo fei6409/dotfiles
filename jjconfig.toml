@@ -46,7 +46,7 @@ up = ["upload"]
 "diff added token" = { fg = "bright green", bg = "#003300"}
 
 [fix.tools.gclfmt]
-command = ["gclfmt", "$path"]
+command = ["gclfmt", "--input_filename=$path"]
 patterns = ["glob:'**/*.gcl'"]
 
 [jjd-aliases]
