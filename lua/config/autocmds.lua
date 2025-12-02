@@ -78,7 +78,7 @@ autocmd({ 'BufNewFile', 'BufRead' }, {
 
 autocmd({ 'BufNewFile', 'BufRead' }, {
     group = augroups['indent'],
-    pattern = { '*/kernel/*', '*/syzkaller/*' },
+    pattern = { '*/*kernel*/*', '*/syzkaller/*' },
     desc = 'Tab indent (8 spaces) with kernel code',
     callback = function()
         vim.opt_local.expandtab = false
