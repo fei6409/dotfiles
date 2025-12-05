@@ -10,7 +10,7 @@
 
 # Object files
 *.o
-*.ko
+# *.ko  # required by kernel related works
 *.obj
 *.elf
 
