@@ -168,7 +168,7 @@ if ([[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/de
 
     else
         # Only allowed outside of CrOS chroot
-        alias cr='cd ${HOME}/chromiumos/src/scripts; cros_sdk --no-ns-pid --no-update'
+        alias cr='[[ $PWD =~ ^${HOME}/chromiumos(/|$) ]] || cd ${HOME}/chromiumos; cros_sdk --no-ns-pid --no-update'
         alias enter-chrome-sdk="cros chrome-sdk --board=${BOARD} --log-level=info --internal \
           --gn-extra-args='enable_nacl=false symbol_level=1 use_remoteexec=true dcheck_always_on=false is_official_build=false'"
     fi
