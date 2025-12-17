@@ -129,8 +129,8 @@ if ([[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/de
     [[ -n $CROS_WORKON_SRCROOT ]]; then
 
     alias rs='repo sync -j 16 --no-interleaved'
-    alias rsa='rs -n --optimized-fetch && rs -l'
-    alias rsc='rs -n --optimized-fetch -c && rs -l'
+    alias rsa='rs -n --optimized-fetch && rs --auto-gc -l'
+    alias rsc='rs -n --optimized-fetch -c && rs --auto-gc -l'
 
     alias kerup='cd ${HOME}/chromiumos/src/third_party/kernel/upstream'
     alias ker54='cd ${HOME}/chromiumos/src/third_party/kernel/v5.4'
