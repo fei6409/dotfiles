@@ -11,7 +11,7 @@ return {
         },
         pattern = {
             '%/var%/log%/.*',
-            'console%-ramoops.*',
+            '.*%-ramoops.*',
             '.*messages.*',
             '.*logcat.*',
             '.*log.*%.txt',
