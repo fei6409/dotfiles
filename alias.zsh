@@ -150,8 +150,6 @@ if ([[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/de
 
     alias abtd='/google/bin/releases/atp-dev/tools/forrest-mpm/forrest-mpm/forrest.par'
 
-    alias gemini='gemini --gfg'
-
     # CrOS chroot specific
     if [[ -n $CROS_WORKON_SRCROOT ]]; then
         alias cwh='cros_workon --host'
