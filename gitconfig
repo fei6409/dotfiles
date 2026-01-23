@@ -4,6 +4,9 @@
   commitgraph = true
   excludesfile = ~/.gitignore.global
   pager = delta --tabs 8
+[absorb]
+  autoStageIfNothingStaged = true
+  maxStack = 20
 [alias]
   au = add -u
   bb = !better-git-branch # run external script
