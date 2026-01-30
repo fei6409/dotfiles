@@ -102,6 +102,7 @@ fi
 
 if [[ "$REVERSE" = true ]]; then
   echo "[remote] $JUMP_HOST:$REMOTE_PORT -> [local] $LOCAL_HOST:$LOCAL_PORT"
+  echo "  (ssh -fN -R $REMOTE_PORT:$LOCAL_HOST:$LOCAL_PORT $JUMP_HOST)"
   ssh -fN -R "$REMOTE_PORT:$LOCAL_HOST:$LOCAL_PORT" "$JUMP_HOST"
 else
   if [[ "$JUMP_HOST" != "$REMOTE_HOST" ]]; then
@@ -109,5 +110,6 @@ else
   else
     echo "[local] $LOCAL_HOST:$LOCAL_PORT -> [remote] $REMOTE_HOST:$REMOTE_PORT"
   fi
+  echo "  (ssh -fN -L $LOCAL_PORT:$REMOTE_HOST:$REMOTE_PORT $JUMP_HOST)"
   ssh -fN -L "$LOCAL_PORT:$REMOTE_HOST:$REMOTE_PORT" "$JUMP_HOST"
 fi
