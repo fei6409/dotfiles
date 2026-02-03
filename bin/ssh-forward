@@ -1,115 +1,76 @@
 #!/bin/bash
 
-REVERSE=false
-LOCAL_HOST="localhost"
-LOCAL_PORT=""
-REMOTE_HOST=""
-REMOTE_PORT=""
+DIRECTION="-L"
 JUMP_HOST=""
+LISTEN_PORT=""
+TARGET_HOST=""
+TARGET_PORT=""
 KILL_PORT=""
 
 usage() {
-  echo "Usage: $0 -r remote_host -p remote_port [-l local_host] [-q local_port] [-j jump_host] [-R]"
-  echo "       $0 -k local_port"
+  echo "Usage: $0 [-R] -j jump_host -p target_port [-l listen_port] [-t target_host]"
+  echo "       $0 -k listen_port"
   echo ""
-  echo "Forwarding options:"
-  echo "  -r: Remote host (the destination)"
-  echo "  -p: Remote port"
-  echo ""
-  echo "  -l: Local host/bind address (default: localhost)"
-  echo "  -q: Local port (default: remote_port)"
-  echo ""
-  echo "  -j: Jump host (the SSH server to connect to, default: remote_host)"
-  echo "  -R: Reverse tunnel flag (remote to local)"
-  echo ""
-  echo "Management options:"
-  echo "  -k: Kill an existing tunnel on the specified local port"
+  echo "Options:"
+  echo "  -j: Jump Host   (The SSH server)"
+  echo "  -p: Target Port (The destination port)"
+  echo "  -t: Target Host (The destination address. Default: localhost)"
+  echo "  -l: Listen Port (The port opening the tunnel. Default: target_port)"
+  echo "  -R: Reverse tunnel (Listen on Jump Host instead of Local)"
+  echo "  -k: Kill tunnel by listen port"
   exit 1
 }
 
 # Parse options
-while getopts ":r:p:l:q:j:k:R" opt; do
-  # shellcheck disable=SC2249
+while getopts ":j:p:t:l:k:R" opt; do
   case ${opt} in
-    r)
-      REMOTE_HOST=$OPTARG
-      ;;
-    p)
-      REMOTE_PORT=$OPTARG
-      ;;
-    l)
-      LOCAL_HOST=$OPTARG
-      ;;
-    q)
-      LOCAL_PORT=$OPTARG
-      ;;
-    j)
-      JUMP_HOST=$OPTARG
-      ;;
-    k)
-      KILL_PORT=$OPTARG
-      ;;
-    R)
-      REVERSE=true
-      ;;
-    \?)
-      echo "Invalid option: -$OPTARG" >&2
-      usage
-      ;;
-    :)
-      echo "Option -$OPTARG requires an argument." >&2
-      usage
-      ;;
+    j) JUMP_HOST=$OPTARG ;;
+    p) TARGET_PORT=$OPTARG ;;
+    t) TARGET_HOST=$OPTARG ;;
+    l) LISTEN_PORT=$OPTARG ;;
+    k) KILL_PORT=$OPTARG ;;
+    R) DIRECTION="-R" ;;
+    *) usage ;;
   esac
 done
 
 shift $((OPTIND - 1))
 
-# Kill process if `-k` is specified
+# Kill logic
 if [[ -n "$KILL_PORT" ]]; then
   if ! command -v lsof &> /dev/null; then
     echo "Error: 'lsof' is required to kill a process by port." >&2
     exit 1
   fi
-  PID=$(lsof -i TCP:"$KILL_PORT" -s TCP:LISTEN -t)
-  if [[ -n "$PID" ]]; then
-    if kill "$PID"; then
-      echo "Successfully killed process $PID on port $KILL_PORT."
+  PIDS=$(lsof -i TCP:"$KILL_PORT" -s TCP:LISTEN -t)
+  if [[ -n "$PIDS" ]]; then
+    # shellcheck disable=SC2086
+    if kill $PIDS; then
+      echo "Killed process(es) on port $KILL_PORT (PIDs: $(echo $PIDS | xargs))."
     else
-      echo "Failed to kill process $PID on port $KILL_PORT." >&2
+      echo "Failed to kill process(es) on port $KILL_PORT." >&2
       exit 1
     fi
   else
-    echo "No process found listening on port $KILL_PORT."
+    echo "No tunnel found on port $KILL_PORT."
   fi
   exit 0
 fi
 
-# Check for mandatory arguments for forwarding
-if [[ -z "$REMOTE_PORT" || -z "$REMOTE_HOST" ]]; then
-  usage
-fi
+# Validation
+[[ -z "$JUMP_HOST" || -z "$TARGET_PORT" ]] && usage
 
-if [[ -z "$LOCAL_PORT" ]]; then
-  echo "Local port not specified, defaulting to remote port: $REMOTE_PORT"
-  LOCAL_PORT=$REMOTE_PORT
-fi
+# Apply defaults
+TARGET_HOST=${TARGET_HOST:-localhost}
+LISTEN_PORT=${LISTEN_PORT:-$TARGET_PORT}
 
-# Default jump_host to remote_host if not provided
-if [[ -z "$JUMP_HOST" ]]; then
-  JUMP_HOST=$REMOTE_HOST
-fi
-
-if [[ "$REVERSE" = true ]]; then
-  echo "[remote] $JUMP_HOST:$REMOTE_PORT -> [local] $LOCAL_HOST:$LOCAL_PORT"
-  echo "  (ssh -fN -R $REMOTE_PORT:$LOCAL_HOST:$LOCAL_PORT $JUMP_HOST)"
-  ssh -fN -R "$REMOTE_PORT:$LOCAL_HOST:$LOCAL_PORT" "$JUMP_HOST"
+# Display Context
+if [[ "$DIRECTION" == "-R" ]]; then
+  echo "[Reverse] Listening on $JUMP_HOST:$LISTEN_PORT -> Targeting $TARGET_HOST:$TARGET_PORT"
 else
-  if [[ "$JUMP_HOST" != "$REMOTE_HOST" ]]; then
-    echo "[local] $LOCAL_HOST:$LOCAL_PORT -> [remote] $REMOTE_HOST:$REMOTE_PORT (via $JUMP_HOST)"
-  else
-    echo "[local] $LOCAL_HOST:$LOCAL_PORT -> [remote] $REMOTE_HOST:$REMOTE_PORT"
-  fi
-  echo "  (ssh -fN -L $LOCAL_PORT:$REMOTE_HOST:$REMOTE_PORT $JUMP_HOST)"
-  ssh -fN -L "$LOCAL_PORT:$REMOTE_HOST:$REMOTE_PORT" "$JUMP_HOST"
+  echo "[Local] Listening on localhost:$LISTEN_PORT -> Targeting $TARGET_HOST:$TARGET_PORT via $JUMP_HOST"
 fi
+
+# Execution
+echo "  (ssh -fN $DIRECTION $LISTEN_PORT:$TARGET_HOST:$TARGET_PORT $JUMP_HOST)"
+ssh -fN "$DIRECTION" "$LISTEN_PORT:$TARGET_HOST:$TARGET_PORT" "$JUMP_HOST"
