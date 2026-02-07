@@ -13,4 +13,5 @@ return {
     end,
     cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
     ft = { 'markdown' },
+    enabled = false,
 }
