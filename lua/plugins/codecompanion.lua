@@ -25,6 +25,7 @@ return {
         'nvim-lua/plenary.nvim',
         'nvim-treesitter/nvim-treesitter',
     },
+    enabled = false,
     cmd = { 'CodeCompanion', 'CodeCompanionChat', 'CodeCompanionActions' },
     keys = {
         {

@@ -6,6 +6,7 @@ return {
     build = ':Copilot auth',
     event = 'VeryLazy',
     commit = '4725916b1e08',
+    enabled = false,
     opts = {
         suggestion = {
             auto_trigger = false,
