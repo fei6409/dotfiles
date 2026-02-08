@@ -148,6 +148,8 @@ if ([[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/de
     alias gcertchk='gcertstatus --quiet --check_remaining=4h --check_ssh=false || gcert'
     alias work='gcertchk; [[ $(hostname -s) =~ v9 ]] && ssh glinux'
 
+    alias adbd='adb devices'
+
     # CrOS chroot specific
     if [[ -n $CROS_WORKON_SRCROOT ]]; then
         alias cwh='cros_workon --host'
