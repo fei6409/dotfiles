@@ -84,6 +84,7 @@
         git-absorb
         git-delta
         hyperfine
+        luarocks
         neovim
         node
         pyenv
@@ -114,6 +115,7 @@
         fd-find
         git-absorb
         hyperfine
+        luarocks
         ninja-build
         nodejs
         npm
