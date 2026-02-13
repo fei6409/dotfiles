@@ -36,6 +36,14 @@ local lsp_configs = {
             },
         },
     },
+    clangd = {
+        cmd = {
+            'clangd',
+            '--clang-tidy',
+            '--background-index',
+            '--completion-style=detailed',
+        },
+    },
     lua_ls = {
         settings = {
             Lua = {
