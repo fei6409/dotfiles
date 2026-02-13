@@ -73,13 +73,13 @@ return {
         },
         event = { 'BufReadPre', 'BufNewFile' },
         config = function()
-            --  Enable all LSP servers at once (requires Neovim 0.11+).
-            vim.lsp.enable(lsp_servers)
-
             -- LSP servers with extra configs.
             for name, conf in pairs(lsp_configs) do
                 vim.lsp.config(name, conf)
             end
+
+            --  Enable all LSP servers at once (requires Neovim 0.11+).
+            vim.lsp.enable(lsp_servers)
 
             -- Show shellcheck error codes in diagnostics.
             -- See: https://github.com/bash-lsp/bash-language-server/issues/752
