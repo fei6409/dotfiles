@@ -53,6 +53,9 @@ return {
             deno_fmt = {
                 append_args = { '--indent-width', '4' },
             },
+            ['clang-format'] = {
+                append_args = { '--style={BasedOnStyle: Google, IndentWidth: 4}' },
+            },
         },
         default_format_opts = {
             -- Fall back to LSP formatting if no formatters are available.
