@@ -1,0 +1,10 @@
+---
+Checks: >
+  bugprone-*,
+  performance-*,
+  readability-*,
+  linuxkernel-*
+
+WarningsAsErrors: ''
+HeaderFilterRegex: '.*'
+FormatStyle: none
