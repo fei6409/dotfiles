@@ -12,5 +12,5 @@ return {
         { '<C-c>', '<cmd>bwipeout<cr>', ft = 'fugitiveblame', nowait = true, silent = true, desc = 'Close fugitive blame' },
     },
     cmd = { 'Git', 'G' },
-    -- enabled = false,
+    enabled = false,
 }
