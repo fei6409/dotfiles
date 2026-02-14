@@ -62,12 +62,32 @@ return {
             end
         end, { desc = '[S]earch by rip[G]rep globally from Git repo root' })
 
+        -- Custom action: open multiple files if selected, otherwise open current
+        local function smart_open_multi(prompt_bufnr)
+            local tel_action_state = require('telescope.actions.state')
+            local picker = tel_action_state.get_current_picker(prompt_bufnr)
+            local selections = picker:get_multi_selection()
+
+            if not vim.tbl_isempty(selections) then
+                tel_actions.close(prompt_bufnr)
+                for _, selection in ipairs(selections) do
+                    local file = selection.path or selection.filename or selection[1]
+                    if file then vim.cmd('edit ' .. file) end
+                end
+            else
+                tel_actions.select_default(prompt_bufnr)
+            end
+        end
+
         require('telescope').setup {
             defaults = {
                 layout_config = { height = 0.95, width = 0.9 },
-                -- Close Telescope directly (instead of back to normal mode)
                 mappings = {
-                    i = { ['<esc>'] = 'close' },
+                    i = {
+                        -- Close Telescope directly (instead of back to normal mode)
+                        ['<esc>'] = tel_actions.close,
+                        ['<cr>'] = smart_open_multi,
+                    },
                 },
                 vimgrep_arguments = {
                     'rg',
