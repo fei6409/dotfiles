@@ -35,16 +35,6 @@ autocmd('FileType', {
     end,
 })
 
-autocmd('FileType', {
-    group = augroups['close'],
-    pattern = { 'qf', 'fugitiveblame', 'gitsigns-blame' },
-    desc = 'Additional keymaps to close quickfix and blame windows',
-    callback = function()
-        vim.keymap.set('n', '<C-c>', '<cmd>close<CR>', opts_nowait)
-        vim.keymap.set('n', 'q', '<cmd>close<CR>', opts_nowait)
-    end,
-})
-
 autocmd({ 'BufNewFile', 'BufRead' }, {
     group = augroups['close'],
     pattern = 'fugitive://*',

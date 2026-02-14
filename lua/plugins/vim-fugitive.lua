@@ -8,6 +8,8 @@ return {
         -- ~    reblame at nth ancestor
         -- P    reblame at nth parent
         { '<leader>b', '<cmd>Git blame<cr>' },
+        { 'q', '<cmd>bwipeout<cr>', ft = 'fugitiveblame', nowait = true, silent = true, desc = 'Close fugitive blame' },
+        { '<C-c>', '<cmd>bwipeout<cr>', ft = 'fugitiveblame', nowait = true, silent = true, desc = 'Close fugitive blame' },
     },
     cmd = { 'Git', 'G' },
     -- enabled = false,
