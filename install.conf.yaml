@@ -40,6 +40,7 @@
     ~/.utils.zsh:
     ~/.alias.zsh:
     ~/.lazy-load.zsh:
+    ~/.clang-tidy:
     ~/.shellcheckrc:
     ~/.jjconfig.toml:
     ~/.config/starship.toml:
