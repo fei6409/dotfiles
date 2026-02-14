@@ -29,36 +29,34 @@ return {
     config = function()
         local tel_actions = require('telescope.actions')
         local tel_builtin = require('telescope.builtin')
-        -- Inspired by https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes
-        local function is_git_repo()
-            vim.fn.system('git rev-parse --is-inside-work-tree')
-            return vim.v.shell_error == 0
-        end
-        local function get_git_root()
-            local dot_git_path = vim.fn.finddir('.git', '.;')
-            return vim.fn.fnamemodify(dot_git_path, ':h')
-        end
+
+        -- Git root detection (Neovim 0.10+)
+        local function get_git_root() return vim.fs.root(0, '.git') end
 
         local keyset = vim.keymap.set
         keyset('n', '<leader>sf', function()
-            if is_git_repo() then
+            if get_git_root() then
                 tel_builtin.git_files()
             else
                 tel_builtin.find_files()
             end
-        end, { desc = '[S]earch [F]iles, prefer git_files() over find_files()' })
+        end, { desc = '[S]earch [F]iles (Git files first)' })
+
         keyset('n', '<leader>sF', function()
-            if is_git_repo() then
+            local root = get_git_root()
+            if root then
                 tel_builtin.find_files {
-                    cwd = get_git_root(),
+                    cwd = root,
                     prompt_title = 'Find Files from Git root',
                 }
             end
         end, { desc = '[S]earch [F]iles globally from Git repo root' })
+
         keyset('n', '<leader>sG', function()
-            if is_git_repo() then
+            local root = get_git_root()
+            if root then
                 tel_builtin.live_grep {
-                    cwd = get_git_root(),
+                    cwd = root,
                     prompt_title = 'Live Grep from Git root',
                 }
             end
