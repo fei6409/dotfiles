@@ -35,10 +35,10 @@ autocmd('FileType', {
     end,
 })
 
-autocmd({ 'BufNewFile', 'BufRead' }, {
+autocmd({ 'BufEnter' }, {
     group = augroups['close'],
-    pattern = 'fugitive://*',
-    desc = 'Additional keymaps to close figitive buffers',
+    pattern = { 'fugitive://*', 'gitsigns://*' },
+    desc = 'Additional keymaps to close blame buffers',
     callback = function()
         vim.keymap.set('n', '<C-c>', '<cmd>bwipeout<CR>', opts_nowait)
         vim.keymap.set('n', 'q', '<cmd>bwipeout<CR>', opts_nowait)
