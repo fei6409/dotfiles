@@ -10,6 +10,22 @@ return {
         },
     },
     event = 'VeryLazy',
+    keys = {
+        { '<leader>ss', '<cmd>Telescope grep_string<cr>', desc = '[S]earch current [S]tring' },
+        { '<leader>sg', '<cmd>Telescope live_grep<cr>', desc = '[S]earch by rip[G]rep' },
+        { '<leader>sh', '<cmd>Telescope help_tags<cr>', desc = '[S]earch [H]elp' },
+        { '<leader>sk', '<cmd>Telescope keymaps<cr>', desc = '[S]earch [K]eymaps' },
+        { '<leader>sd', '<cmd>Telescope diagnostics<cr>', desc = '[S]earch [D]iagnostics' },
+        { '<leader>sc', '<cmd>Telescope commands<cr>', desc = '[S]earch [C]ommands' },
+        { '<leader>sr', '<cmd>Telescope registers<cr>', desc = '[S]earch [R]egisters' },
+        { '<leader>st', '<cmd>Telescope treesitter<cr>', desc = '[S]earch [T]reesitter' },
+        { '<leader>se', '<cmd>Telescope spell_suggest<cr>', desc = '[S]earch [E]nglish suggests' },
+        { '<leader>s/', '<cmd>Telescope current_buffer_fuzzy_find<cr>', desc = '[S]earch in [/]current buffer' },
+        { '<leader>sld', '<cmd>Telescope lsp_definitions<cr>', desc = '[S]earch [L]SP [D]efinitions' },
+        { '<leader>sli', '<cmd>Telescope lsp_implementations<cr>', desc = '[S]earch [L]SP [I]mplementations' },
+        { '<leader>slr', '<cmd>Telescope lsp_references<cr>', desc = '[S]earch [L]SP [R]eferences' },
+        { '<leader>sls', '<cmd>Telescope lsp_document_symbols<cr>', desc = '[S]earch [L]SP [S]ymbols' },
+    },
     config = function()
         local tel_actions = require('telescope.actions')
         local tel_builtin = require('telescope.builtin')
@@ -24,20 +40,6 @@ return {
         end
 
         local keyset = vim.keymap.set
-        keyset('n', '<leader>ss', tel_builtin.grep_string, { desc = '[S]earch current [S]tring' })
-        keyset('n', '<leader>sg', tel_builtin.live_grep, { desc = '[S]earch by rip[G]rep' })
-        keyset('n', '<leader>sh', tel_builtin.help_tags, { desc = '[S]earch [H]elp' })
-        keyset('n', '<leader>sk', tel_builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-        keyset('n', '<leader>sd', tel_builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-        keyset('n', '<leader>sc', tel_builtin.commands, { desc = '[S]earch [C]ommands' })
-        keyset('n', '<leader>sr', tel_builtin.registers, { desc = '[S]earch [R]egisters' })
-        keyset('n', '<leader>st', tel_builtin.treesitter, { desc = '[S]earch [T]reesitter' })
-        keyset('n', '<leader>se', tel_builtin.spell_suggest, { desc = '[S]earch [E]nglish suggests' })
-        keyset('n', '<leader>s/', tel_builtin.current_buffer_fuzzy_find, { desc = '[S]earch in [/]current buffer' })
-        keyset('n', '<leader>sld', tel_builtin.lsp_definitions, { desc = '[S]earch [L]SP [D]efinitions' })
-        keyset('n', '<leader>sli', tel_builtin.lsp_implementations, { desc = '[S]earch [L]SP [I]mplementations' })
-        keyset('n', '<leader>slr', tel_builtin.lsp_references, { desc = '[S]earch [L]SP [R]eferences' })
-        keyset('n', '<leader>sls', tel_builtin.lsp_document_symbols, { desc = '[S]earch [L]SP [S]ymbols' })
         keyset('n', '<leader>sf', function()
             if is_git_repo() then
                 tel_builtin.git_files()
