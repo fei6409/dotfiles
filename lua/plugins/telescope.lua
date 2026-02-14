@@ -82,6 +82,7 @@ return {
         require('telescope').setup {
             defaults = {
                 layout_config = { height = 0.95, width = 0.9 },
+                path_display = { 'filename_first' },
                 mappings = {
                     i = {
                         -- Close Telescope directly (instead of back to normal mode)
