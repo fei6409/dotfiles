@@ -104,10 +104,13 @@ return {
                 },
             },
             pickers = {
-                -- current_buffer_fuzzy_find = {
-                --     layout_strategy = 'vertical',
-                --     previewer = false,
-                -- },
+                spell_suggest = {
+                    theme = 'dropdown',
+                },
+                buffers = {
+                    theme = 'dropdown',
+                    previewer = false,
+                },
                 -- Anchor the current search results and re-perform fuzzy search.
                 live_grep = {
                     mappings = {
