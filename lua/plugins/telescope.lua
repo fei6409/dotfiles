@@ -20,6 +20,7 @@ return {
         { '<leader>sr', '<cmd>Telescope registers<cr>', desc = '[S]earch [R]egisters' },
         { '<leader>st', '<cmd>Telescope treesitter<cr>', desc = '[S]earch [T]reesitter' },
         { '<leader>se', '<cmd>Telescope spell_suggest<cr>', desc = '[S]earch [E]nglish suggests' },
+        { '<leader>sb', '<cmd>Telescope buffers<cr>', desc = '[S]earch [B]uffers' },
         { '<leader>s/', '<cmd>Telescope current_buffer_fuzzy_find<cr>', desc = '[S]earch in [/]current buffer' },
         { '<leader>s.', '<cmd>Telescope resume<cr>', desc = '[S]earch [.]resume last search' },
         { '<leader>sld', '<cmd>Telescope lsp_definitions<cr>', desc = '[S]earch [L]SP [D]efinitions' },
