@@ -30,8 +30,8 @@ autocmd('FileType', {
     callback = function()
         -- Do vertical windows and use `bwipeout` to avoid horizontal re-opening
         vim.cmd('wincmd L')
-        vim.keymap.set('n', '<C-c>', '<cmd>bwipeout<CR>', opts_nowait)
-        vim.keymap.set('n', 'q', '<cmd>bwipeout<CR>', opts_nowait)
+        vim.keymap.set('n', '<C-c>', '<cmd>bwipeout<cr>', opts_nowait)
+        vim.keymap.set('n', 'q', '<cmd>bwipeout<cr>', opts_nowait)
     end,
 })
 
@@ -40,8 +40,8 @@ autocmd({ 'BufEnter' }, {
     pattern = { 'fugitive://*', 'gitsigns://*' },
     desc = 'Additional keymaps to close blame buffers',
     callback = function()
-        vim.keymap.set('n', '<C-c>', '<cmd>bwipeout<CR>', opts_nowait)
-        vim.keymap.set('n', 'q', '<cmd>bwipeout<CR>', opts_nowait)
+        vim.keymap.set('n', '<C-c>', '<cmd>bwipeout<cr>', opts_nowait)
+        vim.keymap.set('n', 'q', '<cmd>bwipeout<cr>', opts_nowait)
     end,
 })
 

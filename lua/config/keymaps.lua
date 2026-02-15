@@ -7,16 +7,16 @@ keyset({ 'n', 'v' }, ';', ':')
 keyset('n', 'q:', ':q')
 
 -- Source current file quickly
-keyset('n', '<leader><leader>x', '<cmd>source %<CR>', { desc = 'Source current file' })
+keyset('n', '<leader><leader>x', '<cmd>source %<cr>', { desc = 'Source current file' })
 
 -- Execute current/selected line(s) in Lua
-keyset('n', '<leader>x', '<cmd>.lua<CR>', { desc = 'Run current line as Lua' })
+keyset('n', '<leader>x', '<cmd>.lua<cr>', { desc = 'Run current line as Lua' })
 -- In visual mode, run selection as Lua code
-keyset('v', '<leader>x', ':lua<CR>', { desc = 'Run selection as Lua' })
+keyset('v', '<leader>x', ':lua<cr>', { desc = 'Run selection as Lua' })
 
 -- Buffer navigation
-keyset('n', '<TAB>', '<cmd>bnext<CR>', { desc = 'Next buffer' })
-keyset('n', '<S-TAB>', '<cmd>bprevious<CR>', { desc = 'Previous buffer' })
+keyset('n', '<TAB>', '<cmd>bnext<cr>', { desc = 'Next buffer' })
+keyset('n', '<S-TAB>', '<cmd>bprevious<cr>', { desc = 'Previous buffer' })
 
 -- Window navigation with Ctrl + hjkl
 keyset('n', '<C-h>', '<C-w>h', { desc = 'Window left' })
@@ -25,10 +25,10 @@ keyset('n', '<C-k>', '<C-w>k', { desc = 'Window up' })
 keyset('n', '<C-l>', '<C-w>l', { desc = 'Window right' })
 
 -- Clear search highlight
-keyset('n', '<leader>l', '<cmd>nohlsearch<CR>', { desc = 'Clear search highlight' })
+keyset('n', '<leader>l', '<cmd>nohlsearch<cr>', { desc = 'Clear search highlight' })
 
 -- Unfold all folds
-keyset('n', '<leader>r', 'zR<CR>', { desc = 'Unfold all' })
+keyset('n', '<leader>r', 'zR<cr>', { desc = 'Unfold all' })
 
 -- Improved indenting in visual mode (keep selection)
 keyset('v', '<', '<gv', { desc = 'Indent left (keep selection)' })

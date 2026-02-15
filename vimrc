@@ -72,7 +72,7 @@ highlight PmenuSel      guibg=darkgreen guifg=lightgray
 " Key mappings
 nnoremap ; :
 vnoremap ; :
-nnoremap <leader>l :nohlsearch<CR>
+nnoremap <leader>l :nohlsearch<cr>
 " Delete w/o changing current register
 nnoremap x "_x
 vnoremap x "_x
@@ -89,5 +89,5 @@ vnoremap p "_dP
 " No more command history on typo
 nnoremap q: :q
 " Buffer navigation
-nnoremap <Tab> :bnext<CR>
-nnoremap <S-Tab> :bprevious<CR>
+nnoremap <Tab> :bnext<cr>
+nnoremap <S-Tab> :bprevious<cr>
