@@ -46,12 +46,3 @@ up = ["upload"]
 "diff token" = { underline = false }
 "diff removed token" = { fg = "bright red", bg = "#441111"}
 "diff added token" = { fg = "bright green", bg = "#003300"}
-
-[fix.tools.gclfmt]
-command = ["gclfmt", "--input_filename=$path"]
-patterns = ["glob:'**/*.gcl'"]
-
-[jjd-aliases]
-al-config = "/configs/wireless/android/testing/atp/prod/al-eng"
-doc = "/experimental/users/fshao/g3doc"
-teamdoc = "/../company/teams/chromeos-mtk-bringup"
