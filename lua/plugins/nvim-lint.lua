@@ -15,7 +15,7 @@ return {
         -- skip shellcheck as bashls runs it
         lint.linters_by_ft = {
             lua = { 'luacheck' },
-            markdown = { 'vale' },
+            -- markdown = { 'vale' },
         }
 
         vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
