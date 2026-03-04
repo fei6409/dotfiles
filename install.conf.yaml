@@ -66,6 +66,14 @@
     ~/.config/autostart/org.fcitx.Fcitx5.desktop:
       path: /usr/share/applications/org.fcitx.Fcitx5.desktop
 
+#### common shell commands
+- shell:
+    - description: Installing Cargo Crates
+      command: >-
+        cargo install --locked
+        binwalk
+        ouch
+
 #### brew for macOS
 - shell:
     - description: Updating Homebrew
