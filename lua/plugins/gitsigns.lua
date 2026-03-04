@@ -3,6 +3,7 @@
 return {
     'lewis6991/gitsigns.nvim',
     event = 'VeryLazy',
+    cond = not vim.startswith(vim.fn.getcwd(), '/google/src/'),
     opts = {
         -- Use committer_time instead of author_time
         current_line_blame_formatter = '<abbrev_sha> <author> (<committer_time:%R>) | <summary>',
