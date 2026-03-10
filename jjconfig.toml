@@ -31,7 +31,7 @@ nt = ["new", "trunk()"]
 ol = ["op", "log"]
 rb = ["rebase"]
 # Retrunk all mutable commits
-rba = ["rebase", "-d", "trunk()", "-s", "roots(trunk()..mutable())"]
+rba = ["rebase", "-d", "trunk()", "-s", "roots(mutable() & ~trunk())"]
 # Retrunk a series on trunk(): `jj rbt -s ...`
 rbt = ["rebase", "-d", "trunk()"]
 sh = ["show"]
