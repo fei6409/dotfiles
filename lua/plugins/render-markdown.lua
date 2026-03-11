@@ -5,9 +5,11 @@ return {
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
     ft = { 'markdown' },
     keys = {
-        { '<leader>p', '<cmd>RenderMarkdown preview<cr>', ft = 'markdown', desc = 'Render Markdown preview' },
+        { '<leader>p', '<cmd>RenderMarkdown buf_toggle<cr>', ft = 'markdown', desc = 'Render Markdown preview' },
     },
     opts = {
+        -- disabled on start
+        enabled = false,
         completions = { lsp = { enabled = true } },
     },
 }
