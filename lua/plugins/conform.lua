@@ -63,6 +63,9 @@ return {
                     return { '--style={BasedOnStyle: Google, IndentWidth: 4}' }
                 end,
             },
+            jq = {
+                append_args = { '--indent', '2' },
+            },
         },
         default_format_opts = {
             -- Fall back to LSP formatting if no formatters are available.
