@@ -36,6 +36,7 @@ return {
             python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
             rust = { 'rustfmt' },
             sh = { 'shfmt' },
+            toml = { 'tombi' },
             typescript = { 'deno_fmt' },
             yaml = { 'yamlfmt' },
             zsh = { 'shfmt' },
