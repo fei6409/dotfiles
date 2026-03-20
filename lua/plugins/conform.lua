@@ -56,9 +56,7 @@ return {
             ['clang-format'] = {
                 append_args = function(self, ctx)
                     local root = vim.fs.root(ctx.filename, '.clang-format')
-                    if root then
-                        return {}
-                    end
+                    if root then return {} end
                     -- Fallback style when no .clang-format is found
                     return { '--style={BasedOnStyle: Google, IndentWidth: 4}' }
                 end,
