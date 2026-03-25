@@ -73,6 +73,7 @@
         cargo install --locked
         binwalk
         ouch
+        writedisk
 
 #### brew for macOS
 - shell:
