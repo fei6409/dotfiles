@@ -11,8 +11,8 @@ return {
     },
     event = 'VeryLazy',
     keys = {
-        { '<leader>ss', '<cmd>Telescope grep_string<cr>', desc = '[S]earch current [S]tring' },
-        { '<leader>sg', '<cmd>Telescope live_grep<cr>', desc = '[S]earch by rip[G]rep' },
+        -- { '<leader>ss', '<cmd>Telescope grep_string<cr>', desc = '[S]earch current [S]tring' },
+        -- { '<leader>sg', '<cmd>Telescope live_grep<cr>', desc = '[S]earch by rip[G]rep' },
         { '<leader>sh', '<cmd>Telescope help_tags<cr>', desc = '[S]earch [H]elp' },
         { '<leader>sk', '<cmd>Telescope keymaps<cr>', desc = '[S]earch [K]eymaps' },
         { '<leader>sd', '<cmd>Telescope diagnostics<cr>', desc = '[S]earch [D]iagnostics' },
@@ -35,13 +35,13 @@ return {
         local function get_git_root() return vim.fs.root(0, '.git') end
 
         local keyset = vim.keymap.set
-        keyset('n', '<leader>sf', function()
-            if get_git_root() then
-                tel_builtin.git_files()
-            else
-                tel_builtin.find_files()
-            end
-        end, { desc = '[S]earch [F]iles (Git files first)' })
+        -- keyset('n', '<leader>sf', function()
+        --     if get_git_root() then
+        --         tel_builtin.git_files()
+        --     else
+        --         tel_builtin.find_files()
+        --     end
+        -- end, { desc = '[S]earch [F]iles (Git files first)' })
 
         keyset('n', '<leader>sF', function()
             local root = get_git_root()
