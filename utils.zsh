@@ -65,7 +65,7 @@ gnb() {
         if [[ ${#remotes[@]} == 1 ]]; then
             upstream="${remotes[1]}/$2"
         else
-            local preferred=("goog" "cros" "origin")
+            local preferred=("goog" "arsp" "cros" "origin")
 
             for p in "${preferred[@]}"; do
                 for r in "${remotes[@]}"; do
