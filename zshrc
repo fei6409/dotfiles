@@ -88,6 +88,7 @@ export FZF_ALT_C_COMMAND="fd --type d"
 
 chk_src "$HOME/.utils.zsh"
 chk_src "$HOME/.alias.zsh"
+chk_src "$HOME/.work.zsh"
 chk_src "$HOME/.local.zsh"
 chk_src "$HOME/.fzf.zsh"
 chk_src "$HOME/.lazy-load.zsh"
