@@ -6,34 +6,34 @@
 
 ### CREDIT: https://github.com/github/gitignore/blob/main/C.gitignore
 # Prerequisites
-*.d
+# *.d
 
 # Object files
-*.o
-# *.ko  # required by kernel related works
-*.obj
-*.elf
+# *.o
+# *.ko  # required by kernel
+# *.obj
+# *.elf
 
 # Linker output
-*.ilk
-*.map
-*.exp
+# *.ilk
+# *.map  # required by kernel symbol table (System.map)
+# *.exp
 
 # Precompiled Headers
-*.gch
-*.pch
+# *.gch
+# *.pch
 
 # Libraries
-*.lib
-*.a
-*.la
-*.lo
+# *.lib
+# *.a
+# *.la
+# *.lo
 
 # Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+# *.dll
+# *.so
+# *.so.*
+# *.dylib
 
 # Executables
 *.exe
@@ -50,19 +50,19 @@
 *.pdb
 
 # Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+# *.mod*
+# *.cmd
+# .tmp_versions/
+# modules.order
+# Module.symvers
+# Mkfile.old
+# dkms.conf
 ### C.gitignore END
 
 ### CREDIT: https://github.com/github/gitignore/blob/main/Rust.gitignore
 # Compiled files and executables
-debug/
-target/
+# debug/
+# target/
 
 # Remove Cargo.lock from gitignore if creating an executable, leave it for libraries
 # More information here https://doc.rust-lang.org/cargo/guide/cargo-toml-vs-cargo-lock.html
@@ -85,20 +85,20 @@ compile_commands.json
 *.test
 
 # Protobuf files.
-*.pb.cc
-*.pb.h
+# *.pb.cc
+# *.pb.h
 
 # Python files.
-*.pyc
+# *.pyc
 
 # Debug (e.g. gdb).
 .gdb_history
 .gdbinit
 
 # Ctags and Cscope files.
-cscope.*
-tags
-tags_sorted_by_file
+# cscope.*
+# tags
+# tags_sorted_by_file
 
 # VSCode source dirs
 .vscode/
@@ -108,9 +108,6 @@ tags_sorted_by_file
 
 # clangd cache dir
 .clangd
-
-# Local vimrc
-.lvimrc
 
 # pyenv / rbenv version files.
 .python-version
