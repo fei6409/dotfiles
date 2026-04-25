@@ -3,7 +3,13 @@ Checks: >
   bugprone-*,
   performance-*,
   readability-*,
-  linuxkernel-*
+  linuxkernel-*,
+  -readability-braces-around-statements,
+  -readability-function-cognitive-complexity,
+  -readability-identifier-length,
+  -readability-inconsistent-ifelse-braces,
+  -readability-isolate-declaration,
+  -readability-math-missing-parentheses,
 
 WarningsAsErrors: ''
 HeaderFilterRegex: '.*'
