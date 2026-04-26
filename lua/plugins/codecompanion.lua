@@ -1,32 +1,14 @@
 -- Generic LLM support
 -- https://github.com/olimorris/codecompanion.nvim
 
-local review_prompt = [[
-Perform a comprehensive code review as a senior developer.
-Maintain a professional, direct, and concise tone throughout the review.
-Structure the response as follows:
-
-1.  **Code Summary:** Provide a concise explanation of what the code does.
-
-2.  **Bugs and Issues:** Identify bugs, security vulnerabilities, or logical
-issues. For each problem, provide a brief explanation and a code example of the
-fix. If no significant issues are found, explicitly state "No major bugs or
-issues found."
-
-3.  **Style and Readability:** Suggest improvements for style, naming,
-readability, consistency, and best practices. If no significant style
-improvements are needed, explicitly state "No major style improvements
-suggested."
-]]
-
 return {
     'olimorris/codecompanion.nvim',
     dependencies = {
         'nvim-lua/plenary.nvim',
         'nvim-treesitter/nvim-treesitter',
     },
-    enabled = false,
     cmd = { 'CodeCompanion', 'CodeCompanionChat', 'CodeCompanionActions' },
+    version = '^19.0.0',
     keys = {
         {
             '<leader>cp',
@@ -40,12 +22,6 @@ return {
             mode = { 'n', 'v' },
             desc = 'CodeCompanion: Toggle Chat',
         },
-        {
-            '<leader>cr',
-            '<cmd>CodeCompanion /review<cr>',
-            mode = { 'n', 'v' },
-            desc = 'CodeCompanion: Review selected code',
-        },
     },
     config = function()
         local adapter = 'copilot'
@@ -53,7 +29,7 @@ return {
         if os.getenv('GEMINI_API_KEY') and os.getenv('GEMINI_URL') then adapter = 'gemini' end
 
         return require('codecompanion').setup {
-            strategies = {
+            interactions = {
                 chat = {
                     adapter = adapter,
                     tools = { opts = { default_tools = { 'files' } } },
@@ -70,9 +46,24 @@ return {
                                 api_key = 'GEMINI_API_KEY',
                                 url = 'GEMINI_URL',
                             },
+                            schema = {
+                                model = { default = 'gemini-3-flash-preview' },
+                            },
                         })
                     end,
                 },
+            },
+            rules = {
+                gemini = {
+                    description = 'Common Gemini Markdown files',
+                    files = {
+                        '~/.gemini/GEMINI.md',
+                        '~/.gemini/BEHAVIOR.md',
+                        '~/.gemini/EXPERTISE.md',
+                        '~/.gemini/WORKFLOW.md',
+                    },
+                },
+                opts = { chat = { autoload = { 'default', 'gemini' } } },
             },
             display = {
                 chat = {
@@ -81,51 +72,6 @@ return {
                     },
                     auto_scroll = true,
                     show_settings = true,
-                },
-            },
-            prompt_library = {
-                ['Review'] = {
-                    strategy = 'chat',
-                    description = 'Review selected code',
-                    opts = {
-                        is_default = true,
-                        is_slash_cmd = true,
-                        short_name = 'review',
-                        auto_submit = false,
-                        stop_context_insertion = true, -- prevent duplicated selected text
-                    },
-                    prompts = {
-                        {
-                            role = 'system',
-                            content = review_prompt,
-                        },
-                        {
-                            role = 'user',
-                            content = function(context)
-                                return string.format(
-                                    'Review the code:\n\n```%s\n%s\n```\n\n',
-                                    context.filetype,
-                                    table.concat(context.lines, '\n')
-                                )
-                            end,
-                            opts = { contains_code = true },
-                        },
-                    },
-                },
-                ['Apply'] = {
-                    strategy = 'chat',
-                    description = 'Apply changes to current buffer',
-                    opts = {
-                        is_slash_cmd = true,
-                        short_name = 'apply',
-                        auto_submit = false,
-                    },
-                    prompts = {
-                        {
-                            role = 'user',
-                            content = 'apply the change in #{buffer}',
-                        },
-                    },
                 },
             },
         }
