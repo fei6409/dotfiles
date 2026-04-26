@@ -3,6 +3,7 @@
 return {
     'folke/sidekick.nvim',
     event = 'VeryLazy',
+    enabled = false,
     opts = {
         -- Next Edit Suggestions needs Copilot
         nes = { enabled = false },
