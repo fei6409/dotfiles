@@ -26,7 +26,7 @@ return {
     config = function()
         local adapter = 'copilot'
 
-        if os.getenv('GEMINI_API_KEY') and os.getenv('GEMINI_URL') then adapter = 'gemini' end
+        if os.getenv('LOCAL_GEMINI_API_KEY') and os.getenv('LOCAL_GEMINI_URL') then adapter = 'gemini' end
 
         return require('codecompanion').setup {
             interactions = {
@@ -43,8 +43,8 @@ return {
                         return require('codecompanion.adapters').extend('gemini', {
                             env = {
                                 -- read pd-ai-key from envvar
-                                api_key = 'GEMINI_API_KEY',
-                                url = 'GEMINI_URL',
+                                api_key = 'LOCAL_GEMINI_API_KEY',
+                                url = 'LOCAL_GEMINI_URL',
                             },
                             schema = {
                                 model = { default = 'gemini-3-flash-preview' },
