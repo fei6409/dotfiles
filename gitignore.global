@@ -115,3 +115,6 @@ compile_commands.json
 
 # Lua workspace file
 .luarc.json
+
+# macOS .DS_Store
+.DS_Store
