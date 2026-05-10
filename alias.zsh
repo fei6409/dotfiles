@@ -63,6 +63,7 @@ alias grh='git reset --hard'
 alias grs='git reset --soft'
 alias gsh='git show'
 alias gst='git status'
+alias gsti='git status --ignored'
 
 # Call git-commit-lost directly
 alias gcl &>/dev/null && unalias gcl
