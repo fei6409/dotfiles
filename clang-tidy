@@ -7,6 +7,7 @@ Checks: >
   -readability-braces-around-statements,
   -readability-function-cognitive-complexity,
   -readability-identifier-length,
+  -readability-implicit-bool-conversion,
   -readability-inconsistent-ifelse-braces,
   -readability-isolate-declaration,
   -readability-math-missing-parentheses,
