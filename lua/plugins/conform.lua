@@ -9,12 +9,12 @@ return {
             '<leader>f',
             function()
                 require('conform').format({ async = true }, function(err, did_edit)
-                    if err ~= nil then
-                        print('Format error: ' .. tostring(err))
-                    elseif did_edit == true then
-                        print('Formatted')
+                    if err then
+                        vim.notify('Conform: ' .. tostring(err), vim.log.levels.ERROR)
+                    elseif did_edit then
+                        vim.notify('Conform: formatted')
                     else
-                        print('Not formatted')
+                        vim.notify('Conform: already formatted')
                     end
                     -- Ensure always go back to normal mode.
                     vim.api.nvim_input('<ESC>')

@@ -70,14 +70,14 @@ end, { desc = 'Close current buffer' })
 keyset('n', '<F4>', function()
     local attr = function(x) return vim.fn.synIDattr(x, 'name') end
     local synid = vim.fn.synID(vim.fn.line('.'), vim.fn.col('.'), 1)
-    print('Syntax <' .. attr(synid) .. '> maps to <' .. attr(vim.fn.synIDtrans(synid)) .. '>')
+    vim.notify('Syntax <' .. attr(synid) .. '> maps to <' .. attr(vim.fn.synIDtrans(synid)) .. '>')
 end, { desc = 'Print syntax highlight info' })
 
 -- Toggle colorcolumn, customizable columns
 local colorcolumns = '75,80,100,120'
 keyset('n', '<F8>', function()
     vim.wo.colorcolumn = (vim.wo.colorcolumn == '' and colorcolumns or '')
-    print('Colorcolumn: ' .. (vim.wo.colorcolumn == '' and 'off' or colorcolumns))
+    vim.notify('Colorcolumn: ' .. (vim.wo.colorcolumn == '' and 'off' or colorcolumns))
 end, { desc = 'Toggle colorcolumn' })
 
 -- Toggle line number, list mode, and signcolumn
@@ -85,7 +85,7 @@ keyset('n', '<F9>', function()
     vim.cmd('set invnumber invlist')
     vim.cmd('IBLToggle')
     vim.wo.signcolumn = (vim.wo.signcolumn == 'yes' and 'no' or 'yes')
-    print(
+    vim.notify(
         'Number: '
             .. (vim.wo.number and 'on' or 'off')
             .. ', List: '
@@ -99,9 +99,9 @@ end, { desc = 'Toggle line number' })
 keyset('n', '<F10>', function()
     if vim.o.expandtab then
         vim.cmd('setlocal noexpandtab tabstop=8 shiftwidth=8')
-        print('Tab indent (8 spaces)')
+        vim.notify('Tab indent (8 spaces)')
     else
         vim.cmd('setlocal expandtab tabstop=4 shiftwidth=4')
-        print('Sapce indent (4 spaces)')
+        vim.notify('Space indent (4 spaces)')
     end
 end, { desc = 'Switch expandtab status' })

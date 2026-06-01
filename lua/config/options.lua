@@ -49,6 +49,10 @@ opt.tabstop = 4 -- Number of spaces a tab counts for
 
 -- Debug utility
 P = function(...)
-    vim.print(...)
+    local args = {}
+    for i = 1, select('#', ...) do
+        table.insert(args, vim.inspect(select(i, ...)))
+    end
+    vim.notify(table.concat(args, ' '))
     return ...
 end
