@@ -195,7 +195,11 @@ unarchive() {
   temp_dir=$(mktemp -d tmp.unarchive.XXXXXXXXXX)
   temp_files+=("${temp_dir}")
 
-  "unarchive_${archive_type}" "${archive_orig_path}" "${temp_dir}"
+  if cmd_exist "ouch"; then
+    ouch d "${archive_orig_path}" --dir "${temp_dir}" -y
+  else
+    "unarchive_${archive_type}" "${archive_orig_path}" "${temp_dir}"
+  fi
 
   local sub_files=()
   while IFS= read -r -d '' f; do
