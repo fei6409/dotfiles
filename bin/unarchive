@@ -37,12 +37,14 @@ atomic_directory() {
 }
 
 replace() {
+  local src_path="$1"
+  local target_name="$2"
   # mv -T is not supported on BSD :(
   local temp_dir
   temp_dir=$(mktemp -d tmp.unarchive.XXXXXXXXXX)
   temp_files+=("${temp_dir}")
-  mv -- "$1" "${temp_dir}/$2"
-  mv -- "${temp_dir}/$2" .
+  mv -- "${src_path}" "${temp_dir}/${target_name}"
+  mv -- "${temp_dir}/${target_name}" .
 }
 
 find_unique_name() {
@@ -51,7 +53,9 @@ find_unique_name() {
   local name="${orig_name}"
   local ext=""
   if [[ ${file_type} == "file" ]]; then
-    name="${orig_name%.*}"
+    local name_without_ext="${orig_name%.*}"
+    # The file can be a dotfile with no other extension (e.g. .bashrc)
+    name="${name_without_ext:-${orig_name}}"
     if [[ "${orig_name}" != "${name}" ]]; then
       ext=".${orig_name##*.}"
     fi
@@ -104,30 +108,30 @@ unarchive_7z() {
 }
 
 unarchive_gzip() {
-  local base_name
-  local output_name
+  local archive
+  local archive_basename
 
-  base_name="$(basename "$1")"
+  archive="$(basename "$1")"
   # Remove the .gz extension to get the target filename
-  output_name="${base_name%.gz}"
+  archive_basename="${archive%.gz}"
 
   #shellcheck disable=SC2310
   if cmd_exist "pigz"; then
-    pigz -dkc "$1" > "$2/${output_name}"
+    pigz -dkc "$1" > "$2/${archive_basename}"
   else
-    gzip -dkc "$1" > "$2/${output_name}"
+    gzip -dkc "$1" > "$2/${archive_basename}"
   fi
 }
 
 unarchive_zst() {
-  local base_name
-  local output_name
+  local archive
+  local archive_basename
 
-  base_name=$(basename "$1")
+  archive=$(basename "$1")
   # Remove the .zst extension to get the target filename
-  output_name="${base_name%.zst}"
+  archive_basename="${archive%.zst}"
 
-  zstd -d "$1" -o "$2/${output_name}"
+  zstd -d "$1" -o "$2/${archive_basename}"
 }
 
 unarchive_rar() {
@@ -143,53 +147,10 @@ unarchive() {
   local archive
   archive="$(basename "${archive_orig_path}")"
 
-  local archive_type
   local archive_basename="${archive%.*}"
-
-  case "${archive}" in
-    *.zip)
-      archive_type=zip
-      ;;
-    *.tar)
-      archive_type=tar
-      ;;
-    *.tar.gz)
-      archive_type=tgz
-      archive_basename="${archive%.tar.gz}"
-      ;;
-    *.tgz)
-      archive_type=tgz
-      ;;
-    *.tar.xz)
-      archive_type=txz
-      archive_basename="${archive%.tar.xz}"
-      ;;
-    *.txz)
-      archive_type=txz
-      ;;
-    *.tar.bz2)
-      archive_type=tbz2
-      archive_basename="${archive%.tar.bz2}"
-      ;;
-    *.tbz | *.tbz2)
-      archive_type=tbz2
-      ;;
-    *.7z)
-      archive_type=7z
-      ;;
-    *.gz)
-      archive_type=gzip
-      ;;
-    *.zst)
-      archive_type=zst
-      ;;
-    *.rar)
-      archive_type=rar
-      ;;
-    *)
-      die "Unknown archive: ${archive_orig_path}"
-      ;;
-  esac
+  if [[ "${archive}" == *.tar.* ]]; then
+    archive_basename="${archive%.tar.*}"
+  fi
 
   local temp_dir
   temp_dir=$(mktemp -d tmp.unarchive.XXXXXXXXXX)
@@ -198,13 +159,44 @@ unarchive() {
   if cmd_exist "ouch"; then
     ouch d "${archive_orig_path}" --dir "${temp_dir}" -y
   else
+    local archive_type
+    case "${archive}" in
+      *.zip)
+        archive_type=zip
+        ;;
+      *.tar)
+        archive_type=tar
+        ;;
+      *.tar.gz | *.tgz)
+        archive_type=tgz
+        ;;
+      *.tar.xz | *.txz)
+        archive_type=txz
+        ;;
+      *.tar.bz2 | *.tbz | *.tbz2)
+        archive_type=tbz2
+        ;;
+      *.7z)
+        archive_type=7z
+        ;;
+      *.gz)
+        archive_type=gzip
+        ;;
+      *.zst)
+        archive_type=zst
+        ;;
+      *.rar)
+        archive_type=rar
+        ;;
+      *)
+        die "Unknown archive: ${archive_orig_path}"
+        ;;
+    esac
     "unarchive_${archive_type}" "${archive_orig_path}" "${temp_dir}"
   fi
 
   local sub_files=()
-  while IFS= read -r -d '' f; do
-    sub_files+=("${f}")
-  done < <(find "${temp_dir}" -maxdepth 1 -mindepth 1 -print0)
+  mapfile -d '' -t sub_files < <(find "${temp_dir}" -maxdepth 1 -mindepth 1 -print0)
 
   if (("${#sub_files[@]}" == 0)); then
     info "${archive_orig_path}: No file in archive!"
