@@ -74,6 +74,7 @@ alias gcl &>/dev/null && unalias gcl
 alias j='jj'
 alias jab='jj abandon'
 alias jc='jj commit'
+alias jca='jj desc'
 alias jd='jj diff'
 alias je='jj edit'
 alias jeh='jj eh'
