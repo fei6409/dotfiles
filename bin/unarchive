@@ -2,7 +2,12 @@
 set -e
 set -o noclobber
 
+USAGE="Usage: $(basename "$0") [flags] <archive files>
+  -h,--help     Show help message
+  -n,--native   Use native utilities instead of 'ouch'
+"
 temp_files=()
+use_native=false
 
 cleanup() {
   for file in "${temp_files[@]}"; do
@@ -156,7 +161,8 @@ unarchive() {
   temp_dir=$(mktemp -d tmp.unarchive.XXXXXXXXXX)
   temp_files+=("${temp_dir}")
 
-  if cmd_exist "ouch"; then
+  #shellcheck disable=SC2310
+  if [[ "${use_native}" != true ]] && cmd_exist "ouch"; then
     ouch d "${archive_orig_path}" --dir "${temp_dir}" -y
   else
     local archive_type
@@ -220,10 +226,35 @@ unarchive() {
 
 main() {
   trap cleanup EXIT
+
+  local OPTS
+  OPTS=$(getopt -o "hn" -l "help,native" -- "$@") || die "${USAGE}"
+  eval set -- "${OPTS}"
+
+  while true; do
+    case "$1" in
+      -h | --help)
+        info "${USAGE}"
+        exit 0
+        ;;
+      -n | --native)
+        use_native=true
+        shift
+        ;;
+      --)
+        shift
+        break
+        ;;
+      *)
+        die "Failed to parse args"
+        ;;
+    esac
+  done
+
   if (($# == 0)); then
-    echo "Usage: $0 [archive files]"
-    exit 1
+    die "${USAGE}"
   fi
+
   while (($# > 0)); do
     unarchive "$1"
     shift
