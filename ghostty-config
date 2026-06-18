@@ -1,0 +1,21 @@
+theme = Aizen Dark
+# theme = Catppuccin Mocha
+# theme = Argonaut
+# theme = Idle Toes
+
+background = 111111
+background-blur = 10
+background-opacity = 0.9
+cursor-style = block
+cursor-style-blink = false
+font-family  = MesloLGS Nerd Font Mono
+font-size = 17
+font-thicken = true
+quit-after-last-window-closed = true
+window-height = 50
+window-width = 200
+working-directory = home
+
+# Cmd + Arrow to move between tabs
+keybind = super+arrow_left=previous_tab
+keybind = super+arrow_right=next_tab

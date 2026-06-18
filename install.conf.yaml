@@ -37,6 +37,7 @@
     ~/.zshenv: modules/prezto/runcoms/zshenv
     ~/.zprezto/contrib/fast-syntax-highlighting: modules/fast-syntax-highlighting
     # others
+    ~/.config/ghostty/config: ghostty-config
     ~/.utils.zsh:
     ~/.alias.zsh:
     ~/.lazy-load.zsh:
