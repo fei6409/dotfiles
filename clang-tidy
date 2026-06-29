@@ -4,6 +4,7 @@ Checks: >
   performance-*,
   readability-*,
   linuxkernel-*,
+  -bugprone-signed-bitwise,
   -readability-braces-around-statements,
   -readability-function-cognitive-complexity,
   -readability-identifier-length,
