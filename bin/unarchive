@@ -227,11 +227,7 @@ unarchive() {
 main() {
   trap cleanup EXIT
 
-  local OPTS
-  OPTS=$(getopt -o "hn" -l "help,native" -- "$@") || die "${USAGE}"
-  eval set -- "${OPTS}"
-
-  while true; do
+  while [[ $# -gt 0 ]]; do
     case "$1" in
       -h | --help)
         info "${USAGE}"
@@ -245,8 +241,11 @@ main() {
         shift
         break
         ;;
+      -*)
+        die "Unknown option: $1"
+        ;;
       *)
-        die "Failed to parse args"
+        break
         ;;
     esac
   done
