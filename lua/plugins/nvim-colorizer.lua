@@ -2,7 +2,6 @@
 -- https://github.com/catgoose/nvim-colorizer.lua
 return {
     'catgoose/nvim-colorizer.lua',
-    enabled = false,
     opts = {
         filetypes = {
             'css',
