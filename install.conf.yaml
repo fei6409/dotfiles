@@ -44,7 +44,6 @@
     ~/.clang-tidy:
     ~/.shellcheckrc:
     ~/.jjconfig.toml:
-    ~/.config/starship.toml:
     ~/.fzf: modules/fzf
     ~/.local/bin/better-git-branch: bin/better-git-branch
     ~/.local/bin/unarchive: bin/unarchive
@@ -95,7 +94,6 @@
         ripgrep
         sd
         shellcheck
-        starship
         zoxide
 
 #### apt for Debian
@@ -126,7 +124,6 @@
         rustup
         sd
         shellcheck
-        starship
 
 #### cargo for Debian
 - shell:
