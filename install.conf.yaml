@@ -67,15 +67,6 @@
     ~/.config/autostart/org.fcitx.Fcitx5.desktop:
       path: /usr/share/applications/org.fcitx.Fcitx5.desktop
 
-#### common shell commands
-- shell:
-    - description: Installing Cargo Crates
-      command: >-
-        cargo install --locked
-        binwalk
-        ouch
-        writedisk
-
 #### brew for macOS
 - shell:
     - description: Updating Homebrew
@@ -132,9 +123,17 @@
         npm
         rbenv
         ripgrep
+        rustup
         sd
         shellcheck
         starship
-    - description: Installing Zoxide
-      command: curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
-      stdout: true
+
+#### cargo for Debian
+- shell:
+    - description: Installing Cargo Crates
+      command: >-
+        cargo install --locked
+        binwalk
+        ouch
+        writedisk
+        zoxide
