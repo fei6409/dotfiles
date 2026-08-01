@@ -8,11 +8,6 @@
 
 - clean: ['~']
 
-- shell:
-    - description: Installing submodules
-      command: git submodule update --init --recursive
-      stdout: true
-
 #### common links
 - link:
     # git
@@ -65,72 +60,3 @@
     # fcitx5 autostart
     ~/.config/autostart/org.fcitx.Fcitx5.desktop:
       path: /usr/share/applications/org.fcitx.Fcitx5.desktop
-
-#### brew for macOS
-- shell:
-    - description: Updating Homebrew
-      command: brew update
-    - description: Installing
-      command: >-
-        brew install
-        bat
-        colordiff
-        coreutils
-        duf
-        dust
-        eza
-        fd
-        font-meslo-lg-nerd-font
-        fzf
-        git-absorb
-        git-delta
-        hyperfine
-        luarocks
-        neovim
-        node
-        pyenv
-        rbenv ruby-build
-        reattach-to-user-namespace
-        ripgrep
-        sd
-        shellcheck
-        zoxide
-
-#### apt for Debian
-- shell:
-    - description: Updating Apt
-      command: sudo apt update
-    - description: Installing
-      command: >-
-        sudo apt install -y
-        bat
-        colordiff
-        du-dust
-        duf
-        eza
-        fcitx5 im-config
-        fcitx5-chewing
-        fcitx5-mozc
-        fcitx5-rime
-        fd-find
-        git-absorb
-        hyperfine
-        luarocks
-        ninja-build
-        nodejs
-        npm
-        rbenv
-        ripgrep
-        rustup
-        sd
-        shellcheck
-
-#### cargo for Debian
-- shell:
-    - description: Installing Cargo Crates
-      command: >-
-        cargo install --locked
-        binwalk
-        ouch
-        writedisk
-        zoxide

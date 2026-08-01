@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+info() { printf '\e[1;32mINFO:\e[m %s\n' "$*" >&2; }
+
+BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+cd "$BASEDIR"
+git submodule sync --quiet --recursive
+git submodule update --init --recursive
+
+# Install symlinks with Dotbot
+./install
+
+platform=$(uname -s)
+if [[ "$platform" == Linux ]]; then
+  # shellcheck disable=SC1091
+  . /etc/os-release
+  platform=$ID
+fi
+
+info "Detected platform: $platform"
+
+case "$platform" in
+  Darwin)
+    info 'Updating Homebrew'
+    brew update
+    info 'Installing Homebrew packages'
+    brew install \
+      bat \
+      colordiff \
+      coreutils \
+      duf \
+      dust \
+      eza \
+      fd \
+      font-meslo-lg-nerd-font \
+      fzf \
+      git-absorb \
+      git-delta \
+      hyperfine \
+      luarocks \
+      neovim \
+      node \
+      pyenv \
+      rbenv \
+      reattach-to-user-namespace \
+      ripgrep \
+      ruby-build \
+      sd \
+      shellcheck \
+      zoxide
+    ;;
+  debian)
+    info 'Updating APT packages'
+    sudo apt update
+    info 'Installing APT packages'
+    sudo apt install -y \
+      bat \
+      colordiff \
+      du-dust \
+      duf \
+      eza \
+      fcitx5 \
+      im-config \
+      fcitx5-chewing \
+      fcitx5-mozc \
+      fcitx5-rime \
+      fd-find \
+      git-absorb \
+      hyperfine \
+      luarocks \
+      ninja-build \
+      nodejs \
+      npm \
+      rbenv \
+      ripgrep \
+      rustup \
+      sd \
+      shellcheck
+    info 'Installing Cargo packages'
+    cargo install --locked \
+      binwalk \
+      ouch \
+      writedisk \
+      zoxide
+    ;;
+  *)
+    printf 'Unsupported platform: %s\n' "$platform" >&2
+    exit 1
+    ;;
+esac
