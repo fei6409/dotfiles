@@ -1,18 +1,45 @@
-if ! sudo -l >/dev/null 2>&1; then
-    echo $'\e[1;31mNo sudo permission.\e[m'
-    exit 1
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+error() {
+  printf '\e[1;31mERROR:\e[m %s\n' "$*" >&2
+  exit 1
+}
+
+platform=$(uname -s)
+if [[ "$platform" == Linux ]]; then
+  # shellcheck disable=SC1091
+  . /etc/os-release
+  platform=$ID
 fi
 
-if ! command -v git >/dev/null 2>&1; then
-    echo $'\e[1;33mInstalling Git...\e[m'
-    sudo apt-get -y install git
+case "$platform" in
+  Darwin)
+    if ! command -v git > /dev/null 2>&1; then
+      error 'Install the Xcode Command Line Tools then rerun this.'
+    fi
+    ;;
+  debian)
+    if ! command -v git > /dev/null 2>&1; then
+      sudo apt update
+      sudo apt install -y git
+    fi
+    ;;
+  *)
+    error "Unsupported platform: $platform"
+    ;;
+esac
+
+dir="$HOME/dotfiles"
+if [[ -e "$dir" && ! -d "$dir/.git" ]]; then
+  error "Existing path is not a Git repository: $dir"
 fi
 
-git clone --filter=blob:none https://github.com/fei6409/dotfiles.git ~/dotfiles
-if ! cd ~/dotfiles; then
-    echo $'\e[1;31mDotfiles does not exist.\e[m'
-    exit 1
+if [[ ! -e "$dir" ]]; then
+  git clone --filter=blob:none https://github.com/fei6409/dotfiles.git "$dir"
 fi
+
+cd "$dir"
 git remote set-url --push origin git@github.com:fei6409/dotfiles.git
-
-./install
+./bootstrap
