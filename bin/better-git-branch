@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Original credit: https://gist.github.com/schacon/e9e743dee2e92db9a464619b99e94eff#file-better-git-branch-sh
 
 # Colors
