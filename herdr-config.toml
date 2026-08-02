@@ -14,6 +14,14 @@ last_pane = "prefix+a"
 split_vertical = ["prefix+|"]
 split_horizontal = ["prefix+minus"]
 
+[[keys.command]]
+key = "prefix+o"
+type = "popup"
+command = "herdr-navi-path"
+description = "test"
+width = "80%"
+height = "80%"
+
 [ui]
 pane_gaps = false
 prompt_new_tab_name = false

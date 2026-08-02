@@ -43,6 +43,7 @@
     ~/.jjconfig.toml:
     ~/.fzf: modules/fzf
     ~/.local/bin/better-git-branch: bin/better-git-branch
+    ~/.local/bin/herdr-navi-path: bin/herdr-navi-path
     ~/.local/bin/tmux-navi-path: bin/tmux-navi-path
     ~/.local/bin/unarchive: bin/unarchive
     ~/.local/bin/zoxide-select-path: bin/zoxide-select-path
