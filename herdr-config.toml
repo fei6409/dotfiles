@@ -1,0 +1,22 @@
+onboarding = false
+
+[keys]
+prefix = "ctrl+a"
+
+# Pane switching
+focus_pane_left = ["prefix+h", "alt+h"]
+focus_pane_down = ["prefix+j", "alt+j"]
+focus_pane_up = ["prefix+k", "alt+k"]
+focus_pane_right = ["prefix+l", "alt+l"]
+last_pane = "prefix+a"
+
+# Split
+split_vertical = ["prefix+|"]
+split_horizontal = ["prefix+minus"]
+
+[ui]
+pane_gaps = false
+prompt_new_tab_name = false
+show_agent_labels_on_pane_borders = false
+sound.enabled = false
+toast.delivery = "herdr"

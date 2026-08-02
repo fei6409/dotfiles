@@ -39,6 +39,7 @@ case "$platform" in
       fzf \
       git-absorb \
       git-delta \
+      herdr \
       hunk \
       hyperfine \
       luarocks \

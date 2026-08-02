@@ -33,6 +33,7 @@
     ~/.zprezto/contrib/fast-syntax-highlighting: modules/fast-syntax-highlighting
     # others
     ~/.config/ghostty/config: ghostty-config
+    ~/.config/herdr/config.toml: herdr-config.toml
     ~/.config/hunk/config.toml: hunk-config.toml
     ~/.utils.zsh:
     ~/.alias.zsh:
