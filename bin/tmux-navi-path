@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+TARGET_PATH="$("$BASE_DIR"/zoxide-select-path)"
+
+# Navigate path in new window in current tmux session
+# Skip setting window name - names with '.' breaks it
+[[ -n "$TARGET_PATH" && -n "$TMUX" ]] && tmux new-window -c "$TARGET_PATH"

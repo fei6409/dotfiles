@@ -435,6 +435,9 @@ bind -n M-j select-pane -D
 bind | split-window -h
 bind _ split-window -v
 
+# Open new tmux window with Zoxide + FZF
+bind o display-popup -E -w 80% -h 80% "~/.local/bin/tmux-navi-path"
+
 set -g status-justify centre
 
 # force Vi mode

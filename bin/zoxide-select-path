@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Use Zoxide + FZF to select a target path
+zoxide query -l | fzf \
+  --no-sort \
+  --bind 'tab:up,btab:down' \
+  --preview-window 'right:40%' \
+  --preview='eza -1 --color=always --icons=always {}'
