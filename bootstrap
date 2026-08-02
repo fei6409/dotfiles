@@ -49,6 +49,7 @@ case "$platform" in
       rbenv \
       reattach-to-user-namespace \
       ripgrep \
+      rtk \
       ruby-build \
       sd \
       shellcheck \
@@ -89,6 +90,8 @@ case "$platform" in
       tree-sitter-cli \
       writedisk \
       zoxide
+    cargo install --git \
+      https://github.com/rtk-ai/rtk
     info 'Installing npm packages'
     sudo npm install -g \
       hunkdiff
