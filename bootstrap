@@ -52,6 +52,7 @@ case "$platform" in
       ruby-build \
       sd \
       shellcheck \
+      tree-sitter-cli \
       zoxide
     ;;
   debian)
@@ -85,6 +86,7 @@ case "$platform" in
     cargo install --locked \
       binwalk \
       ouch \
+      tree-sitter-cli \
       writedisk \
       zoxide
     info 'Installing npm packages'
