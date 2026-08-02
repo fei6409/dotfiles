@@ -4,6 +4,7 @@
   commitgraph = true
   excludesfile = ~/.gitignore.global
   pager = delta --tabs 8
+  # pager = hunk pager
 [absorb]
   autoStageIfNothingStaged = true
   maxStack = 20
@@ -21,6 +22,8 @@
   dhh = diff HEAD~
   dw = diff --word-diff
   fix = log --pretty=fixes -1
+  hdiff = -c core.pager=\"hunk pager\" diff
+  hshow = -c core.pager=\"hunk pager\" show
   lg = log
   rb = rebase
   ref= reflog --pretty=reflog

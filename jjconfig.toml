@@ -11,6 +11,7 @@ diff-formatter = ":git"
 editor = "nvim"
 log-word-wrap = true
 pager = "delta"
+# pager = ["hunk", "pager"]
 
 [aliases]
 ab = ["abandon"]
