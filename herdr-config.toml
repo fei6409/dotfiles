@@ -18,7 +18,7 @@ split_horizontal = ["prefix+minus"]
 key = "prefix+o"
 type = "popup"
 command = "herdr-navi-path"
-description = "test"
+description = "Navigate path within a new tab"
 width = "80%"
 height = "80%"
 
