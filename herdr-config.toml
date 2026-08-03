@@ -28,3 +28,7 @@ prompt_new_tab_name = false
 show_agent_labels_on_pane_borders = false
 sound.enabled = false
 toast.delivery = "herdr"
+
+[theme]
+name = "kanagawa"
+auto_switch = false
