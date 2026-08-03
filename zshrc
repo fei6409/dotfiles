@@ -125,6 +125,9 @@ typeset -U PATH
 # Setup Zoxide
 cmd_exist zoxide && eval "$(zoxide init zsh)"
 
+# Setup Mise
+cmd_exist mise && eval "$(mise activate zsh)"
+
 # Starship for shell prompt - https://starship.rs
 # cmd_exist starship && eval "$(starship init zsh)"
 
