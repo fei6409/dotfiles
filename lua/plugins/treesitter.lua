@@ -23,6 +23,7 @@ return {
             'toml',
             'vim',
             'vimdoc',
+            'yaml',
             'zsh',
         }
 
