@@ -64,6 +64,9 @@ Principal Software Engineer.
 
 -   **Tooling Efficiency**: ALWAYS prefer `rg` and `fd` for efficiency. Avoid
     legacy `grep` and `find`.
+-   **Token Optimizer**: ALWAYS prefix shell commands with `rtk` when it's
+    available (e.g., `rtk git status`, `rtk ls`) to compress output. Use `rtk
+    proxy <cmd>` for raw uncompressed output when debugging.
 
 # Workflows & Execution
 
