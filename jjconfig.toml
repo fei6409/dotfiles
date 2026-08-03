@@ -45,11 +45,12 @@ up = ["upload"]
 
 [colors]
 "diff token" = { underline = false }
-"diff removed token" = { fg = "bright red", bg = "#441111"}
-"diff added token" = { fg = "bright green", bg = "#003300"}
+"diff removed token" = { fg = "bright red", bg = "#441111" }
+"diff added token" = { fg = "bright green", bg = "#003300" }
 
 # disable pagination for `jj status`
 [[--scope]]
 --when.commands = ["status"]
+
 [--scope.ui]
 paginate = "never"
