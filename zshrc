@@ -100,6 +100,24 @@ if_has fzf && eval "$(fzf --zsh)"
 # Starship for shell prompt - https://starship.rs
 # if_has starship && eval "$(starship init zsh)"
 
+# Terminal mouse reporting mode recovery for SSH, herdr, and tmux
+_flag_mouse_reset_cmd() {
+    [[ "$2" =~ "^[[:space:]]*(ssh|herdr|tmux)([[:space:]]|$)" ]] && _need_mouse_reset=1
+}
+
+# Reset VT100/SGR mouse reporting (1000/1002/1003/1006) & restore cursor (25) to
+# fix stuck 31;33M escape sequences after abnormal SSH/TUI exits
+_reset_stuck_mouse_mode() {
+    if (( _need_mouse_reset )); then
+        printf '\e[?1000l\e[?1002l\e[?1003l\e[?1006l\e[?25h' 2>/dev/null
+        _need_mouse_reset=0
+    fi
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook preexec _flag_mouse_reset_cmd
+add-zsh-hook precmd _reset_stuck_mouse_mode
+
 # Customized Pure.zsh
 fpath+=("$HOME/dotfiles/modules/pure")
 autoload -U promptinit; promptinit
