@@ -31,17 +31,13 @@ case "$platform" in
     brew install \
       coreutils \
       font-meslo-lg-nerd-font \
-      luarocks \
-      mise \
-      neovim \
-      reattach-to-user-namespace
+      mise
     ;;
   debian)
     info 'Updating APT packages'
     sudo apt update
     info 'Installing core packages'
     sudo apt install -y \
-      luarocks \
       rustup
     ;;
   *)

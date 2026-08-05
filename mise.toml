@@ -11,15 +11,19 @@ uv = "latest"
 
 # --- Core Utilities ---
 bat = "latest"
+cmake = "latest"
 delta = "latest"
 duf = "latest"
 dust = "latest"
 eza = "latest"
 fd = "latest"
 fzf = "latest"
+gitleaks = "latest"
 herdr = "latest"
+neovim = "latest"
 ripgrep = "latest"
 sd = "latest"
+tmux = "latest"
 zoxide = "latest"
 
 # --- Linters / Formatters ---
@@ -27,6 +31,7 @@ tree-sitter = "latest"
 shellcheck = "latest"
 yamlfmt = "latest"
 stylua = "latest"
+shfmt = "latest"
 
 # --- Utilities via Cargo & NPM ---
 "cargo:git-absorb" = "latest"
