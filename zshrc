@@ -6,6 +6,15 @@
 # Executes commands at the start of an interactive session.
 #
 
+# Dedup fpath array.
+typeset -gU fpath
+
+# For Zsh completion and function definitions.
+fpath=(
+  "$HOME/.zsh-completions"
+  $fpath
+)
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
     # shellcheck disable=SC1091

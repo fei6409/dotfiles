@@ -53,4 +53,11 @@ esac
 if if_has mise; then
   info 'Installing tools and runtimes via Mise'
   mise install
+
+  info 'Generating static Zsh completions'
+  COMP_DIR="./zsh-completions"
+  if_has herdr && herdr completion zsh > "${COMP_DIR}/_herdr"
+  if_has mise && mise completion zsh > "${COMP_DIR}/_mise"
+  if_has rg && rg --generate=complete-zsh > "${COMP_DIR}/_rg"
+  if_has fd && fd --gen-completions zsh > "${COMP_DIR}/_fd"
 fi

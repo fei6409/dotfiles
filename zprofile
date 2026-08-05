@@ -47,10 +47,6 @@ path=(
   $path
 )
 
-fpath=(
-  $fpath
-)
-
 #
 # Less
 #
