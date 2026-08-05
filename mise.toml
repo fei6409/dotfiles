@@ -1,0 +1,43 @@
+[env]
+COLORTERM = "truecolor"
+
+[tools]
+# --- Languages ---
+python = "latest"
+node = "latest"
+ruby = "latest"
+lua = "latest"
+uv = "latest"
+
+# --- Core Utilities ---
+bat = "latest"
+delta = "latest"
+duf = "latest"
+dust = "latest"
+eza = "latest"
+fd = "latest"
+fzf = "latest"
+herdr = "latest"
+ripgrep = "latest"
+sd = "latest"
+zoxide = "latest"
+
+# --- Linters / Formatters ---
+tree-sitter = "latest"
+shellcheck = "latest"
+yamlfmt = "latest"
+stylua = "latest"
+
+# --- Utilities via Cargo & NPM ---
+"cargo:git-absorb" = "latest"
+"cargo:https://github.com/rtk-ai/rtk" = "HEAD"
+"cargo:ouch" = "latest"
+"cargo:writedisk" = "latest"
+"npm:hunkdiff" = "latest"
+
+[hooks]
+postinstall = [
+  """if [[ "$MISE_TOOL_NAME" == "python" ]]; then
+       uv pip install --default-index https://pypi.org/simple --python "$MISE_TOOL_INSTALL_PATH/bin/python3" --upgrade numpy scipy pillow-heif requests PyYAML protobuf pygerrit2
+     fi"""
+]

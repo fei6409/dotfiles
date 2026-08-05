@@ -27,78 +27,30 @@ case "$platform" in
   Darwin)
     info 'Updating Homebrew'
     brew update
-    info 'Installing Homebrew packages'
+    info 'Installing core packages'
     brew install \
-      bat \
-      colordiff \
       coreutils \
-      duf \
-      dust \
-      eza \
-      fd \
       font-meslo-lg-nerd-font \
-      fzf \
-      git-absorb \
-      git-delta \
-      herdr \
-      hunk \
-      hyperfine \
       luarocks \
+      mise \
       neovim \
-      node \
-      pyenv \
-      rbenv \
-      reattach-to-user-namespace \
-      ripgrep \
-      rtk \
-      ruby-build \
-      sd \
-      shellcheck \
-      tree-sitter-cli \
-      zoxide
+      reattach-to-user-namespace
     ;;
   debian)
     info 'Updating APT packages'
     sudo apt update
-    info 'Installing APT packages'
+    info 'Installing core packages'
     sudo apt install -y \
-      bat \
-      colordiff \
-      du-dust \
-      duf \
-      eza \
-      fcitx5 \
-      im-config \
-      fcitx5-chewing \
-      fcitx5-mozc \
-      fcitx5-rime \
-      fd-find \
-      git-absorb \
-      hyperfine \
       luarocks \
-      ninja-build \
-      nodejs \
-      npm \
-      rbenv \
-      ripgrep \
-      rustup \
-      sd \
-      shellcheck
-    info 'Installing Cargo packages'
-    cargo install --locked \
-      binwalk \
-      ouch \
-      tree-sitter-cli \
-      writedisk \
-      zoxide
-    cargo install --git \
-      https://github.com/rtk-ai/rtk
-    info 'Installing npm packages'
-    sudo npm install -g \
-      hunkdiff
+      rustup
     ;;
   *)
     printf 'Unsupported platform: %s\n' "$platform" >&2
     exit 1
     ;;
 esac
+
+if if_has mise; then
+  info 'Installing tools and runtimes via Mise'
+  mise install
+fi
