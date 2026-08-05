@@ -28,46 +28,11 @@ chk_src() { [[ -f "$1" ]] && source "$1"; }
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-if if_has go; then
-    # shellcheck disable=SC2155
-    export PATH="$(go env GOPATH)/bin:$PATH"
-    export GOPATH="$HOME/go"
-fi
-
-# Goobuntu
-if [[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/dev/null; then
-    # The initial PATH is defined in /etc/environment
-    export PATH="$PATH:$HOME/depot_tools"
-    export PATH="$PATH:$HOME/chromiumos/src/config/bin"
-    export PATH="$PATH:$HOME/chromiumos/src/platform/dev/contrib"
-    export PATH="$PATH:$HOME/chromiumos/src/private-overlays/project-cheets-private/scripts"
-    export PATH="$PATH:$HOME/chromiumos/src/third_party/hdctools/scripts"
-    export PATH="$PATH:$HOME/chromiumos/chromite/contrib"
-
-    # Append chromite lib to Python import path
-    export PYTHONPATH="$PYTHONPATH:$HOME/chromiumos"
-
-    if if_has go; then
-        # Append Tast repos to GOPATH
-        export GOPATH="$GOPATH:$HOME/chromiumos/src/platform/tast-tests"
-        export GOPATH="$GOPATH:$HOME/chromiumos/src/platform/tast"
-        # Append Tast dependencies
-        export GOPATH="$GOPATH:$HOME/chromiumos/chroot/usr/lib/gopath"
-    fi
-
-    # Set up hgd for Fig
-    chk_src "/etc/bash_completion.d/hgd"
-    # Set up jjd for Jujutsu
-    chk_src "/etc/bash_completion.d/jjd"
-fi
-
-# Use truecolor
-export COLORTERM=truecolor
 
 # Customize debug mode prompt for `set -x`
 export PS4='$0:$LINENO++> '
 
-# Use fdfind as FZF backend
+# FZF options
 export FZF_DEFAULT_COMMAND="fd --type f --follow --hidden --exclude .git"
 export FZF_DEFAULT_OPTS="
   --color=fg:#cdcdcd,fg+:#e0e0e0,bg:#202030,bg+:#404040
@@ -76,7 +41,6 @@ export FZF_DEFAULT_OPTS="
   --color=header:#87afaf,border:#505050,query:#e0e0e0
 "
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-# Use bat for file preview.
 export FZF_CTRL_T_OPTS="
 --preview 'bat --color=always --style=auto --theme=OneHalfDark --line-range=:100 {}'
 "
@@ -90,8 +54,6 @@ chk_src "$HOME/.utils.zsh"
 chk_src "$HOME/.alias.zsh"
 chk_src "$HOME/.work.zsh"
 chk_src "$HOME/.local.zsh"
-chk_src "$HOME/.fzf.zsh"
-chk_src "$HOME/.lazy-load.zsh"
 
 #
 # Others
@@ -122,11 +84,9 @@ umask 022
 # Ensure path array do not contain duplicates
 typeset -U PATH
 
-# Setup Zoxide
-if_has zoxide && eval "$(zoxide init zsh)"
-
-# Setup Mise
 if_has mise && eval "$(mise activate zsh)"
+if_has zoxide && eval "$(zoxide init zsh)"
+if_has fzf && eval "$(fzf --zsh)"
 
 # Starship for shell prompt - https://starship.rs
 # if_has starship && eval "$(starship init zsh)"
