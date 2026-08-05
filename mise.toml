@@ -32,7 +32,6 @@ stylua = "latest"
 "cargo:git-absorb" = "latest"
 "cargo:https://github.com/rtk-ai/rtk" = "HEAD"
 "cargo:ouch" = "latest"
-"cargo:writedisk" = "latest"
 "npm:hunkdiff" = "latest"
 
 [hooks]
