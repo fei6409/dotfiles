@@ -3,6 +3,10 @@ onboarding = false
 [keys]
 prefix = "ctrl+a"
 
+# Generic
+detach = ["prefix+q", "prefix+d", "prefix+ctrl+d"]
+new_tab = ["prefix+c", "prefix+ctrl+c"]
+
 # Pane switching
 focus_pane_left = ["prefix+h", "alt+h"]
 focus_pane_down = ["prefix+j", "alt+j"]
@@ -25,9 +29,14 @@ height = "80%"
 [ui]
 pane_gaps = false
 prompt_new_tab_name = false
-show_agent_labels_on_pane_borders = false
-sound.enabled = false
-toast.delivery = "herdr"
+show_agent_labels_on_pane_borders = true
+tab_bar_position = "bottom"
+
+[ui.sound]
+enabled = false
+
+[ui.toast]
+delivery = "herdr"
 
 [theme]
 name = "kanagawa"
