@@ -25,7 +25,7 @@ die() {
   exit 1
 }
 
-cmd_exist() {
+if_has() {
   if type "$1" > /dev/null 2>&1; then
     return 0
   fi
@@ -88,7 +88,7 @@ unarchive_tar() {
 
 unarchive_tgz() {
   #shellcheck disable=SC2310
-  if cmd_exist "pigz"; then
+  if if_has "pigz"; then
     tar --use-compress-program pigz -xvf "$1" -C "$2"
   else
     tar -xvzf "$1" -C "$2"
@@ -97,7 +97,7 @@ unarchive_tgz() {
 
 unarchive_txz() {
   #shellcheck disable=SC2310
-  if cmd_exist "pixz"; then
+  if if_has "pixz"; then
     tar --use-compress-program pixz -xvf "$1" -C "$2"
   else
     tar --xz -xvf "$1" -C "$2"
@@ -121,7 +121,7 @@ unarchive_gzip() {
   archive_basename="${archive%.gz}"
 
   #shellcheck disable=SC2310
-  if cmd_exist "pigz"; then
+  if if_has "pigz"; then
     pigz -dkc "$1" > "$2/${archive_basename}"
   else
     gzip -dkc "$1" > "$2/${archive_basename}"
@@ -162,7 +162,7 @@ unarchive() {
   temp_files+=("${temp_dir}")
 
   #shellcheck disable=SC2310
-  if [[ "${use_native}" != true ]] && cmd_exist "ouch"; then
+  if [[ "${use_native}" != true ]] && if_has "ouch"; then
     ouch d "${archive_orig_path}" --dir "${temp_dir}" -y
   else
     local archive_type

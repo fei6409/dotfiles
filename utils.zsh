@@ -26,7 +26,7 @@ trimcopy() {
     if [[ "$OSTYPE" =~ ^darwin ]]; then
         copy_cmd=(pbcopy)
     elif [[ "$OSTYPE" =~ ^linux ]]; then
-        if ! cmd_exist xclip; then
+        if ! if_has xclip; then
             echo "Error: xclip not found." >&2
             return 1
         fi

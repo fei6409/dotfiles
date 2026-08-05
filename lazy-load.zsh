@@ -1,6 +1,6 @@
 # https://github.com/rbenv/rbenv
 export RBENV_ROOT="$HOME/.rbenv"
-if cmd_exist rbenv; then
+if if_has rbenv; then
     # It's recommended to prepend shim path over append.
     export PATH="$RBENV_ROOT/shims:$PATH"
     function rbenv() {
@@ -12,8 +12,8 @@ fi
 
 # https://github.com/pyenv/pyenv
 export PYENV_ROOT="$HOME/.pyenv"
-cmd_exist pyenv || export PATH="$PYENV_ROOT/bin:$PATH"
-if cmd_exist pyenv; then
+if_has pyenv || export PATH="$PYENV_ROOT/bin:$PATH"
+if if_has pyenv; then
     # It's recommended to prepend shim path over append.
     export PATH="$PYENV_ROOT/shims:$PATH"
     function pyenv() {

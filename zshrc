@@ -17,7 +17,7 @@ fi
 #
 
 # Either `command -v` or `type` would work.
-cmd_exist() { type "$1" &>/dev/null; }
+if_has() { command -v "$1" &>/dev/null; }
 
 # shellcheck disable=SC1090
 chk_src() { [[ -f "$1" ]] && source "$1"; }
@@ -28,7 +28,7 @@ chk_src() { [[ -f "$1" ]] && source "$1"; }
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-if cmd_exist go; then
+if if_has go; then
     # shellcheck disable=SC2155
     export PATH="$(go env GOPATH)/bin:$PATH"
     export GOPATH="$HOME/go"
@@ -47,7 +47,7 @@ if [[ -f /etc/lsb-release ]] && grep "GOOGLE_ID=Goobuntu" /etc/lsb-release >/dev
     # Append chromite lib to Python import path
     export PYTHONPATH="$PYTHONPATH:$HOME/chromiumos"
 
-    if cmd_exist go; then
+    if if_has go; then
         # Append Tast repos to GOPATH
         export GOPATH="$GOPATH:$HOME/chromiumos/src/platform/tast-tests"
         export GOPATH="$GOPATH:$HOME/chromiumos/src/platform/tast"
@@ -123,13 +123,13 @@ umask 022
 typeset -U PATH
 
 # Setup Zoxide
-cmd_exist zoxide && eval "$(zoxide init zsh)"
+if_has zoxide && eval "$(zoxide init zsh)"
 
 # Setup Mise
-cmd_exist mise && eval "$(mise activate zsh)"
+if_has mise && eval "$(mise activate zsh)"
 
 # Starship for shell prompt - https://starship.rs
-# cmd_exist starship && eval "$(starship init zsh)"
+# if_has starship && eval "$(starship init zsh)"
 
 # Customized Pure.zsh
 fpath+=("$HOME/dotfiles/modules/pure")

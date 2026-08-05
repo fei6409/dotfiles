@@ -1,5 +1,5 @@
 # Either `command -v` or `type` would work.
-cmd_exist() { type "$1" &>/dev/null; }
+if_has() { command -v "$1" &>/dev/null; }
 
 #
 # General alias
@@ -97,7 +97,7 @@ alias jtug='jj tug'
 # Conditional alias
 #
 
-if cmd_exist nvim; then
+if if_has nvim; then
     # use nvim where possible
     export EDITOR='nvim'
     export VISUAL='nvim'
@@ -109,16 +109,16 @@ else
     # nvim fall back to vim
     alias nvim='vim'
 fi
-cmd_exist colordiff && alias diff='colordiff'
-cmd_exist bat && alias cat='bat -p'
-cmd_exist tmx2 && alias tmux='tmx2'
-cmd_exist duf && alias df='duf'
-cmd_exist dust && alias du='dust'
-cmd_exist eza && alias ls='eza -F --icons=never'
-cmd_exist ipython && alias ipy='ipython'
-if cmd_exist python; then
+if_has colordiff && alias diff='colordiff'
+if_has bat && alias cat='bat -p'
+if_has tmx2 && alias tmux='tmx2'
+if_has duf && alias df='duf'
+if_has dust && alias du='dust'
+if_has eza && alias ls='eza -F --icons=never'
+if_has ipython && alias ipy='ipython'
+if if_has python; then
     alias py='python'
-elif cmd_exist python3; then
+elif if_has python3; then
     alias py='python3'
 fi
 
