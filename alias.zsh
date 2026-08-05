@@ -5,8 +5,8 @@ if_has() { command -v "$1" &>/dev/null; }
 # General alias
 #
 
-alias l='ls -1AF'
-alias ll='ls -lhAF'
+alias l='ls -1A'
+alias ll='ls -lhA'
 alias rm='rm -i'
 alias rg='rg -S'
 alias diff='diff --color'
