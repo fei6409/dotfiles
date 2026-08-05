@@ -9,6 +9,7 @@ alias l='ls -1AF'
 alias ll='ls -lhAF'
 alias rm='rm -i'
 alias rg='rg -S'
+alias diff='diff --color'
 alias ta='tmux attach -t'
 alias rsync='rsync --verbose --progress --human-readable --compress --archive'
 alias reboot='echo $FG[red]You shall not reboot :P$FG[none]'     # no reboot via commands!
@@ -109,7 +110,6 @@ else
     # nvim fall back to vim
     alias nvim='vim'
 fi
-if_has colordiff && alias diff='colordiff'
 if_has bat && alias cat='bat -p'
 if_has tmx2 && alias tmux='tmx2'
 if_has duf && alias df='duf'
