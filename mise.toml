@@ -3,7 +3,7 @@ COLORTERM = "truecolor"
 
 [tools]
 # --- Languages ---
-python = "latest"
+python = "3.13"
 node = "latest"
 ruby = "latest"
 lua = "latest"
