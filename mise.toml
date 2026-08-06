@@ -3,10 +3,10 @@ COLORTERM = "truecolor"
 
 [tools]
 # --- Languages ---
-python = "3.13"
-node = "latest"
-ruby = "latest"
 lua = "latest"
+node = "latest"
+python = "3.13"
+ruby = "latest"
 uv = "latest"
 
 # --- Core Utilities ---
@@ -27,11 +27,11 @@ tmux = "latest"
 zoxide = "latest"
 
 # --- Linters / Formatters ---
-tree-sitter = "latest"
 shellcheck = "latest"
-yamlfmt = "latest"
-stylua = "latest"
 shfmt = "latest"
+stylua = "latest"
+tree-sitter = "latest"
+yamlfmt = "latest"
 
 # --- Utilities via Cargo & NPM ---
 "cargo:git-absorb" = "latest"
