@@ -39,5 +39,5 @@ enabled = false
 delivery = "herdr"
 
 [theme]
-name = "kanagawa"
+name = "vesper"
 auto_switch = false
