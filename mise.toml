@@ -27,6 +27,7 @@ tmux = "latest"
 zoxide = "latest"
 
 # --- Linters / Formatters ---
+ruff = "latest"
 shellcheck = "latest"
 shfmt = "latest"
 stylua = "latest"

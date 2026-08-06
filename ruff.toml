@@ -1,0 +1,24 @@
+indent-width = 2
+line-length = 80
+
+[format]
+docstring-code-format = true
+indent-style = "space"
+line-ending = "auto"
+quote-style = "double"
+
+[lint]
+select = [
+  "E",  # pycodestyle errors
+  "W",  # pycodestyle warnings
+  "F",  # pyflakes
+  "I",  # isort
+  "D",  # pydocstyle
+]
+ignore = [
+  "D100",  # Missing docstring in public module
+  "D104",  # Missing docstring in public package
+]
+
+[lint.pydocstyle]
+convention = "google"

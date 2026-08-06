@@ -37,6 +37,7 @@
     ~/.config/herdr/config.toml: herdr.toml
     ~/.config/hunk/config.toml: hunk.toml
     ~/.config/mise/config.toml: mise.toml
+    ~/.config/ruff/ruff.toml: ruff.toml
     ~/.utils.zsh:
     ~/.alias.zsh:
     ~/.clang-tidy:
