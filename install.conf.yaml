@@ -31,7 +31,6 @@
     ~/.zlogout: modules/prezto/runcoms/zlogout
     ~/.zshenv: modules/prezto/runcoms/zshenv
     ~/.zprezto/contrib/fast-syntax-highlighting: modules/fast-syntax-highlighting
-    ~/.zsh-completions: zsh-completions
     # others
     ~/.config/ghostty/config: ghostty-config
     ~/.config/herdr/config.toml: herdr.toml

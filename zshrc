@@ -11,7 +11,7 @@ typeset -gU fpath
 
 # For Zsh completion and function definitions.
 fpath=(
-  "$HOME/.zsh-completions"
+  "$HOME/.local/share/zsh-completions"
   $fpath
 )
 
