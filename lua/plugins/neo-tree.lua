@@ -8,7 +8,7 @@ return {
         'nvim-tree/nvim-web-devicons',
         'MunifTanjim/nui.nvim',
     },
-    cmds = 'NeoTree',
+    cmd = 'Neotree',
     keys = {
         { '<leader>t', '<cmd>Neotree toggle<cr>', desc = 'Toggle Neotree window' },
     },

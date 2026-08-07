@@ -2,6 +2,7 @@
 -- https://github.com/mfussenegger/nvim-lint
 return {
     'mfussenegger/nvim-lint',
+    enabled = false,
     event = 'VeryLazy',
     config = function()
         local lint = require('lint')

@@ -9,7 +9,7 @@ return {
             build = 'make',
         },
     },
-    event = 'VeryLazy',
+    cmd = 'Telescope',
     keys = {
         -- { '<leader>ss', '<cmd>Telescope grep_string<cr>', desc = '[S]earch current [S]tring' },
         -- { '<leader>sg', '<cmd>Telescope live_grep<cr>', desc = '[S]earch by rip[G]rep' },
