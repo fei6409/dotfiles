@@ -60,6 +60,15 @@ gen_comp() {
     "$@" > "$COMP_DIR/_$bin"
   fi
 }
+
+fetch_comp() {
+  local bin="$1" url="$2"
+  # shellcheck disable=SC2310
+  if if_has "$bin"; then
+    curl -fsSL "$url" -o "$COMP_DIR/_$bin"
+  fi
+}
+
 gen_comp bat --completion zsh
 gen_comp delta --generate-completion zsh
 gen_comp fd --gen-completions zsh
@@ -74,5 +83,9 @@ gen_comp rustup completions zsh
 gen_comp tombi completion zsh
 gen_comp tree-sitter complete --shell zsh
 gen_comp uv generate-shell-completion zsh
+
+fetch_comp dust "https://raw.githubusercontent.com/bootandy/dust/master/completions/_dust"
+fetch_comp eza "https://raw.githubusercontent.com/eza-community/eza/main/completions/zsh/_eza"
+fetch_comp sd "https://raw.githubusercontent.com/chmln/sd/master/gen/completions/_sd"
 
 rm -f "$HOME/.cache/prezto/zcompdump{,.zwc}" "$HOME/.zcompdump{,.zwc}"
