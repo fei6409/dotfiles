@@ -28,10 +28,7 @@ case "$platform" in
     info 'Updating Homebrew'
     brew update
     info 'Installing core packages'
-    brew install \
-      coreutils \
-      font-meslo-lg-nerd-font \
-      mise
+    brew bundle --global
     ;;
   debian)
     info 'Updating APT packages'

@@ -51,6 +51,13 @@
     # ~/.p10k.zsh:
     # ~/.my-git-prompt.zsh:
 
+#### macOS links
+- defaults:
+    link:
+      if: '[[ `uname` == Darwin ]]'
+- link:
+    ~/.Brewfile:
+
 #### Linux links
 - defaults:
     link:
