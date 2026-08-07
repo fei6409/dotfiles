@@ -13,7 +13,7 @@ return {
     },
     ft = { 'qf' },
     keys = {
-        { 'q', '<cmd>close<cr>', ft = 'qf', nowait = true, silent = true, desc = 'Close quickfix' },
-        { '<C-c>', '<cmd>close<cr>', ft = 'qf', nowait = true, silent = true, desc = 'Close quickfix' },
+        { '<leader>q', '<cmd>cclose<cr>', ft = 'qf', desc = 'Quickfix: Close list' },
+        { '<C-c>', '<cmd>cclose<cr>', ft = 'qf', desc = 'Quickfix: Close list' },
     },
 }

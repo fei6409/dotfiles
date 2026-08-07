@@ -18,7 +18,7 @@ return {
         { '<leader>hl', '<cmd>Gitsigns blame_line<cr>', desc = 'Gitsigns: Blame line' },
         { '<leader>ht', '<cmd>Gitsigns toggle_current_line_blame<cr>', desc = 'Gitsigns: Toggle inline blame' },
         { '<leader>b', '<cmd>Gitsigns blame<cr>', desc = 'Gitsigns: Blame' },
-        { 'q', '<cmd>bwipeout<cr>', ft = 'gitsigns-blame', nowait = true, silent = true, desc = 'Close blame window' },
-        { '<C-c>', '<cmd>bwipeout<cr>', ft = 'gitsigns-blame', nowait = true, silent = true, desc = 'Close blame window' },
+        { '<leader>q', '<cmd>bwipeout<cr>', ft = 'gitsigns-blame', desc = 'Close blame window' },
+        { '<C-c>', '<cmd>bwipeout<cr>', ft = 'gitsigns-blame', desc = 'Close blame window' },
     },
 }

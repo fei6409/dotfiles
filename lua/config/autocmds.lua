@@ -1,7 +1,7 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup_names = { 'yank', 'resize', 'close', 'spell', 'indent', 'trim' }
 local augroups = {}
-local opts_nowait = { buffer = true, silent = true, nowait = true }
+local opts_buf = { buffer = true, silent = true }
 
 for _, name in pairs(augroup_names) do
     augroups[name] = vim.api.nvim_create_augroup('fei_' .. name, { clear = true })
@@ -30,8 +30,8 @@ autocmd('FileType', {
     callback = function()
         -- Do vertical windows and use `bwipeout` to avoid horizontal re-opening
         vim.cmd('wincmd L')
-        vim.keymap.set('n', '<C-c>', '<cmd>bwipeout<cr>', opts_nowait)
-        vim.keymap.set('n', 'q', '<cmd>bwipeout<cr>', opts_nowait)
+        vim.keymap.set('n', '<leader>q', '<cmd>bwipeout<cr>', opts_buf)
+        vim.keymap.set('n', '<C-c>', '<cmd>bwipeout<cr>', opts_buf)
     end,
 })
 
@@ -40,8 +40,8 @@ autocmd({ 'BufEnter' }, {
     pattern = { 'fugitive://*', 'gitsigns://*' },
     desc = 'Additional keymaps to close blame buffers',
     callback = function()
-        vim.keymap.set('n', '<C-c>', '<cmd>bwipeout<cr>', opts_nowait)
-        vim.keymap.set('n', 'q', '<cmd>bwipeout<cr>', opts_nowait)
+        vim.keymap.set('n', '<leader>q', '<cmd>bwipeout<cr>', opts_buf)
+        vim.keymap.set('n', '<C-c>', '<cmd>bwipeout<cr>', opts_buf)
     end,
 })
 
