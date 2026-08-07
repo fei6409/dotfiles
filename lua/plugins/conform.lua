@@ -28,16 +28,13 @@ return {
         formatters_by_ft = {
             c = { 'clang-format' },
             cpp = { 'clang-format' },
-            go = { 'gofmt' },
-            javascript = { 'deno_fmt' },
             json = { 'jq' },
             lua = { 'stylua' },
-            markdown = { 'deno_fmt' },
+            markdown = { 'mdformat' },
             python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
             rust = { 'rustfmt' },
             sh = { 'shfmt' },
             toml = { 'tombi' },
-            typescript = { 'deno_fmt' },
             yaml = { 'yamlfmt' },
             zsh = { 'shfmt' },
         },
@@ -50,9 +47,6 @@ return {
                 --   -ci: Switch cases will be indented.
                 --   -sr: Redirect operators will be followed by a space.
                 append_args = { '-i', '2', '-bn', '-ci', '-sr' },
-            },
-            deno_fmt = {
-                append_args = { '--indent-width', '4' },
             },
             ['clang-format'] = {
                 append_args = function(self, ctx)
