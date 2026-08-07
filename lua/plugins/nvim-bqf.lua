@@ -13,6 +13,7 @@ return {
     },
     ft = { 'qf' },
     keys = {
+        { '<leader>co', '<cmd>copen<cr>', desc = 'Quickfix: Open list' },
         { '<leader>q', '<cmd>cclose<cr>', ft = 'qf', desc = 'Quickfix: Close list' },
         { '<C-c>', '<cmd>cclose<cr>', ft = 'qf', desc = 'Quickfix: Close list' },
     },
