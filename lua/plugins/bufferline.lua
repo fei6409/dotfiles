@@ -7,12 +7,6 @@ return {
     version = '*',
     dependencies = {
         'nvim-tree/nvim-web-devicons',
-        -- Seems mason.nvim needs to go first, or race can happen and lead to
-        -- following errors:
-        -- Spawning language server with cmd: `xxx-server` failed.
-        -- The language server is either not installed, missing from PATH, or
-        -- not executable.
-        'williamboman/mason.nvim',
     },
     -- Ignore 'keys' property and always load the plugin on start.
     lazy = false,
