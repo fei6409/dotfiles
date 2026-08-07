@@ -26,11 +26,18 @@ sd = "latest"
 tmux = "latest"
 zoxide = "latest"
 
+# --- Language Servers ---
+lua-language-server = "latest"
+rust-analyzer = "latest"
+"npm:bash-language-server" = "latest"
+"npm:yaml-language-server" = "latest"
+
 # --- Linters / Formatters ---
 ruff = "latest"
 shellcheck = "latest"
 shfmt = "latest"
 stylua = "latest"
+tombi = "latest"
 tree-sitter = "latest"
 yamlfmt = "latest"
 
