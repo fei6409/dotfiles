@@ -1,78 +1,98 @@
 -- LSP configuration
 -- https://github.com/neovim/nvim-lspconfig
 
--- Setup references: https://youtu.be/puWgHa7k3SY
----@type table<string, string>: Mason LSP name to executable name
-local lsp_maps = {
-    bashls = 'bash-language-server',
-    clangd = 'clangd',
-    denols = 'deno',
-    lua_ls = 'lua-language-server',
-    ruff = 'ruff',
-    rust_analyzer = 'rust-analyzer',
-    yamlls = 'yaml-language-server',
-}
+---@class LspSpec
+---@field bin? string Binary name if different from LSP server name.
+---@field config? table Additional LSP settings passed to vim.lsp.config.
 
--- Only consider gopls if Go is installed.
-if vim.fn.executable('go') == 1 then lsp_maps.gopls = 'gopls' end
-
-local lsp_servers = {}
-local lsp_to_install = {}
-
--- Skip if the LSP server is already installed on host.
-for lsp, bin in pairs(lsp_maps) do
-    table.insert(lsp_servers, lsp)
-    if vim.fn.executable(bin) == 0 then table.insert(lsp_to_install, lsp) end
-end
-
--- LSP servers with additional configs
-local lsp_configs = {
+---@type table<string, LspSpec>
+local servers = {
     bashls = {
-        filetypes = { 'sh', 'zsh', 'bash' },
-        settings = {
-            bashIde = {
-                -- Ignore SC2034: foo appears unused. Verify it or export it.
-                shellcheckArguments = '-e SC2034,',
+        bin = 'bash-language-server',
+        config = {
+            filetypes = { 'sh', 'zsh', 'bash' },
+            settings = {
+                bashIde = {
+                    -- Ignore SC2034: foo appears unused. Verify it or export it.
+                    shellcheckArguments = '-e SC2034,',
+                },
             },
         },
     },
     clangd = {
-        cmd = {
-            'clangd',
-            '--clang-tidy',
-            '--background-index',
-            '--completion-style=detailed',
-        },
-    },
-    lua_ls = {
-        settings = {
-            Lua = {
-                -- Specify the Lua version (usually LuaJIT for Neovim)
-                runtime = { version = 'LuaJIT' },
-                --  Recognize the 'vim' global variable
-                diagnostics = { globals = { 'vim' } },
-                -- Include Neovim runtime files in the workspace
-                workspace = {
-                    library = { vim.env.VIMRUNTIME },
-                    -- Disable third-party checks. See: https://github.com/neovim/nvim-lspconfig/issues/1700
-                    checkThirdParty = false,
-                },
-                -- Disable telemetry data
-                telemetry = { enable = false },
+        bin = 'clangd',
+        config = {
+            cmd = {
+                'clangd',
+                '--clang-tidy',
+                '--background-index',
+                '--completion-style=detailed',
             },
         },
     },
+    lua_ls = {
+        bin = 'lua-language-server',
+        config = {
+            settings = {
+                Lua = {
+                    -- Specify the Lua version (usually LuaJIT for Neovim)
+                    runtime = { version = 'LuaJIT' },
+                    -- Recognize the 'vim' global variable
+                    diagnostics = { globals = { 'vim' } },
+                    -- Include Neovim runtime files in the workspace
+                    workspace = {
+                        library = { vim.env.VIMRUNTIME },
+                        -- Disable third-party checks. See: https://github.com/neovim/nvim-lspconfig/issues/1700
+                        checkThirdParty = false,
+                    },
+                    -- Disable telemetry data
+                    telemetry = { enable = false },
+                },
+            },
+        },
+    },
+    ruff = {
+        bin = 'ruff',
+    },
+    rust_analyzer = {
+        bin = 'rust-analyzer',
+    },
+    yamlls = {
+        bin = 'yaml-language-server',
+    },
 }
+
+-- Collect servers available on host vs missing
+local lsp_enabled = {}
+local lsp_missing = {}
+
+for name, spec in pairs(servers) do
+    local bin = spec.bin or name
+    if vim.fn.executable(bin) == 1 then
+        table.insert(lsp_enabled, name)
+    else
+        table.insert(lsp_missing, name)
+    end
+end
 
 return {
     {
+        'mason-org/mason.nvim',
+        cmd = { 'Mason', 'MasonInstall', 'MasonUpdate', 'MasonUninstall', 'MasonLog' },
+        opts = {},
+    },
+    {
         'mason-org/mason-lspconfig.nvim',
+        cond = #lsp_missing > 0,
         event = 'VeryLazy',
         dependencies = {
-            { 'mason-org/mason.nvim', opts = {} },
+            'mason-org/mason.nvim',
             'neovim/nvim-lspconfig',
         },
-        opts = { ensure_installed = lsp_to_install },
+        opts = {
+            ensure_installed = lsp_missing,
+            automatic_enable = true,
+        },
     },
     {
         'neovim/nvim-lspconfig',
@@ -81,13 +101,13 @@ return {
         },
         event = { 'BufReadPre', 'BufNewFile' },
         config = function()
-            -- LSP servers with extra configs.
-            for name, conf in pairs(lsp_configs) do
-                vim.lsp.config(name, conf)
+            -- Apply custom configs to servers.
+            for name, spec in pairs(servers) do
+                if spec.config then vim.lsp.config(name, spec.config) end
             end
 
-            --  Enable all LSP servers at once (requires Neovim 0.11+).
-            vim.lsp.enable(lsp_servers)
+            -- Enable only servers available on host.
+            vim.lsp.enable(lsp_enabled)
 
             -- Show shellcheck error codes in diagnostics.
             -- See: https://github.com/bash-lsp/bash-language-server/issues/752
