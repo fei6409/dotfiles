@@ -3,7 +3,7 @@
   autocrlf = input # `input` for Linux or Mac, `true` for Windows
   commitgraph = true
   excludesfile = ~/.gitignore.global
-  pager = delta --tabs 8
+  pager = [[ $COLUMNS -ge 140 ]] && delta --side-by-side || delta
   # pager = hunk pager
 [absorb]
   autoStageIfNothingStaged = true
@@ -64,7 +64,7 @@
   syntax-theme = Monokai Extended
   line-numbers = true
   navigate = true
-  side-by-side = true
+  tabs = 8
   file-style = yellow
   file-decoration-style = yellow ol ul
   hunk-header-decoration-style = 243 box ul
