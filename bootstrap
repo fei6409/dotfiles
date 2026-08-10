@@ -47,6 +47,8 @@ esac
 if if_has mise; then
   info 'Installing tools and runtimes via Mise'
   mise install
+  info 'Syncing base Python packages'
+  mise run py:sync
 fi
 
 info 'Generating static Zsh completions'

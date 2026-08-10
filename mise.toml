@@ -47,10 +47,6 @@ yamlfmt = "latest"
 "cargo:ouch" = "latest"
 "npm:hunkdiff" = "latest"
 
-[hooks]
-postinstall = [
-  """if [[ "$MISE_TOOL_NAME" == "python" ]]; then
-       uv pip install --python "$MISE_TOOL_INSTALL_PATH/bin/python3" --upgrade \
-         ipython numpy scipy requests PyYAML
-     fi"""
-]
+[tasks."py:sync"]
+description = "Sync base Python packages"
+run = 'uv pip install --python "$(mise which python3)" --upgrade -r ~/dotfiles/requirements.txt'
