@@ -50,6 +50,7 @@ yamlfmt = "latest"
 [hooks]
 postinstall = [
   """if [[ "$MISE_TOOL_NAME" == "python" ]]; then
-       uv pip install --default-index https://pypi.org/simple --python "$MISE_TOOL_INSTALL_PATH/bin/python3" --upgrade numpy scipy pillow-heif requests PyYAML protobuf pygerrit2
+       uv pip install --python "$MISE_TOOL_INSTALL_PATH/bin/python3" --upgrade \
+         ipython numpy scipy requests PyYAML
      fi"""
 ]
