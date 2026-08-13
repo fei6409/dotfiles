@@ -10,7 +10,7 @@ diff-editor = ":builtin"
 diff-formatter = ":git"
 editor = "nvim"
 log-word-wrap = true
-pager = "delta"
+pager = ["delta", "--side-by-side"]
 # pager = ["hunk", "pager"]
 
 [aliases]
