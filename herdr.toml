@@ -26,6 +26,10 @@ description = "Navigate path within a new tab"
 width = "80%"
 height = "80%"
 
+[remote]
+# Use native SSH config
+manage_ssh_config = false
+
 [ui]
 pane_gaps = false
 prompt_new_tab_name = false
