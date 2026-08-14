@@ -16,7 +16,7 @@ last_pane = "prefix+a"
 
 # Split
 split_vertical = ["prefix+|"]
-split_horizontal = ["prefix+minus"]
+split_horizontal = ["prefix+minus", "prefix+\""]
 
 [[keys.command]]
 key = "prefix+o"
