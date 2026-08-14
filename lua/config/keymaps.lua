@@ -74,7 +74,7 @@ keyset('n', '<F4>', function()
 end, { desc = 'Print syntax highlight info' })
 
 -- Toggle colorcolumn, customizable columns
-local colorcolumns = '75,80,100,120'
+local colorcolumns = '72,80,100,120'
 keyset('n', '<F8>', function()
     vim.wo.colorcolumn = (vim.wo.colorcolumn == '' and colorcolumns or '')
     vim.notify('Colorcolumn: ' .. (vim.wo.colorcolumn == '' and 'off' or colorcolumns))
