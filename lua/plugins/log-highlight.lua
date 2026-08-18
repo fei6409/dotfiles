@@ -13,6 +13,7 @@ return {
             '%/var%/log%/.*',
             '.*%-ramoops.*',
             '.*messages.*',
+            '.*%.kcrash',
             '.*logcat.*',
             '.*log.*%.txt',
             '.*%.LATEST',
