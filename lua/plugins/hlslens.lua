@@ -2,6 +2,7 @@
 -- https://github.com/kevinhwang91/nvim-hlslens
 return {
     'kevinhwang91/nvim-hlslens',
+    enabled = false,
     event = 'VeryLazy',
     init = function() vim.api.nvim_set_hl(0, 'HlSearchLensNear', { link = 'Visual' }) end,
     keys = {
