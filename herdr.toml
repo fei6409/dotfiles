@@ -35,6 +35,12 @@ pane_gaps = false
 prompt_new_tab_name = false
 show_agent_labels_on_pane_borders = true
 tab_bar_position = "bottom"
+tab_bar_right_separator = " | "
+tab_bar_right = [
+  { type = "zoom" },
+  { type = "hostname" },
+  { type = "datetime", format = "%H:%M" },
+]
 
 [ui.sidebar.agents]
 rows = [
