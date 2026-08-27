@@ -24,6 +24,7 @@ neovim = "latest"
 ripgrep = "latest"
 sd = "latest"
 tmux = "latest"
+usage = "latest"
 zoxide = "latest"
 
 # --- Language Servers ---
