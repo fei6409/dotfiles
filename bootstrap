@@ -36,6 +36,8 @@ case "$platform" in
     info 'Installing core packages'
     sudo apt install -y \
       rustup
+    info 'Installing Mise via curl'
+    curl https://mise.run | sh
     ;;
   *)
     printf 'Unsupported platform: %s\n' "$platform" >&2
