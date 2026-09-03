@@ -38,14 +38,29 @@ shift $((OPTIND - 1))
 
 # Kill logic
 if [[ -n "$KILL_PORT" ]]; then
+  # 1. Try canceling via ssh multiplexing
+  for sock in ~/.ssh/ctrl-*; do
+    if [[ -S "$sock" ]]; then
+      for dir in "-L" "-R"; do
+        out=$(ssh -S "$sock" -O cancel "$dir" "$KILL_PORT:localhost:$KILL_PORT" dummy 2>&1 || true)
+        if [[ -z "$out" ]]; then
+          echo "Cancelled tunnel on port $KILL_PORT."
+          exit 0
+        fi
+      done
+    fi
+  done
+
+  # 2. Fall back to lsof & kill for non-multiplexed tunnels
   if ! command -v lsof &> /dev/null; then
     echo "Error: 'lsof' is required to kill a process by port." >&2
     exit 1
   fi
-  PIDS=$(lsof -i TCP:"$KILL_PORT" -s TCP:LISTEN -t)
+
+  PIDS=$(sudo lsof -i TCP:"$KILL_PORT" -s TCP:LISTEN -t 2> /dev/null || true)
   if [[ -n "$PIDS" ]]; then
     # shellcheck disable=SC2086
-    if kill $PIDS; then
+    if sudo kill $PIDS 2> /dev/null || kill $PIDS; then
       echo "Killed process(es) on port $KILL_PORT (PIDs: $(echo $PIDS | xargs))."
     else
       echo "Failed to kill process(es) on port $KILL_PORT." >&2
