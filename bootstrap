@@ -7,12 +7,15 @@ if_has() { command -v "$1" > /dev/null 2>&1; }
 
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+if [[ "$BASEDIR" != "$HOME/dotfiles" ]]; then
+  printf "Repository must be located at '%s/dotfiles' (current: %s)\n" "$HOME" "$BASEDIR" >&2
+  exit 1
+fi
+
 cd "$BASEDIR"
+info 'Updating git submodules'
 git submodule sync --quiet --recursive
 git submodule update --init --recursive
-
-# Install symlinks with Dotbot
-./install
 
 platform=$(uname -s)
 if [[ "$platform" == Linux ]]; then
@@ -23,73 +26,28 @@ fi
 
 info "Detected platform: $platform"
 
-case "$platform" in
-  Darwin)
-    info 'Updating Homebrew'
-    brew update
-    info 'Installing core packages'
-    brew bundle --global
-    ;;
-  debian)
-    info 'Updating APT packages'
-    sudo apt update
-    info 'Installing core packages'
-    sudo apt install -y \
-      rustup
-    info 'Installing Mise via curl'
-    curl https://mise.run | sh
-    ;;
-  *)
-    printf 'Unsupported platform: %s\n' "$platform" >&2
-    exit 1
-    ;;
-esac
+# Ensure ~/.local/bin is in PATH for newly installed mise
+export PATH="$HOME/.local/bin:$PATH"
 
 # shellcheck disable=SC2310
-if if_has mise; then
-  info 'Installing tools and runtimes via Mise'
-  mise install
-  info 'Syncing base Python packages'
-  mise run py:sync
+if ! if_has mise; then
+  case "$platform" in
+    Darwin)
+      info 'Updating Homebrew'
+      brew update
+      info 'Installing Mise via Homebrew'
+      brew install mise
+      ;;
+    debian)
+      info 'Installing Mise via curl'
+      curl https://mise.run | sh
+      ;;
+    *)
+      printf 'Unsupported platform: %s\n' "$platform" >&2
+      exit 1
+      ;;
+  esac
 fi
 
-info 'Generating static Zsh completions'
-COMP_DIR="$HOME/.local/share/zsh-completions"
-mkdir -p "$COMP_DIR"
-
-gen_comp() {
-  local bin="$1"
-  # shellcheck disable=SC2310
-  if if_has "$bin"; then
-    "$@" > "$COMP_DIR/_$bin"
-  fi
-}
-
-fetch_comp() {
-  local bin="$1" url="$2"
-  # shellcheck disable=SC2310
-  if if_has "$bin"; then
-    curl -fsSL "$url" -o "$COMP_DIR/_$bin"
-  fi
-}
-
-gen_comp bat --completion zsh
-gen_comp delta --generate-completion zsh
-gen_comp fd --gen-completions zsh
-gen_comp git-absorb --gen-completions zsh
-gen_comp gitleaks completion zsh
-gen_comp herdr completion zsh
-gen_comp jj util completion zsh
-gen_comp mise completion zsh
-gen_comp rg --generate=complete-zsh
-gen_comp ruff generate-shell-completion zsh
-gen_comp rustup completions zsh
-gen_comp tombi completion zsh
-gen_comp tree-sitter complete --shell zsh
-gen_comp uv generate-shell-completion zsh
-
-fetch_comp dust "https://raw.githubusercontent.com/bootandy/dust/master/completions/_dust"
-fetch_comp eza "https://raw.githubusercontent.com/eza-community/eza/main/completions/zsh/_eza"
-fetch_comp sd "https://raw.githubusercontent.com/chmln/sd/master/gen/completions/_sd"
-
-rm -f "$HOME/.cache/prezto/zcompdump{,.zwc}" "$HOME/.zcompdump{,.zwc}"
+info 'Executing Mise bootstrap'
+mise -E "$platform" bootstrap --yes --skip-dirty

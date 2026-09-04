@@ -1,0 +1,8 @@
+[dotfiles]
+"~/.config/autostart/org.fcitx.Fcitx5.desktop" = { source = "/usr/share/applications/org.fcitx.Fcitx5.desktop" }
+
+[bootstrap.hooks]
+pre-packages = "sudo apt update"
+
+[bootstrap.packages]
+"apt:rustup" = "latest"

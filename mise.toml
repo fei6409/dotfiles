@@ -1,6 +1,9 @@
 [env]
 COLORTERM = "truecolor"
 
+[bootstrap.user]
+login_shell = "/usr/bin/zsh"
+
 [tools]
 # --- Languages ---
 lua = "latest"
@@ -48,6 +51,105 @@ yamlfmt = "latest"
 "cargo:ouch" = "latest"
 "npm:hunkdiff" = "latest"
 
+[settings]
+dotfiles.default_mode = "symlink"
+
+[dotfiles]
+# Git
+"~/.gitconfig" = { source = "~/dotfiles/gitconfig" }
+"~/.gitignore.global" = { source = "~/dotfiles/gitignore.global" }
+
+# Vim & Neovim
+"~/.config/nvim/init.lua" = { source = "~/dotfiles/init.lua" }
+"~/.config/nvim/lua" = { source = "~/dotfiles/lua" }
+"~/.vimrc" = { source = "~/dotfiles/vimrc" }
+
+# Zsh & Prezto
+"~/.zshrc" = { source = "~/dotfiles/zshrc" }
+"~/.zprezto" = { source = "~/dotfiles/modules/prezto" }
+"~/.zpreztorc" = { source = "~/dotfiles/zpreztorc" }
+"~/.zprofile" = { source = "~/dotfiles/zprofile" }
+"~/.zlogin" = { source = "~/dotfiles/modules/prezto/runcoms/zlogin" }
+"~/.zlogout" = { source = "~/dotfiles/modules/prezto/runcoms/zlogout" }
+"~/.zshenv" = { source = "~/dotfiles/modules/prezto/runcoms/zshenv" }
+"~/.alias.zsh" = { source = "~/dotfiles/alias.zsh" }
+"~/.utils.zsh" = { source = "~/dotfiles/utils.zsh" }
+
+# Tmux & Oh-My-Tmux
+"~/.tmux" = { source = "~/dotfiles/modules/tmux" }
+"~/.tmux.conf" = { source = "~/dotfiles/modules/tmux/.tmux.conf" }
+"~/.tmux.conf.local" = { source = "~/dotfiles/tmux.conf.local" }
+
+# Terminal & CLI Configs
+"~/.config/ghostty/config" = { source = "~/dotfiles/ghostty-config" }
+"~/.config/herdr/config.toml" = { source = "~/dotfiles/herdr.toml" }
+"~/.config/hunk/config.toml" = { source = "~/dotfiles/hunk.toml" }
+"~/.config/mise/config.toml" = { source = "~/dotfiles/mise.toml" }
+"~/.config/ruff/ruff.toml" = { source = "~/dotfiles/ruff.toml" }
+"~/.clang-tidy" = { source = "~/dotfiles/clang-tidy" }
+"~/.jjconfig.toml" = { source = "~/dotfiles/jjconfig.toml" }
+"~/.shellcheckrc" = { source = "~/dotfiles/shellcheckrc" }
+
+# Local Binaries
+"~/.local/bin/better-git-branch" = { source = "~/dotfiles/bin/better-git-branch" }
+"~/.local/bin/herdr-navi-path" = { source = "~/dotfiles/bin/herdr-navi-path" }
+"~/.local/bin/tmux-navi-path" = { source = "~/dotfiles/bin/tmux-navi-path" }
+"~/.local/bin/ssh-forward" = { source = "~/dotfiles/bin/ssh-forward" }
+"~/.local/bin/unarchive" = { source = "~/dotfiles/bin/unarchive" }
+"~/.local/bin/zoxide-select-path" = { source = "~/dotfiles/bin/zoxide-select-path" }
+
 [tasks."py:sync"]
 description = "Sync base Python packages"
 run = 'uv pip install --python "$(mise which python3)" --upgrade -r ~/dotfiles/requirements.txt'
+
+[tasks.bootstrap]
+description = "Setup submodules, shell completions, and sync packages"
+run = '''
+# Prezto contrib
+mkdir -p "$HOME/dotfiles/modules/prezto/contrib"
+ln -sfn ../../fast-syntax-highlighting "$HOME/dotfiles/modules/prezto/contrib/fast-syntax-highlighting"
+
+# Static Zsh completions
+COMP_DIR="$HOME/.local/share/zsh-completions"
+mkdir -p "$COMP_DIR"
+
+if_has() { command -v "$1" > /dev/null 2>&1; }
+
+gen_comp() {
+  local bin="$1"
+  if if_has "$bin"; then
+    "$@" > "$COMP_DIR/_$bin"
+  fi
+}
+
+fetch_comp() {
+  local bin="$1" url="$2"
+  if if_has "$bin"; then
+    curl -fsSL "$url" -o "$COMP_DIR/_$bin"
+  fi
+}
+
+gen_comp bat --completion zsh
+gen_comp delta --generate-completion zsh
+gen_comp fd --gen-completions zsh
+gen_comp git-absorb --gen-completions zsh
+gen_comp gitleaks completion zsh
+gen_comp herdr completion zsh
+gen_comp jj util completion zsh
+gen_comp mise completion zsh
+gen_comp rg --generate=complete-zsh
+gen_comp ruff generate-shell-completion zsh
+gen_comp rustup completions zsh
+gen_comp tombi completion zsh
+gen_comp tree-sitter complete --shell zsh
+gen_comp uv generate-shell-completion zsh
+
+fetch_comp dust "https://raw.githubusercontent.com/bootandy/dust/master/completions/_dust"
+fetch_comp eza "https://raw.githubusercontent.com/eza-community/eza/main/completions/zsh/_eza"
+fetch_comp sd "https://raw.githubusercontent.com/chmln/sd/master/gen/completions/_sd"
+
+rm -f "$HOME"/.cache/prezto/zcompdump{,.zwc} "$HOME"/.zcompdump{,.zwc}
+
+# Sync Python packages
+mise run py:sync
+'''
