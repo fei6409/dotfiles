@@ -1,6 +1,6 @@
 # Dotfiles
 
-Personal dotfiles. Installation is powered by [Dotbot](https://github.com/anishathalye/dotbot).
+Personal dotfiles. Installation is powered by [Mise](https://mise.jdx.dev/).
 
 ```sh
 bash <(curl -fsSL https://raw.githubusercontent.com/fei6409/dotfiles/main/fetch.sh)
