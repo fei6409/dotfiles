@@ -1,2 +1,5 @@
 [dotfiles]
 "~/.Brewfile" = { source = "~/dotfiles/Brewfile" }
+
+[bootstrap.user]
+login_shell = "/bin/zsh"

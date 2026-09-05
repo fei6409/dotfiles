@@ -1,9 +1,6 @@
 [env]
 COLORTERM = "truecolor"
 
-[bootstrap.user]
-login_shell = "/usr/bin/zsh"
-
 [tools]
 # --- Languages ---
 lua = "latest"

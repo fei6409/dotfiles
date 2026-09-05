@@ -6,3 +6,6 @@ pre-packages = "sudo apt update"
 
 [bootstrap.packages]
 "apt:rustup" = "latest"
+
+[bootstrap.user]
+login_shell = "/usr/bin/zsh"
