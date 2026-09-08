@@ -103,10 +103,6 @@ run = 'uv pip install --python "$(mise which python3)" --upgrade -r ~/dotfiles/r
 [tasks.bootstrap]
 description = "Setup submodules, shell completions, and sync packages"
 run = '''
-# Prezto contrib
-mkdir -p "$HOME/dotfiles/modules/prezto/contrib"
-ln -sfn ../../fast-syntax-highlighting "$HOME/dotfiles/modules/prezto/contrib/fast-syntax-highlighting"
-
 # Static Zsh completions
 COMP_DIR="$HOME/.local/share/zsh-completions"
 mkdir -p "$COMP_DIR"
