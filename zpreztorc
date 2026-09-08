@@ -16,7 +16,7 @@ zstyle ':prezto:*:*' color 'yes'
 # zstyle ':prezto:load' pmodule-dirs $HOME/.zprezto-contrib
 #
 # To avoid hard-coded $HOME/dotfiles/
-zstyle ':prezto:load' pmodule-dirs $(dirname $(realpath $0))/modules/prezto/modules/prompt/external/
+zstyle ':prezto:load' pmodule-dirs ${0:A:h}/modules/prezto/modules/prompt/external/
 
 # Allow module overrides when pmodule-dirs causes module name collisions
 # zstyle ':prezto:load' pmodule-allow-overrides 'yes'
@@ -39,7 +39,6 @@ zstyle ':prezto:load' pmodule \
   'async' \
   'command-not-found' \
   'git' \
-  'rsync' \
   'terminal' \
   'editor' \
   'history' \
