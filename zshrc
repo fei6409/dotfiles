@@ -6,14 +6,17 @@
 # Executes commands at the start of an interactive session.
 #
 
-# Dedup fpath array.
-typeset -gU fpath
+# Ensure path arrays do not contain duplicates.
+typeset -U path cdpath fpath
 
-# For Zsh completion and function definitions.
+# Filter out non-existent directories from fpath before loading prezto.
+# (N-/): N enables nullglob, - follows symlinks, / restricts to directories.
+# ${^fpath}(N-/) distributes the glob qualifier over every element.
+# shellcheck disable=SC1036
 fpath=(
-  "$HOME/.local/share/zsh-completions"
-  /opt/homebrew/share/zsh/site-functions
-  $fpath
+  "$HOME/.local/share/zsh-completions"(N-/)
+  /opt/homebrew/share/zsh/site-functions(N-/)
+  ${^fpath}(N-/)
 )
 
 # Source Prezto.
@@ -104,8 +107,6 @@ zstyle ':completion:*' users fei6409 fshao root
 # Set file mode permission mask
 umask 022
 
-# Ensure path array do not contain duplicates
-typeset -U PATH
 
 if_has mise && eval "$(mise activate zsh)"
 
