@@ -95,8 +95,26 @@ umask 022
 typeset -U PATH
 
 if_has mise && eval "$(mise activate zsh)"
-if_has zoxide && eval "$(zoxide init zsh)"
-if_has fzf && eval "$(fzf --zsh)"
+
+if if_has zoxide; then
+    _zoxide_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zoxide_init.zsh"
+    if [[ ! -s "$_zoxide_cache" ]]; then
+        mkdir -p "${_zoxide_cache:h}"
+        zoxide init zsh >| "$_zoxide_cache"
+    fi
+    source "$_zoxide_cache"
+    unset _zoxide_cache
+fi
+
+if if_has fzf; then
+    _fzf_cache="${XDG_CACHE_HOME:-$HOME/.cache}/fzf_init.zsh"
+    if [[ ! -s "$_fzf_cache" ]]; then
+        mkdir -p "${_fzf_cache:h}"
+        fzf --zsh >| "$_fzf_cache"
+    fi
+    source "$_fzf_cache"
+    unset _fzf_cache
+fi
 
 # Starship for shell prompt - https://starship.rs
 # if_has starship && eval "$(starship init zsh)"
