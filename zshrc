@@ -71,14 +71,27 @@ chk_src "$HOME/.local.zsh"
 
 # To boost ssh/scp completion speed, only consider hosts in the SSH config
 if [[ -f $HOME/.ssh/config ]]; then
-    host_list=($(awk '
-        tolower($1) == "host" {
-            for (i=2; i<=NF; i++)
-                if ($i !~ /[*?]/) print $i
-        }
-    ' "$HOME/.ssh/config" | sort -u))
-    # shellcheck disable=SC2086,SC2128
-    zstyle ':completion:*:(ssh|scp|sftp|rsync):*' hosts ${host_list}
+    # Parse ~/.ssh/config using pure zsh to avoid external forks (awk/sort).
+    # Wrapped in an anonymous function to scope variables and options.
+    # shellcheck disable=SC1009,SC1072,SC1073
+    () {
+        setopt localoptions EXTENDED_GLOB
+        local -a lines host_lines words hosts
+        # Read file into array split by newlines (f)
+        lines=(${(f)"$(<$HOME/.ssh/config)"})
+        # Filter lines starting with case-insensitive 'Host ' (#i)
+        host_lines=(${(M)lines:#(#i)[[:space:]]#host[[:space:]]##*})
+        hosts=()
+        for l in "${host_lines[@]}"; do
+            words=(${=l}) # Split line by whitespace
+            for w in "${words[@]:1}"; do
+                # Exclude wildcard patterns (* and ?)
+                [[ "$w" != *[*?]* ]] && hosts+=("$w")
+            done
+        done
+        # (oiu): order alphabetically, ignore case, deduplicate
+        zstyle ':completion:*:(ssh|scp|sftp|rsync):*' hosts ${(oiu)hosts}
+    }
 fi
 
 # To boost command completion speed, only consider the following users
