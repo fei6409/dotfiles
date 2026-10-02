@@ -8,4 +8,5 @@ return {
         opleader = { line = '\\', block = '<leader>\\' },
         mappings = { extra = false },
     },
+    enabled = false,
 }
