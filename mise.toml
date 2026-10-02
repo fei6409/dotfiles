@@ -1,5 +1,7 @@
 [env]
 COLORTERM = "truecolor"
+# Keep __pycache__ out of source trees; bytecode caching stays enabled.
+PYTHONPYCACHEPREFIX = "{{env.HOME}}/.cache/pycache"
 
 [tools]
 # --- Languages ---
