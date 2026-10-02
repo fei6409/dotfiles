@@ -20,4 +20,5 @@ return {
     opts = {
         use_default_keymaps = false,
     },
+    enabled = false,
 }

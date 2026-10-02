@@ -19,4 +19,5 @@ return {
             change_line = "'C",
         },
     },
+    enabled = false,
 }
