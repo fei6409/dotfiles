@@ -43,6 +43,8 @@
   cookiefile = ~/.gitcookies
 [init]
   defaultBranch = main
+  # https://github.com/folke/lazy.nvim/issues/2046#issuecomment-3294386103
+  defaultRefFormat=files
 [interactive]
   diffFilter = delta --color-only
 [merge]
