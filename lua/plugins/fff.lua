@@ -1,10 +1,9 @@
 -- Optimized fuzzy file finder
--- https://github.com/dmtrKovalenko/fff.nvim
+-- https://github.com/dmtrKovalenko/fff
 return {
-    'dmtrKovalenko/fff.nvim',
+    'dmtrKovalenko/fff',
     build = function()
-        -- this will download prebuild binary or try to use existing rustup toolchain to build from source
-        -- (if you are using lazy you can use gb for rebuilding a plugin if needed)
+        -- downloads a prebuilt binary or falls back to cargo build
         require('fff.download').download_or_build_binary()
     end,
     lazy = false, -- This plugin initializes itself lazily.
@@ -21,18 +20,13 @@ return {
         },
         {
             '<leader>sz',
-            function()
-                require('fff').live_grep {
-                    grep = {
-                        modes = { 'fuzzy', 'plain' },
-                    },
-                }
-            end,
+            function() require('fff').live_grep { grep = { modes = { 'fuzzy', 'plain' } } } end,
             desc = '[S]earch Fu[Z]zy grep (fff)',
         },
         {
             '<leader>ss',
-            function() require('fff').live_grep { query = vim.fn.expand('<cword>') } end,
+            function() require('fff').live_grep_under_cursor() end,
+            mode = { 'n', 'x' },
             desc = '[S]earch current [S]tring (fff)',
         },
     },
