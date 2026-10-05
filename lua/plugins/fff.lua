@@ -14,9 +14,19 @@ return {
             desc = '[S]earch [F]iles (fff)',
         },
         {
+            '<leader>sF',
+            function() require('fff').find_files { cwd = vim.fs.root(0, '.git') } end,
+            desc = '[S]earch [F]iles from Git root (fff)',
+        },
+        {
             '<leader>sg',
             function() require('fff').live_grep() end,
             desc = '[S]earch [G]rep (fff)',
+        },
+        {
+            '<leader>sG',
+            function() require('fff').live_grep { cwd = vim.fs.root(0, '.git') } end,
+            desc = '[S]earch [G]rep from Git root (fff)',
         },
         {
             '<leader>sz',
