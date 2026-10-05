@@ -1,6 +1,6 @@
 -- Tabline support
 -- https://github.com/akinsho/bufferline.nvim
-BG_HL = '#2A2A37'
+local bg_hl = '#2A2A37'
 
 return {
     'akinsho/bufferline.nvim',
@@ -16,18 +16,26 @@ return {
             tab_size = 10,
             max_name_length = 25,
             separator_style = 'slant',
+            offsets = {
+                {
+                    filetype = 'neo-tree',
+                    text = 'File Explorer',
+                    highlight = 'Directory',
+                    separator = true,
+                },
+            },
         },
         highlights = {
             buffer_selected = {
                 bold = true,
                 italic = false,
-                bg = BG_HL,
+                bg = bg_hl,
             },
             modified_selected = {
-                bg = BG_HL,
+                bg = bg_hl,
             },
             separator_selected = {
-                bg = BG_HL,
+                bg = bg_hl,
             },
         },
     },
