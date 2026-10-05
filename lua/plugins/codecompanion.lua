@@ -32,7 +32,7 @@ return {
             interactions = {
                 chat = {
                     adapter = adapter,
-                    tools = { opts = { default_tools = { 'files' } } },
+                    tools = { opts = { default_tools = { 'agent' } } },
                 },
                 inline = { adapter = adapter },
                 cmd = { adapter = adapter },
