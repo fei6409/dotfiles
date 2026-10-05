@@ -32,24 +32,6 @@ local servers = {
     },
     lua_ls = {
         bin = 'lua-language-server',
-        config = {
-            settings = {
-                Lua = {
-                    -- Specify the Lua version (usually LuaJIT for Neovim)
-                    runtime = { version = 'LuaJIT' },
-                    -- Recognize the 'vim' global variable
-                    diagnostics = { globals = { 'vim' } },
-                    -- Include Neovim runtime files in the workspace
-                    workspace = {
-                        library = { vim.env.VIMRUNTIME },
-                        -- Disable third-party checks. See: https://github.com/neovim/nvim-lspconfig/issues/1700
-                        checkThirdParty = false,
-                    },
-                    -- Disable telemetry data
-                    telemetry = { enable = false },
-                },
-            },
-        },
     },
     ruff = {
         bin = 'ruff',
@@ -109,11 +91,16 @@ return {
             -- Enable only servers available on host.
             vim.lsp.enable(lsp_enabled)
 
-            -- Show shellcheck error codes in diagnostics.
-            -- See: https://github.com/bash-lsp/bash-language-server/issues/752
+            -- Show error codes on non-current lines; expand full messages via virtual_lines on current line.
             vim.diagnostic.config {
+                severity_sort = true,
                 virtual_text = {
-                    format = function(args) return string.format('%s [%s]', args.message, args.code) end,
+                    current_line = false,
+                    format = function(d) return d.code and string.format('[%s]', d.code) or '' end,
+                },
+                virtual_lines = {
+                    current_line = true,
+                    format = function(d) return d.code and string.format('[%s] %s', d.code, d.message) or d.message end,
                 },
             }
 
@@ -127,24 +114,29 @@ return {
                     -- "grr"  (Normal)         |vim.lsp.buf.references()|
                     -- "gri"  (Normal)         |vim.lsp.buf.implementation()|
                     -- "gO"   (Normal)         |vim.lsp.buf.document_symbol()|
-                    -- "[d"   (Normal)         |vim.diagnostic.goto_next()|
-                    -- "]d"   (Normal)         |vim.diagnostic.goto_prev()|
+                    -- "[d"   (Normal)         |vim.diagnostic.jump({ count = -1 })|
+                    -- "]d"   (Normal)         |vim.diagnostic.jump({ count = 1 })|
                     -- "gd"   (Normal)         Go to local definition
                     -- "gD"   (Normal)         Go to global definition
                     -- "K"    (Normal)         |vim.lsp.buf.hover()|
                     -- <C-s>  (Insert)         |vim.lsp.buf.signature_help()|
-                    --
-                    -- Custom keymaps:
-                    -- "gk"   (Normal)         |vim.diagnostic.open_float()|
-                    -- "grd"  (Normal)         |vim.lsp.buf.definition()|
-                    -- "grt"  (Normal)         |vim.lsp.buf.type_definition()|
 
+                    local client = vim.lsp.get_client_by_id(args.data.client_id)
                     local keyset = vim.keymap.set
                     local opts = function(desc) return { buffer = args.buf, silent = true, desc = desc } end
 
-                    keyset('n', 'gk', vim.diagnostic.open_float, opts('vim.diagnostic.open_float()'))
-                    keyset('n', 'grd', vim.lsp.buf.definition, opts('vim.lsp.buf.definition()'))
-                    keyset('n', 'grt', vim.lsp.buf.type_definition, opts('vim.lsp.buf.type_definition()'))
+                    -- Custom keymaps:
+                    keyset('n', 'gk', vim.diagnostic.open_float, opts('LSP: Show line diagnostics'))
+                    keyset('n', 'grd', vim.lsp.buf.definition, opts('LSP: Go to definition'))
+                    keyset('n', 'grt', vim.lsp.buf.type_definition, opts('LSP: Go to type definition'))
+
+                    if client and client:supports_method('textDocument/inlayHint', args.buf) then
+                        vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+                        keyset('n', 'grh', function()
+                            local is_enabled = vim.lsp.inlay_hint.is_enabled { bufnr = args.buf }
+                            vim.lsp.inlay_hint.enable(not is_enabled, { bufnr = args.buf })
+                        end, opts('LSP: Toggle inlay hints'))
+                    end
 
                     -- Opt out of 'formatexpr'
                     vim.bo[args.buf].formatexpr = nil
