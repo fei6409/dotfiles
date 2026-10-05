@@ -5,12 +5,13 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
         options = {
+            -- Prefer over Kanagawa
             theme = 'onedark',
             always_divide_middle = false,
         },
         sections = {
             lualine_a = { 'mode' },
-            lualine_b = { 'branch', 'diff' },
+            lualine_b = { 'branch', 'diff', 'diagnostics' },
             lualine_c = {
                 { 'filename', path = 1 }, -- Relative path
             },
