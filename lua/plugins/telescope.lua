@@ -4,6 +4,7 @@ return {
     'nvim-telescope/telescope.nvim',
     dependencies = {
         'nvim-lua/plenary.nvim',
+        'nvim-telescope/telescope-ui-select.nvim',
         {
             'nvim-telescope/telescope-fzf-native.nvim',
             build = 'make',
@@ -11,8 +12,6 @@ return {
     },
     cmd = 'Telescope',
     keys = {
-        -- { '<leader>ss', '<cmd>Telescope grep_string<cr>', desc = '[S]earch current [S]tring' },
-        -- { '<leader>sg', '<cmd>Telescope live_grep<cr>', desc = '[S]earch by rip[G]rep' },
         { '<leader>sh', '<cmd>Telescope help_tags<cr>', desc = '[S]earch [H]elp' },
         { '<leader>sk', '<cmd>Telescope keymaps<cr>', desc = '[S]earch [K]eymaps' },
         { '<leader>sd', '<cmd>Telescope diagnostics<cr>', desc = '[S]earch [D]iagnostics' },
@@ -27,41 +26,15 @@ return {
         { '<leader>slr', '<cmd>Telescope lsp_references<cr>', desc = '[S]earch [L]SP [R]eferences' },
         { '<leader>sls', '<cmd>Telescope lsp_document_symbols<cr>', desc = '[S]earch [L]SP [S]ymbols' },
     },
+    init = function()
+        ---@diagnostic disable-next-line: duplicate-set-field
+        vim.ui.select = function(...)
+            require('telescope')
+            return vim.ui.select(...)
+        end
+    end,
     config = function()
         local tel_actions = require('telescope.actions')
-        local tel_builtin = require('telescope.builtin')
-
-        -- Git root detection (Neovim 0.10+)
-        local function get_git_root() return vim.fs.root(0, '.git') end
-
-        local keyset = vim.keymap.set
-        -- keyset('n', '<leader>sf', function()
-        --     if get_git_root() then
-        --         tel_builtin.git_files()
-        --     else
-        --         tel_builtin.find_files()
-        --     end
-        -- end, { desc = '[S]earch [F]iles (Git files first)' })
-
-        keyset('n', '<leader>sF', function()
-            local root = get_git_root()
-            if root then
-                tel_builtin.find_files {
-                    cwd = root,
-                    prompt_title = 'Find Files from Git root',
-                }
-            end
-        end, { desc = '[S]earch [F]iles globally from Git repo root' })
-
-        keyset('n', '<leader>sG', function()
-            local root = get_git_root()
-            if root then
-                tel_builtin.live_grep {
-                    cwd = root,
-                    prompt_title = 'Live Grep from Git root',
-                }
-            end
-        end, { desc = '[S]earch by rip[G]rep globally from Git repo root' })
 
         -- Custom action: open multiple files if selected, otherwise open current
         local function smart_open_multi(prompt_bufnr)
@@ -122,7 +95,13 @@ return {
                     },
                 },
             },
+            extensions = {
+                ['ui-select'] = {
+                    require('telescope.themes').get_dropdown(),
+                },
+            },
         }
         require('telescope').load_extension('fzf')
+        require('telescope').load_extension('ui-select')
     end,
 }
