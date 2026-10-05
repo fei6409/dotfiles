@@ -7,6 +7,11 @@ return {
         require('fff.download').download_or_build_binary()
     end,
     lazy = false, -- This plugin initializes itself lazily.
+    opts = {
+        keymaps = {
+            close = { '<Esc>', '<C-c>' },
+        },
+    },
     keys = {
         {
             '<leader>sf',
