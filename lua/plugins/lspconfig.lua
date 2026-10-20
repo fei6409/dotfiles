@@ -39,6 +39,15 @@ local servers = {
     rust_analyzer = {
         bin = 'rust-analyzer',
     },
+    typos_lsp = {
+        bin = 'typos-lsp',
+        config = {
+            root_markers = { 'typos.toml', '_typos.toml', '.typos.toml' },
+            init_options = {
+                diagnosticSeverity = 'Hint',
+            },
+        },
+    },
     yamlls = {
         bin = 'yaml-language-server',
     },
