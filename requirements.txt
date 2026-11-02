@@ -1,5 +1,2 @@
-ipython
-numpy
-scipy
-requests
 pyyaml
+requests

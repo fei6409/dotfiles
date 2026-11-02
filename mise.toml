@@ -99,8 +99,11 @@ dotfiles.default_mode = "symlink"
 "~/.local/bin/zoxide-select-path" = { source = "~/dotfiles/bin/zoxide-select-path" }
 
 [tasks."py:sync"]
-description = "Sync base Python packages"
-run = 'uv pip install --python "$(mise which python3)" --upgrade -r ~/dotfiles/requirements.txt'
+description = "Sync global Python packages and CLI-only tools"
+run = '''
+uv pip install --python "$(mise which python3)" --upgrade -r ~/dotfiles/requirements.txt
+uv tool install --upgrade ipython --with numpy --with scipy
+'''
 
 [tasks.bootstrap]
 description = "Setup submodules, shell completions, and sync packages"
