@@ -45,6 +45,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Customize debug mode prompt for `set -x`
 export PS4='$0:$LINENO++> '
 
+# Let gpg-agent show the pinentry passphrase prompt in this terminal (SSH)
+export GPG_TTY="$(tty)"
+
 # FZF options
 export FZF_DEFAULT_COMMAND="fd --type f --follow --hidden --exclude .git"
 export FZF_DEFAULT_OPTS="
