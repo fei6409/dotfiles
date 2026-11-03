@@ -103,6 +103,7 @@ description = "Sync global Python packages and CLI-only tools"
 run = '''
 uv pip install --python "$(mise which python3)" --upgrade -r ~/dotfiles/requirements.txt
 uv tool install --upgrade ipython --with numpy --with scipy
+uv tool install --upgrade 'markitdown[pdf,docx,pptx,xlsx,xls]'
 '''
 
 [tasks.bootstrap]
