@@ -12,6 +12,7 @@ ruby = "latest"
 uv = "latest"
 
 # --- Core Utilities ---
+ast-grep = "latest"
 bat = "latest"
 cmake = "latest"
 delta = "latest"
@@ -129,6 +130,7 @@ fetch_comp() {
   fi
 }
 
+gen_comp ast-grep completions zsh
 gen_comp bat --completion zsh
 gen_comp delta --generate-completion zsh
 gen_comp fd --gen-completions zsh
