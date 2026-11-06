@@ -33,8 +33,10 @@ usage = "latest"
 zoxide = "latest"
 
 # --- Language Servers ---
+harper-ls = "latest"
 lua-language-server = "latest"
 rust-analyzer = "latest"
+"cargo:typos-lsp" = "latest"
 "npm:bash-language-server" = "latest"
 "npm:yaml-language-server" = "latest"
 
@@ -45,6 +47,7 @@ shfmt = "latest"
 stylua = "latest"
 tombi = "latest"
 tree-sitter = "latest"
+typos = "latest"
 yamlfmt = "latest"
 
 # --- Utilities via Cargo & NPM ---
