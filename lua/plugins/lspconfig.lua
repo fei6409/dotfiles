@@ -91,15 +91,17 @@ return {
             -- Enable only servers available on host.
             vim.lsp.enable(lsp_enabled)
 
-            -- Show error codes on non-current lines; expand full messages via virtual_lines on current line.
+            -- Render inline badges and current-line virtual lines only for WARN+ diagnostics.
             vim.diagnostic.config {
                 severity_sort = true,
                 virtual_text = {
                     current_line = false,
+                    severity = { min = vim.diagnostic.severity.WARN },
                     format = function(d) return d.code and string.format('[%s]', d.code) or '' end,
                 },
                 virtual_lines = {
                     current_line = true,
+                    severity = { min = vim.diagnostic.severity.WARN },
                     format = function(d) return d.code and string.format('[%s] %s', d.code, d.message) or d.message end,
                 },
             }
