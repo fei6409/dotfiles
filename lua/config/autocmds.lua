@@ -45,12 +45,13 @@ autocmd({ 'BufEnter' }, {
     end,
 })
 
-autocmd('FileType', {
-    group = augroups['spell'],
-    pattern = { 'gitcommit', 'gitsendemail', 'jjdescription', 'markdown' },
-    desc = 'Enable spell checking',
-    callback = function() vim.opt_local.spell = true end,
-})
+-- Replaced by typos_lsp
+-- autocmd('FileType', {
+--     group = augroups['spell'],
+--     pattern = { 'gitcommit', 'gitsendemail', 'jjdescription', 'markdown' },
+--     desc = 'Enable spell checking',
+--     callback = function() vim.opt_local.spell = true end,
+-- })
 
 autocmd('FileType', {
     group = augroups['indent'],
