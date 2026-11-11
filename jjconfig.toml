@@ -5,6 +5,8 @@ name = "fei6409"
 email = "fei6409@gmail.com"
 
 [ui]
+# Sort `jj bookmark list` by most recently committed first
+bookmark-list-sort-keys = ["committer-date-"]
 default-command = "log"
 diff-editor = ":builtin"
 diff-formatter = ":git"
@@ -13,6 +15,14 @@ log-word-wrap = true
 pager = ["delta", "--side-by-side"]
 # pager = ["hunk", "pager"]
 
+[snapshot]
+# Auto-sync stale working copies after background or multi-workspace updates
+auto-update-stale = true
+
+[revsets]
+# Default `jj bookmark advance` target to @- instead of @
+bookmark-advance-to = "@-"
+
 [aliases]
 ab = ["abandon"]
 des = ["describe"]
@@ -20,6 +30,8 @@ bl = ["blame"]
 bm = ["bookmark", "move", "--allow-backwards"]
 # Imitate Git blame
 blame = ["file", "annotate"]
+# List conflicts in current stack
+cf = ["log", "--no-graph", "-r", "trunk()..@ & conflicts()"]
 # Take content from any change, and move it into @: `jj consume xyz path/to/file`
 consume = ["squash", "--into", "@", "--from"]
 eh = ["edit", "-r", "heads(@::)"]
@@ -27,19 +39,27 @@ eh = ["edit", "-r", "heads(@::)"]
 eject = ["squash", "-i", "--from", "@", "--into"]
 gf = ["git", "fetch"]
 gp = ["git", "push"]
+# Git fetch and rebase current stack onto trunk(), undoing rebase on conflict
+gs = ["util", "exec", "--", "bash", "-c", '''
+set -euo pipefail
+cd "${JJ_WORKSPACE_ROOT:-.}"
+[[ -z "$(jj cf)" ]] || exit 0
+jj --quiet gf && jj --quiet rbt
+[[ -z "$(jj cf)" ]] || { jj undo; exit 1; }
+''']
 ll = ["log", "-T", "builtin_log_detailed", "-p"]
 nt = ["new", "trunk()"]
 ol = ["op", "log"]
-rb = ["rebase"]
+rb = ["rebase", "--skip-emptied"]
 # Retrunk all mutable commits
-rba = ["rebase", "-d", "trunk()", "-s", "roots(mutable() & ~trunk())"]
-# Retrunk a series on trunk(): `jj rbt -s ...`
-rbt = ["rebase", "-d", "trunk()"]
+rba = ["rbt", "-s", "roots(mutable() & ~trunk())"]
+# Retrunk current branch (default -b @) or specified revisions on trunk(): `jj rbt [-s ...]`
+rbt = ["rb", "-o", "trunk()"]
 sh = ["show"]
 sp = ["split"]
 sq = ["squash"]
-# Move closest bookmark ancestor to a fresh commit
-tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
+# Advance closest bookmark to @- (or specified target/name): `jj tug [--to <rev>] [<name>]`
+tug = ["bookmark", "advance"]
 ua = ["metaedit", "--update-author", "--update-author-timestamp"]
 up = ["upload"]
 
