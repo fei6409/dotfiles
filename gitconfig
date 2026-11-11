@@ -8,6 +8,8 @@
 [absorb]
   autoStageIfNothingStaged = true
   maxStack = 20
+[advice]
+  skippedCherryPicks = false
 [alias]
   au = add -u
   bb = !better-git-branch # run external script
