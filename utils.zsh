@@ -45,9 +45,10 @@ gnb() {
         return 1
     fi
 
-    git checkout -b "$1"
-
-    [[ -z "$2" ]] && return
+    if [[ -z "$2" ]]; then
+        git checkout -b "$1"
+        return
+    fi
 
     local upstream=""
     local pattern="[a-zA-Z0-9._-]+"
@@ -88,5 +89,5 @@ gnb() {
         return 1
     fi
 
-    git branch --set-upstream-to="${upstream}"
+    git checkout -b "$1" --track "${upstream}"
 }
