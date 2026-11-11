@@ -41,6 +41,8 @@
 [diff]
   colorMoved = default
   colorMovedWS = allow-indentation-change
+[gc]
+  writeCommitGraph = true
 [http]
   cookiefile = ~/.gitcookies
 [init]
