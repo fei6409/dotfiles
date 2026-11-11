@@ -28,7 +28,7 @@
   hshow = -c core.pager=\"hunk pager\" show
   lg = log
   rb = rebase
-  ref= reflog --pretty=reflog
+  ref = reflog --pretty=reflog
   st = status
 [am]
   threeWay = true
@@ -62,10 +62,10 @@
 [status]
   submodulesummary = 1
 [pretty]
-  fixes =     "%C(auto)Fixes: %h (\"%s\")%C(reset)"
-  reflog =    "%C(auto)%h %C(brightgreen)%<(10)%gd %C(brightyellow)%ci %C(auto)%s %d%C(reset)"
-  onelinev2 = "%C(auto)%h %s %d%C(reset)"
-  onelinev3 = "%C(auto)%h %C(brightgreen)%<(20,trunc)%an %C(brightyellow)%ci %C(auto)%s %d%C(reset)"
+  compact = "%C(auto)%h %s%d"
+  fixes   = "%C(auto)Fixes: %h (\"%s\")"
+  reflog  = "%C(auto)%h %C(brightgreen)%<(12,trunc)%gd %C(brightyellow)%ci %C(auto)%s%d"
+  verbose = "%C(auto)%h %C(brightgreen)%<(20,trunc)%an %C(brightyellow)%cs %C(auto)%s%d"
 [delta]
   syntax-theme = Monokai Extended
   line-numbers = true
